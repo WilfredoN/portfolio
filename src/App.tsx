@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import LocationProvider from './Components/LocationProvider';
@@ -9,11 +9,13 @@ import Projects from './Pages/Projects';
 const RoutesWithAnimation = () => {
   const location = useLocation();
   return (
-    <Routes location={location} key={location.key}>
-      <Route path="*" element={<About />} />
-      <Route path="/portfolio/about" element={<About />} />
-      <Route path="/portfolio/projects" element={<Projects />} />
-    </Routes>
+    <HashRouter>
+      <Routes location={location} key={location.key}>
+        <Route path="*" element={<About />} />
+        <Route path="/portfolio/about" element={<About />} />
+        <Route path="/portfolio/projects" element={<Projects />} />
+      </Routes>
+    </HashRouter>
   );
 };
 
