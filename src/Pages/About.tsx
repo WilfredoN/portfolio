@@ -13,19 +13,19 @@ const About = () => {
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
               Java
-              <img className="ml-2 w-8" src="public/java-original.svg" />
+              <img className="ml-2 w-8" src="images/java-original.svg" />
             </li>
             <li className="flex items-center justify-center">
               HTML
-              <img className="ml-2 w-8" src="public/html5-original.svg" />
+              <img className="ml-2 w-8" src="images/html5-original.svg" />
             </li>
             <li className="flex items-center justify-center">
               CSS
-              <img className="ml-2 w-8" src="public/css3-original.svg" />
+              <img className="ml-2 w-8" src="images/css3-original.svg" />
             </li>
             <li className="flex items-center justify-center">
               TypeScript
-              <img className="ml-2 w-8" src="public/typescript-original.svg" />
+              <img className="ml-2 w-8" src="images/typescript-original.svg" />
             </li>
           </ul>
         </section>
@@ -34,24 +34,24 @@ const About = () => {
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
               React
-              <img className="ml-2 w-8" src="public/react-original.svg" />
+              <img className="ml-2 w-8" src="images/react-original.svg" />
             </li>
 
             <li className="flex items-center justify-center">
               Vite
-              <img className="ml-2 w-8" src="public/vitejs-original.svg" />
+              <img className="ml-2 w-8" src="images/vitejs-original.svg" />
             </li>
             <li className="flex items-center justify-center">
               TailwindCSS
-              <img className="ml-2 w-8" src="public/tailwindcss-original.svg" />
+              <img className="ml-2 w-8" src="images/tailwindcss-original.svg" />
             </li>
             <li className="flex items-center justify-center">
               Spring
-              <img className="ml-2 w-8" src="public/spring-original.svg" />
+              <img className="ml-2 w-8" src="images/spring-original.svg" />
             </li>
             <li className="flex items-center justify-center">
               Docker
-              <img className="ml-2 w-8" src="public/docker-original.svg" />
+              <img className="ml-2 w-8" src="images/docker-original.svg" />
             </li>
           </ul>
         </section>
