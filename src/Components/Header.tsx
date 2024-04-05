@@ -24,14 +24,14 @@ const Header = () => {
   return (
     <nav className="flex flex-row mb-8 mt-4">
       <CustomNavLink
-        to="/portfolio/about"
+        to="/"
         onClick={() => handleClick('about')}
         isClicked={isClicked.about}
       >
         About Me
       </CustomNavLink>
       <CustomNavLink
-        to="/portfolio/projects"
+        to="/projects"
         onClick={() => handleClick('projects')}
         isClicked={isClicked.projects}
       >
