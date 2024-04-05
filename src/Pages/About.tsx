@@ -1,43 +1,39 @@
+import { motion } from 'framer-motion';
+import Icon from '../Components/Icon';
+import { aboutVariant } from '../Types/RouterVariants';
 const About = () => {
   return (
-    <article className="mb-16 mt-8">
-      <p>
+    <motion.article
+      className="mb-16 mt-8"
+      variants={aboutVariant}
+      initial="initial"
+      animate="final"
+    >
+      <p className="text-2xl text-left">
         Hi, I'm a Software Developer. I love to build web applications from
         start to finish.
         <br /> I have experience in Java, Spring on the backend, React and
         Angular on the frontend.
       </p>
-      <div className="flex flex-row mt-8">
+      <div className="flex flex-row item justify-center mt-8">
         <section className="border max-w-96 rounded-xl mr-8">
           <h2 className="border-b text-4xl">Programming Languages</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
               Java
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/java/java-original.svg"
-              />
+              <Icon iconName="java" alt="Java" />
             </li>
             <li className="flex items-center justify-center">
               HTML
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/html5/html5-original.svg"
-              />
+              <Icon iconName="html5" alt="HTML5" />
             </li>
             <li className="flex items-center justify-center">
               CSS
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/css3/css3-original.svg"
-              />
+              <Icon iconName="css3" alt="CSS3" />
             </li>
             <li className="flex items-center justify-center">
               TypeScript
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/typescript/typescript-original.svg"
-              />
+              <Icon iconName="typescript" alt="TypeScript" />
             </li>
           </ul>
         </section>
@@ -46,44 +42,29 @@ const About = () => {
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
               React
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/react/react-original.svg"
-              />
+              <Icon iconName="react" alt="React" />
             </li>
 
             <li className="flex items-center justify-center">
               Vite
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/vitejs/vitejs-original.svg"
-              />
+              <Icon iconName="vitejs" alt="ViteJS" />
             </li>
             <li className="flex items-center justify-center">
               TailwindCSS
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/tailwindcss/tailwindcss-original.svg"
-              />
+              <Icon iconName="tailwindcss" alt="Tailwind" />
             </li>
             <li className="flex items-center justify-center">
               Spring
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/spring/spring-original.svg"
-              />
+              <Icon iconName="spring" alt="Spring" />
             </li>
             <li className="flex items-center justify-center">
               Docker
-              <img
-                className="ml-2 w-8"
-                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/docker/docker-original.svg"
-              />
+              <Icon iconName="docker" alt="Docker" />
             </li>
           </ul>
         </section>
       </div>
-    </article>
+    </motion.article>
   );
 };
 

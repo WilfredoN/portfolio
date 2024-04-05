@@ -1,9 +1,21 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
-const About = lazy(() => import('./Pages/About'));
-const Projects = lazy(() => import('./Pages/Projects'));
+import LocationProvider from './Components/LocationProvider';
+import About from './Pages/About';
+import Projects from './Pages/Projects';
+
+const RoutesWithAnimation = () => {
+  const location = useLocation();
+  return (
+    <Routes location={location} key={location.key}>
+      <Route path="*" element={<About />} />
+      <Route path="/portfolio/about" element={<About />} />
+      <Route path="/portfolio/projects" element={<Projects />} />
+    </Routes>
+  );
+};
 
 function App() {
   return (
@@ -11,15 +23,13 @@ function App() {
       <header>
         <h1 className="text-8xl mb-10">Portfolio</h1>
       </header>
-      <main className="flex flex-col items-center flex-grow">
+      <main className="flex flex-col items-center flex-grow overflow-hidden">
         <Header />
-        <Suspense fallback={<div className="text-4xl mt-10">Loading...</div>}>
-          <Routes>
-            <Route path="*" element={<About />} />
-            <Route path="/portfolio/about" element={<About />} />
-            <Route path="/portfolio/projects" element={<Projects />} />
-          </Routes>
-        </Suspense>
+        <LocationProvider>
+          <Suspense fallback={<div>Loading...</div>}>
+            <RoutesWithAnimation />
+          </Suspense>
+        </LocationProvider>
       </main>
       <footer className="text-center">
         <p>My portfolio built with Vite + React + TypeScript + TailwindCSS</p>

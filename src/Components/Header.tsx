@@ -1,14 +1,42 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import CustomNavLink from './CustomNavLink';
 
 const Header = () => {
+  const [isClicked, setIsClicked] = useState({ about: false, projects: false });
+  useEffect(() => {
+    if (window.location.pathname === '/portfolio/about') {
+      setIsClicked({ about: true, projects: false });
+    }
+    if (window.location.pathname === '/portfolio/projects') {
+      setIsClicked({ about: false, projects: true });
+    }
+  }, []);
+
+  const handleClick = (link: string) => {
+    if (link === 'about') {
+      setIsClicked({ about: true, projects: false });
+    }
+    if (link === 'projects') {
+      setIsClicked({ about: false, projects: true });
+    }
+  };
+
   return (
-    <nav className="flex flex-row">
-      <Link className="text-5xl" to="/portfolio/about">
+    <nav className="flex flex-row mb-8 mt-4">
+      <CustomNavLink
+        to="/portfolio/about"
+        onClick={() => handleClick('about')}
+        isClicked={isClicked.about}
+      >
         About Me
-      </Link>
-      <Link className="text-5xl ml-6" to="/portfolio/projects">
+      </CustomNavLink>
+      <CustomNavLink
+        to="/portfolio/projects"
+        onClick={() => handleClick('projects')}
+        isClicked={isClicked.projects}
+      >
         Projects
-      </Link>
+      </CustomNavLink>
     </nav>
   );
 };
