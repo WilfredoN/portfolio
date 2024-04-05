@@ -13,19 +13,31 @@ const About = () => {
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
               Java
-              <img className="ml-2 w-8" src="images/java-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/java/java-original.svg"
+              />
             </li>
             <li className="flex items-center justify-center">
               HTML
-              <img className="ml-2 w-8" src="images/html5-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/html5/html5-original.svg"
+              />
             </li>
             <li className="flex items-center justify-center">
               CSS
-              <img className="ml-2 w-8" src="images/css3-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/css3/css3-original.svg"
+              />
             </li>
             <li className="flex items-center justify-center">
               TypeScript
-              <img className="ml-2 w-8" src="images/typescript-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/typescript/typescript-original.svg"
+              />
             </li>
           </ul>
         </section>
@@ -34,24 +46,39 @@ const About = () => {
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
               React
-              <img className="ml-2 w-8" src="images/react-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/react/react-original.svg"
+              />
             </li>
 
             <li className="flex items-center justify-center">
               Vite
-              <img className="ml-2 w-8" src="images/vitejs-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/vitejs/vitejs-original.svg"
+              />
             </li>
             <li className="flex items-center justify-center">
               TailwindCSS
-              <img className="ml-2 w-8" src="images/tailwindcss-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/tailwindcss/tailwindcss-original.svg"
+              />
             </li>
             <li className="flex items-center justify-center">
               Spring
-              <img className="ml-2 w-8" src="images/spring-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/spring/spring-original.svg"
+              />
             </li>
             <li className="flex items-center justify-center">
               Docker
-              <img className="ml-2 w-8" src="images/docker-original.svg" />
+              <img
+                className="ml-2 w-8"
+                src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/docker/docker-original.svg"
+              />
             </li>
           </ul>
         </section>
