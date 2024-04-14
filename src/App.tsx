@@ -14,7 +14,9 @@ function App() {
   return (
     <div className="flex flex-col justify-center w-full">
       <header>
-        <h1 className="text-8xl mb-10">Portfolio</h1>
+        <h1 className="text-8xl mb-10" style={{ fontSize: '4rem' }}>
+          Portfolio
+        </h1>
       </header>
       <main className="flex flex-col items-center flex-grow">
         <Header currentPage={currentPage} onPageChange={handlePageChange} />

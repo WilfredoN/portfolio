@@ -14,6 +14,7 @@ const CustomNavLink = ({
         : ''
     }`}
     onClick={onClick}
+    style={{ fontSize: '2rem' }}
   >
     {children}
   </button>

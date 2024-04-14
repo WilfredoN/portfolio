@@ -19,6 +19,8 @@ const Projects = () => {
         well as communication between teachers and students. It was made as part
         of a training project in a college.
       </h1>
+      {/* TODO: Made toggable */}
+      {/* https://headlessui.com/react/disclosure */}
       <h1 className="text-6xl mb-8">Gallery</h1>
       <main className="overflow-visible grid grid-cols-2 gap-8">
         <MotionImage

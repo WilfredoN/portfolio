@@ -15,8 +15,8 @@ const About = () => {
         <br /> I have experience in Java, Spring on the backend, React and
         Angular on the frontend.
       </p>
-      <div className="flex flex-row item justify-center mt-8">
-        <section className="border max-w-96 rounded-xl mr-8">
+      <div className="flex md:flex-row flex-col item justify-center mt-8">
+        <section className="border xl:mb-0 w-96 xl:mr-8 md:mb-4">
           <h2 className="border-b text-4xl">Programming Languages</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
@@ -37,7 +37,7 @@ const About = () => {
             </li>
           </ul>
         </section>
-        <section className="border max-w-96 rounded-xl">
+        <section className="border w-96">
           <h2 className="border-b text-4xl">Technologies and Libraries</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
