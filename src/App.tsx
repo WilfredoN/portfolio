@@ -12,11 +12,11 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-center w-full">
       <header>
         <h1 className="text-8xl mb-10">Portfolio</h1>
       </header>
-      <main className="flex flex-col items-center flex-grow overflow-hidden">
+      <main className="flex flex-col items-center flex-grow">
         <Header currentPage={currentPage} onPageChange={handlePageChange} />
         {currentPage === 'about' ? <About /> : <Projects />}
       </main>
