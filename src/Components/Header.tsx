@@ -10,14 +10,12 @@ const Header = ({
   return (
     <nav className="flex flex-row mb-8 mt-4">
       <CustomNavLink
-        to="/"
         onClick={() => onPageChange('about')}
         isClicked={currentPage === 'about'}
       >
         About Me
       </CustomNavLink>
       <CustomNavLink
-        to="/projects"
         onClick={() => onPageChange('projects')}
         isClicked={currentPage === 'projects'}
       >

@@ -1,10 +1,8 @@
 const CustomNavLink = ({
-  to,
   onClick,
   children,
   isClicked,
 }: {
-  to: string;
   onClick: () => void;
   children: React.ReactNode;
   isClicked: boolean;
