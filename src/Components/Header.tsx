@@ -1,39 +1,25 @@
-import { useEffect, useState } from 'react';
 import CustomNavLink from './CustomNavLink';
 
-const Header = () => {
-  const [isClicked, setIsClicked] = useState({ about: false, projects: false });
-  useEffect(() => {
-    if (window.location.pathname === '/portfolio/about') {
-      setIsClicked({ about: true, projects: false });
-    }
-    if (window.location.pathname === '/portfolio/projects') {
-      setIsClicked({ about: false, projects: true });
-    }
-  }, []);
-
-  const handleClick = (link: string) => {
-    if (link === 'about') {
-      setIsClicked({ about: true, projects: false });
-    }
-    if (link === 'projects') {
-      setIsClicked({ about: false, projects: true });
-    }
-  };
-
+const Header = ({
+  currentPage,
+  onPageChange,
+}: {
+  currentPage: 'about' | 'projects';
+  onPageChange: (page: 'about' | 'projects') => void;
+}) => {
   return (
     <nav className="flex flex-row mb-8 mt-4">
       <CustomNavLink
         to="/"
-        onClick={() => handleClick('about')}
-        isClicked={isClicked.about}
+        onClick={() => onPageChange('about')}
+        isClicked={currentPage === 'about'}
       >
         About Me
       </CustomNavLink>
       <CustomNavLink
         to="/projects"
-        onClick={() => handleClick('projects')}
-        isClicked={isClicked.projects}
+        onClick={() => onPageChange('projects')}
+        isClicked={currentPage === 'projects'}
       >
         Projects
       </CustomNavLink>

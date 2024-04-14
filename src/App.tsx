@@ -1,34 +1,24 @@
-import { Suspense } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
-import LocationProvider from './Components/LocationProvider';
 import About from './Pages/About';
 import Projects from './Pages/Projects';
 
-const RoutesWithAnimation = () => {
-  const location = useLocation();
-  return (
-    <Routes location={location} key={location.key}>
-      <Route path="/" element={<About />} />
-      <Route path="/projects" element={<Projects />} />
-    </Routes>
-  );
-};
-
 function App() {
+  const [currentPage, setCurrentPage] = useState<'about' | 'projects'>('about');
+
+  const handlePageChange = (page: 'about' | 'projects') => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="flex flex-col">
       <header>
         <h1 className="text-8xl mb-10">Portfolio</h1>
       </header>
       <main className="flex flex-col items-center flex-grow overflow-hidden">
-        <Header />
-        <LocationProvider>
-          <Suspense fallback={<div>Loading...</div>}>
-            <RoutesWithAnimation />
-          </Suspense>
-        </LocationProvider>
+        <Header currentPage={currentPage} onPageChange={handlePageChange} />
+        {currentPage === 'about' ? <About /> : <Projects />}
       </main>
       <footer className="text-center">
         <p>My portfolio built with Vite + React + TypeScript + TailwindCSS</p>
