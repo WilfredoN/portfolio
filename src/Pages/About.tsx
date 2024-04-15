@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import Icon from '../Components/image/TableIcon';
-import { aboutVariant } from '../Types/RouterVariants';
+import { prevPageVariant } from '../Types/RouterVariants';
 const About = () => {
   return (
     <motion.article
       className="mb-16 mt-8 md:mb-0"
-      variants={aboutVariant}
+      variants={prevPageVariant}
       initial="initial"
       animate="final"
     >

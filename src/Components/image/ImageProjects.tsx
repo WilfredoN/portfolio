@@ -12,10 +12,10 @@ const MotionImage: React.FC<MotionImageProps> = ({ src, delay }) => {
   return (
     <>
       <motion.img
-        className="mt-8 rounded-3xl cursor-pointer"
+        className="mb-6 rounded-3xl cursor-pointer w-11/12"
         initial={{ transform: 'scale(0)', opacity: 0 }}
         animate={{ transform: 'scale(1)', opacity: 1 }}
-        whileHover={{ scale: 1.5 }}
+        whileHover={{ transform: 'scale(1.05)' }}
         transition={{
           delay: delay,
           type: 'spring',

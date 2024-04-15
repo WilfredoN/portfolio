@@ -2,13 +2,13 @@ import { Disclosure, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import { FaChevronDown } from 'react-icons/fa';
 import MotionImage from '../Components/image/ImageProjects';
-import { projectsVariant } from '../Types/RouterVariants';
+import { nextPageVariant } from '../Types/RouterVariants';
 
 const Projects = () => {
   return (
     <motion.article
       className="mb-16 mt-8 w-full text-left flex flex-col items-center justify-center"
-      variants={projectsVariant}
+      variants={nextPageVariant}
       initial="initial"
       animate="final"
     >
@@ -46,7 +46,7 @@ const Projects = () => {
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel static>
-                <main className="overflow-visible grid grid-cols-2 gap-8 mt-8">
+                <main className="grid grid-cols-2 mt-8 place-items-center">
                   <MotionImage
                     delay={0.1}
                     src="https://i.ibb.co/vQmK2qX/chrome-zc-Fd-WLPGS8.png"

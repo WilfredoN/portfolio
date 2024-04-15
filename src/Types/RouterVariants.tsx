@@ -1,4 +1,4 @@
-export const aboutVariant = {
+export const prevPageVariant = {
   initial: {
     x: '-100vw',
   },
@@ -10,7 +10,7 @@ export const aboutVariant = {
     },
   },
 };
-export const projectsVariant = {
+export const nextPageVariant = {
   initial: {
     x: '100vw',
     y: '0vh',
