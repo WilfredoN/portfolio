@@ -51,7 +51,7 @@ const MotionImage: React.FC<MotionImageProps> = ({ src, delay }) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <img className="z-10 modal-content w-3/4 rounded-3xl" src={src} />
+            <img className="z-10 modal-content rounded-3xl w-2/3" src={src} />
           </Transition.Child>
         </Dialog>
       </Transition.Root>
