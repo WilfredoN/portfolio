@@ -46,25 +46,25 @@ const Projects = () => {
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel static>
-                <main className="grid grid-cols-2 mt-8 place-items-center">
+                <main className="grid grid-cols-3 mt-8 place-items-center">
                   <MotionImage
-                    delay={0.1}
+                    // delay={0.1}
                     src="https://i.ibb.co/vQmK2qX/chrome-zc-Fd-WLPGS8.png"
                   />
                   <MotionImage
-                    delay={0.3}
+                    // delay={0.3}
                     src="https://i.ibb.co/vs1LknZ/chrome-91-Mhvsv-SIU.png"
                   />
                   <MotionImage
-                    delay={0.5}
+                    // delay={0.5}
                     src="https://i.ibb.co/j5pYmQr/chrome-a-No0-Owk-J70.png"
                   />
                   <MotionImage
-                    delay={0.7}
+                    // delay={0.7}
                     src="https://i.ibb.co/WF0NCcS/chrome-3db-IAM3v4-H.png"
                   />
                   <MotionImage
-                    delay={0.9}
+                    // delay={0.9}
                     src="https://i.ibb.co/48PbSPp/chrome-jz-HSrz-E1-KB.png"
                   />
                 </main>

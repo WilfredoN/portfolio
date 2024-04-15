@@ -5,7 +5,6 @@ import MediaLink from './image/MediaLink';
 const Footer = () => {
   return (
     <footer className="w-full text-center flex flex-col justify-center">
-      <p>My portfolio built with Vite + React + TypeScript + TailwindCSS</p>
       <div className="flex flex-row justify-center text-4xl space-x-4">
         <MediaLink
           href="https://www.linkedin.com/in/nikita-afanasyev-kh/"
@@ -17,6 +16,9 @@ const Footer = () => {
           icon={<SiGmail />}
         />
       </div>
+      <p className="opacity-30 animate-pulse">
+        My portfolio built with Vite + React + TypeScript + TailwindCSS
+      </p>
     </footer>
   );
 };

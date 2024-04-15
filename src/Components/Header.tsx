@@ -21,8 +21,10 @@ const Header = ({
 
   const totalScrollHeight =
     document.documentElement.scrollHeight - window.innerHeight;
-  const scaleFactor = Math.max(0.85, 1 - scrollPosition / totalScrollHeight);
-
+  const scaleFactor = Math.max(
+    0.85,
+    1 - scrollPosition / totalScrollHeight / 2,
+  );
   const handlePageChange = (page: 'about' | 'projects') => {
     onPageChange(page);
     setScrollPosition(0);
@@ -33,8 +35,8 @@ const Header = ({
       className={`flex flex-col items-center flex-grow mb-8 rounded-full
       ${
         scrollPosition > 0
-          ? 'sticky top-0 z-10 px-8 py-4 transition-all duration-300 ease-in-out transform bg-gray-800'
-          : 'px-12 py-6 transition-all duration-300 ease-in-out transform bg-gray-800'
+          ? 'sticky top-0 z-10 px-8 py-4 hover:scale-125 transition-all duration-300 ease-in-out transform bg-gray-800'
+          : 'px-12 py-6 transition-all duration-150 ease-in-out transform bg-gray-800'
       }`}
       style={{ transform: `scale(${scaleFactor})`, backgroundColor: '#242424' }}
     >

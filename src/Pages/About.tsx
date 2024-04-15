@@ -44,7 +44,10 @@ const About = () => {
               React
               <Icon iconName="react" alt="React" />
             </li>
-
+            <li className="flex items-center justify-center">
+              Angular
+              <Icon iconName="angular" alt="Angular" />
+            </li>
             <li className="flex items-center justify-center">
               Vite
               <Icon iconName="vitejs" alt="ViteJS" />
@@ -56,6 +59,10 @@ const About = () => {
             <li className="flex items-center justify-center">
               Spring
               <Icon iconName="spring" alt="Spring" />
+            </li>
+            <li className="flex items-center justify-center">
+              PostgreSQL
+              <Icon iconName="postgresql" alt="PostgreSQL" />
             </li>
             <li className="flex items-center justify-center">
               Docker
