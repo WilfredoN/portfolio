@@ -1,6 +1,6 @@
+import { Dialog, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
 
 interface MotionImageProps {
   src: string;
@@ -12,10 +12,18 @@ const MotionImage: React.FC<MotionImageProps> = ({ src, delay }) => {
   return (
     <>
       <motion.img
-        className="mt-8 rounded-3xl"
+        className="mt-8 rounded-3xl cursor-pointer"
         initial={{ transform: 'scale(0)', opacity: 0 }}
         animate={{ transform: 'scale(1)', opacity: 1 }}
-        transition={{ delay: delay, type: 'spring', mass: 0.2, duration: 0.2 }}
+        whileHover={{ scale: 1.5 }}
+        transition={{
+          delay: delay,
+          type: 'spring',
+          mass: 0.2,
+          duration: 0.2,
+          stiffness: 200,
+          damping: 10,
+        }}
         src={src}
         style={{ outline: '#26627d 4px solid' }}
         onClick={() => setIsOpen(true)}

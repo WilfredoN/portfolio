@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import Icon from '../Components/Icon';
+import Icon from '../Components/image/TableIcon';
 import { aboutVariant } from '../Types/RouterVariants';
 const About = () => {
   return (
@@ -16,7 +16,7 @@ const About = () => {
         Angular on the frontend.
       </p>
       <div className="flex md:flex-row flex-col item justify-center mt-8 mb-8">
-        <section className="border mb-4 lg:mb-0 w-96 xl:mr-8 ">
+        <section className="border mb-4 md:mb-0 w-96 xl:mr-8 ">
           <h2 className="border-b text-4xl">Programming Languages</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
