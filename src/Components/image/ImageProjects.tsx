@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 
 interface MotionImageProps {
   src: string;
-  delay: number;
+  delay?: number;
 }
 
 const MotionImage: React.FC<MotionImageProps> = ({ src, delay }) => {
@@ -13,9 +13,9 @@ const MotionImage: React.FC<MotionImageProps> = ({ src, delay }) => {
     <>
       <motion.img
         className="mt-8 rounded-3xl"
-        initial={{ x: '-100vw', opacity: 0 }}
-        animate={{ x: '0vw', opacity: 1 }}
-        transition={{ delay: delay, type: 'spring', mass: 0.2, duration: 1 }}
+        initial={{ transform: 'scale(0)', opacity: 0 }}
+        animate={{ transform: 'scale(1)', opacity: 1 }}
+        transition={{ delay: delay, type: 'spring', mass: 0.2, duration: 0.2 }}
         src={src}
         style={{ outline: '#26627d 4px solid' }}
         onClick={() => setIsOpen(true)}

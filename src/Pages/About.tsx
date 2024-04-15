@@ -4,7 +4,7 @@ import { aboutVariant } from '../Types/RouterVariants';
 const About = () => {
   return (
     <motion.article
-      className="mb-16 mt-8"
+      className="mb-16 mt-8 md:mb-0"
       variants={aboutVariant}
       initial="initial"
       animate="final"
@@ -15,8 +15,8 @@ const About = () => {
         <br /> I have experience in Java, Spring on the backend, React and
         Angular on the frontend.
       </p>
-      <div className="flex md:flex-row flex-col item justify-center mt-8">
-        <section className="border xl:mb-0 w-96 xl:mr-8 md:mb-4">
+      <div className="flex md:flex-row flex-col item justify-center mt-8 mb-8">
+        <section className="border mb-4 lg:mb-0 w-96 xl:mr-8 ">
           <h2 className="border-b text-4xl">Programming Languages</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">

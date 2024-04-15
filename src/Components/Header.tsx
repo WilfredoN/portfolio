@@ -8,7 +8,7 @@ const Header = ({
   onPageChange: (page: 'about' | 'projects') => void;
 }) => {
   return (
-    <nav className="flex flex-row mb-8 mt-4">
+    <nav className="w-full flex md:flex-row flex-col justify-center mb-8 mt-4">
       <CustomNavLink
         onClick={() => onPageChange('about')}
         isClicked={currentPage === 'about'}
