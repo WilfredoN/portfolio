@@ -11,9 +11,11 @@ const MediaLink = ({ href, icon }: MediaLinkProps) => {
   return (
     <a
       href={href}
-      className={`rounded-xl p-2 hover:bg-${
-        theme === 'dark' ? 'gray' : 'neutral'
-      }-600 transition-colors duration-300 ease-in-out`}
+      className={`rounded-xl p-2 transition-colors duration-150 ease-in-out ${
+        theme === 'dark'
+          ? 'hover:bg-gray-600 hover:text-white'
+          : 'hover:bg-neutral-600 hover:text-white'
+      }`}
     >
       {icon}
     </a>

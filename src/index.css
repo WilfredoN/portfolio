@@ -17,11 +17,11 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Светлая тема */
-  --color-bg-light: #f2f2f2;
-  --color-nav-light: #ffffff;
-  --color-text-light: #4d4d4d;
-  --color-border-light: #d9d9d9;
-  --color-accent-light: #6495ed;
+  --color-bg-light: #d1e9ff; /* Светло-голубой фон */
+  --color-nav-light: #b3d9ff; /* Более синяя навигационная панель */
+  --color-text-light: #333333; /* Темный текст для контраста */
+  --color-border-light: #99ccff; /* Светло-голубая граница */
+  --color-accent-light: #0056b3; /* Более синий акцент */
 
   /* Темная тема */
   --color-bg-dark: #2d2d2d;
@@ -78,7 +78,31 @@ nav a:hover {
 body.dark nav a:hover {
   color: var(--color-accent-dark);
 }
-.border,
-.border-b {
-  border: 1px solid var(--color-border-light);
+.light .border {
+  border: 2px solid var(--color-border-light);
+}
+.light .border-b {
+  border-bottom: 4px solid var(--color-border-light);
+}
+.dark .border {
+  border: 2px solid var(--color-border-dark);
+}
+.dark .border-b {
+  border-bottom: 4px solid var(--color-border-dark);
+}
+
+.hover\:outline-none:hover {
+  outline: none;
+}
+.light .hover\:outline:hover {
+  outline: 4px solid var(--color-accent-light);
+}
+.dark .hover\:outline:hover {
+  outline: 4px solid var(--color-accent-dark);
+}
+.light .outline {
+  outline: 4px solid var(--color-accent-light);
+}
+.dark .outline {
+  outline: 4px solid var(--color-accent-dark);
 }
