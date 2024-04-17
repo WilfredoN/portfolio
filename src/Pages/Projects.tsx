@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import { FaChevronDown } from 'react-icons/fa';
 import MotionImage from '../Components/image/ImageProjects';
 import { nextPageVariant } from '../Types/RouterVariants';
+import { useContext } from 'react';
+import { ThemeContext } from '../Components/ThemeContext';
 
 const Projects = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <motion.h1
@@ -53,7 +56,9 @@ const Projects = () => {
                 leaveTo="transform scale-95 opacity-0"
               >
                 <Disclosure.Panel static>
-                  <main className={`grid grid-cols-3 mt-8 place-items-center`}>
+                  <main
+                    className={`${theme} grid grid-cols-3 mt-8 place-items-center`}
+                  >
                     <MotionImage
                       // delay={0.1}
                       src="https://i.ibb.co/vQmK2qX/chrome-zc-Fd-WLPGS8.png"
