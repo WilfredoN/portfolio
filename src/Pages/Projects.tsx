@@ -15,15 +15,16 @@ const Projects = () => {
         variants={nextPageVariant}
         initial="initial"
         animate="final"
+        style={{ fontSize: '1.7rem' }}
       >
         From serious projects I can highlight my web application called
         <span className="text-blue-400 hover:underline">
-          <a href="https://github.com/WilfredoN/alexandria-app"> Alexandria</a>
+          <a href="https://github.com/WilfredoN/alexandria-app"> Alexandria.</a>
         </span>
         <br />
         it is a web platform for organizing a convenient learning process as
-        well as communication between teachers and students. It was made as part
-        of a training project in a college.
+        well as communication <br /> between teachers and students. <br />
+        It was made as part of a training project in a college.
       </motion.h1>
       <motion.article
         className="mt-8 w-full text-left flex flex-col items-center justify-center"
@@ -57,7 +58,7 @@ const Projects = () => {
               >
                 <Disclosure.Panel static>
                   <main
-                    className={`${theme} grid grid-cols-3 mt-8 place-items-center`}
+                    className={`${theme} grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 place-items-center`}
                   >
                     <MotionImage
                       // delay={0.1}

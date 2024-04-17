@@ -31,23 +31,25 @@
   --color-accent-dark: #1e90ff;
 }
 html,
-body {
+main {
   scroll-behavior: smooth;
 }
-body {
+main {
   margin: 0;
   position: relative;
   min-width: 320px;
   min-height: 100vh;
 }
 main,
-footer {
+footer,
+article {
   background-color: var(--color-bg-light);
   color: var(--color-text-light);
 }
 
 main.dark,
-footer.dark {
+footer.dark,
+.dark article {
   background-color: var(--color-bg-dark);
   color: var(--color-text-dark);
 }
@@ -67,7 +69,7 @@ nav a {
   padding: 0.5rem 1rem;
 }
 
-body.dark nav a {
+main.dark nav a {
   color: var(--color-text-dark);
 }
 
@@ -75,7 +77,7 @@ nav a:hover {
   color: var(--color-accent-light);
 }
 
-body.dark nav a:hover {
+main.dark nav a:hover {
   color: var(--color-accent-dark);
 }
 .light .border {
@@ -105,4 +107,9 @@ body.dark nav a:hover {
 }
 .dark .outline {
   outline: 4px solid var(--color-accent-dark);
+}
+@media screen and (max-width: 640px) {
+  .sticky {
+    position: relative;
+  }
 }

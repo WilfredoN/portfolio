@@ -4,12 +4,12 @@ import { prevPageVariant } from '../Types/RouterVariants';
 const About = () => {
   return (
     <motion.article
-      className="mb-16 mt-8 md:mb-0"
+      className="mt-8 w-11/12"
       variants={prevPageVariant}
       initial="initial"
       animate="final"
     >
-      <p className="text-2xl text-left">
+      <p className="text-2xl text-center">
         Hi, I'm a Software Developer. I love to build web applications from
         start to finish.
         <br /> I have experience in Java, Spring on the backend, React and

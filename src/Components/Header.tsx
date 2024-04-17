@@ -33,7 +33,7 @@ const Header = ({
 
   return (
     <motion.header
-      className={`${theme} flex flex-col h-fit items-center mb-8 rounded-full ${
+      className={`${theme} flex flex-col h-fit w-full md:w-fit items-center mb-8 rounded-3xl md:rounded-full ${
         scrollPosition > 0
           ? 'sticky top-5 z-10 px-8 py-4 transition-all duration-300 '
           : 'mt-5 px-12 py-6 transition-all duration-175 '
