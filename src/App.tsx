@@ -12,11 +12,11 @@ function App() {
   };
   // TODO: make theme toggle or something random like a random color generator.
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <main className="flex flex-col justify-center items-center w-full">
       <Header currentPage={currentPage} onPageChange={handlePageChange} />
       {currentPage === 'about' ? <About /> : <Projects />}
       <Footer />
-    </div>
+    </main>
   );
 }
 
