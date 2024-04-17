@@ -10,12 +10,25 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #2d2d2d;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Светлая тема */
+  --color-bg-light: #f2f2f2;
+  --color-nav-light: #ffffff;
+  --color-text-light: #4d4d4d;
+  --color-border-light: #d9d9d9;
+  --color-accent-light: #6495ed;
+
+  /* Темная тема */
+  --color-bg-dark: #2d2d2d;
+  --color-nav-dark: #242424;
+  --color-text-dark: #f0f0f0;
+  --color-border-dark: #474747;
+  --color-accent-dark: #1e90ff;
 }
 html,
 body {
@@ -26,4 +39,46 @@ body {
   position: relative;
   min-width: 320px;
   min-height: 100vh;
+}
+main,
+footer {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+main.dark,
+footer.dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+header {
+  background-color: var(--color-nav-light);
+  padding: 1rem;
+}
+
+header.dark {
+  background-color: var(--color-nav-dark);
+}
+
+nav a {
+  color: var(--color-text-light);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+body.dark nav a {
+  color: var(--color-text-dark);
+}
+
+nav a:hover {
+  color: var(--color-accent-light);
+}
+
+body.dark nav a:hover {
+  color: var(--color-accent-dark);
+}
+.border,
+.border-b {
+  border: 1px solid var(--color-border-light);
 }

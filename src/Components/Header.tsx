@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CustomNavLink from './CustomNavLink';
 import { motion } from 'framer-motion';
+import ThemeToggle from './Toggle/ThemeToggle';
+import { ThemeContext } from './ThemeContext';
+
 const Header = ({
   currentPage,
   onPageChange,
@@ -9,7 +12,7 @@ const Header = ({
   onPageChange: (page: 'about' | 'projects') => void;
 }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
-
+  const { theme } = useContext(ThemeContext);
   const checkScrollTop = () => {
     setScrollPosition(window.scrollY);
   };
@@ -30,13 +33,15 @@ const Header = ({
 
   return (
     <motion.header
-      className={`flex flex-col items-center flex-grow mb-8 rounded-full ${
+      className={`${theme} flex flex-col h-fit items-center mb-8 rounded-full ${
         scrollPosition > 0
-          ? 'sticky top-5 z-10 px-8 py-4 transition-all duration-300 bg-gray-800'
-          : 'px-12 py-6 transition-all duration-175 bg-gray-800'
+          ? 'sticky top-5 z-10 px-8 py-4 transition-all duration-300 '
+          : 'mt-5 px-12 py-6 transition-all duration-175 '
       }`}
-      style={{ transform: `scale(${scaleFactor})`, backgroundColor: '#242424' }}
-      whileHover={{ transform: `scale(${scaleFactor * 1.2})` }}
+      style={{
+        transform: `scale(${scaleFactor})`,
+      }}
+      whileHover={{ transform: `scale(${scaleFactor * 1.1})` }}
     >
       <nav className="w-full flex md:flex-row flex-col justify-center">
         <CustomNavLink
@@ -51,6 +56,7 @@ const Header = ({
         >
           Projects
         </CustomNavLink>
+        <ThemeToggle />
       </nav>
     </motion.header>
   );

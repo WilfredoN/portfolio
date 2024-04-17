@@ -1,10 +1,15 @@
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import MediaLink from './image/MediaLink';
+import { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
 
 const Footer = () => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <footer className="w-full text-center flex flex-col justify-center">
+    <footer
+      className={`${theme} w-full text-center flex flex-col justify-center pt-16`}
+    >
       <div className="flex flex-row justify-center text-4xl space-x-4">
         <MediaLink
           href="https://www.linkedin.com/in/nikita-afanasyev-kh/"

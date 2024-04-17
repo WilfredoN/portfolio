@@ -23,7 +23,7 @@ const Projects = () => {
         of a training project in a college.
       </motion.h1>
       <motion.article
-        className="mb-16 mt-8 w-full text-left flex flex-col items-center justify-center"
+        className="mt-8 w-full text-left flex flex-col items-center justify-center"
         variants={nextPageVariant}
         initial="initial"
         animate="final"
@@ -53,7 +53,7 @@ const Projects = () => {
                 leaveTo="transform scale-95 opacity-0"
               >
                 <Disclosure.Panel static>
-                  <main className="grid grid-cols-3 mt-8 place-items-center">
+                  <main className={`grid grid-cols-3 mt-8 place-items-center`}>
                     <MotionImage
                       // delay={0.1}
                       src="https://i.ibb.co/vQmK2qX/chrome-zc-Fd-WLPGS8.png"
