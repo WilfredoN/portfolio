@@ -46,7 +46,14 @@ article {
   background-color: var(--color-bg-light);
   color: var(--color-text-light);
 }
-
+.dark html {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+.light html {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
 main.dark,
 footer.dark,
 .dark article {
@@ -92,7 +99,12 @@ main.dark nav a:hover {
 .dark .border-b {
   border-bottom: 4px solid var(--color-border-dark);
 }
-
+.dark .border-2 {
+  border-color: var(--color-accent-dark);
+}
+.light .border-2 {
+  border-color: var(--color-accent-light);
+}
 .hover\:outline-none:hover {
   outline: none;
 }

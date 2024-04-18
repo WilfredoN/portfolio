@@ -1,22 +1,21 @@
 import { motion } from 'framer-motion';
+import AboutMe from '../Components/image/CapybaraBinary';
 import Icon from '../Components/image/TableIcon';
 import { prevPageVariant } from '../Types/RouterVariants';
+
 const About = () => {
   return (
     <motion.article
-      className="mt-8 w-11/12"
+      className="mt-8 w-full"
       variants={prevPageVariant}
       initial="initial"
       animate="final"
     >
-      <p className="text-2xl text-center">
-        Hi, I'm a Software Developer. I love to build web applications from
-        start to finish.
-        <br /> I have experience in Java, Spring on the backend, React and
-        Angular on the frontend.
-      </p>
-      <div className="flex md:flex-row flex-col item justify-center mt-8 mb-8">
-        <section className="border mb-4 md:mb-0 w-96 xl:mr-8 ">
+      <motion.aside>
+        <AboutMe />
+      </motion.aside>
+      <div className="flex flex-col justify-center sm:flex-row mt-8 mb-8 w-full">
+        <section className="border mb-4 md:mb-0 md:w-96 mr-0 xl:mr-8 sm:w-full">
           <h2 className="border-b text-4xl">Programming Languages</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
@@ -37,7 +36,7 @@ const About = () => {
             </li>
           </ul>
         </section>
-        <section className="border w-96">
+        <section className="border mb-4 md:mb-0 md:w-96 mr-0 xl:mr-8 sm:w-full">
           <h2 className="border-b text-4xl">Technologies and Libraries</h2>
           <ul className="text-3xl">
             <li className="flex items-center justify-center">
