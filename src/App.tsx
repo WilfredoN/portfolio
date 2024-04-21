@@ -18,7 +18,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <main
-        className={`${theme} flex flex-col justify-start items-center py-2 md:h-screen`}
+        className={`${theme} flex flex-col justify-start items-center py-2`}
       >
         <Header currentPage={currentPage} onPageChange={handlePageChange} />
         {currentPage === 'about' ? <About /> : <Projects />}

@@ -1,4 +1,4 @@
-.theme-switch {
+/* .theme-switch {
   position: relative;
   display: inline-block;
   width: 128px;
@@ -50,11 +50,15 @@ input:checked + .slider:before {
   content: '🌙';
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
 
 .slider.round:before {
   border-radius: 50%;
-}
+} */
+
+/* .react-switch-handle {
+  background: none !important;
+  box-shadow: none !important;
+} */
