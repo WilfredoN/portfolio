@@ -1,6 +1,6 @@
+import { motion } from 'framer-motion';
 import { useContext, useEffect, useState } from 'react';
 import CustomNavLink from './CustomNavLink';
-import { motion } from 'framer-motion';
 import ThemeToggle from './Input/ThemeToggle';
 import { ThemeContext } from './ThemeContext';
 
