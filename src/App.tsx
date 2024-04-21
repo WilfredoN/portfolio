@@ -2,9 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
+import { ThemeContext } from './Components/ThemeContext';
 import About from './Pages/About';
 import Projects from './Pages/Projects';
-import { ThemeContext } from './Components/ThemeContext';
 function App() {
   const [currentPage, setCurrentPage] = useState<'about' | 'projects'>('about');
   const [theme, setTheme] = useState('dark');
@@ -18,7 +18,8 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <main
-        className={`${theme} flex flex-col justify-start items-center py-2`}
+        className={`${theme} flex flex-col justify-start items-center py-2 
+        min-h-screen`}
       >
         <Header currentPage={currentPage} onPageChange={handlePageChange} />
         {currentPage === 'about' ? <About /> : <Projects />}

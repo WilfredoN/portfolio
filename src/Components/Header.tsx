@@ -29,12 +29,12 @@ const Header = ({
     : document.documentElement.scrollHeight - window.innerHeight;
   const scaleFactor = isMobile
     ? 1
-    : Math.max(0.85, 1 - scrollPosition / totalScrollHeight / 2) || 0.85;
+    : Math.max(0.85, 1 - scrollPosition / totalScrollHeight / 2) || 1;
   const handlePageChange = (page: 'about' | 'projects') => {
-    onPageChange(page);
     if (!isMobile) {
       setScrollPosition(0);
     }
+    onPageChange(page);
   };
 
   return (

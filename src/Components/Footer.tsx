@@ -8,7 +8,7 @@ const Footer = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <footer
-      className={`${theme} w-full text-center flex flex-col justify-center pt-16`}
+      className={`${theme} w-full h-full text-center flex flex-col justify-center pt-16`}
     >
       <div className="flex flex-row justify-center text-4xl space-x-4">
         <MediaLink

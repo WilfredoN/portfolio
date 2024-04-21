@@ -16,14 +16,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Светлая тема */
-  --color-bg-light: #d1e9ff; /* Светло-голубой фон */
-  --color-nav-light: #b3d9ff; /* Более синяя навигационная панель */
-  --color-text-light: #333333; /* Темный текст для контраста */
-  --color-border-light: #99ccff; /* Светло-голубая граница */
-  --color-accent-light: #0056b3; /* Более синий акцент */
+  /* Light theme */
+  --color-bg-light: #d1e9ff;
+  --color-nav-light: #b3d9ff;
+  --color-text-light: #333333;
+  --color-border-light: #99ccff;
+  --color-accent-light: #0056b3;
 
-  /* Темная тема */
+  /* Dark theme */
   --color-bg-dark: #2d2d2d;
   --color-nav-dark: #242424;
   --color-text-dark: #f0f0f0;
@@ -38,7 +38,6 @@ main {
   margin: 0;
   position: relative;
   min-width: 320px;
-  min-height: 100vh;
 }
 main,
 footer,
