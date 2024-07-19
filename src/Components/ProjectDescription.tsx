@@ -13,7 +13,7 @@ const ProjectDescription = () => (
     }}
   >
     <motion.h1
-      className="text-4xl text-center mt-8 mb-8"
+      className="text-4xl text-center mt-8"
       variants={nextPageVariant}
       initial="initial"
       animate="final"
@@ -28,13 +28,11 @@ const ProjectDescription = () => (
       <span
         style={{ fontFamily: "Courgette", fontSize: "4rem", color: "#5287AD" }}
       >
-        Alexandria
+        <a href="https://github.com/WilfredoN/alexandria-app">Alexandria</a>
       </span>
       <br />
       From serious projects I can highlight my web application called
-      <span className="text-blue-400 hover:underline">
-        <a href="https://github.com/WilfredoN/alexandria-app"> Alexandria.</a>
-      </span>
+      <span className="text-blue-400">Alexandria.</span>
       it is a web platform for organizing a convenient learning process as well
       as communication <br /> between teachers and students. <br />
       It was made as part of a exam project in a college.
@@ -51,10 +49,12 @@ const ProjectDescription = () => (
         alignItems: "center",
       }}
     >
-      <motion.img
-        src="https://lh6.googleusercontent.com/Np7u5BwxIngkOQnjTmJOMx4_P_fqAA1bpcyx9smvl1QPLTEQfMkK8wc62z9Ies2oDuJczZF9gBhO6O0IQpl4ub6XIXXBzcUB13OLUhdzMOFcU07eSzqahbRYIF-v-aImRg=w1280"
-        className="bg-gray-200 px-4 py-2 rounded-md my-2"
-      />
+      <a href="https://www.winwin.travel/demo-request">
+        <motion.img
+          src="https://lh6.googleusercontent.com/Np7u5BwxIngkOQnjTmJOMx4_P_fqAA1bpcyx9smvl1QPLTEQfMkK8wc62z9Ies2oDuJczZF9gBhO6O0IQpl4ub6XIXXBzcUB13OLUhdzMOFcU07eSzqahbRYIF-v-aImRg=w1280"
+          className="bg-gray-200 px-4 py-2 rounded-md my-2"
+        />
+      </a>
       <span>
         Now I am working on a project called WinWin.Travel. <br />
         It is an hotel room comparison platform that allows users to find the

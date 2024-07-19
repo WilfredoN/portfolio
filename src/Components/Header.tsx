@@ -22,7 +22,7 @@ const Header = ({
     return () => window.removeEventListener("scroll", checkScrollTop);
   }, []);
 
-  const isMobile = window.innerWidth <= 640;
+  const isMobile = window.innerWidth <= 1024;
 
   const totalScrollHeight = isMobile
     ? 0
@@ -41,7 +41,7 @@ const Header = ({
     <motion.header
       className={`${theme} flex flex-col h-fit w-full md:w-fit items-center mb-8 rounded-3xl md:rounded-full ${
         !isMobile && scrollPosition > 0
-          ? "top-0 z-10 px-8 py-4 transition-all duration-300 "
+          ? "sticky top-0 z-10 px-8 py-4 transition-all duration-300 "
           : "mt-5 px-12 py-6 transition-all duration-175 "
       }`}
       style={{
