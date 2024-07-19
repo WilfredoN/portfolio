@@ -47,7 +47,6 @@ const Header = ({
       style={{
         transform: isMobile ? 'none' : `scale(${scaleFactor})`,
       }}
-      whileHover={isMobile ? {} : { transform: `scale(${scaleFactor * 1.1})` }}
     >
       <nav className="w-full flex md:flex-row flex-col justify-center">
         <CustomNavLink
