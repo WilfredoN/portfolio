@@ -10,7 +10,7 @@ const AboutMe = () => {
       />
       <p
         className="text-2xl m-0 p-2 text-center flex justify-start leading-loose"
-        style={{ minWidth: '55%' }}
+        style={{ minWidth: "55%" }}
       >
         Hi, I'm a Software Developer.
         <br /> I love to build web applications from start to finish.

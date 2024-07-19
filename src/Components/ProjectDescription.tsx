@@ -1,23 +1,74 @@
-import { motion } from 'framer-motion';
-import { nextPageVariant } from '../Types/RouterVariants';
+import { motion } from "framer-motion";
+import { nextPageVariant } from "../Types/RouterVariants";
 
 const ProjectDescription = () => (
-  <motion.h1
-    className="text-4xl text-center mt-8 mb-8"
-    variants={nextPageVariant}
-    initial="initial"
-    animate="final"
-    style={{ fontSize: '1.7rem' }}
+  <motion.section
+    style={{
+      textAlign: "center",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "0 1rem",
+      maxWidth: "62.5rem",
+    }}
   >
-    From serious projects I can highlight my web application called
-    <span className="text-blue-400 hover:underline">
-      <a href="https://github.com/WilfredoN/alexandria-app"> Alexandria.</a>
-    </span>
-    <br />
-    it is a web platform for organizing a convenient learning process as well as
-    communication <br /> between teachers and students. <br />
-    It was made as part of a training project in a college.
-  </motion.h1>
+    <motion.h1
+      className="text-4xl text-center mt-8 mb-8"
+      variants={nextPageVariant}
+      initial="initial"
+      animate="final"
+      style={{
+        fontSize: "1.7rem",
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <span
+        style={{ fontFamily: "Courgette", fontSize: "4rem", color: "#5287AD" }}
+      >
+        Alexandria
+      </span>
+      <br />
+      From serious projects I can highlight my web application called
+      <span className="text-blue-400 hover:underline">
+        <a href="https://github.com/WilfredoN/alexandria-app"> Alexandria.</a>
+      </span>
+      it is a web platform for organizing a convenient learning process as well
+      as communication <br /> between teachers and students. <br />
+      It was made as part of a exam project in a college.
+    </motion.h1>
+    <motion.h1
+      className="text-4xl text-center mt-8 mb-8"
+      variants={nextPageVariant}
+      initial="initial"
+      animate="final"
+      style={{
+        fontSize: "1.7rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <motion.img
+        src="https://lh6.googleusercontent.com/Np7u5BwxIngkOQnjTmJOMx4_P_fqAA1bpcyx9smvl1QPLTEQfMkK8wc62z9Ies2oDuJczZF9gBhO6O0IQpl4ub6XIXXBzcUB13OLUhdzMOFcU07eSzqahbRYIF-v-aImRg=w1280"
+        className="bg-gray-200 px-4 py-2 rounded-md my-2"
+      />
+      <span>
+        Now I am working on a project called WinWin.Travel. <br />
+        It is an hotel room comparison platform that allows users to find the
+        best hotel room for their needs. <br />
+        If you wanna get demo - contact{" "}
+        <a
+          href="https://www.winwin.travel/demo-request"
+          className="text-blue-400"
+        >
+          here
+        </a>
+      </span>
+    </motion.h1>
+  </motion.section>
 );
 
 export default ProjectDescription;

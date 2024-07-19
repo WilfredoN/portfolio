@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { nextPageVariant } from '../Types/RouterVariants';
 import ProjectDescription from '../Components/ProjectDescription';
-import Gallery from '../Components/image/Gallery';
+import { nextPageVariant } from '../Types/RouterVariants';
 
 const Projects = () => (
   <>
@@ -12,7 +11,7 @@ const Projects = () => (
       initial="initial"
       animate="final"
     >
-      <Gallery />
+      {/* <Gallery /> */}
     </motion.article>
   </>
 );
