@@ -1,17 +1,17 @@
-import Icon from "./image/TableIcon";
+import Icon from "./image/TableIcon"
 
 interface ListProps {
-  text: string;
-  icon: string;
+	text: string
+	icon: string
 }
 
 const List = ({ text, icon }: ListProps) => {
-  return (
-    <li className="flex items-center justify-center">
-      {text}
-      <Icon iconName={icon} alt={text} />
-    </li>
-  );
-};
+	return (
+		<li className="flex items-center justify-center">
+			{text}
+			<Icon iconName={icon} alt={text} />
+		</li>
+	)
+}
 
-export default List;
+export default List

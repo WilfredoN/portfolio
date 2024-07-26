@@ -39,7 +39,7 @@ main {
 main {
   margin: 0;
   position: relative;
-  min-width: 320px;
+  min-width: 20rem;
 }
 main,
 footer,
@@ -89,16 +89,16 @@ main.dark nav a:hover {
   color: var(--color-accent-dark);
 }
 .light .border {
-  border: 2px solid var(--color-border-light);
+  border: 0.125rem solid var(--color-border-light);
 }
 .light .border-b {
-  border-bottom: 4px solid var(--color-border-light);
+  border-bottom: 0.25rem solid var(--color-border-light);
 }
 .dark .border {
-  border: 2px solid var(--color-border-dark);
+  border: 0.125rem solid var(--color-border-dark);
 }
 .dark .border-b {
-  border-bottom: 4px solid var(--color-border-dark);
+  border-bottom: 0.25rem solid var(--color-border-dark);
 }
 .dark .border-2 {
   border-color: var(--color-accent-dark);
@@ -110,19 +110,28 @@ main.dark nav a:hover {
   outline: none;
 }
 .light .hover\:outline:hover {
-  outline: 4px solid var(--color-accent-light);
+  outline: 0.25rem solid var(--color-accent-light);
 }
 .dark .hover\:outline:hover {
-  outline: 4px solid var(--color-accent-dark);
+  outline: 0.25rem solid var(--color-accent-dark);
 }
 .light .outline {
-  outline: 4px solid var(--color-accent-light);
+  outline: 0.25rem solid var(--color-accent-light);
 }
 .dark .outline {
-  outline: 4px solid var(--color-accent-dark);
+  outline: 0.25rem solid var(--color-accent-dark);
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 40rem) {
   .sticky {
     position: relative;
   }
+}
+::-webkit-scrollbar {
+  width: 0.375rem;
+  height: 0.625rem;
+  background: var(--color-bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: var(--color-text-dark);
 }
