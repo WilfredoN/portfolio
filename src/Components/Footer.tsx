@@ -1,8 +1,8 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiGmail } from 'react-icons/si';
-import MediaLink from './image/MediaLink';
-import { useContext } from 'react';
-import { ThemeContext } from './ThemeContext';
+import { useContext } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
+import MediaLink from "./image/MediaLink";
+import { ThemeContext } from "./ThemeContext";
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
@@ -22,7 +22,8 @@ const Footer = () => {
         />
       </div>
       <p className="opacity-30 animate-pulse">
-        My portfolio built with Vite + React + TypeScript + TailwindCSS
+        My portfolio built with Vite + React + TypeScript + TailwindCSS + Some
+        Love ❤️
       </p>
     </footer>
   );
