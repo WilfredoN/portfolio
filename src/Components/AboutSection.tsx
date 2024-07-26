@@ -1,11 +1,11 @@
-import List from './List';
+import List from "./List";
 
 interface SectionProps {
   title: string;
   items: { text: string; icon: string }[];
 }
 
-const Section: React.FC<SectionProps> = ({ title, items }) => {
+const Section = ({ title, items }: SectionProps) => {
   return (
     <section className="border mb-4 md:mb-0 md:w-96 mr-0 xl:mr-8 sm:w-full">
       <h2 className="border-b text-4xl">{title}</h2>

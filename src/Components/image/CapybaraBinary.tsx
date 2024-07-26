@@ -2,7 +2,7 @@ const AboutMe = () => {
   return (
     <div className="flex m-0 flex-col items-center justify-center">
       <img
-        src="https://i.ibb.co/V250X53/capybara-variant-2.png"
+        src="src\assets\capybara_variant_2.png"
         alt="Capybara image in zeros and ones style"
         className="p-3 hover:p-0 transition-padding duration-300 ease-in-out
          rounded-full sm:w-1/3 xl:w-1/4 border-2"

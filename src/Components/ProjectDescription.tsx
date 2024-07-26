@@ -51,7 +51,7 @@ const ProjectDescription = () => (
     >
       <a href="https://www.winwin.travel/demo-request">
         <motion.img
-          src="https://lh6.googleusercontent.com/Np7u5BwxIngkOQnjTmJOMx4_P_fqAA1bpcyx9smvl1QPLTEQfMkK8wc62z9Ies2oDuJczZF9gBhO6O0IQpl4ub6XIXXBzcUB13OLUhdzMOFcU07eSzqahbRYIF-v-aImRg=w1280"
+          src="src\assets\winwin.png"
           className="bg-gray-200 px-4 py-2 rounded-md my-2"
         />
       </a>
