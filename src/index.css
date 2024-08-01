@@ -1,137 +1,137 @@
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 :root {
-  font-family: "Pixelify Sans", sans-serif;
-  font-optical-sizing: auto;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: 'Pixelify Sans', sans-serif;
+	font-optical-sizing: auto;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  /* Light theme */
-  --color-bg-light: #d1e9ff;
-  --color-nav-light: #b3d9ff;
-  --color-text-light: #333333;
-  --color-border-light: #99ccff;
-  --color-accent-light: #0056b3;
+	/* Light theme */
+	--color-bg-light: #d1e9ff;
+	--color-nav-light: #b3d9ff;
+	--color-text-light: #333333;
+	--color-border-light: #99ccff;
+	--color-accent-light: #0056b3;
 
-  /* Dark theme */
-  --color-bg-dark: #2d2d2d;
-  --color-nav-dark: #242424;
-  --color-text-dark: #f0f0f0;
-  --color-border-dark: #474747;
-  --color-accent-dark: #1e90ff;
+	/* Dark theme */
+	--color-bg-dark: #2d2d2d;
+	--color-nav-dark: #242424;
+	--color-text-dark: #f0f0f0;
+	--color-border-dark: #474747;
+	--color-accent-dark: #1e90ff;
 }
 html,
 main {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 main {
-  margin: 0;
-  position: relative;
-  min-width: 20rem;
+	margin: 0;
+	position: relative;
+	min-width: 20rem;
 }
 main,
 footer,
 article {
-  background-color: var(--color-bg-light);
-  color: var(--color-text-light);
+	background-color: var(--color-bg-light);
+	color: var(--color-text-light);
 }
 .dark html {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-dark);
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-dark);
 }
 .light html {
-  background-color: var(--color-bg-light);
-  color: var(--color-text-light);
+	background-color: var(--color-bg-light);
+	color: var(--color-text-light);
 }
 main.dark,
 footer.dark,
 .dark article {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-dark);
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-dark);
 }
 
 header {
-  background-color: var(--color-nav-light);
-  padding: 1rem;
+	background-color: var(--color-nav-light);
+	padding: 1rem;
 }
 
 header.dark {
-  background-color: var(--color-nav-dark);
+	background-color: var(--color-nav-dark);
 }
 
 nav a {
-  color: var(--color-text-light);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
+	color: var(--color-text-light);
+	text-decoration: none;
+	padding: 0.5rem 1rem;
 }
 
 main.dark nav a {
-  color: var(--color-text-dark);
+	color: var(--color-text-dark);
 }
 
 nav a:hover {
-  color: var(--color-accent-light);
+	color: var(--color-accent-light);
 }
 
 main.dark nav a:hover {
-  color: var(--color-accent-dark);
+	color: var(--color-accent-dark);
 }
 .light .border {
-  border: 0.125rem solid var(--color-border-light);
+	border: 0.125rem solid var(--color-border-light);
 }
 .light .border-b {
-  border-bottom: 0.25rem solid var(--color-border-light);
+	border-bottom: 0.25rem solid var(--color-border-light);
 }
 .dark .border {
-  border: 0.125rem solid var(--color-border-dark);
+	border: 0.125rem solid var(--color-border-dark);
 }
 .dark .border-b {
-  border-bottom: 0.25rem solid var(--color-border-dark);
+	border-bottom: 0.25rem solid var(--color-border-dark);
 }
 .dark .border-2 {
-  border-color: var(--color-accent-dark);
+	border-color: var(--color-accent-dark);
 }
 .light .border-2 {
-  border-color: var(--color-accent-light);
+	border-color: var(--color-accent-light);
 }
 .hover\:outline-none:hover {
-  outline: none;
+	outline: none;
 }
 .light .hover\:outline:hover {
-  outline: 0.25rem solid var(--color-accent-light);
+	outline: 0.25rem solid var(--color-accent-light);
 }
 .dark .hover\:outline:hover {
-  outline: 0.25rem solid var(--color-accent-dark);
+	outline: 0.25rem solid var(--color-accent-dark);
 }
 .light .outline {
-  outline: 0.25rem solid var(--color-accent-light);
+	outline: 0.25rem solid var(--color-accent-light);
 }
 .dark .outline {
-  outline: 0.25rem solid var(--color-accent-dark);
+	outline: 0.25rem solid var(--color-accent-dark);
 }
 @media screen and (max-width: 40rem) {
-  .sticky {
-    position: relative;
-  }
+	.sticky {
+		position: relative;
+	}
 }
 ::-webkit-scrollbar {
-  width: 0.375rem;
-  height: 0.625rem;
-  background: var(--color-bg-dark);
+	width: 0.375rem;
+	height: 0.625rem;
+	background: var(--color-bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-  border-radius: 1rem;
-  background: var(--color-text-dark);
+	border-radius: 1rem;
+	background: var(--color-text-dark);
 }

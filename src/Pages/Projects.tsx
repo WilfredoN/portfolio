@@ -1,6 +1,6 @@
-import { motion } from "framer-motion"
-import ProjectDescription from "../Components/ProjectDescription"
-import { nextPageVariant } from "../Types/RouterVariants"
+import { motion } from 'framer-motion'
+import ProjectDescription from '../Components/ProjectDescription'
+import { nextPageVariant } from '../Types/RouterVariants'
 
 const Projects = () => (
 	<>
