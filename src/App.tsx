@@ -5,6 +5,7 @@ import Header from './Components/Header'
 import { ThemeContext } from './Components/ThemeContext'
 import About from './Pages/About'
 import Projects from './Pages/Projects'
+import CookieConsest from './Components/CookieConsent'
 function App() {
 	const [currentPage, setCurrentPage] = useState<'about' | 'projects'>('about')
 	const [theme, setTheme] = useState('dark')
@@ -26,6 +27,7 @@ function App() {
 				/>
 				{currentPage === 'about' ? <About /> : <Projects />}
 				<Footer />
+        <CookieConsest />
 			</main>
 		</ThemeContext.Provider>
 	)

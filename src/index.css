@@ -62,12 +62,12 @@ footer.dark,
 	color: var(--color-text-dark);
 }
 
-header {
+header, .cookie {
 	background-color: var(--color-nav-light);
 	padding: 1rem;
 }
 
-header.dark {
+header.dark, .cookie.dark {
 	background-color: var(--color-nav-dark);
 }
 
