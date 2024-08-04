@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
+import { PageType } from '../Types/PageType'
 import CustomNavLink from './CustomNavLink'
 import ThemeToggle from './Input/ThemeToggle'
 import { ThemeContext } from './ThemeContext'
 
-const Header = ({
-	currentPage,
-	onPageChange
-}: {
-	currentPage: 'about' | 'projects'
-	onPageChange: (page: 'about' | 'projects') => void
-}) => {
+interface HeaderProps {
+	currentPage: PageType
+	onPageChange: (page: PageType) => void
+}
+
+const Header = ({ currentPage, onPageChange }: HeaderProps) => {
 	const [scrollPosition, setScrollPosition] = useState(0)
 	const { theme } = useContext(ThemeContext)
 	const checkScrollTop = () => {
@@ -30,7 +30,7 @@ const Header = ({
 	const scaleFactor = isMobile
 		? 1
 		: Math.max(0.9, 1 - scrollPosition / totalScrollHeight / 2) || 1
-	const handlePageChange = (page: 'about' | 'projects') => {
+	const handlePageChange = (page: PageType) => {
 		if (!isMobile) {
 			setScrollPosition(0)
 		}
@@ -56,14 +56,14 @@ const Header = ({
 		>
 			<nav className="w-full flex md:flex-row flex-col justify-center">
 				<CustomNavLink
-					onClick={() => handlePageChange('about')}
-					isClicked={currentPage === 'about'}
+					onClick={() => handlePageChange(PageType.About)}
+					isClicked={currentPage === PageType.About}
 				>
 					About Me
 				</CustomNavLink>
 				<CustomNavLink
-					onClick={() => handlePageChange('projects')}
-					isClicked={currentPage === 'projects'}
+					onClick={() => handlePageChange(PageType.Projects)}
+					isClicked={currentPage === PageType.Projects}
 				>
 					Projects
 				</CustomNavLink>

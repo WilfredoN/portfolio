@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { nextPageVariant } from '../Types/RouterVariants'
 import { useContext } from 'react'
 import { ThemeContext } from './ThemeContext'
 
@@ -18,7 +17,6 @@ const ProjectDescription = () => {
 		>
 			<motion.h1
 				className="text-4xl text-center"
-				variants={nextPageVariant}
 				initial="initial"
 				animate="final"
 				style={{
@@ -49,7 +47,6 @@ const ProjectDescription = () => {
 			<hr />
 			<motion.h1
 				className="text-4xl text-center"
-				variants={nextPageVariant}
 				initial="initial"
 				animate="final"
 				style={{

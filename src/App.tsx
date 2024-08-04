@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import './App.css'
+import CookieConsest from './Components/CookieConsent'
 import Footer from './Components/Footer'
 import Header from './Components/Header'
 import { ThemeContext } from './Components/ThemeContext'
-import About from './Pages/About'
-import Projects from './Pages/Projects'
-import CookieConsest from './Components/CookieConsent'
+import { Main } from './Pages/Main'
+import { PageType } from './Types/PageType'
 function App() {
-	const [currentPage, setCurrentPage] = useState<'about' | 'projects'>('about')
+	const [currentPage, setCurrentPage] = useState<PageType>(PageType.About)
 	const [theme, setTheme] = useState('dark')
-	const handlePageChange = (page: 'about' | 'projects') => {
+	const handlePageChange = (page: PageType) => {
 		setCurrentPage(page)
 	}
 	const toggleTheme = () => {
 		setTheme(theme === 'dark' ? 'light' : 'dark')
 	}
+
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
 			<main
@@ -25,7 +26,7 @@ function App() {
 					currentPage={currentPage}
 					onPageChange={handlePageChange}
 				/>
-				{currentPage === 'about' ? <About /> : <Projects />}
+				<Main currentPage={currentPage} />
 				<Footer />
 				<CookieConsest />
 			</main>

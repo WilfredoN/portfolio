@@ -5,13 +5,11 @@ import {
 	programmingLanguages,
 	technologiesAndLibraries
 } from '../Types/ListItems'
-import { prevPageVariant } from '../Types/RouterVariants'
 
 const About = () => {
 	return (
 		<motion.article
 			className="mt-8 max-w-screen-xl flex items-center justify-center flex-col"
-			variants={prevPageVariant}
 			initial="initial"
 			animate="final"
 		>
