@@ -2,7 +2,7 @@
 	"name": "portfolio",
 	"private": true,
 	"version": "0.0.1",
-	"homepage": ".",
+	"homepage": "https://capybara.cx.ua/",
 	"type": "module",
 	"scripts": {
 		"predeploy": "npm run build",
