@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useContext } from 'react'
 import { CgSpinner } from 'react-icons/cg'
+import { ThemeContext } from '../Components/ThemeContext'
 import { PageType } from '../Types/PageType'
 import { nextPageVariant, prevPageVariant } from '../Types/RouterVariants'
 const About = lazy(() => import('./About'))
@@ -13,7 +14,7 @@ interface PageProps {
 export const Main = ({ currentPage }: PageProps) => {
 	const variants =
 		currentPage === PageType.About ? nextPageVariant : prevPageVariant
-
+	const theme = useContext(ThemeContext)
 	return (
 		<AnimatePresence
 			mode="wait"
@@ -21,12 +22,12 @@ export const Main = ({ currentPage }: PageProps) => {
 		>
 			<Suspense fallback={<CgSpinner className="animate-spin" />}>
 				<motion.div
-					key={`id-${Math.random()}`}
+					key={currentPage}
 					variants={variants}
 					initial="initial"
 					animate="final"
 					exit="exit"
-					className="w-screen-xl"
+					className={`w-screen-xl ${theme}`}
 				>
 					{currentPage === PageType.About ? <About /> : <Projects />}
 				</motion.div>
