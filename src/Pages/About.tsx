@@ -10,7 +10,7 @@ import { prevPageVariant } from '../Types/RouterVariants'
 const About = () => {
 	return (
 		<motion.article
-			className="mt-8 w-full"
+			className="mt-8 max-w-screen-xl flex items-center justify-center flex-col"
 			variants={prevPageVariant}
 			initial="initial"
 			animate="final"
@@ -18,7 +18,8 @@ const About = () => {
 			<motion.aside>
 				<AboutMe />
 			</motion.aside>
-			<div className="flex flex-col justify-center sm:flex-row mt-8 mb-8 w-full">
+			<h2 className="text-4xl ">My skills</h2>
+			<div className="flex flex-col justify-center sm:flex-row mt-4 mb-8 w-full">
 				<Section
 					title="Programming Languages"
 					items={programmingLanguages}

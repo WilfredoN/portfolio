@@ -19,7 +19,7 @@ function App() {
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
 			<main
 				className={`${theme} flex flex-col justify-start items-center py-2 
-        min-h-screen`}
+        h-full`}
 			>
 				<Header
 					currentPage={currentPage}
@@ -27,7 +27,7 @@ function App() {
 				/>
 				{currentPage === 'about' ? <About /> : <Projects />}
 				<Footer />
-        <CookieConsest />
+				<CookieConsest />
 			</main>
 		</ThemeContext.Provider>
 	)

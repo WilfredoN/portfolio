@@ -1,11 +1,11 @@
 const AboutMe = () => {
 	return (
-		<div className="flex m-0 flex-col items-center justify-center">
+		<div className="flex m-0 flex-col items-center justify-center max-w-screen-xl">
 			<img
 				src="https://github.com/WilfredoN/portfolio/blob/main/src/assets/capybara_variant_2.png?raw=true"
 				alt="Capybara image in zeros and ones style"
 				className="p-3 hover:p-0 transition-padding duration-300 ease-in-out
-         rounded-full sm:w-1/3 xl:w-1/4 border-2"
+         rounded-full sm:w-1/2 xl:w-3/6 border-2"
 				draggable="false"
 			/>
 			<p

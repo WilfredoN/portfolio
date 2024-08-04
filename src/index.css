@@ -61,13 +61,22 @@ footer.dark,
 	background-color: var(--color-bg-dark);
 	color: var(--color-text-dark);
 }
-
-header, .cookie {
+main.dark html {
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-dark);
+}
+main.light html {
+	background-color: var(--color-bg-light);
+	color: var(--color-text-light);
+}
+header,
+.cookie {
 	background-color: var(--color-nav-light);
 	padding: 1rem;
 }
 
-header.dark, .cookie.dark {
+header.dark,
+.cookie.dark {
 	background-color: var(--color-nav-dark);
 }
 
@@ -134,4 +143,16 @@ main.dark nav a:hover {
 ::-webkit-scrollbar-thumb {
 	border-radius: 1rem;
 	background: var(--color-text-dark);
+}
+hr {
+	border: 0;
+	height: 0.125rem;
+	width: 100%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	border-radius: 10rem;
+	background-color: var(--color-border-light);
+}
+.dark hr {
+	background-color: var(--color-border-dark);
 }
