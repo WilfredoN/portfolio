@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Suspense, lazy, useContext } from 'react'
 import { CgSpinner } from 'react-icons/cg'
-import { ThemeContext } from '../Components/ThemeContext'
-import { PageType } from '../Types/PageType'
-import { nextPageVariant, prevPageVariant } from '../Types/RouterVariants'
+import { ThemeContext } from '../components/ThemeContext'
+import { PageType } from '../types/PageType'
+import { nextPageVariant, prevPageVariant } from '../types/RouterVariants'
 const About = lazy(() => import('./About'))
 const Projects = lazy(() => import('./Projects'))
 

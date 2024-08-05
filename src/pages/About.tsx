@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import Section from '../Components/AboutSection'
-import AboutMe from '../Components/image/CapybaraBinary'
+import Section from '../components/AboutSection'
+import { MainInfo } from '../components/about/MainInfo'
 import {
 	programmingLanguages,
 	technologiesAndLibraries
-} from '../Types/ListItems'
+} from '../types/ListItems'
 
 const About = () => {
 	return (
@@ -14,7 +14,7 @@ const About = () => {
 			animate="final"
 		>
 			<motion.aside>
-				<AboutMe />
+				<MainInfo />
 			</motion.aside>
 			<h2 className="text-4xl ">My skills</h2>
 			<div className="flex flex-col justify-center sm:flex-row mt-4 mb-8 w-full">

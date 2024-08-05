@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
-import { PageType } from '../Types/PageType'
+import { PageType } from '../types/PageType'
 import CustomNavLink from './CustomNavLink'
-import ThemeToggle from './Input/ThemeToggle'
+import ThemeToggle from './input/ThemeToggle'
 import { ThemeContext } from './ThemeContext'
 
 interface HeaderProps {

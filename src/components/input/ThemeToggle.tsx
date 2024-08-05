@@ -17,8 +17,10 @@ const ThemeToggle = () => {
 					id="checkbox"
 					offColor="#99ccff"
 					onColor="#2196f3"
-					offHandleColor="#99ccff"
-					onHandleColor="#2196f3"
+					offHandleColor="transparent"
+					onHandleColor="transparent"
+					boxShadow="none"
+					activeBoxShadow="none"
 					uncheckedIcon={false}
 					uncheckedHandleIcon={
 						<div

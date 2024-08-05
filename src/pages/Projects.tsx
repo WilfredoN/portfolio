@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import ProjectDescription from '../Components/ProjectDescription'
+import ProjectDescription from '../components/ProjectDescription'
 const Projects = () => {
 	return (
 		<motion.article

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import CookieConsest from './Components/CookieConsent'
-import Footer from './Components/Footer'
-import Header from './Components/Header'
-import { ThemeContext } from './Components/ThemeContext'
-import { Main } from './Pages/Main'
-import { PageType } from './Types/PageType'
+import CookieConsest from './components/CookieConsent'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import { ThemeContext } from './components/ThemeContext'
+import { Main } from './pages/Main'
+import { PageType } from './types/PageType'
 function App() {
 	const [currentPage, setCurrentPage] = useState<PageType>(PageType.About)
 	const [theme, setTheme] = useState('dark')
