@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
-import Section from '../components/AboutSection'
 import { MainInfo } from '../components/about/MainInfo'
+import { Section } from '../components/AboutSection'
 import {
 	programmingLanguages,
 	technologiesAndLibraries
 } from '../types/ListItems'
 
-const About = () => {
+export const About = () => {
 	return (
 		<motion.article
 			className="mt-8 max-w-screen-xl flex items-center justify-center flex-col"
@@ -30,5 +30,3 @@ const About = () => {
 		</motion.article>
 	)
 }
-
-export default About

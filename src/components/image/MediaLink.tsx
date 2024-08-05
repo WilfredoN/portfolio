@@ -6,7 +6,7 @@ interface MediaLinkProps {
 	icon: React.ReactNode
 }
 
-const MediaLink = ({ href, icon }: MediaLinkProps) => {
+export const MediaLink = ({ href, icon }: MediaLinkProps) => {
 	const { theme } = useContext(ThemeContext)
 	return (
 		<a
@@ -21,5 +21,3 @@ const MediaLink = ({ href, icon }: MediaLinkProps) => {
 		</a>
 	)
 }
-
-export default MediaLink

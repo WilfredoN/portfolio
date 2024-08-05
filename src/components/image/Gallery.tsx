@@ -2,9 +2,9 @@ import { Disclosure, Transition } from '@headlessui/react'
 import { useContext } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 import { ThemeContext } from '../ThemeContext'
-import MotionImage from './ImageProjects'
+import { MotionImage } from './ImageProjects'
 
-const Gallery = () => {
+export const Gallery = () => {
 	const { theme } = useContext(ThemeContext)
 
 	return (
@@ -49,5 +49,3 @@ const Gallery = () => {
 		</Disclosure>
 	)
 }
-
-export default Gallery

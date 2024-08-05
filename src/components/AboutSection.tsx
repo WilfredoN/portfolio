@@ -5,7 +5,7 @@ interface SectionProps {
 	items: { text: string; icon: string }[]
 }
 
-const Section = ({ title, items }: SectionProps) => {
+export const Section = ({ title, items }: SectionProps) => {
 	return (
 		<section className="border mb-4 md:mb-0 md:w-96 mr-0 xl:mr-8 sm:w-full">
 			<h2 className="border-b text-4xl">{title}</h2>
@@ -21,5 +21,3 @@ const Section = ({ title, items }: SectionProps) => {
 		</section>
 	)
 }
-
-export default Section

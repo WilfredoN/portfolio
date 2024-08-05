@@ -1,4 +1,4 @@
-import Icon from './image/TableIcon'
+import { Icon } from './image/Icon'
 
 interface ListProps {
 	text: string

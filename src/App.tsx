@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import './App.css'
-import CookieConsest from './components/CookieConsent'
-import Footer from './components/Footer'
-import Header from './components/Header'
+import { CookieConsent } from './components/CookieConsent'
+import { Footer } from './components/Footer'
+import { Header } from './components/Header'
+import { ScrollButton } from './components/input/ScrollButton'
 import { ThemeContext } from './components/ThemeContext'
 import { Main } from './pages/Main'
 import { PageType } from './types/PageType'
-function App() {
+
+export const App = () => {
 	const [currentPage, setCurrentPage] = useState<PageType>(PageType.About)
 	const [theme, setTheme] = useState('dark')
 	const handlePageChange = (page: PageType) => {
@@ -28,10 +30,9 @@ function App() {
 				/>
 				<Main currentPage={currentPage} />
 				<Footer />
-				<CookieConsest />
+				<CookieConsent />
+				<ScrollButton />
 			</main>
 		</ThemeContext.Provider>
 	)
 }
-
-export default App

@@ -11,6 +11,7 @@ export const technologiesAndLibraries = [
 	{ text: 'Angular', icon: 'angular' },
 	{ text: 'Vite', icon: 'vitejs' },
 	{ text: 'TailwindCSS', icon: 'tailwindcss' },
+	{ text: 'ChakraUI', icon: 'chakraui' },
 	{ text: 'Spring', icon: 'spring' },
 	{ text: 'PostgreSQL', icon: 'postgresql' },
 	{ text: 'Docker', icon: 'docker' }

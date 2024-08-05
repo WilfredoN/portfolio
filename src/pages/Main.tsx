@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Suspense, lazy, useContext } from 'react'
+import { Suspense, useContext } from 'react'
 import { CgSpinner } from 'react-icons/cg'
 import { ThemeContext } from '../components/ThemeContext'
 import { PageType } from '../types/PageType'
 import { nextPageVariant, prevPageVariant } from '../types/RouterVariants'
-const About = lazy(() => import('./About'))
-const Projects = lazy(() => import('./Projects'))
+import { About } from './About'
+import { Projects } from './Projects'
 
 interface PageProps {
 	currentPage: PageType

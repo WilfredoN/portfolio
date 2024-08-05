@@ -1,7 +1,7 @@
-import { useState, useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from './ThemeContext'
 
-const CookieConsent = () => {
+export const CookieConsent = () => {
 	const [accepted, setAccepted] = useState(false)
 	const { theme } = useContext(ThemeContext)
 
@@ -20,7 +20,9 @@ const CookieConsent = () => {
 	if (accepted) return null
 
 	return (
-		<div className={`${theme} cookie fixed bottom-0 left-0 right-0 bg-opacity-90 p-4 border-t border-gray-300 text-center`}>
+		<div
+			className={`${theme} cookie fixed bottom-0 left-0 right-0 bg-opacity-90 p-4 border-t border-gray-300 text-center`}
+		>
 			<p className="text-lg">
 				We are using cookies to enhance your experience. By continuing to visit
 				this site you agree to our use of cookies.
@@ -34,5 +36,3 @@ const CookieConsent = () => {
 		</div>
 	)
 }
-
-export default CookieConsent

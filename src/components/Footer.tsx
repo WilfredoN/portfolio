@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiGmail } from 'react-icons/si'
-import MediaLink from './image/MediaLink'
+import { MediaLink } from './image/MediaLink'
 import { ThemeContext } from './ThemeContext'
 
-const Footer = () => {
+export const Footer = () => {
 	const { theme } = useContext(ThemeContext)
 	return (
 		<footer
@@ -31,5 +31,3 @@ const Footer = () => {
 		</footer>
 	)
 }
-
-export default Footer

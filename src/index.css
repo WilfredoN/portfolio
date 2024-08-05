@@ -156,3 +156,11 @@ hr {
 .dark hr {
 	background-color: var(--color-border-dark);
 }
+
+.scroll-button {
+	background-color: var(--color-border-light);
+	color: var(--color-text-dark);
+}
+.dark .scroll-button {
+	background-color: var(--color-border-dark);
+}

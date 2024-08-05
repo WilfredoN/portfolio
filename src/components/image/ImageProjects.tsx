@@ -7,7 +7,7 @@ interface MotionImageProps {
 	delay?: number
 }
 
-const MotionImage = ({ src, delay }: MotionImageProps) => {
+export const MotionImage = ({ src, delay }: MotionImageProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<>
@@ -64,5 +64,3 @@ const MotionImage = ({ src, delay }: MotionImageProps) => {
 		</>
 	)
 }
-
-export default MotionImage

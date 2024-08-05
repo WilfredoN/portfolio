@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
 import { PageType } from '../types/PageType'
-import CustomNavLink from './CustomNavLink'
-import ThemeToggle from './input/ThemeToggle'
+import { CustomNavLink } from './CustomNavLink'
+import { ThemeToggle } from './input/ThemeToggle'
 import { ThemeContext } from './ThemeContext'
 
 interface HeaderProps {
@@ -10,7 +10,7 @@ interface HeaderProps {
 	onPageChange: (page: PageType) => void
 }
 
-const Header = ({ currentPage, onPageChange }: HeaderProps) => {
+export const Header = ({ currentPage, onPageChange }: HeaderProps) => {
 	const [scrollPosition, setScrollPosition] = useState(0)
 	const { theme } = useContext(ThemeContext)
 	const checkScrollTop = () => {
@@ -72,5 +72,3 @@ const Header = ({ currentPage, onPageChange }: HeaderProps) => {
 		</motion.header>
 	)
 }
-
-export default Header

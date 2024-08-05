@@ -4,7 +4,7 @@ interface CustomNavLinkProps {
 	isClicked: boolean
 }
 
-const CustomNavLink = ({
+export const CustomNavLink = ({
 	onClick,
 	children,
 	isClicked
@@ -21,5 +21,3 @@ const CustomNavLink = ({
 		{children}
 	</button>
 )
-
-export default CustomNavLink

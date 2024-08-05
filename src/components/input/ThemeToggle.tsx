@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Switch from 'react-switch'
 import { ThemeContext } from '../ThemeContext'
 
-const ThemeToggle = () => {
+export const ThemeToggle = () => {
 	const { theme, toggleTheme } = useContext(ThemeContext)
 
 	return (
@@ -17,8 +17,8 @@ const ThemeToggle = () => {
 					id="checkbox"
 					offColor="#99ccff"
 					onColor="#2196f3"
-					offHandleColor="transparent"
-					onHandleColor="transparent"
+					offHandleColor="#00_"
+					onHandleColor="#00_"
 					boxShadow="none"
 					activeBoxShadow="none"
 					uncheckedIcon={false}
@@ -59,5 +59,3 @@ const ThemeToggle = () => {
 		</div>
 	)
 }
-
-export default ThemeToggle
