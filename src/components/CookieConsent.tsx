@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from './ThemeContext'
 
-export const CookieConsent = () => {
+interface CookieConsentProps {
+	onConsent: () => void
+}
+
+export const CookieConsent = ({ onConsent }: CookieConsentProps) => {
 	const [accepted, setAccepted] = useState(false)
 	const { theme } = useContext(ThemeContext)
 
@@ -15,6 +19,7 @@ export const CookieConsent = () => {
 	const handleAccept = () => {
 		localStorage.setItem('cookieConsent', 'true')
 		setAccepted(true)
+		onConsent()
 	}
 
 	if (accepted) return null

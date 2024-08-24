@@ -1,9 +1,18 @@
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
+import ReactGA from 'react-ga4'
 import { ThemeContext } from './ThemeContext'
 
 export const ProjectDescription = () => {
 	const { theme } = useContext(ThemeContext)
+
+	const handleLinkClick = (label: string) => {
+		ReactGA.event({
+			category: 'User',
+			action: 'Clicked Link',
+			label: label
+		})
+	}
 	return (
 		<motion.section
 			style={{
@@ -35,7 +44,12 @@ export const ProjectDescription = () => {
 					}}
 					className="my-6"
 				>
-					<a href="https://github.com/WilfredoN/alexandria-app">Alexandria</a>
+					<a
+						href="https://github.com/WilfredoN/alexandria-app"
+						onClick={() => handleLinkClick('Alexandria')}
+					>
+						Alexandria
+					</a>
 				</span>
 				<br />
 				From serious projects I can highlight my web application called
@@ -56,7 +70,10 @@ export const ProjectDescription = () => {
 					alignItems: 'center'
 				}}
 			>
-				<a href="https://www.winwin.travel/">
+				<a
+					href="https://www.winwin.travel/"
+					onClick={() => handleLinkClick('WinWin.Travel')}
+				>
 					<motion.img
 						src="assets/winwin.png"
 						className={`${theme === 'dark' ? 'bg-gray-200' : ''} px-4 py-2 rounded-md my-2`}
@@ -70,6 +87,7 @@ export const ProjectDescription = () => {
 					<a
 						href="https://www.winwin.travel/"
 						className="text-blue-400"
+						onClick={() => handleLinkClick('WinWin.Travel Contact')}
 					>
 						here
 					</a>
