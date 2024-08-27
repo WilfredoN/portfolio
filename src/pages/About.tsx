@@ -16,7 +16,7 @@ export const About = () => {
 			<motion.aside>
 				<MainInfo />
 			</motion.aside>
-			<h2 className="text-4xl ">My skills</h2>
+			<h2 className="text-4xl">My skills</h2>
 			<div className="flex flex-col justify-center sm:flex-row mt-4 mb-8 w-full">
 				<Section
 					title="Programming Languages"

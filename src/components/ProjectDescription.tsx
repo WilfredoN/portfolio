@@ -76,6 +76,7 @@ export const ProjectDescription = () => {
 				>
 					<motion.img
 						src="assets/winwin.png"
+						alt="WinWin.Travel Logo"
 						className={`${theme === 'dark' ? 'bg-gray-200' : ''} px-4 py-2 rounded-md my-2`}
 					/>
 				</a>
