@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import ReactGA from 'react-ga4'
+import { useState } from 'react'
 import './App.css'
 import { CookieConsent } from './components/CookieConsent'
 import { Footer } from './components/Footer'
@@ -10,23 +9,8 @@ import { Main } from './pages/Main'
 import { PageType } from './types/PageType'
 
 export const App = () => {
-	const VITE_TRACKING_ID = import.meta.env.VITE_TRACKING_ID
 	const [currentPage, setCurrentPage] = useState<PageType>(PageType.About)
 	const [theme, setTheme] = useState('dark')
-	const [consent, setConsent] = useState(
-		localStorage.getItem('cookieConsent') === 'true'
-	)
-
-	useEffect(() => {
-		if (consent) {
-			ReactGA.initialize(VITE_TRACKING_ID)
-			ReactGA.send({
-				hitType: 'pageview',
-				page: window.location.pathname + window.location.search
-			})
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentPage, consent])
 
 	const handlePageChange = (page: PageType) => {
 		setCurrentPage(page)
@@ -48,7 +32,7 @@ export const App = () => {
 				/>
 				<Main currentPage={currentPage} />
 				<Footer />
-				<CookieConsent onConsent={() => setConsent(true)} />
+				<CookieConsent />
 				<ScrollButton />
 			</main>
 		</ThemeContext.Provider>
