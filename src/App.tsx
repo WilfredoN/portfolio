@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import BinaryBackground from './components/BinaryBackground'
 import { CookieConsent } from './components/CookieConsent'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -22,6 +23,7 @@ export const App = () => {
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
+			<BinaryBackground />
 			<main
 				className={`${theme} flex flex-col justify-start items-center py-2 h-full`}
 			>
@@ -37,3 +39,5 @@ export const App = () => {
 		</ThemeContext.Provider>
 	)
 }
+
+export default App

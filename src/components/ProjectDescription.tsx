@@ -13,6 +13,9 @@ export const ProjectDescription = () => {
 					/>
 				</>
 			))}
+			<motion.h1 className="text-4xl font-bold text-center">
+				More projects coming soon...
+			</motion.h1>
 		</motion.section>
 	)
 }

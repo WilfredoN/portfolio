@@ -42,12 +42,14 @@ main {
 	margin: 0;
 	position: relative;
 	min-width: 20rem;
+	z-index: 5;
 }
 main,
 footer,
 article {
 	background-color: var(--color-bg-light);
 	color: var(--color-text-light);
+	z-index: 5;
 }
 .dark html {
 	background-color: var(--color-bg-dark);
