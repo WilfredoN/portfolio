@@ -9,7 +9,7 @@ import {
 export const About = () => {
 	return (
 		<motion.article
-			className="mt-8 max-w-screen-xl flex items-center justify-center flex-col"
+			className="mt-8 max-w-screen-2xl flex items-center justify-center flex-col"
 			initial="initial"
 			animate="final"
 		>

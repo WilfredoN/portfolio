@@ -27,7 +27,7 @@ export const Main = ({ currentPage }: PageProps) => {
 					initial="initial"
 					animate="final"
 					exit="exit"
-					className={`w-screen-xl ${theme}`}
+					className={`max-w-screen-2xl w-full ${theme.theme}`}
 				>
 					{currentPage === PageType.About ? <About /> : <Projects />}
 				</motion.div>

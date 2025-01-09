@@ -1,7 +1,7 @@
 import { CapybaraImage } from '../image/CapybaraImage'
 export const MainInfo = () => {
 	return (
-		<div className="flex m-0 flex-col items-center justify-center max-w-screen-xl">
+		<div className="flex m-0 flex-col items-center justify-center max-w-screen-2xl">
 			<CapybaraImage />
 
 			<p

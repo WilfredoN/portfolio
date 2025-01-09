@@ -23,6 +23,7 @@
 	--color-nav-light: #b3d9ff;
 	--color-text-light: #333333;
 	--color-border-light: #99ccff;
+	--color-border-light-opacity: hsla(210, 100%, 80%, 0.4);
 	--color-accent-light: #0056b3;
 
 	/* Dark theme */
@@ -30,6 +31,7 @@
 	--color-nav-dark: #242424;
 	--color-text-dark: #f0f0f0;
 	--color-border-dark: #474747;
+	--color-border-dark-opacity: hsla(0, 0%, 28%, 0.4);
 	--color-accent-dark: #1e90ff;
 }
 html,
@@ -115,6 +117,21 @@ main.dark nav a:hover {
 .light .border-2 {
 	border-color: var(--color-accent-light);
 }
+.dark .border-3 {
+	border-width: 3px;
+	border-color: var(--color-border-dark-opacity);
+}
+.light .border-3 {
+	border-width: 3px;
+	border-color: var(--color-border-light-opacity);
+}
+.dark .border-4 {
+	border-color: var(--color-border-dark-opacity);
+}
+.light .border-4 {
+	border-color: var(--color-border-light-opacity);
+}
+
 .hover\:outline-none:hover {
 	outline: none;
 }

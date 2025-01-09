@@ -23,8 +23,7 @@ export const App = () => {
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
 			<main
-				className={`${theme} flex flex-col justify-start items-center py-2 
-        h-full`}
+				className={`${theme} flex flex-col justify-start items-center py-2 h-full`}
 			>
 				<Header
 					currentPage={currentPage}
