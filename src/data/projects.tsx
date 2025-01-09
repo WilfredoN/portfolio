@@ -13,7 +13,7 @@ export const projects = [
 			'A hotel room comparison platform that allows users to find the best hotel room for their needs.',
 		additionalDescription: (
 			<span>
-				If you wanna get demo - contact
+				If you wanna get demo - contact{' '}
 				<a
 					href="https://www.winwin.travel/"
 					className="text-blue-400"
