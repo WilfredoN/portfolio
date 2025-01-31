@@ -23,7 +23,7 @@ export const ProjectCard = ({
 	additionalDescription
 }: ProjectCardProps) => {
 	return (
-		<motion.div className="mb-12 w-full hover:scale-105 transition-transform duration-100 max-w-[31.25rem] border-3 rounded-lg p-4">
+		<motion.div className="flex flex-col justify-around mb-12 w-full h-[30.625rem] hover:scale-105 transition-transform duration-100 max-w-[31.25rem] border-3 rounded-lg p-4">
 			<motion.h1
 				className="text-4xl text-center flex items-center flex-col"
 				initial="initial"
@@ -49,7 +49,7 @@ export const ProjectCard = ({
 				</div>
 			</motion.h1>
 
-			<div className="mt-6">
+			<div className="self-center justify-self-end mt-auto">
 				<h3 className="text-3xl text-center mb-2">Technologies used:</h3>
 				<TechnologyStack technologies={technologies} />
 			</div>

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import BinaryBackground from './components/BinaryBackground'
 import { CookieConsent } from './components/CookieConsent'
-import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { ScrollButton } from './components/input/ScrollButton'
 import { ThemeContext } from './components/ThemeContext'
@@ -25,14 +24,13 @@ export const App = () => {
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
 			<BinaryBackground />
 			<main
-				className={`${theme} flex flex-col justify-start items-center py-2 h-full`}
+				className={`${theme} flex flex-col justify-start items-center py-2 min-h-[100vh]`}
 			>
 				<Header
 					currentPage={currentPage}
 					onPageChange={handlePageChange}
 				/>
 				<Main currentPage={currentPage} />
-				<Footer />
 				<CookieConsent />
 				<ScrollButton />
 			</main>

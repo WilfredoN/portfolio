@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { MainInfo } from '../components/about/MainInfo'
 import { Section } from '../components/AboutSection'
+import { Footer } from '../components/Footer'
 import {
 	programmingLanguages,
 	technologiesAndLibraries
@@ -27,6 +28,8 @@ export const About = () => {
 					items={technologiesAndLibraries}
 				/>
 			</div>
+			<Footer />
+
 		</motion.article>
 	)
 }
