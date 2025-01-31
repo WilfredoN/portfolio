@@ -16,6 +16,7 @@ const BinaryBackground = () => {
 	useEffect(() => {
 		const canvas = canvasRef.current
 		const ctx = canvas?.getContext('2d')
+
 		if (!canvas || !ctx) return
 
 		const resizeCanvas = () => {
@@ -39,12 +40,19 @@ const BinaryBackground = () => {
 					x: i * 20,
 					y: Math.random() * canvas.height,
 					value: Math.random() < 0.5 ? '0' : '1',
-					speed: 2 - Math.random() * 3
+					speed: 0.5 - Math.random() * 0.5
 				})
 			}
 		}
 
 		createSymbols()
+
+		const changeSymbolValue = (symbol: Symbols) => {
+			setTimeout(() => {
+				symbol.value = symbol.value === '0' ? '1' : '0'
+				changeSymbolValue(symbol)
+			}, Math.random() * 1000 + 500)
+		}
 
 		const drawSymbols = () => {
 			if (!ctx) return
@@ -63,6 +71,8 @@ const BinaryBackground = () => {
 				}
 			})
 		}
+
+		symbols.current.forEach(symbol => changeSymbolValue(symbol))
 
 		const animate = () => {
 			drawSymbols()
