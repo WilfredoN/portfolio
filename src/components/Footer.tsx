@@ -1,8 +1,8 @@
-import { useContext } from 'react'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { SiGmail } from 'react-icons/si'
-import { MediaLink } from './image/MediaLink'
-import { ThemeContext } from './ThemeContext'
+import { useContext } from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiGmail, SiMonkeytype } from 'react-icons/si';
+import { MediaLink } from './image/MediaLink';
+import { ThemeContext } from './ThemeContext';
 
 export const Footer = () => {
 	const { theme } = useContext(ThemeContext)
@@ -23,6 +23,10 @@ export const Footer = () => {
 				<MediaLink
 					href="mailto:nikita.afanasyevnn@gmail.com"
 					icon={<SiGmail />}
+				/>
+				<MediaLink
+					href="https://monkeytype.com/profile/WilfredoN"
+					icon={<SiMonkeytype />}
 				/>
 			</div>
 			<p className="opacity-30 animate-pulse">
