@@ -16,6 +16,5 @@ export const technologiesAndLibraries = [
 	{ text: 'ChakraUI', icon: 'chakraui' },
 	{ text: 'Spring', icon: 'spring' },
 	{ text: 'PostgreSQL', icon: 'postgresql' },
-	{ text: 'Docker', icon: 'docker' },
-	{ text: 'Django', icon: 'django' }
+	{ text: 'Docker', icon: 'docker' }
 ]
