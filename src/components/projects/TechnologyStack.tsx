@@ -3,9 +3,13 @@ import { Icon } from '../image/Icon'
 
 interface TechnologyStackProps {
 	technologies: string[]
+	size?: 'medium' | 'large'
 }
 
-export const TechnologyStack = ({ technologies }: TechnologyStackProps) => {
+export const TechnologyStack = ({
+	technologies,
+	size = 'medium'
+}: TechnologyStackProps) => {
 	return (
 		<motion.div className="flex flex-row justify-center items-center gap-4">
 			{technologies.map(tech => (
@@ -13,6 +17,7 @@ export const TechnologyStack = ({ technologies }: TechnologyStackProps) => {
 					key={tech}
 					iconName={tech}
 					alt={tech}
+					size={size}
 				/>
 			))}
 		</motion.div>

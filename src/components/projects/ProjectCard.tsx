@@ -1,16 +1,6 @@
 import { motion } from 'framer-motion'
+import { ProjectInfo } from '../../data/projects'
 import { TechnologyStack } from './TechnologyStack'
-
-interface ProjectCardProps {
-	title: string
-	description: string
-	technologies: string[]
-	link: string
-	imageUrl?: string
-	imageTitle?: string
-	imageStyle?: string
-	additionalDescription?: React.ReactNode
-}
 
 export const ProjectCard = ({
 	title,
@@ -20,10 +10,19 @@ export const ProjectCard = ({
 	imageUrl,
 	imageTitle,
 	imageStyle,
+	scale = 'medium',
 	additionalDescription
-}: ProjectCardProps) => {
+}: ProjectInfo) => {
+	const isLarge = scale === 'large'
+
 	return (
-		<motion.div className="flex flex-col justify-around mb-12 w-full h-[30.625rem] hover:scale-105 transition-transform duration-100 max-w-[31.25rem] border-3 rounded-lg p-4">
+		<motion.div
+			className={`flex flex-col justify-around mb-12 w-full h-${
+				scale == 'medium'
+					? '[30.625rem] hover:scale-105 transition-transform duration-100 '
+					: '[34rem]'
+			}${isLarge ? 'max-w-full' : 'max-w-[31.25rem]'} border-3 rounded-lg p-4`}
+		>
 			<motion.h1
 				className="text-4xl text-center flex items-center flex-col"
 				initial="initial"
@@ -41,6 +40,13 @@ export const ProjectCard = ({
 						<a href={link}>{title}</a>
 					</span>
 				)}
+				{isLarge && (
+					<TechnologyStack
+						technologies={technologies}
+						size={scale}
+					/>
+				)}
+
 				<div className="text-[1.7rem] mt-4">
 					{description}
 					{additionalDescription && (
@@ -50,8 +56,12 @@ export const ProjectCard = ({
 			</motion.h1>
 
 			<div className="self-center justify-self-end mt-auto">
-				<h3 className="text-3xl text-center mb-2">Technologies used:</h3>
-				<TechnologyStack technologies={technologies} />
+				{!isLarge && (
+					<>
+						<h3 className="text-3xl text-center mb-2">Technologies used:</h3>
+						<TechnologyStack technologies={technologies} />
+					</>
+				)}
 			</div>
 		</motion.div>
 	)
