@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import { fetchSkills, SkillDTO } from '../../api/fetchData'
+import { useSkills } from '../../hooks/useSkills'
 import { Icon } from '../image/Icon'
 
 interface TechnologyStackProps {
@@ -12,27 +11,7 @@ export const TechnologyStack = ({
 	technologies,
 	size = 'medium'
 }: TechnologyStackProps) => {
-	const [skills, setSkills] = useState<Record<string, SkillDTO>>({})
-
-	useEffect(() => {
-		const loadSkills = async () => {
-			try {
-				const skillsData = await fetchSkills()
-				const skillsMap = skillsData.reduce(
-					(acc, skill) => {
-						acc[skill.image_key] = skill
-						return acc
-					},
-					{} as Record<string, SkillDTO>
-				)
-				setSkills(skillsMap)
-			} catch (error) {
-				console.error('Error fetching skills:', error)
-			}
-		}
-
-		loadSkills()
-	}, [])
+	const { skillsMap } = useSkills()
 
 	return (
 		<motion.div className="flex flex-row justify-center items-center gap-4">
@@ -40,7 +19,7 @@ export const TechnologyStack = ({
 				<Icon
 					key={tech}
 					iconName={tech}
-					alt={skills[tech]?.name || tech}
+					alt={skillsMap[tech]?.name || tech}
 					size={size}
 				/>
 			))}
