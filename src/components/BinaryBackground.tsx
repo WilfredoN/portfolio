@@ -8,7 +8,7 @@ interface Symbols {
 	speed: number
 }
 
-const BinaryBackground = () => {
+export const BinaryBackground = () => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 	const symbols = useRef<Symbols[]>([])
 	const resizeTimeout = useRef<number | undefined>(undefined)
@@ -48,10 +48,13 @@ const BinaryBackground = () => {
 		createSymbols()
 
 		const changeSymbolValue = (symbol: Symbols) => {
-			setTimeout(() => {
-				symbol.value = symbol.value === '0' ? '1' : '0'
-				changeSymbolValue(symbol)
-			}, Math.random() * 1000 + 500)
+			setTimeout(
+				() => {
+					symbol.value = symbol.value === '0' ? '1' : '0'
+					changeSymbolValue(symbol)
+				},
+				Math.random() * 1000 + 500
+			)
 		}
 
 		const drawSymbols = () => {
@@ -93,5 +96,3 @@ const BinaryBackground = () => {
 		></canvas>
 	)
 }
-
-export default BinaryBackground

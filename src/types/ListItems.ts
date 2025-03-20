@@ -1,3 +1,21 @@
+import { SkillDTO } from '../api/fetchData'
+
+export const groupSkillsByCategory = (skills: SkillDTO[]) => {
+	return skills.reduce(
+		(acc, skill) => {
+			const category = skill.category.toLowerCase()
+
+			if (!acc[category]) {
+				acc[category] = []
+			}
+
+			acc[category].push(skill)
+			return acc
+		},
+		{} as Record<string, SkillDTO[]>
+	)
+}
+
 export const programmingLanguages = [
 	{ text: 'Java', icon: 'java' },
 	{ text: 'HTML', icon: 'html5' },

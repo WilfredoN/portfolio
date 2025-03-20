@@ -1,20 +1,18 @@
+import { SkillDTO } from '../api/fetchData'
 import { Icon } from './image/Icon'
 
 interface ListProps {
-	text: string
-	icon: string
+	skill: SkillDTO
 }
 
-const List = ({ text, icon }: ListProps) => {
+export const List = ({ skill }: ListProps) => {
 	return (
 		<li className="flex items-center justify-center">
-			{text}
+			{skill.name}
 			<Icon
-				iconName={icon}
-				alt={text}
+				iconName={skill.image_key}
+				alt={skill.name}
 			/>
 		</li>
 	)
 }
-
-export default List
