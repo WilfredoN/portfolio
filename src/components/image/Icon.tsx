@@ -3,8 +3,6 @@ import { memo, useEffect, useMemo, useState } from 'react'
 const BASE_URL =
 	'https://raw.githubusercontent.com/devicons/devicon/0cb57ede339bb83cb2b3f35bec861dd962c01dea/icons'
 
-const iconUrlCache: Record<string, string> = {}
-
 interface IconProps {
 	iconName: string
 	alt?: string
@@ -17,9 +15,7 @@ const getIconUrl = (iconName: string, variant: 'original' | 'plain') =>
 
 export const Icon = memo(
 	({ iconName, alt, title, size = 'medium' }: IconProps) => {
-		const [imageUrl, setImageUrl] = useState<string>(
-			iconUrlCache[iconName] || ''
-		)
+		const [imageUrl, setImageUrl] = useState<string>()
 		const [error, setError] = useState(false)
 
 		const originalUrl = useMemo(
@@ -30,27 +26,18 @@ export const Icon = memo(
 		const plainUrl = useMemo(() => getIconUrl(iconName, 'plain'), [iconName])
 
 		useEffect(() => {
-			if (iconUrlCache[iconName]) {
-				setImageUrl(iconUrlCache[iconName])
-				return
-			}
-
 			const checkImage = async () => {
 				try {
 					const response = await fetch(originalUrl, { method: 'HEAD' })
-					iconUrlCache[iconName] = response.ok ? originalUrl : plainUrl
-
 					setImageUrl(response.ok ? originalUrl : plainUrl)
 				} catch {
-					iconUrlCache[iconName] = plainUrl
 					setImageUrl(plainUrl)
 					setError(true)
-					console.error(`Failed to load icon: ${iconName}, error: ${error}`)
+					console.error(error)
 				}
 			}
-
 			checkImage()
-		}, [iconName, originalUrl, plainUrl, error])
+		}, [error, originalUrl, plainUrl])
 
 		if (!imageUrl) return null
 
