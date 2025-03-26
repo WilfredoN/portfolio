@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Fragment, useState } from 'react'
 
 interface MotionImageProps {

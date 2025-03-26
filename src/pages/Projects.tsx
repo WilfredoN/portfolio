@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ProjectDescription } from '../components/ProjectDescription'
 export const Projects = () => {
 	return (

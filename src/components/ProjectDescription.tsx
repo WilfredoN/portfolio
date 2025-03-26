@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { projects } from '../data/projects'
 import { ProjectCard } from './projects/ProjectCard'
 

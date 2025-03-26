@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { Suspense, useContext } from 'react'
 import { CgSpinner } from 'react-icons/cg'
 import { ThemeContext } from '../components/ThemeContext'

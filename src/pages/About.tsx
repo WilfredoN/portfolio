@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { MainInfo } from '../components/about/MainInfo'
 import { Section } from '../components/AboutSection'
 import { Footer } from '../components/Footer'
 import {
-	programmingLanguages,
-	technologiesAndLibraries
+    programmingLanguages,
+    technologiesAndLibraries
 } from '../types/ListItems'
 
 export const About = () => {

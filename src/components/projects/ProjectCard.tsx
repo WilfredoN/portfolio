@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ProjectInfo } from '../../data/projects'
 import { TechnologyStack } from './TechnologyStack'
 

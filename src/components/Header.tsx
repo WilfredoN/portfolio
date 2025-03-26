@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useContext, useEffect, useState } from 'react'
 import { PageType } from '../types/PageType'
 import { CustomNavLink } from './CustomNavLink'
