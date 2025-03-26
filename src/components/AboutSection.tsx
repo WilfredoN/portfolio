@@ -1,9 +1,8 @@
-import { SkillDTO } from '../api/fetchData'
-import { List } from './List'
+import List from './List'
 
 interface SectionProps {
 	title: string
-	items: SkillDTO[]
+	items: { text: string; icon: string }[]
 }
 
 export const Section = ({ title, items }: SectionProps) => {
@@ -11,10 +10,11 @@ export const Section = ({ title, items }: SectionProps) => {
 		<section className="border mb-4 md:mb-0 md:w-96 mr-0 xl:mr-8 sm:w-full">
 			<h2 className="border-b text-4xl">{title}</h2>
 			<ul className="text-3xl">
-				{items.map(skill => (
+				{items.map((item, index) => (
 					<List
-						key={skill.id}
-						skill={skill}
+						key={index}
+						text={item.text}
+						icon={item.icon}
 					/>
 				))}
 			</ul>

@@ -52,3 +52,5 @@ export const Icon = memo(
 		)
 	}
 )
+
+Icon.displayName = 'Icon'

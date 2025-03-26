@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { BinaryBackground } from './components/BinaryBackground'
+import BinaryBackground from './components/BinaryBackground'
 import { CookieConsent } from './components/CookieConsent'
 import { Header } from './components/Header'
 import { ScrollButton } from './components/input/ScrollButton'
