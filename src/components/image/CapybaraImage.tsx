@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { DownloadButton } from '../input/DownloadButton'
 
 export const CapybaraImage = () => {
 	const imgRef = useRef<HTMLImageElement>(null)
@@ -28,22 +29,25 @@ export const CapybaraImage = () => {
 	}
 
 	return (
-		<div
-			className="flex items-center justify-center overflow-hidden border-2 w-fit sm:w-1/2 xl:w-3/6 rounded-full"
-			onMouseMove={handleMouseMove}
-			style={{ perspective: '1000px' }}
-		>
-			<img
-				ref={imgRef}
-				src="assets/capybara_binary.png"
-				alt="Capybara image in zeros and ones style"
-				className="scale-105 rounded-full transition-transform duration-300 ease-out"
-				style={{
-					transition: 'transform 0.3s ease-out, opacity 1s ease-in',
-					opacity: '0'
-				}}
-				draggable="false"
-			/>
+		<div className="flex items-center justify-center max-w-[35rem] relative">
+			<DownloadButton pdfUrl="assets/resume.pdf" />
+			<div
+				className="flex items-center justify-center overflow-hidden border-2 xl:w-full sm:w-1/2 rounded-full"
+				onMouseMove={handleMouseMove}
+				style={{ perspective: '1000px' }}
+			>
+				<img
+					ref={imgRef}
+					src="assets/capybara_binary.png"
+					alt="Capybara image in zeros and ones style"
+					className="scale-105 rounded-full transition-transform duration-300 ease-out"
+					style={{
+						transition: 'transform 0.3s ease-out, opacity 1s ease-in',
+						opacity: '0'
+					}}
+					draggable="false"
+				/>
+			</div>
 		</div>
 	)
 }
