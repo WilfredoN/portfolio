@@ -1,40 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import BinaryBackground from './components/BinaryBackground'
 import { CookieConsent } from './components/CookieConsent'
 import { Header } from './components/Header'
 import { ScrollButton } from './components/input/ScrollButton'
-import { ThemeContext } from './components/ThemeContext'
 import { Main } from './pages/Main'
 import { PageType } from './types/PageType'
+import { applyTheme, getInitialTheme, saveTheme } from './utils/theme'
 
 export const App = () => {
 	const [currentPage, setCurrentPage] = useState<PageType>(PageType.About)
-	const [theme, setTheme] = useState('dark')
+	const [isDarkTheme, setIsDarkTheme] = useState(getInitialTheme())
+
+	useEffect(() => {
+		applyTheme(isDarkTheme)
+	}, [isDarkTheme])
 
 	const handlePageChange = (page: PageType) => {
 		setCurrentPage(page)
 	}
 
 	const toggleTheme = () => {
-		setTheme(theme === 'dark' ? 'light' : 'dark')
+		const newTheme = !isDarkTheme
+		setIsDarkTheme(newTheme)
+		saveTheme(newTheme)
 	}
 
 	return (
-		<ThemeContext.Provider value={{ theme, toggleTheme }}>
+		<>
 			<BinaryBackground />
-			<main
-				className={`${theme} flex flex-col justify-start items-center py-2 min-h-[100vh]`}
-			>
+			<main className="flex flex-col justify-start items-center py-2 min-h-[100vh]">
 				<Header
 					currentPage={currentPage}
 					onPageChange={handlePageChange}
+					toggleTheme={toggleTheme}
+					isDarkTheme={isDarkTheme}
 				/>
 				<Main currentPage={currentPage} />
 				<CookieConsent />
 				<ScrollButton />
 			</main>
-		</ThemeContext.Provider>
+		</>
 	)
 }
 

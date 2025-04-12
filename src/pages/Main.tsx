@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { Suspense, useContext } from 'react'
+import { Suspense } from 'react'
 import { CgSpinner } from 'react-icons/cg'
-import { ThemeContext } from '../components/ThemeContext'
 import { PageType } from '../types/PageType'
 import { nextPageVariant, prevPageVariant } from '../types/RouterVariants'
 import { About } from './About'
@@ -14,7 +13,7 @@ interface PageProps {
 export const Main = ({ currentPage }: PageProps) => {
 	const variants =
 		currentPage === PageType.About ? nextPageVariant : prevPageVariant
-	const theme = useContext(ThemeContext)
+
 	return (
 		<AnimatePresence
 			mode="wait"
@@ -27,7 +26,7 @@ export const Main = ({ currentPage }: PageProps) => {
 					initial="initial"
 					animate="final"
 					exit="exit"
-					className={`max-w-screen-2xl w-full ${theme.theme}`}
+					className="max-w-screen-2xl w-full"
 				>
 					{currentPage === PageType.About ? <About /> : <Projects />}
 				</motion.div>

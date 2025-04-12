@@ -1,18 +1,23 @@
 import { motion } from 'motion/react'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PageType } from '../types/PageType'
 import { CustomNavLink } from './CustomNavLink'
 import { ThemeToggle } from './input/ThemeToggle'
-import { ThemeContext } from './ThemeContext'
 
 interface HeaderProps {
 	currentPage: PageType
 	onPageChange: (page: PageType) => void
+	toggleTheme: () => void
+	isDarkTheme: boolean
 }
 
-export const Header = ({ currentPage, onPageChange }: HeaderProps) => {
+export const Header = ({
+	currentPage,
+	onPageChange,
+	toggleTheme,
+	isDarkTheme
+}: HeaderProps) => {
 	const [scrollPosition, setScrollPosition] = useState(0)
-	const { theme } = useContext(ThemeContext)
 	const checkScrollTop = () => {
 		setScrollPosition(window.scrollY)
 	}
@@ -39,7 +44,7 @@ export const Header = ({ currentPage, onPageChange }: HeaderProps) => {
 
 	return (
 		<motion.header
-			className={`${theme} flex flex-col h-fit mt-3 w-full md:w-fit px-12 py-6 items-center mb-8 rounded-3xl md:rounded-full ${
+			className={`flex flex-col h-fit mt-3 w-full md:w-fit px-12 py-6 items-center mb-8 rounded-3xl md:rounded-full ${
 				!isMobile && scrollPosition > 0
 					? 'sticky top-3 z-10 transition-all duration-300 '
 					: 'transition-all duration-175 '
@@ -67,7 +72,10 @@ export const Header = ({ currentPage, onPageChange }: HeaderProps) => {
 				>
 					Projects
 				</CustomNavLink>
-				<ThemeToggle />
+				<ThemeToggle
+					toggleTheme={toggleTheme}
+					isDarkTheme={isDarkTheme}
+				/>
 			</nav>
 		</motion.header>
 	)

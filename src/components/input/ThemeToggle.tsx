@@ -1,10 +1,11 @@
-import { useContext } from 'react'
 import Switch from 'react-switch'
-import { ThemeContext } from '../ThemeContext'
 
-export const ThemeToggle = () => {
-	const { theme, toggleTheme } = useContext(ThemeContext)
+interface ThemeToggleProps {
+	toggleTheme: () => void
+	isDarkTheme: boolean
+}
 
+export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
 	return (
 		<div className="theme-switch-wrapper flex justify-center items-center">
 			<label
@@ -13,7 +14,7 @@ export const ThemeToggle = () => {
 			>
 				<Switch
 					onChange={toggleTheme}
-					checked={theme === 'dark'}
+					checked={isDarkTheme}
 					id="checkbox"
 					offColor="#99ccff"
 					onColor="#2196f3"
