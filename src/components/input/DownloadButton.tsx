@@ -89,7 +89,7 @@ export const DownloadButton = ({ pdfUrl }: DownloadButtonProps) => {
 							className={`absolute text-2xl bg-black text-white px-4 py-2 rounded-lg whitespace-nowrap ${
 								tooltipPosition === 'right'
 									? 'left-[calc(100%-10px)] ml-2'
-									: 'top-full mt-2'
+									: 'top-full mt-2 mr-12'
 							}`}
 							variants={
 								tooltipPosition === 'right' ? rightVariants : bottomVariants
