@@ -17,10 +17,10 @@ export const ProjectCard = ({
 
 	return (
 		<motion.div
-			className={`flex flex-col justify-around mb-12 w-full h-${
+			className={`flex flex-col justify-between mb-12 w-full ${
 				scale == 'medium'
-					? '[30.625rem] hover:scale-105 transition-transform duration-100 '
-					: '[34rem]'
+					? 'h-[30.625rem] hover:scale-105 transition-transform duration-100 '
+					: 'h-[34rem]'
 			}${isLarge ? 'max-w-full' : 'max-w-[31.25rem]'} border-3 rounded-lg p-4`}
 		>
 			<motion.h1
@@ -48,14 +48,14 @@ export const ProjectCard = ({
 				)}
 
 				<div className="text-[1.7rem] mt-4">
-					{description}
+					<p>{description}</p>
 					{additionalDescription && (
 						<div className="mt-2">{additionalDescription}</div>
 					)}
 				</div>
 			</motion.h1>
 
-			<div className="self-center justify-self-end mt-auto">
+			<div className="self-center justify-self-end ">
 				{!isLarge && (
 					<>
 						<h3 className="text-3xl text-center mb-2">Technologies used:</h3>
