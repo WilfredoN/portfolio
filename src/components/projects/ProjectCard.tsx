@@ -19,7 +19,7 @@ export const ProjectCard = ({
 		<motion.div
 			className={`flex flex-col justify-between mb-12 w-full ${
 				scale == 'medium'
-					? 'h-[30.625rem] hover:scale-105 transition-transform duration-100 '
+					? 'md:h-[30.625rem] hover:scale-105 transition-transform duration-100 '
 					: 'h-[34rem]'
 			}${isLarge ? 'max-w-full' : 'max-w-[31.25rem]'} border-3 rounded-lg p-4`}
 		>
