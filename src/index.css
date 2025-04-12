@@ -38,6 +38,23 @@ html,
 main {
 	scroll-behavior: smooth;
 }
+
+html,
+body {
+	background-color: var(--color-bg-light);
+	color: var(--color-text-light);
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+.dark html,
+.dark body {
+	background-color: var(--color-bg-dark);
+	color: var(--color-text-dark);
+}
+
 main {
 	margin: 0;
 	position: relative;
