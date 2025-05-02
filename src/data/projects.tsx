@@ -9,6 +9,7 @@ export interface ProjectInfo {
 	scale?: 'small' | 'medium' | 'large'
 	additionalDescription?: JSX.Element
 	imageUrl?: string
+	videoUrl?: string
 	imageStyle?: string
 }
 
@@ -47,6 +48,6 @@ export const projects: ProjectInfo[] = [
 			'Deadlines Rule The World is a 2D game developed in C using the SDL2 library. The game features a bee character that the player controls, tasked with avoiding enemies, while collecting coins. The game incorporates collision detection, object management, and a start screen UI. Enemies and sprints move around the screen, and the player can shoot missiles. The goal of the game is to survive until all tasks and sprints are eliminated.',
 		technologies: ['c', 'sdl'],
 		scale: 'large',
-		imageUrl: 'assets/endgame_gif.gif'
+		videoUrl: 'assets/endgame_gif.webm'
 	}
 ]

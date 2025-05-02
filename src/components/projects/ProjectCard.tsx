@@ -8,6 +8,7 @@ export const ProjectCard = ({
 	technologies,
 	link,
 	imageUrl,
+	videoUrl,
 	imageTitle,
 	imageStyle,
 	scale = 'medium',
@@ -34,6 +35,15 @@ export const ProjectCard = ({
 						alt={title}
 						title={imageTitle}
 						className={imageStyle || 'px-4 py-2 rounded-md my-2'}
+					/>
+				) : videoUrl ? (
+					<motion.video
+						src={videoUrl}
+						controls
+						loop
+						autoPlay={false}
+						muted
+						className="px-4 py-2 rounded-md my-2"
 					/>
 				) : (
 					<span className="my-6 font-['Courgette'] text-[4rem] text-[#5287AD]">
