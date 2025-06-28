@@ -1,4 +1,5 @@
 export enum PageType {
 	About = 'about',
-	Projects = 'projects'
+	Projects = 'projects',
+	Feedback = 'feedback'
 }

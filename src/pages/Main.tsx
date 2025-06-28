@@ -4,6 +4,7 @@ import { CgSpinner } from 'react-icons/cg'
 import { PageType } from '../types/PageType'
 import { nextPageVariant, prevPageVariant } from '../types/RouterVariants'
 import { About } from './About'
+import { FeedbackPage } from './Feedback'
 import { Projects } from './Projects'
 
 interface PageProps {
@@ -11,8 +12,26 @@ interface PageProps {
 }
 
 export const Main = ({ currentPage }: PageProps) => {
-	const variants =
-		currentPage === PageType.About ? nextPageVariant : prevPageVariant
+	const getPageVariant = () => {
+		if (currentPage === PageType.About) return nextPageVariant
+		if (currentPage === PageType.Projects) return prevPageVariant
+		return nextPageVariant // Default for Feedback
+	}
+
+	const renderPage = () => {
+		switch (currentPage) {
+			case PageType.About:
+				return <About />
+			case PageType.Projects:
+				return <Projects />
+			case PageType.Feedback:
+				return <FeedbackPage />
+			default:
+				return <About />
+		}
+	}
+
+	const variants = getPageVariant()
 
 	return (
 		<AnimatePresence
@@ -28,7 +47,7 @@ export const Main = ({ currentPage }: PageProps) => {
 					exit="exit"
 					className="max-w-screen-2xl w-full"
 				>
-					{currentPage === PageType.About ? <About /> : <Projects />}
+					{renderPage()}
 				</motion.div>
 			</Suspense>
 		</AnimatePresence>
