@@ -1,10 +1,7 @@
 import { motion } from 'motion/react'
 import { Feedback } from '../../types/feedback'
-import { Icon } from '../Icon/Icon'
-import {
-	programmingLanguages,
-	technologiesAndLibraries
-} from '../../types/ListItems'
+import { formatFeedbackDate } from '../../utils/feedback'
+import { SkillBadge } from '../shared/SkillBadge'
 
 interface FeedbackItemProps {
 	feedback: Feedback
@@ -12,22 +9,6 @@ interface FeedbackItemProps {
 }
 
 export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
-	const formatDate = (dateString: string): string => {
-		const date = new Date(dateString)
-		return date.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		})
-	}
-
-	const getIconName = (skillName: string): string => {
-		const allSkills = [...programmingLanguages, ...technologiesAndLibraries]
-
-		const skill = allSkills.find(skill => skill.text === skillName)
-		return skill?.icon || 'default'
-	}
-
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
@@ -53,7 +34,7 @@ export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
 					</div>
 				</div>
 				<time className="text-sm text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-					{formatDate(feedback.created_at)}
+					{formatFeedbackDate(feedback.created_at)}
 				</time>
 			</div>
 
@@ -79,20 +60,11 @@ export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
 					</h4>
 					<div className="flex flex-wrap gap-2">
 						{feedback.skills.map(skill => (
-							<motion.div
+							<SkillBadge
 								key={skill.id}
-								className="inline-flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-700 rounded-lg"
-								whileHover={{ scale: 1.05 }}
-								transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-							>
-								<Icon
-									iconName={getIconName(skill.name)}
-									size="medium"
-								/>
-								<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-									{skill.name}
-								</span>
-							</motion.div>
+								skill={skill}
+								variant="default"
+							/>
 						))}
 					</div>
 				</div>

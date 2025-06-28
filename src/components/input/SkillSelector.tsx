@@ -1,12 +1,7 @@
 import { motion } from 'motion/react'
-import { useEffect, useState } from 'react'
-import { fetchSkills } from '../../api/feedback'
-import { Skill } from '../../types/feedback'
-import { Icon } from '../Icon/Icon'
-import {
-	programmingLanguages,
-	technologiesAndLibraries
-} from '../../types/ListItems'
+import { useState } from 'react'
+import { useSkills } from '../../hooks/useSkills'
+import { SkillBadge } from '../shared/SkillBadge'
 
 interface SkillSelectorProps {
 	selectedSkills: number[]
@@ -19,44 +14,13 @@ export const SkillSelector = ({
 	onSkillToggle,
 	error
 }: SkillSelectorProps) => {
-	const [skills, setSkills] = useState<Skill[]>([])
-	const [loading, setLoading] = useState(true)
+	const { skills, loading, programmingSkills, technologySkills } = useSkills()
 	const [activeTab, setActiveTab] = useState<'programming' | 'technologies'>(
 		'programming'
 	)
 
-	useEffect(() => {
-		const loadSkills = async () => {
-			try {
-				const fetchedSkills = await fetchSkills()
-				setSkills(fetchedSkills)
-			} catch (error) {
-				console.error('Failed to load skills:', error)
-			} finally {
-				setLoading(false)
-			}
-		}
-
-		loadSkills()
-	}, [])
-
-	const programmingSkills = skills.filter(skill =>
-		programmingLanguages.some(lang => lang.text === skill.name)
-	)
-
-	const technologySkills = skills.filter(skill =>
-		technologiesAndLibraries.some(tech => tech.text === skill.name)
-	)
-
 	const currentSkills =
 		activeTab === 'programming' ? programmingSkills : technologySkills
-
-	const getIconName = (skillName: string): string => {
-		const allSkills = [...programmingLanguages, ...technologiesAndLibraries]
-
-		const skill = allSkills.find(skill => skill.text === skillName)
-		return skill?.icon || 'default'
-	}
 
 	if (loading) {
 		return (
@@ -113,44 +77,13 @@ export const SkillSelector = ({
 
 			<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
 				{currentSkills.map(skill => (
-					<motion.button
+					<SkillBadge
 						key={skill.id}
-						type="button"
+						skill={skill}
+						variant="selectable"
+						isSelected={selectedSkills.includes(skill.id)}
 						onClick={() => onSkillToggle(skill.id)}
-						className={`
-							flex items-center space-x-2 p-3 rounded-lg border transition-all duration-200
-							${
-								selectedSkills.includes(skill.id)
-									? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-									: 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/10'
-							}
-						`}
-						whileHover={{ scale: 1.02 }}
-						whileTap={{ scale: 0.98 }}
-						transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-					>
-						<Icon
-							iconName={getIconName(skill.name)}
-							size="medium"
-						/>
-						<span className="text-sm font-medium">{skill.name}</span>
-						{selectedSkills.includes(skill.id) && (
-							<motion.svg
-								className="w-4 h-4 ml-auto"
-								fill="currentColor"
-								viewBox="0 0 20 20"
-								initial={{ scale: 0 }}
-								animate={{ scale: 1 }}
-								transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-							>
-								<path
-									fillRule="evenodd"
-									d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-									clipRule="evenodd"
-								/>
-							</motion.svg>
-						)}
-					</motion.button>
+					/>
 				))}
 			</div>
 
@@ -168,23 +101,13 @@ export const SkillSelector = ({
 						{selectedSkills.map(skillId => {
 							const skill = skills.find(s => s.id === skillId)
 							return skill ? (
-								<motion.span
+								<SkillBadge
 									key={skill.id}
-									className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200"
-									initial={{ opacity: 0, scale: 0.8 }}
-									animate={{ opacity: 1, scale: 1 }}
-									exit={{ opacity: 0, scale: 0.8 }}
-									transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-								>
-									{skill.name}
-									<button
-										type="button"
-										onClick={() => onSkillToggle(skill.id)}
-										className="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
-									>
-										×
-									</button>
-								</motion.span>
+									skill={skill}
+									variant="compact"
+									showRemoveButton
+									onRemove={() => onSkillToggle(skill.id)}
+								/>
 							) : null
 						})}
 					</div>

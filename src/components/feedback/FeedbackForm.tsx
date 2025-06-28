@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { submitFeedback } from '../../api/feedback'
+import { useFeedbackForm } from '../../hooks/useFeedback'
+import { toggleSkill } from '../../utils/feedback'
 import { Button } from '../input/button/Button'
 import { Input } from '../input/Input'
 import { SkillSelector } from '../input/SkillSelector'
@@ -10,97 +11,35 @@ interface FeedbackFormProps {
 	onSuccess: () => void
 }
 
-interface FormData {
-	author: string
-	company: string
-	text: string
-	skills: number[]
-}
-
-interface FormErrors {
-	author?: string
-	text?: string
-	skills?: string
-}
-
 export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
-	const [formData, setFormData] = useState<FormData>({
-		author: '',
-		company: '',
-		text: '',
-		skills: []
-	})
-	const [errors, setErrors] = useState<FormErrors>({})
-	const [isSubmitting, setIsSubmitting] = useState(false)
+	const {
+		formData,
+		errors,
+		submitError,
+		isSubmitting,
+		updateField,
+		resetForm,
+		submitForm
+	} = useFeedbackForm(onSuccess)
+
 	const [showForm, setShowForm] = useState(false)
 
-	const validateForm = (): boolean => {
-		const newErrors: FormErrors = {}
-
-		if (!formData.author.trim()) {
-			newErrors.author = 'Author name is required'
-		}
-
-		if (!formData.text.trim()) {
-			newErrors.text = 'Feedback text is required'
-		}
-
-		if (formData.text.trim().length < 10) {
-			newErrors.text = 'Feedback must be at least 10 characters long'
-		}
-
-		setErrors(newErrors)
-		return Object.keys(newErrors).length === 0
-	}
-
 	const handleSkillToggle = (skillId: number) => {
-		setFormData(prev => ({
-			...prev,
-			skills: prev.skills.includes(skillId)
-				? prev.skills.filter(id => id !== skillId)
-				: [...prev.skills, skillId]
-		}))
-		if (errors.skills) {
-			setErrors(prev => ({ ...prev, skills: undefined }))
-		}
+		const newSkills = toggleSkill(skillId, formData.skills)
+		updateField('skills', newSkills)
 	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-
-		if (!validateForm()) {
-			return
+		const result = await submitForm()
+		if (result.success) {
+			setShowForm(false)
 		}
+	}
 
-		setIsSubmitting(true)
-
-		try {
-			const result = await submitFeedback({
-				author: formData.author.trim(),
-				company: formData.company.trim() || undefined,
-				text: formData.text.trim(),
-				skills: formData.skills
-			})
-
-			if (result.success) {
-				setFormData({
-					author: '',
-					company: '',
-					text: '',
-					skills: []
-				})
-				setErrors({})
-				setShowForm(false)
-				onSuccess()
-			} else {
-				setErrors({ text: result.error || 'Failed to submit feedback' })
-			}
-		} catch (error) {
-			console.error('Error submitting feedback:', error)
-			setErrors({ text: 'An unexpected error occurred' })
-		} finally {
-			setIsSubmitting(false)
-		}
+	const handleCancel = () => {
+		resetForm()
+		setShowForm(false)
 	}
 
 	if (!showForm) {
@@ -171,7 +110,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 						</h2>
 					</div>
 					<button
-						onClick={() => setShowForm(false)}
+						onClick={handleCancel}
 						className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
 					>
 						<svg
@@ -190,6 +129,19 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 					</button>
 				</div>
 
+				{submitError && (
+					<motion.div
+						className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+						initial={{ opacity: 0, y: -10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.3 }}
+					>
+						<p className="text-sm text-red-600 dark:text-red-400">
+							{submitError}
+						</p>
+					</motion.div>
+				)}
+
 				<form
 					onSubmit={handleSubmit}
 					className="space-y-6"
@@ -199,11 +151,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 							label="Your Name"
 							required
 							value={formData.author}
-							onChange={e => {
-								setFormData(prev => ({ ...prev, author: e.target.value }))
-								if (errors.author)
-									setErrors(prev => ({ ...prev, author: undefined }))
-							}}
+							onChange={e => updateField('author', e.target.value)}
 							placeholder="Enter your full name"
 							error={errors.author}
 						/>
@@ -211,9 +159,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 						<Input
 							label="Company"
 							value={formData.company}
-							onChange={e =>
-								setFormData(prev => ({ ...prev, company: e.target.value }))
-							}
+							onChange={e => updateField('company', e.target.value)}
 							placeholder="Your company or organization (optional)"
 						/>
 					</div>
@@ -222,10 +168,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 						label="Feedback"
 						required
 						value={formData.text}
-						onChange={e => {
-							setFormData(prev => ({ ...prev, text: e.target.value }))
-							if (errors.text) setErrors(prev => ({ ...prev, text: undefined }))
-						}}
+						onChange={e => updateField('text', e.target.value)}
 						placeholder="Share your thoughts, experiences, or suggestions..."
 						rows={5}
 						error={errors.text}
@@ -241,7 +184,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 						<Button
 							type="button"
 							variant="outline"
-							onClick={() => setShowForm(false)}
+							onClick={handleCancel}
 							disabled={isSubmitting}
 						>
 							Cancel
