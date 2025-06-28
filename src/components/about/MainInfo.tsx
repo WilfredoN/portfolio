@@ -5,14 +5,14 @@ export const MainInfo = () => {
 			<CapybaraImage />
 
 			<p
-				className="text-2xl m-0 p-2 text-center flex justify-start leading-10"
+				className="text-3xl m-0 p-2 text-center flex justify-start leading-10"
 				style={{ minWidth: '55%' }}
 			>
 				Hi, I'm a Software Engineer.
 				<br /> I love to build web and desktop applications from start to
 				finish.
-				<br /> I have experience in Java, Spring on the backend, React and
-				Angular on the frontend.
+				<br /> I have experience in Java, Spring on the backend, React on the
+				frontend.
 				<br /> Also I have experience in C, C++ and Python.
 				<br /> I am passionate about learning new technologies and improving my
 				skills. <br />I am always looking for new challenges and opportunities

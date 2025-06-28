@@ -1,11 +1,11 @@
-import { Icon } from './image/Icon'
+import { Icon } from '../Icon/Icon'
 
 interface ListProps {
 	text: string
 	icon: string
 }
 
-const List = ({ text, icon }: ListProps) => {
+const ListItem = ({ text, icon }: ListProps) => {
 	return (
 		<li className="flex items-center justify-center">
 			{text}
@@ -17,4 +17,4 @@ const List = ({ text, icon }: ListProps) => {
 	)
 }
 
-export default List
+export default ListItem

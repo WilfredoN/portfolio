@@ -1,7 +1,6 @@
 export const programmingLanguages = [
 	{ text: 'Java', icon: 'java' },
-	{ text: 'HTML', icon: 'html5' },
-	{ text: 'CSS', icon: 'css3' },
+	{ text: 'JavaScript', icon: 'javascript' },
 	{ text: 'TypeScript', icon: 'typescript' },
 	{ text: 'Python', icon: 'python' },
 	{ text: 'C', icon: 'c' },
@@ -10,11 +9,14 @@ export const programmingLanguages = [
 
 export const technologiesAndLibraries = [
 	{ text: 'React', icon: 'react' },
-	{ text: 'Angular', icon: 'angular' },
+	{ text: 'Playwright', icon: 'playwright' },
+	{ text: 'Jest', icon: 'jest' },
 	{ text: 'Vite', icon: 'vitejs' },
+	{ text: 'Bun', icon: 'bun' },
 	{ text: 'TailwindCSS', icon: 'tailwindcss' },
 	{ text: 'ChakraUI', icon: 'chakraui' },
 	{ text: 'Spring', icon: 'spring' },
 	{ text: 'PostgreSQL', icon: 'postgresql' },
+	{ text: 'Redis', icon: 'redis' },
 	{ text: 'Docker', icon: 'docker' }
 ]

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Icon } from '../image/Icon'
+import { Icon } from '../Icon/Icon'
 
 interface TechnologyStackProps {
 	technologies: string[]
