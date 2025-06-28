@@ -1,94 +1,101 @@
+import type { Feedback, Skill } from '../../types/feedback'
+
 import { supabase } from '../../service/supabase'
-import { Feedback, Skill } from '../../types/feedback'
 
 interface FeedbackDTO {
-	author: string
-	company?: string
-	text: string
-	skills: number[]
+  author: string
+  company?: string
+  text: string
+  skills: number[]
 }
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
-	const { data, error } = await supabase
-		.from('feedback')
-		.select(
-			'id, author, company, text, created_at, feedback_skills(skill_id, skills(name, id))'
-		)
-		.order('created_at', { ascending: false })
+  const { data, error } = await supabase
+    .from('feedback')
+    .select(
+      'id, author, company, text, created_at, feedback_skills(skill_id, skills(name, id))'
+    )
+    .order('created_at', { ascending: false })
 
-	if (error || !data) {
-		console.error('Error fetching feedbacks:', error)
-		return []
-	}
+  if (error || !data) {
+    console.error('Error fetching feedbacks:', error)
 
-	return (data ?? []).map(feedback => ({
-		...feedback,
-		skills: feedback.feedback_skills.flatMap(fs => fs.skills)
-	}))
+    return []
+  }
+
+  return (data ?? []).map(feedback => ({
+    ...feedback,
+    skills: feedback.feedback_skills.flatMap(fs => fs.skills)
+  }))
 }
 
 export const submitFeedback = async (
-	feedbackData: FeedbackDTO
-): Promise<{ success: boolean; error?: string }> => {
-	try {
-		const { data: feedback, error: feedbackError } = await supabase
-			.from('feedback')
-			.insert({
-				author: feedbackData.author,
-				company: feedbackData.company || null,
-				text: feedbackData.text
-			})
-			.select('id')
-			.single()
+  feedbackData: FeedbackDTO
+): Promise<{ success: boolean, error?: string }> => {
+  try {
+    const { data: feedback, error: feedbackError } = await supabase
+      .from('feedback')
+      .insert({
+        author: feedbackData.author,
+        company: feedbackData.company || null,
+        text: feedbackData.text
+      })
+      .select('id')
+      .single()
 
-		if (feedbackError || !feedback) {
-			console.error('Error creating feedback:', feedbackError)
-			return { success: false, error: 'Failed to create feedback' }
-		}
+    if (feedbackError || !feedback) {
+      console.error('Error creating feedback:', feedbackError)
 
-		if (feedbackData.skills.length > 0) {
-			const { data: skillsData, error: skillsError } = await supabase
-				.from('skills')
-				.select('id')
-				.in('id', feedbackData.skills)
+      return { success: false, error: 'Failed to create feedback' }
+    }
 
-			if (skillsError) {
-				console.error('Error fetching skills:', skillsError)
-				return { success: false, error: 'Failed to link skills' }
-			}
+    if (feedbackData.skills.length > 0) {
+      const { data: skillsData, error: skillsError } = await supabase
+        .from('skills')
+        .select('id')
+        .in('id', feedbackData.skills)
 
-			const skillRelations = skillsData.map(skill => ({
-				feedback_id: feedback.id,
-				skill_id: skill.id
-			}))
+      if (skillsError) {
+        console.error('Error fetching skills:', skillsError)
 
-			const { error: relationError } = await supabase
-				.from('feedback_skills')
-				.insert(skillRelations)
+        return { success: false, error: 'Failed to link skills' }
+      }
 
-			if (relationError) {
-				console.error('Error creating skill relations:', relationError)
-				return { success: false, error: 'Failed to link skills to feedback' }
-			}
-		}
+      const skillRelations = skillsData.map(skill => ({
+        feedback_id: feedback.id,
+        skill_id: skill.id
+      }))
 
-		return { success: true }
-	} catch (error) {
-		console.error('Unexpected error submitting feedback:', error)
-		return { success: false, error: 'An unexpected error occurred' }
-	}
+      const { error: relationError } = await supabase
+        .from('feedback_skills')
+        .insert(skillRelations)
+
+      if (relationError) {
+        console.error('Error creating skill relations:', relationError)
+
+        return { success: false, error: 'Failed to link skills to feedback' }
+      }
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error('Unexpected error submitting feedback:', error)
+
+    return { success: false, error: 'An unexpected error occurred' }
+  }
 }
 
 export const fetchSkills = async (): Promise<Skill[]> => {
-	const { data, error } = await supabase
-		.from('skills')
-		.select('id, name')
-		.order('name', { ascending: true })
+  const { data, error } = await supabase
+    .from('skills')
+    .select('id, name')
+    .order('name', { ascending: true })
 
-	if (error || !data) {
-		console.error('Error fetching skills:', error)
-		return []
-	}
+  if (error || !data) {
+    console.error('Error fetching skills:', error)
 
-	return data
+    return []
+  }
+
+  return data
 }

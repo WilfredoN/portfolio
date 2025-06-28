@@ -1,55 +1,57 @@
 import { useCallback, useEffect, useState } from 'react'
+
+import type { Skill } from '../types/feedback'
+
 import { fetchSkills } from '../api/feedback'
-import { Skill } from '../types/feedback'
 import { categorizeSkills, toggleSkill } from '../utils/feedback'
 
 export const useSkills = () => {
-	const [skills, setSkills] = useState<Skill[]>([])
-	const [loading, setLoading] = useState(true)
+  const [skills, setSkills] = useState<Skill[]>([])
+  const [loading, setLoading] = useState(true)
 
-	useEffect(() => {
-		const loadSkills = async () => {
-			try {
-				const fetchedSkills = await fetchSkills()
-				setSkills(fetchedSkills)
-			} catch (error) {
-				console.error('Failed to load skills:', error)
-			} finally {
-				setLoading(false)
-			}
-		}
+  useEffect(() => {
+    const loadSkills = async () => {
+      try {
+        const fetchedSkills = await fetchSkills()
+        setSkills(fetchedSkills)
+      } catch (error) {
+        console.error('Failed to load skills:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
 
-		loadSkills()
-	}, [])
+    loadSkills()
+  }, [])
 
-	const categorizedSkills = categorizeSkills(skills)
+  const categorizedSkills = categorizeSkills(skills)
 
-	return {
-		skills,
-		loading,
-		...categorizedSkills
-	}
+  return {
+    skills,
+    loading,
+    ...categorizedSkills
+  }
 }
 
 export const useSkillSelection = (initialSkills: number[] = []) => {
-	const [selectedSkills, setSelectedSkills] = useState<number[]>(initialSkills)
+  const [selectedSkills, setSelectedSkills] = useState<number[]>(initialSkills)
 
-	const handleToggle = useCallback((skillId: number) => {
-		setSelectedSkills(prev => toggleSkill(skillId, prev))
-	}, [])
+  const handleToggle = useCallback((skillId: number) => {
+    setSelectedSkills(prev => toggleSkill(skillId, prev))
+  }, [])
 
-	const resetSelection = useCallback(() => {
-		setSelectedSkills([])
-	}, [])
+  const resetSelection = useCallback(() => {
+    setSelectedSkills([])
+  }, [])
 
-	const setSelection = useCallback((skills: number[]) => {
-		setSelectedSkills(skills)
-	}, [])
+  const setSelection = useCallback((skills: number[]) => {
+    setSelectedSkills(skills)
+  }, [])
 
-	return {
-		selectedSkills,
-		handleToggle,
-		resetSelection,
-		setSelection
-	}
+  return {
+    selectedSkills,
+    handleToggle,
+    resetSelection,
+    setSelection
+  }
 }
