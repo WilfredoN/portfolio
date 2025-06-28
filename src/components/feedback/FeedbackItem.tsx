@@ -1,6 +1,10 @@
 import { motion } from 'motion/react'
 import { Feedback } from '../../types/feedback'
 import { Icon } from '../Icon/Icon'
+import {
+	programmingLanguages,
+	technologiesAndLibraries
+} from '../../types/ListItems'
 
 interface FeedbackItemProps {
 	feedback: Feedback
@@ -17,28 +21,11 @@ export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
 		})
 	}
 
-	// Helper function to get icon name for skill
 	const getIconName = (skillName: string): string => {
-		const iconMap: Record<string, string> = {
-			Java: 'java',
-			JavaScript: 'javascript',
-			TypeScript: 'typescript',
-			Python: 'python',
-			C: 'c',
-			'C++': 'cplusplus',
-			React: 'react',
-			Playwright: 'playwright',
-			Jest: 'jest',
-			Vite: 'vitejs',
-			Bun: 'bun',
-			TailwindCSS: 'tailwindcss',
-			ChakraUI: 'chakraui',
-			Spring: 'spring',
-			PostgreSQL: 'postgresql',
-			Redis: 'redis',
-			Docker: 'docker'
-		}
-		return iconMap[skillName] || 'default'
+		const allSkills = [...programmingLanguages, ...technologiesAndLibraries]
+
+		const skill = allSkills.find(skill => skill.text === skillName)
+		return skill?.icon || 'default'
 	}
 
 	return (
@@ -49,7 +36,6 @@ export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
 			className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300"
 			whileHover={{ y: -2 }}
 		>
-			{/* Header */}
 			<div className="flex items-start justify-between mb-4">
 				<div className="flex items-center space-x-3">
 					<div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -71,7 +57,6 @@ export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
 				</time>
 			</div>
 
-			{/* Feedback Text */}
 			<div className="mb-6">
 				<div className="relative">
 					<svg
@@ -87,7 +72,6 @@ export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
 				</div>
 			</div>
 
-			{/* Skills */}
 			{feedback.skills && feedback.skills.length > 0 && (
 				<div>
 					<h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">

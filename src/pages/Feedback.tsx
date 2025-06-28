@@ -36,16 +36,13 @@ export const FeedbackPage = () => {
 			animate="final"
 		>
 			<motion.div className="w-full max-w-6xl mx-auto px-4 py-8">
-				{/* Header */}
 				<motion.div
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					className="text-center mb-12"
 				>
-					<h1 className="text-4xl md:text-5xl font-bold mb-4">
-						Feedback & Testimonials
-					</h1>
-					<p className="text-lg opacity-80 max-w-2xl mx-auto">
+					<h1 className="text-4xl md:text-5xl mb-4">Feedback</h1>
+					<p className="text-2xl opacity-80 max-w-2xl mx-auto">
 						Share your thoughts and experiences, or read what others have to say
 						about working with me.
 					</p>
@@ -60,12 +57,10 @@ export const FeedbackPage = () => {
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.4 }}
 				>
-					{/* Section Header */}
 					<div className="flex items-center justify-center mb-8">
 						<h2 className="text-3xl font-bold">Recent Feedback</h2>
 					</div>
 
-					{/* Loading State */}
 					{isLoading && (
 						<div className="flex justify-center items-center py-12">
 							<div className="flex items-center space-x-2 opacity-70">
@@ -94,7 +89,6 @@ export const FeedbackPage = () => {
 						</div>
 					)}
 
-					{/* Empty State */}
 					{!isLoading && feedbacks.length === 0 && (
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
@@ -123,7 +117,6 @@ export const FeedbackPage = () => {
 						</motion.div>
 					)}
 
-					{/* Feedbacks Grid */}
 					{!isLoading && feedbacks.length > 0 && (
 						<div className="grid gap-6 md:gap-8">
 							{feedbacks.map((feedback, index) => (

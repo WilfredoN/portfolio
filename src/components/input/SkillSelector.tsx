@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react'
 import { fetchSkills } from '../../api/feedback'
 import { Skill } from '../../types/feedback'
 import { Icon } from '../Icon/Icon'
+import {
+	programmingLanguages,
+	technologiesAndLibraries
+} from '../../types/ListItems'
 
 interface SkillSelectorProps {
 	selectedSkills: number[]
@@ -36,54 +40,22 @@ export const SkillSelector = ({
 		loadSkills()
 	}, [])
 
-	// Filter skills by category based on predefined lists
 	const programmingSkills = skills.filter(skill =>
-		['Java', 'JavaScript', 'TypeScript', 'Python', 'C', 'C++'].includes(
-			skill.name
-		)
+		programmingLanguages.some(lang => lang.text === skill.name)
 	)
 
 	const technologySkills = skills.filter(skill =>
-		[
-			'React',
-			'Playwright',
-			'Jest',
-			'Vite',
-			'Bun',
-			'TailwindCSS',
-			'ChakraUI',
-			'Spring',
-			'PostgreSQL',
-			'Redis',
-			'Docker'
-		].includes(skill.name)
+		technologiesAndLibraries.some(tech => tech.text === skill.name)
 	)
 
 	const currentSkills =
 		activeTab === 'programming' ? programmingSkills : technologySkills
 
-	// Helper function to get icon name for skill
 	const getIconName = (skillName: string): string => {
-		const iconMap: Record<string, string> = {
-			Java: 'java',
-			JavaScript: 'javascript',
-			TypeScript: 'typescript',
-			Python: 'python',
-			C: 'c',
-			'C++': 'cplusplus',
-			React: 'react',
-			Playwright: 'playwright',
-			Jest: 'jest',
-			Vite: 'vitejs',
-			Bun: 'bun',
-			TailwindCSS: 'tailwindcss',
-			ChakraUI: 'chakraui',
-			Spring: 'spring',
-			PostgreSQL: 'postgresql',
-			Redis: 'redis',
-			Docker: 'docker'
-		}
-		return iconMap[skillName] || 'default'
+		const allSkills = [...programmingLanguages, ...technologiesAndLibraries]
+
+		const skill = allSkills.find(skill => skill.text === skillName)
+		return skill?.icon || 'default'
 	}
 
 	if (loading) {
@@ -108,7 +80,6 @@ export const SkillSelector = ({
 				Skills & Technologies
 			</label>
 
-			{/* Tab Navigation */}
 			<div className="flex space-x-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-1 mb-4">
 				<button
 					type="button"
@@ -140,7 +111,6 @@ export const SkillSelector = ({
 				</button>
 			</div>
 
-			{/* Skills Grid */}
 			<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
 				{currentSkills.map(skill => (
 					<motion.button

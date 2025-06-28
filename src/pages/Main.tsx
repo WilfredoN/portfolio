@@ -15,7 +15,7 @@ export const Main = ({ currentPage }: PageProps) => {
 	const getPageVariant = () => {
 		if (currentPage === PageType.About) return nextPageVariant
 		if (currentPage === PageType.Projects) return prevPageVariant
-		return nextPageVariant // Default for Feedback
+		return nextPageVariant
 	}
 
 	const renderPage = () => {

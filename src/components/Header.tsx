@@ -76,22 +76,7 @@ export const Header = ({
 					onClick={() => handlePageChange(PageType.Feedback)}
 					isClicked={currentPage === PageType.Feedback}
 				>
-					<div className="flex items-center space-x-2">
-						<span>Feedback</span>
-						<svg
-							className="w-4 h-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M12 4v16m8-8H4"
-							/>
-						</svg>
-					</div>
+					Feedback
 				</CustomNavLink>
 				<ThemeToggle
 					toggleTheme={toggleTheme}

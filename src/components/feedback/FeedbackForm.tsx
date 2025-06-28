@@ -60,7 +60,6 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 				? prev.skills.filter(id => id !== skillId)
 				: [...prev.skills, skillId]
 		}))
-		// Clear skill error when user selects skills
 		if (errors.skills) {
 			setErrors(prev => ({ ...prev, skills: undefined }))
 		}
@@ -84,7 +83,6 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 			})
 
 			if (result.success) {
-				// Reset form
 				setFormData({
 					author: '',
 					company: '',
@@ -146,7 +144,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 			transition={{ duration: 0.3 }}
 		>
 			<motion.div
-				className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700"
+				className="bg-white dark:bg-gray-800/30 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700"
 				initial={{ scale: 0.95 }}
 				animate={{ scale: 1 }}
 				transition={{ type: 'spring', stiffness: 200, damping: 25 }}

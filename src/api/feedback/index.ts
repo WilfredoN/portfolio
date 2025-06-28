@@ -31,7 +31,6 @@ export const submitFeedback = async (
 	feedbackData: FeedbackDTO
 ): Promise<{ success: boolean; error?: string }> => {
 	try {
-		// First, insert the feedback
 		const { data: feedback, error: feedbackError } = await supabase
 			.from('feedback')
 			.insert({
@@ -47,7 +46,6 @@ export const submitFeedback = async (
 			return { success: false, error: 'Failed to create feedback' }
 		}
 
-		// Then, get skill IDs for the skill names
 		if (feedbackData.skills.length > 0) {
 			const { data: skillsData, error: skillsError } = await supabase
 				.from('skills')
@@ -59,7 +57,6 @@ export const submitFeedback = async (
 				return { success: false, error: 'Failed to link skills' }
 			}
 
-			// Insert skill relationships
 			const skillRelations = skillsData.map(skill => ({
 				feedback_id: feedback.id,
 				skill_id: skill.id
