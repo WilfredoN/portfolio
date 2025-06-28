@@ -1,73 +1,34 @@
-export const prevPageVariant = {
-  initial: {
-    x: '100vw',
-    opacity: 0,
-    scale: 0.9,
-    filter: 'blur(0px)',
-    rotate: 0,
-    borderRadius: '0%'
-  },
-  final: {
-    x: '0vw',
-    opacity: 1,
-    scale: 1,
-    filter: 'blur(0px)',
-    rotate: 0,
-    borderRadius: '0%',
-    transition: {
-      type: 'spring',
-      stiffness: 150,
-      damping: 25
-    }
-  },
-  exit: {
-    x: '100vw',
-    opacity: 0,
-    scale: 0.9,
-    filter: 'blur(10px)',
-    rotate: -5,
-    borderRadius: '5%',
-    transition: {
-      type: 'spring',
-      stiffness: 200,
-      damping: 15
-    }
-  }
-}
+import type { Variants } from 'motion'
 
-export const nextPageVariant = {
+export const variants: Variants = {
   initial: {
-    x: '-100vw',
     opacity: 0,
-    scale: 0.9,
-    filter: 'blur(0px)',
-    rotate: 0,
-    borderRadius: '0%'
+    scale: 0.96,
+    filter: 'blur(8px) grayscale(60%)',
+    rotate: -2,
+    transition: {
+      duration: 0.4,
+      ease: 'easeInOut'
+    }
   },
   final: {
-    x: '0vw',
     opacity: 1,
     scale: 1,
-    filter: 'blur(0px)',
+    filter: 'blur(0px) grayscale(0%)',
     rotate: 0,
-    borderRadius: '0%',
     transition: {
-      type: 'spring',
-      stiffness: 150,
-      damping: 25
+      duration: 0.6,
+      ease: 'easeInOut'
     }
   },
   exit: {
-    x: '-100vw',
     opacity: 0,
-    scale: 0.9,
-    filter: 'blur(10px)',
-    rotate: 5,
-    borderRadius: '5%',
+    scale: 1.04,
+    filter: 'blur(12px) grayscale(80%)',
+    rotate: 2,
     transition: {
-      type: 'spring',
-      stiffness: 200,
-      damping: 15
+      duration: 0.4,
+      ease: 'easeInOut'
     }
   }
 }

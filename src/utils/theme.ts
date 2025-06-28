@@ -34,9 +34,13 @@ export const applyTheme = (isDark: boolean) => {
 export const getInitialTheme = (): boolean => {
   const savedTheme = localStorage.getItem('theme')
 
-  if (savedTheme === 'dark') { return true }
+  if (savedTheme === 'dark') {
+    return true
+  }
 
-  if (savedTheme === 'light') { return false }
+  if (savedTheme === 'light') {
+    return false
+  }
 
   return window.matchMedia('(prefers-color-scheme: dark)').matches
 }

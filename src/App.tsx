@@ -30,7 +30,7 @@ export const App = () => {
   return (
     <>
       <BinaryBackground />
-      <main className="flex flex-col justify-start items-center py-2 min-h-[100vh]">
+      <main className='flex flex-col justify-start items-center py-2 min-h-[100vh]'>
         <Header
           currentPage={currentPage}
           onPageChange={handlePageChange}

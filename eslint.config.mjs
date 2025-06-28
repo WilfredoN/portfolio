@@ -4,6 +4,7 @@ export default antfu({
   rules: {
     'antfu/no-top-level-await': 'off',
     'style/no-tabs': 'off',
+    'style/jsx-quotes': 'off',
     'style/comma-dangle': 'off',
     'curly': ['error', 'all'],
     'style/padding-line-between-statements': [
