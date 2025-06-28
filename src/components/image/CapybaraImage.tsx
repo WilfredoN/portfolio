@@ -1,5 +1,5 @@
 import React from 'react'
-import { DownloadButton } from '../input/DownloadButton'
+import { DownloadButton } from '../input/button/DownloadButton'
 
 interface CapybaraImageProps {
 	children?: React.ReactNode
