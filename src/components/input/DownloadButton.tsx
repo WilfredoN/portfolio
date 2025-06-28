@@ -1,12 +1,13 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { FaFileDownload } from 'react-icons/fa'
+import React from 'react'
 
 interface DownloadButtonProps {
 	pdfUrl: string
 }
 
-export const DownloadButton = ({ pdfUrl }: DownloadButtonProps) => {
+export const DownloadButton = React.memo(({ pdfUrl }: DownloadButtonProps) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const buttonRef = useRef<HTMLDivElement>(null)
 	const [tooltipPosition, setTooltipPosition] = useState<'right' | 'bottom'>(
@@ -105,4 +106,4 @@ export const DownloadButton = ({ pdfUrl }: DownloadButtonProps) => {
 			</motion.div>
 		</div>
 	)
-}
+})

@@ -1,38 +1,17 @@
-import React, { useEffect, useRef } from 'react'
-import { DownloadButton } from '../input/DownloadButton'
+import React from 'react'
+import { useCapybaraImageAnimation } from './useCapybaraImageAnimation'
 
-export const CapybaraImage = () => {
-	const imgRef = useRef<HTMLImageElement>(null)
+interface CapybaraImageProps {
+	children?: React.ReactNode
+}
 
-	useEffect(() => {
-		const img = imgRef.current
-		if (img) {
-			img.style.opacity = '1'
-		}
-	}, [])
-
-	const handleMouseMove = (e: React.MouseEvent) => {
-		const img = imgRef.current
-		if (img) {
-			const rect = img.getBoundingClientRect()
-			const x = e.clientX - rect.left
-			const y = e.clientY - rect.top
-
-			const moveX = (x / rect.width - 0.5) * 20
-			const moveY = (y / rect.height - 0.5) * 20
-
-			const rotateX = (y / rect.height - 0.5) * 10
-			const rotateY = (x / rect.width - 0.5) * -10
-
-			img.style.transform = `translate(${moveX}px, ${moveY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-		}
-	}
+export const CapybaraImage = React.memo(({ children }: CapybaraImageProps) => {
+	const { imgRef, handleMouseMove } = useCapybaraImageAnimation()
 
 	return (
 		<div className="flex items-center justify-center max-w-[35rem] relative">
-			<DownloadButton pdfUrl="assets/resume.pdf" />
 			<div
-				className="flex items-center justify-center overflow-hidden border-2 xl:w-full sm:w-1/2 rounded-full"
+				className="flex items-center justify-center overflow-hidden border-2 xl:w-full sm:w-1/2 rounded-full relative"
 				onMouseMove={handleMouseMove}
 				style={{ perspective: '1000px' }}
 			>
@@ -47,7 +26,8 @@ export const CapybaraImage = () => {
 					}}
 					draggable="false"
 				/>
+				{children}
 			</div>
 		</div>
 	)
-}
+})
