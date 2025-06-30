@@ -16,9 +16,6 @@ export interface FeedbackFormErrors {
   skills?: string
 }
 
-/**
- * Validates feedback form data
- */
 export const validateFeedbackForm = (
   formData: FeedbackFormData
 ): FeedbackFormErrors => {
@@ -37,9 +34,6 @@ export const validateFeedbackForm = (
   return errors
 }
 
-/**
- * Formats a date string to a human-readable format
- */
 export const formatFeedbackDate = (dateString: string): string => {
   const date = new Date(dateString)
 
@@ -50,46 +44,34 @@ export const formatFeedbackDate = (dateString: string): string => {
   })
 }
 
-/**
- * Gets the icon name for a skill
- */
 export const getSkillIconName = (skillName: string): string => {
   const allSkills = [...programmingLanguages, ...technologiesAndLibraries]
-  const skill = allSkills.find(skill => skill.text === skillName)
+  const skill = allSkills.find((skill) => skill.text === skillName)
 
   return skill?.icon || 'default'
 }
 
-/**
- * Categorizes skills into programming languages and technologies
- */
-export const categorizeSkills = (skills: { id: number, name: string }[]) => {
-  const programmingSkills = skills.filter(skill =>
-    programmingLanguages.some(lang => lang.text === skill.name)
+export const categorizeSkills = (skills: { id: number; name: string }[]) => {
+  const programmingSkills = skills.filter((skill) =>
+    programmingLanguages.some((lang) => lang.text === skill.name)
   )
 
-  const technologySkills = skills.filter(skill =>
-    technologiesAndLibraries.some(tech => tech.text === skill.name)
+  const technologySkills = skills.filter((skill) =>
+    technologiesAndLibraries.some((tech) => tech.text === skill.name)
   )
 
   return { programmingSkills, technologySkills }
 }
 
-/**
- * Toggles a skill in the selected skills array
- */
 export const toggleSkill = (
   skillId: number,
   selectedSkills: number[]
 ): number[] => {
   return selectedSkills.includes(skillId)
-    ? selectedSkills.filter(id => id !== skillId)
+    ? selectedSkills.filter((id) => id !== skillId)
     : [...selectedSkills, skillId]
 }
 
-/**
- * Prepares form data for submission
- */
 export const prepareFeedbackData = (formData: FeedbackFormData) => ({
   author: formData.author.trim(),
   company: formData.company.trim() || undefined,

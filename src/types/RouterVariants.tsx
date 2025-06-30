@@ -7,7 +7,7 @@ export const variants: Variants = {
     filter: 'blur(8px) grayscale(60%)',
     rotate: -2,
     transition: {
-      duration: 0.4,
+      duration: 0.2,
       ease: 'easeInOut'
     }
   },
@@ -17,7 +17,7 @@ export const variants: Variants = {
     filter: 'blur(0px) grayscale(0%)',
     rotate: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
       ease: 'easeInOut'
     }
   },
