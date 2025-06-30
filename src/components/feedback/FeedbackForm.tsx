@@ -92,7 +92,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
       >
         <div className='flex justify-between items-center mb-6'>
           <div className='flex items-center space-x-3'>
-            <div className='w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center'>
+            <div className='w-10 h-10 bg-blue-900/50 rounded-full flex items-center justify-center'>
               <svg
                 className='w-6 h-6 text-blue-600 dark:text-blue-400'
                 fill='none'

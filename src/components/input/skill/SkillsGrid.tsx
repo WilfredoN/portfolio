@@ -1,6 +1,6 @@
 import type { Skill } from '../../../types/feedback'
 
-import { SkillBadge } from '../../shared/SkillBadge'
+import { SkillBadge } from './SkillBadge'
 
 export interface SkillsGridProps {
   skills: Skill[]

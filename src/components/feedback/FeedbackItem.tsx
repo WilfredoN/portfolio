@@ -3,21 +3,19 @@ import { motion } from 'motion/react'
 import type { Feedback } from '../../types/feedback'
 
 import { formatFeedbackDate } from '../../utils/feedback'
-import { SkillBadge } from '../shared/SkillBadge'
+import { SkillBadge } from '../input/skill/SkillBadge'
 
 interface FeedbackItemProps {
   feedback: Feedback
-  index: number
 }
 
-export const FeedbackItem = ({ feedback, index }: FeedbackItemProps) => {
+export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
       className='feedback-item'
-      whileHover={{ y: -2 }}
+      whileHover={{ scale: 1.05 }}
     >
       <div className='flex items-start justify-between mb-4'>
         <div className='flex items-center space-x-3'>
