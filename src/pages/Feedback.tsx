@@ -39,11 +39,7 @@ export const FeedbackPage = () => {
 
         <FeedbackForm onSuccess={handleFormSuccess} />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className='flex items-center justify-center mb-8'>
             <h2 className='text-3xl font-bold'>Recent Feedback</h2>
           </div>

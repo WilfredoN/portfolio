@@ -161,7 +161,6 @@ textarea.error {
   box-shadow: 0 0 0 2px #ef4444 !important;
 }
 
-/* SkillBadge base and variants */
 .skill-badge {
   display: inline-flex;
   align-items: center;
@@ -213,9 +212,6 @@ textarea.error {
 .skill-badge-remove:focus {
   background: #ffeaea;
 }
-
-/* Remove old/duplicate/unused badge classes */
-/* Removed: .selected-skills-label, .selected-skills-list, .selected-skills-container (if not used elsewhere) */
 
 .btn-base {
   display: inline-flex;

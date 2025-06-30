@@ -24,11 +24,11 @@ export const SelectedSkills = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <p className='selected-skills-label'>
+      <p className='text-xl'>
         Selected skills ({selectedSkills.length}
         ):
       </p>
-      <div className='selected-skills-list'>
+      <div className='flex flex-row flex-wrap gap-2'>
         {selectedSkills.map((skillId) => {
           const skill = skillById.get(skillId)
 

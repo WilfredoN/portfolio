@@ -21,12 +21,9 @@ export const SkillBadgeSelectable = ({
     type='button'
     onClick={onClick}
     className={clsx(
-      'skill-badge',
+      'skill-badge min-w-max',
       isSelected ? 'skill-badge-selectable-selected' : 'skill-badge-selectable'
     )}
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
   >
     <Icon iconName={getSkillIconName(skill.name)} size='medium' />
     <span className='text-sm font-medium'>{skill.name}</span>
@@ -35,9 +32,6 @@ export const SkillBadgeSelectable = ({
         className='w-4 h-4 ml-auto'
         fill='currentColor'
         viewBox='0 0 20 20'
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
         <path
           fillRule='evenodd'
