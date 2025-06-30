@@ -265,18 +265,6 @@ textarea.error {
   background: var(--color-nav);
   color: var(--color-accent);
 }
-.btn-sm {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-}
-.btn-md {
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-}
-.btn-lg {
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
-}
 .feedback-item {
   background: var(--color-bg);
   color: var(--color-text);
