@@ -12,9 +12,7 @@ export const SkillTabs = ({ activeTab, setActiveTab }: SkillTabsProps) => (
       onClick={() => setActiveTab('programming')}
       className={clsx(
         'flex-1 rounded-md py-2 px-3 text-sm font-medium transition-all duration-200',
-        activeTab === 'programming'
-          ? 'bg-white text-[var(--color-accent)] shadow-sm border border-[var(--color-border)]'
-          : 'text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-nav)]'
+        activeTab === 'programming' ? 'tab-active' : 'tab-inactive'
       )}
     >
       Programming Languages
@@ -24,9 +22,7 @@ export const SkillTabs = ({ activeTab, setActiveTab }: SkillTabsProps) => (
       onClick={() => setActiveTab('technologies')}
       className={clsx(
         'flex-1 rounded-md py-2 px-3 text-sm font-medium transition-all duration-200',
-        activeTab === 'technologies'
-          ? 'bg-white text-[var(--color-accent)] shadow-sm border border-[var(--color-border)]'
-          : 'text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-nav)]'
+        activeTab === 'technologies' ? 'tab-active' : 'tab-inactive'
       )}
     >
       Technologies & Libraries

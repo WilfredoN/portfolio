@@ -107,14 +107,9 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
                 />
               </svg>
             </div>
-            <h2 className='text-2xl font-bold text-gray-900 dark:text-gray-100'>
-              Share Your Feedback
-            </h2>
+            <h2 className='text-2xl font-bold'>Share Your Feedback</h2>
           </div>
-          <button
-            onClick={handleCancel}
-            className='text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors'
-          >
+          <button onClick={handleCancel} className='transition-colors'>
             <svg
               className='w-6 h-6'
               fill='none'

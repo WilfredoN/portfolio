@@ -31,7 +31,11 @@ export const Textarea = ({
       )}
       <textarea
         rows={rows}
-        className={clsx('rounded-lg', error && 'error', className)}
+        className={clsx(
+          'rounded-lg min-h-20 max-h-72',
+          error && 'error',
+          className
+        )}
         aria-invalid={!!error}
         {...props}
       />

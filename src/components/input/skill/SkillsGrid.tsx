@@ -13,7 +13,7 @@ export const SkillsGrid = ({
   selectedSkills,
   onSkillToggle
 }: SkillsGridProps) => (
-  <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+  <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 min-h-32'>
     {skills.map((skill) => (
       <SkillBadge
         key={skill.id}
