@@ -55,7 +55,7 @@ export const FeedbackPage = () => {
 
           {!isLoading && feedbacks.length > 0 && (
             <div className='grid gap-6 md:gap-8'>
-              {feedbacks.map((feedback) => (
+              {feedbacks.map(feedback => (
                 <FeedbackItem key={feedback.id} feedback={feedback} />
               ))}
             </div>

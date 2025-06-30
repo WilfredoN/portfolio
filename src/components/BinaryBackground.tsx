@@ -18,7 +18,9 @@ const BinaryBackground = () => {
     const canvas = canvasRef.current
     const ctx = canvas?.getContext('2d')
 
-    if (!canvas || !ctx) { return }
+    if (!canvas || !ctx) {
+      return
+    }
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth
@@ -49,14 +51,19 @@ const BinaryBackground = () => {
     createSymbols()
 
     const changeSymbolValue = (symbol: Symbols) => {
-      setTimeout(() => {
-        symbol.value = symbol.value === '0' ? '1' : '0'
-        changeSymbolValue(symbol)
-      }, Math.random() * 1000 + 500)
+      setTimeout(
+        () => {
+          symbol.value = symbol.value === '0' ? '1' : '0'
+          changeSymbolValue(symbol)
+        },
+        Math.random() * 1000 + 500
+      )
     }
 
     const drawSymbols = () => {
-      if (!ctx) { return }
+      if (!ctx) {
+        return
+      }
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = '#00FF00'
@@ -87,13 +94,7 @@ const BinaryBackground = () => {
     }
   }, [])
 
-  return (
-    <canvas
-      className="binary-background"
-      ref={canvasRef}
-    >
-    </canvas>
-  )
+  return <canvas className='binary-background' ref={canvasRef}></canvas>
 }
 
 export default BinaryBackground

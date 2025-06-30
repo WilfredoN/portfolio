@@ -24,8 +24,8 @@ export const SkillSelector = ({
     'programming'
   )
 
-  const currentSkills: Skill[] =
-    activeTab === 'programming' ? programmingSkills : technologySkills
+  const currentSkills: Skill[]
+    = activeTab === 'programming' ? programmingSkills : technologySkills
 
   if (loading) {
     return (

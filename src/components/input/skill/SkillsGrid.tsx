@@ -14,7 +14,7 @@ export const SkillsGrid = ({
   onSkillToggle
 }: SkillsGridProps) => (
   <div className='flex flex-row flex-wrap flex-shrink justify-center gap-3 min-h-32 w-full h-full'>
-    {skills.map((skill) => (
+    {skills.map(skill => (
       <SkillBadge
         key={skill.id}
         skill={skill}

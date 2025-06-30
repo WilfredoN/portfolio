@@ -20,7 +20,9 @@ export const Icon = memo(
       const load = async () => {
         const url = await fetchValidIconUrl(iconName)
 
-        if (isMounted) { setImageUrl(url) }
+        if (isMounted) {
+          setImageUrl(url)
+        }
       }
       load()
 
@@ -29,11 +31,13 @@ export const Icon = memo(
       }
     }, [iconName])
 
-    if (!imageUrl) { return null }
+    if (!imageUrl) {
+      return null
+    }
 
     return (
       <img
-        className={`ml-2 ${size == 'medium' ? 'w-8 h-8' : 'w-12 h-12'}`}
+        className={`ml-2 ${size === 'medium' ? 'w-8 h-8' : 'w-12 h-12'}`}
         src={imageUrl}
         alt={alt ?? iconName}
         title={title ?? iconName}

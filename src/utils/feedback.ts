@@ -46,18 +46,18 @@ export const formatFeedbackDate = (dateString: string): string => {
 
 export const getSkillIconName = (skillName: string): string => {
   const allSkills = [...programmingLanguages, ...technologiesAndLibraries]
-  const skill = allSkills.find((skill) => skill.text === skillName)
+  const skill = allSkills.find(skill => skill.text === skillName)
 
   return skill?.icon || 'default'
 }
 
-export const categorizeSkills = (skills: { id: number; name: string }[]) => {
-  const programmingSkills = skills.filter((skill) =>
-    programmingLanguages.some((lang) => lang.text === skill.name)
+export const categorizeSkills = (skills: { id: number, name: string }[]) => {
+  const programmingSkills = skills.filter(skill =>
+    programmingLanguages.some(lang => lang.text === skill.name)
   )
 
-  const technologySkills = skills.filter((skill) =>
-    technologiesAndLibraries.some((tech) => tech.text === skill.name)
+  const technologySkills = skills.filter(skill =>
+    technologiesAndLibraries.some(tech => tech.text === skill.name)
   )
 
   return { programmingSkills, technologySkills }
@@ -68,7 +68,7 @@ export const toggleSkill = (
   selectedSkills: number[]
 ): number[] => {
   return selectedSkills.includes(skillId)
-    ? selectedSkills.filter((id) => id !== skillId)
+    ? selectedSkills.filter(id => id !== skillId)
     : [...selectedSkills, skillId]
 }
 

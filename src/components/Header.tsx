@@ -54,14 +54,14 @@ export const Header = ({
       style={{
         transform: `scale(${scaleFactor})`,
         boxShadow:
-					!isMobile && scrollPosition > 0
-					  ? '0 0 20px rgba(0, 0, 0, 0.1)'
-					  : 'none',
+          !isMobile && scrollPosition > 0
+            ? '0 0 20px rgba(0, 0, 0, 0.1)'
+            : 'none',
         backdropFilter: !isMobile && scrollPosition > 0 ? 'blur(10px)' : 'none',
         opacity: !isMobile && scrollPosition > 0 ? 0.95 : 1
       }}
     >
-      <nav className="w-full flex md:flex-row flex-col justify-center">
+      <nav className='w-full flex md:flex-row flex-col justify-center'>
         <CustomNavLink
           onClick={() => handlePageChange(PageType.About)}
           isClicked={currentPage === PageType.About}
@@ -80,10 +80,7 @@ export const Header = ({
         >
           Feedback
         </CustomNavLink>
-        <ThemeToggle
-          toggleTheme={toggleTheme}
-          isDarkTheme={isDarkTheme}
-        />
+        <ThemeToggle toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       </nav>
     </motion.header>
   )

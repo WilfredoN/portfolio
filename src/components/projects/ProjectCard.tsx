@@ -21,15 +21,15 @@ export const ProjectCard = ({
   return (
     <motion.div
       className={`flex flex-col justify-between mb-12 w-full ${
-        scale == 'medium'
+        scale === 'medium'
           ? 'md:h-[30.625rem] hover:scale-105 transition-transform duration-100 '
           : 'h-[34rem]'
       }${isLarge ? 'max-w-full' : 'max-w-[31.25rem]'} border-3 rounded-lg p-4`}
     >
       <motion.h1
-        className="text-4xl text-center flex items-center flex-col"
-        initial="initial"
-        animate="final"
+        className='text-4xl text-center flex items-center flex-col'
+        initial='initial'
+        animate='final'
       >
         {imageUrl
           ? (
@@ -48,7 +48,7 @@ export const ProjectCard = ({
                   loop
                   autoPlay={false}
                   muted
-                  className="px-4 py-2 rounded-md my-2"
+                  className='px-4 py-2 rounded-md my-2'
                 />
               )
             : (
@@ -57,24 +57,21 @@ export const ProjectCard = ({
                 </span>
               )}
         {isLarge && (
-          <TechnologyStack
-            technologies={technologies}
-            size={scale}
-          />
+          <TechnologyStack technologies={technologies} size={scale} />
         )}
 
-        <div className="text-[1.7rem] mt-4">
+        <div className='text-[1.7rem] mt-4'>
           <p>{description}</p>
           {additionalDescription && (
-            <div className="mt-2">{additionalDescription}</div>
+            <div className='mt-2'>{additionalDescription}</div>
           )}
         </div>
       </motion.h1>
 
-      <div className="self-center justify-self-end ">
+      <div className='self-center justify-self-end '>
         {!isLarge && (
           <>
-            <h3 className="text-3xl text-center mb-2">Technologies used:</h3>
+            <h3 className='text-3xl text-center mb-2'>Technologies used:</h3>
             <TechnologyStack technologies={technologies} />
           </>
         )}

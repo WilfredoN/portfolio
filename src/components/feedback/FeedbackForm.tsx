@@ -147,7 +147,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
                 label='Your Name'
                 required
                 value={formData.author}
-                onChange={(e) => updateField('author', e.target.value)}
+                onChange={e => updateField('author', e.target.value)}
                 placeholder='Enter your full name'
                 error={errors.author}
               />
@@ -155,7 +155,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
               <Input
                 label='Company'
                 value={formData.company}
-                onChange={(e) => updateField('company', e.target.value)}
+                onChange={e => updateField('company', e.target.value)}
                 placeholder='Your company or organization (optional)'
               />
             </div>
@@ -164,7 +164,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
               label='Feedback'
               required
               value={formData.text}
-              onChange={(e) => updateField('text', e.target.value)}
+              onChange={e => updateField('text', e.target.value)}
               placeholder='Share your thoughts, experiences, or suggestions...'
               rows={5}
               error={errors.text}

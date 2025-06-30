@@ -18,15 +18,19 @@ export const fetchValidIconUrl = async (
     try {
       const res = await fetch(originalUrl, { method: 'HEAD' })
 
-      if (res.ok) { return originalUrl }
+      if (res.ok) {
+        return originalUrl
+      }
     } catch (error) {
-      console.log(`Error fetching original icon: ${error}`)
+      console.error(`Error fetching original icon: ${error}`)
     }
 
     try {
       const res = await fetch(plainUrl, { method: 'HEAD' })
 
-      if (res.ok) { return plainUrl }
+      if (res.ok) {
+        return plainUrl
+      }
     } catch (error) {
       console.error(`Error fetching plain icon: ${error}`)
     }
