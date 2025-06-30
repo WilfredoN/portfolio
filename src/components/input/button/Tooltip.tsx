@@ -19,7 +19,7 @@ export const Tooltip = ({ children, text, className = '' }: TooltipProps) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative inline-block group"
+      className='relative inline-block group'
     >
       {children}
       <AnimatePresence>
@@ -28,14 +28,14 @@ export const Tooltip = ({ children, text, className = '' }: TooltipProps) => {
             className={clsx(
               'absolute text-3xl bg-black text-white px-4 py-2 rounded-lg whitespace-nowrap z-50 flex items-center',
               'left-full top-4 -translate-y-1/2',
-              'md:left-full md:ml-2',
+              'md:left-full md:ml-4',
               'max-md:right-full max-md:mr-2 max-md:left-auto max-md:ml-0',
               className
             )}
             variants={tooltipVariants.right}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+            initial='initial'
+            animate='animate'
+            exit='exit'
           >
             {text}
           </motion.div>
