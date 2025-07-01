@@ -1,0 +1,76 @@
+import type { ProjectInfo } from '@features/projects/data/projects'
+
+import { ProjectImage } from '@features/projects/components/ProjectImage'
+import { ProjectVideo } from '@features/projects/components/ProjectVideo'
+import { Stack } from '@shared/components/Stack'
+import { Text } from '@shared/components/Text'
+import clsx from 'clsx'
+import { motion } from 'motion/react'
+
+export const Card = ({
+  title,
+  description,
+  technologies,
+  link,
+  imageUrl,
+  videoUrl,
+  imageTitle,
+  imageStyle,
+  scale = 'medium',
+  additionalDescription
+}: ProjectInfo) => {
+  const isLarge = scale === 'large'
+
+  return (
+    <motion.div
+      className={clsx(
+        'flex flex-col justify-between mb-12 w-full border-3 rounded-lg p-4',
+        {
+          'md:h-[30.625rem] hover:scale-105 transition-transform duration-100':
+            scale === 'medium',
+          'h-max': scale !== 'medium',
+          'max-w-full': isLarge,
+          'max-w-[31.25rem]': !isLarge
+        }
+      )}
+    >
+      <motion.h1
+        className='text-4xl text-center flex items-center flex-col'
+        initial='initial'
+        animate='final'
+      >
+        {imageUrl ? (
+          <ProjectImage
+            src={imageUrl}
+            alt={title}
+            title={imageTitle}
+            className={imageStyle}
+          />
+        ) : videoUrl ? (
+          <ProjectVideo src={videoUrl} />
+        ) : (
+          <span className="my-6 font-['Courgette'] text-[4rem] text-[#5287AD]">
+            <a href={link}>{title}</a>
+          </span>
+        )}
+        {isLarge && <Stack items={technologies} size={scale} />}
+
+        <div className='text-[1.7rem] mt-4'>
+          <Text>{description}</Text>
+          {additionalDescription && (
+            <div className='mt-2'>{additionalDescription}</div>
+          )}
+        </div>
+      </motion.h1>
+
+      <div className='self-center justify-self-end '>
+        {!isLarge && (
+          <>
+            <h3 className='text-3xl text-center mb-2'>Technologies used:</h3>
+            <Stack items={technologies} />
+          </>
+        )}
+      </div>
+    </motion.div>
+  )
+}

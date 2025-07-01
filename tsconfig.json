@@ -4,10 +4,18 @@
     "jsx": "react-jsx",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
+    "baseUrl": ".",
     "module": "ESNext",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "paths": {
+      "@shared/*": ["src/shared/*"],
+      "@features/*": ["src/features/*"],
+      "@features/about/*": ["src/features/about/*"],
+      "@features/about/components/*": ["src/features/about/components/*"],
+      "@app/*": ["app/*"]
+    },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
 
@@ -21,5 +29,14 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src", "eslint.config.mjs"]
+  "include": [
+    "src",
+    "eslint.config.mjs",
+    "app/providers",
+    "app/contexts",
+    "app/main.tsx",
+    "app/vite-env.d.ts",
+    "app/App.tsx",
+    "app/hooks"
+  ]
 }

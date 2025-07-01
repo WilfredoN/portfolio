@@ -1,0 +1,35 @@
+import { Tooltip } from '@shared/components/Tooltip'
+import { motion } from 'motion/react'
+import { FaFileDownload } from 'react-icons/fa'
+
+// TODO: move
+interface FileProps {
+  url?: string
+}
+
+export const Resume = ({ url = 'assets/resume.pdf' }: FileProps) => {
+  const handleClick = () => {
+    window.open(url, '_blank')
+  }
+
+  return (
+    <div className='absolute bottom-4 right-4 z-10'>
+      <Tooltip text='Check my CV!'>
+        <motion.div
+          className='relative p-3 outline cursor-pointer rounded-3xl flex items-center justify-center outline-white'
+          title='Download CV'
+          onClick={handleClick}
+          whileHover={{ scale: 1.2 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        >
+          <motion.div
+            whileHover={{ color: '#ffffff' }}
+            transition={{ duration: 0.2 }}
+          >
+            <FaFileDownload size={48} />
+          </motion.div>
+        </motion.div>
+      </Tooltip>
+    </div>
+  )
+}
