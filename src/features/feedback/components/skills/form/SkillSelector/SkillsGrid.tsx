@@ -3,9 +3,9 @@ import type { Skill } from '@features/feedback/types/skill'
 import { SkillBadge } from '@features/feedback/components/skills/badge/SkillBadge'
 
 export interface SkillsGridProps {
-  skills: Skill[]
-  selectedSkills: number[]
   onSkillToggle: (id: number) => void
+  selectedSkills: number[]
+  skills: Skill[]
 }
 
 export const SkillsGrid = ({
@@ -17,11 +17,11 @@ export const SkillsGrid = ({
     {skills.map((skill) => (
       <SkillBadge
         key={skill.id}
+        aria-pressed={selectedSkills.includes(skill.id)}
+        isSelected={selectedSkills.includes(skill.id)}
         skill={skill}
         variant='selectable'
-        isSelected={selectedSkills.includes(skill.id)}
         onClick={() => onSkillToggle(skill.id)}
-        aria-pressed={selectedSkills.includes(skill.id)}
       />
     ))}
   </div>

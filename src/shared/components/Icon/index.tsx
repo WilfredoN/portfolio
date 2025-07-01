@@ -4,10 +4,10 @@ import { memo, useEffect, useState } from 'react'
 export type IconSize = 'medium' | 'large'
 
 interface IconProps {
-  iconName: string
   alt?: string
-  title?: string
+  iconName: string
   size?: IconSize
+  title?: string
 }
 
 export const Icon = memo(
@@ -36,9 +36,9 @@ export const Icon = memo(
 
     return (
       <img
+        alt={alt ?? iconName}
         className={`ml-2 ${size === 'medium' ? 'w-8 h-8' : 'w-12 h-12'}`}
         src={imageUrl}
-        alt={alt ?? iconName}
         title={title ?? iconName}
       />
     )

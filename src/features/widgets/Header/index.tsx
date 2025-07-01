@@ -56,24 +56,24 @@ export const Header = () => {
     >
       <nav className='w-full flex md:flex-row flex-col justify-center'>
         <NavigationButton
-          onClick={() => handlePageChange(PageType.About)}
           isClicked={currentPage === PageType.About}
+          onClick={() => handlePageChange(PageType.About)}
         >
           About Me
         </NavigationButton>
         <NavigationButton
-          onClick={() => handlePageChange(PageType.Projects)}
           isClicked={currentPage === PageType.Projects}
+          onClick={() => handlePageChange(PageType.Projects)}
         >
           Projects
         </NavigationButton>
         <NavigationButton
-          onClick={() => handlePageChange(PageType.Feedback)}
           isClicked={currentPage === PageType.Feedback}
+          onClick={() => handlePageChange(PageType.Feedback)}
         >
           Feedback
         </NavigationButton>
-        <ThemeToggle toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+        <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
       </nav>
     </motion.header>
   )

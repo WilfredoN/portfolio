@@ -3,8 +3,8 @@ import { motion } from 'motion/react'
 
 interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: string
   error?: string
+  label?: string
   required?: boolean
 }
 
@@ -18,9 +18,9 @@ export const Textarea = ({
 }: TextareaProps) => {
   return (
     <motion.div
+      animate={{ opacity: 1, y: 0 }}
       className='w-full'
       initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       {label && (
@@ -30,20 +30,20 @@ export const Textarea = ({
         </label>
       )}
       <textarea
-        rows={rows}
+        aria-invalid={!!error}
         className={clsx(
           'rounded-lg min-h-20 max-h-72',
           error && 'error',
           className
         )}
-        aria-invalid={!!error}
+        rows={rows}
         {...props}
       />
       {error && (
         <motion.p
+          animate={{ opacity: 1 }}
           className='mt-2 text-sm text-red-500 dark:text-red-400'
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
         >
           {error}

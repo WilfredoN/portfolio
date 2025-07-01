@@ -45,16 +45,16 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
   if (!showForm) {
     return (
       <motion.div
+        animate={{ opacity: 1, y: 0 }}
         className='flex justify-center mb-8'
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
         <Button
-          onClick={() => setShowForm(true)}
-          variant='primary'
-          size='lg'
           className='flex items-center space-x-2'
+          size='lg'
+          variant='primary'
+          onClick={() => setShowForm(true)}
         >
           <svg
             className='w-5 h-5'
@@ -63,10 +63,10 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
             viewBox='0 0 24 24'
           >
             <path
+              d='M12 4v16m8-8H4'
               strokeLinecap='round'
               strokeLinejoin='round'
               strokeWidth={2}
-              d='M12 4v16m8-8H4'
             />
           </svg>
           <span>Add Feedback</span>
@@ -79,16 +79,16 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
   return (
     <AnimatePresence mode='wait'>
       <motion.div
-        className='max-w-2xl mx-auto mb-8'
-        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        className='max-w-2xl mx-auto mb-8'
         exit={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3 }}
       >
         <motion.div
+          animate={{ scale: 1 }}
           className='bg-white dark:bg-gray-800/30 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700'
           initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
         >
           <div className='flex justify-between items-center mb-6'>
@@ -101,16 +101,16 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
                   viewBox='0 0 24 24'
                 >
                   <path
+                    d='M12 4v16m8-8H4'
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth={2}
-                    d='M12 4v16m8-8H4'
                   />
                 </svg>
               </div>
               <h2 className='text-2xl font-bold'>Share Your Feedback</h2>
             </div>
-            <button onClick={handleCancel} className='transition-colors'>
+            <button className='transition-colors' onClick={handleCancel}>
               <svg
                 className='w-6 h-6'
                 fill='none'
@@ -118,10 +118,10 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
                 viewBox='0 0 24 24'
               >
                 <path
+                  d='M6 18L18 6M6 6l12 12'
                   strokeLinecap='round'
                   strokeLinejoin='round'
                   strokeWidth={2}
-                  d='M6 18L18 6M6 6l12 12'
                 />
               </svg>
             </button>
@@ -129,9 +129,9 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
 
           {submitError && (
             <motion.div
+              animate={{ opacity: 1, y: 0 }}
               className='mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'
               initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
               <p className='text-sm text-red-600 dark:text-red-400'>
@@ -140,55 +140,55 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className='space-y-6'>
+          <form className='space-y-6' onSubmit={handleSubmit}>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               <Input
-                label='Your Name'
                 required
+                error={errors.author}
+                label='Your Name'
+                placeholder='Enter your full name'
                 value={formData.author}
                 onChange={(e) => updateField('author', e.target.value)}
-                placeholder='Enter your full name'
-                error={errors.author}
               />
 
               <Input
                 label='Company'
+                placeholder='Your company or organization (optional)'
                 value={formData.company}
                 onChange={(e) => updateField('company', e.target.value)}
-                placeholder='Your company or organization (optional)'
               />
             </div>
 
             <Textarea
-              label='Feedback'
               required
-              value={formData.text}
-              onChange={(e) => updateField('text', e.target.value)}
+              error={errors.text}
+              label='Feedback'
               placeholder='Share your thoughts, experiences, or suggestions...'
               rows={5}
-              error={errors.text}
+              value={formData.text}
+              onChange={(e) => updateField('text', e.target.value)}
             />
 
             <SkillSelector
+              error={errors.skills}
               selectedSkills={formData.skills}
               onSkillToggle={handleSkillToggle}
-              error={errors.skills}
             />
 
             <div className='flex justify-end space-x-4 pt-4'>
               <Button
+                disabled={isSubmitting}
                 type='button'
                 variant='outline'
                 onClick={handleCancel}
-                disabled={isSubmitting}
               >
                 Cancel
               </Button>
               <Button
-                type='submit'
-                isLoading={isSubmitting}
                 disabled={isSubmitting}
+                isLoading={isSubmitting}
                 size='lg'
+                type='submit'
               >
                 Submit Feedback
               </Button>

@@ -7,8 +7,8 @@ export type TooltipPosition = 'right' | 'left'
 
 interface TooltipProps {
   children: React.ReactNode
-  text: React.ReactNode
   className?: string
+  text: React.ReactNode
 }
 
 export const Tooltip = ({ children, text, className = '' }: TooltipProps) => {
@@ -16,14 +16,15 @@ export const Tooltip = ({ children, text, className = '' }: TooltipProps) => {
 
   return (
     <div
+      className='relative inline-block group'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className='relative inline-block group'
     >
       {children}
       <AnimatePresence mode='wait'>
         {isHovered && (
           <motion.div
+            animate='animate'
             className={clsx(
               'absolute text-3xl bg-black text-white px-4 py-2 rounded-lg whitespace-nowrap z-50 flex items-center',
               'left-full top-4 -translate-y-1/2',
@@ -31,10 +32,9 @@ export const Tooltip = ({ children, text, className = '' }: TooltipProps) => {
               'max-md:right-full max-md:mr-2 max-md:left-auto max-md:ml-0',
               className
             )}
-            variants={tooltipVariant}
-            initial='initial'
-            animate='animate'
             exit='exit'
+            initial='initial'
+            variants={tooltipVariant}
           >
             {text}
           </motion.div>

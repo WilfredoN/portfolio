@@ -11,9 +11,9 @@ interface FeedbackItemProps {
 export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className='feedback-item'
+      initial={{ opacity: 0, y: 20 }}
       whileHover={{ scale: 1.05 }}
     >
       <div className='flex items-start justify-between mb-4'>

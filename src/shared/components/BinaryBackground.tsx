@@ -3,10 +3,10 @@ import { useEffect, useRef } from 'react'
 import '../styles/bg.css'
 
 interface Symbols {
+  speed: number
+  value: string
   x: number
   y: number
-  value: string
-  speed: number
 }
 
 export const BinaryBackground = () => {
@@ -101,5 +101,5 @@ export const BinaryBackground = () => {
     }
   }, [])
 
-  return <canvas className='binary-background' ref={canvasRef}></canvas>
+  return <canvas ref={canvasRef} className='binary-background'></canvas>
 }

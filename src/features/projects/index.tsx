@@ -5,9 +5,9 @@ import { motion } from 'motion/react'
 export const Projects = () => {
   return (
     <motion.article
+      animate='final'
       className='mt-8 p-4 max-w-screen-2xl text-left flex flex-col gap-8 flex-wrap items-center justify-center'
       initial='initial'
-      animate='final'
     >
       <ProjectList />
       <Text className='text-4xl font-bold text-center'>

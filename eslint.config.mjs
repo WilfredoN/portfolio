@@ -16,11 +16,6 @@ export default antfu({
     'perfectionist/sort-imports': ['error', {
       internalPattern: ['^@/'],
     }],
-    'perfectionist/sort-jsx-props': ['error', {
-      type: 'alphabetical',
-      order: 'asc',
-      groups: ['shorthand', 'multiline', 'unknown']
-    }],
     'perfectionist/sort-object-types': ['error'],
     'perfectionist/sort-interfaces': ['error'],
     'antfu/top-level-function': 'off',

@@ -8,10 +8,10 @@ import { motion } from 'motion/react'
 export const About = () => {
   return (
     <motion.article
-      className='mt-8 max-w-screen-2xl flex items-center justify-center flex-col'
-      initial='initial'
       animate='final'
+      className='mt-8 max-w-screen-2xl flex items-center justify-center flex-col'
       exit='exit'
+      initial='initial'
     >
       <div className='flex m-0 flex-col items-center justify-center max-w-screen-2xl relative'>
         <div className='flex items-center justify-center max-w-[35rem] relative'>

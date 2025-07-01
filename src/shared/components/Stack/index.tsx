@@ -3,9 +3,9 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
 export interface StackProps {
+  className?: string
   items: string[]
   size?: 'medium' | 'large'
-  className?: string
 }
 
 export const Stack = ({
@@ -21,7 +21,7 @@ export const Stack = ({
       )}
     >
       {items.map(item => (
-        <Icon key={item} iconName={item} alt={item} size={size} />
+        <Icon key={item} alt={item} iconName={item} size={size} />
       ))}
     </motion.div>
   )

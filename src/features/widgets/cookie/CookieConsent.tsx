@@ -27,8 +27,8 @@ export const CookieConsent = () => {
         this site you agree to our use of cookies.
       </p>
       <button
-        onClick={handleAccept}
         className='mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded'
+        onClick={handleAccept}
       >
         Accept
       </button>

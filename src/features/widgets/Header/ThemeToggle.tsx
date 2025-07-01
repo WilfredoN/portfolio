@@ -1,8 +1,8 @@
 import Switch from 'react-switch'
 
 interface ThemeToggleProps {
-  toggleTheme: () => void
   isDarkTheme: boolean
+  toggleTheme: () => void
 }
 
 export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
@@ -13,31 +13,9 @@ export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
         htmlFor="checkbox"
       >
         <Switch
-          onChange={toggleTheme}
-          checked={isDarkTheme}
-          id="checkbox"
-          offColor="#99ccff"
-          onColor="#2196f3"
-          offHandleColor="#00_"
-          onHandleColor="#00_"
-          boxShadow="none"
           activeBoxShadow="none"
-          uncheckedIcon={false}
-          uncheckedHandleIcon={(
-            <div
-              style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '2em',
-                top: '-10px'
-              }}
-            >
-              ☀️
-            </div>
-          )}
-          checkedIcon={false}
+          boxShadow="none"
+          checked={isDarkTheme}
           checkedHandleIcon={(
             <div
               style={{
@@ -52,9 +30,31 @@ export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
               🌙
             </div>
           )}
-          height={64}
-          width={128}
+          checkedIcon={false}
           handleDiameter={26}
+          height={64}
+          id="checkbox"
+          offColor="#99ccff"
+          offHandleColor="#00_"
+          uncheckedHandleIcon={(
+            <div
+              style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize: '2em',
+                top: '-10px'
+              }}
+            >
+              ☀️
+            </div>
+          )}
+          uncheckedIcon={false}
+          width={128}
+          onChange={toggleTheme}
+          onColor="#2196f3"
+          onHandleColor="#00_"
         />
       </label>
     </div>

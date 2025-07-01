@@ -1,16 +1,16 @@
 import type { JSX } from 'react'
 
 export interface ProjectInfo {
-  title: string
-  imageTitle?: string
+  additionalDescription?: JSX.Element
   description: string
-  technologies: string[]
+  imageStyle?: string
+  imageTitle?: string
+  imageUrl?: string
   link?: string
   scale?: 'small' | 'medium' | 'large'
-  additionalDescription?: JSX.Element
-  imageUrl?: string
+  technologies: string[]
+  title: string
   videoUrl?: string
-  imageStyle?: string
 }
 
 export const projects: ProjectInfo[] = [
@@ -30,8 +30,8 @@ export const projects: ProjectInfo[] = [
       <span>
         If you wanna get demo - contact{' '}
         <a
-          href='https://www.winwin.travel/'
           className='text-blue-400 hover:underline'
+          href='https://www.winwin.travel/'
         >
           here
         </a>

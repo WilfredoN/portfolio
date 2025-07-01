@@ -19,15 +19,15 @@ export const FeedbackPage = () => {
 
   return (
     <motion.article
+      animate='final'
       className='mt-8 max-w-screen-2xl text-left flex flex-col items-center justify-center'
       initial='initial'
-      animate='final'
     >
       <motion.div className='w-full max-w-6xl mx-auto px-4 py-8'>
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className='text-center mb-12'
+          initial={{ opacity: 0, y: -20 }}
         >
           <h1 className='text-4xl md:text-5xl mb-4'>Feedback</h1>
           <p className='text-2xl opacity-80 max-w-2xl mx-auto'>
@@ -38,7 +38,7 @@ export const FeedbackPage = () => {
 
         <FeedbackForm onSuccess={handleFormSuccess} />
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
           <div className='flex items-center justify-center mb-8'>
             <h2 className='text-3xl font-bold'>Recent Feedback</h2>
           </div>
@@ -47,8 +47,8 @@ export const FeedbackPage = () => {
 
           {!isLoading && feedbacks.length === 0 && (
             <NoFeedbacks
-              title='No feedback yet'
               description='Be the first to share your thoughts and experiences!'
+              title='No feedback yet'
             />
           )}
 

@@ -1,7 +1,7 @@
 interface NavigationLinkProps {
-  onClick: () => void
   children: React.ReactNode
   isClicked: boolean
+  onClick: () => void
 }
 
 export const NavigationButton = ({
@@ -15,8 +15,8 @@ export const NavigationButton = ({
         ? 'unclickable pointer-events-none outline rounded-3xl duration-100'
         : ''
     }`}
-    onClick={onClick}
     style={{ fontSize: '2.5rem' }}
+    onClick={onClick}
   >
     {children}
   </button>

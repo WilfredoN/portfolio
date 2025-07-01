@@ -1,8 +1,8 @@
 import { List } from '@features/about/components/List'
 
 interface SectionProps {
+  items: { icon: string; text: string; }[]
   title: string
-  items: { text: string; icon: string }[]
 }
 
 export const Section = ({ title, items }: SectionProps) => {

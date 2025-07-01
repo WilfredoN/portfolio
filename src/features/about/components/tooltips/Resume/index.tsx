@@ -18,13 +18,13 @@ export const Resume = ({ url = 'assets/resume.pdf' }: FileProps) => {
         <motion.div
           className='relative p-3 outline cursor-pointer rounded-3xl flex items-center justify-center outline-white'
           title='Download CV'
-          onClick={handleClick}
-          whileHover={{ scale: 1.2 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          whileHover={{ scale: 1.2 }}
+          onClick={handleClick}
         >
           <motion.div
-            whileHover={{ color: '#ffffff' }}
             transition={{ duration: 0.2 }}
+            whileHover={{ color: '#ffffff' }}
           >
             <FaFileDownload size={48} />
           </motion.div>

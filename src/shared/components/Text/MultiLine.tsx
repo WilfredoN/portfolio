@@ -2,9 +2,9 @@ import { Text } from '@shared/components/Text/Text'
 import clsx from 'clsx'
 
 interface MultiLineProps {
+  className?: string
   lines: string[]
   textStyles?: string
-  className?: string
 }
 export const MultiLine = ({ lines, className, textStyles }: MultiLineProps) => {
   return (

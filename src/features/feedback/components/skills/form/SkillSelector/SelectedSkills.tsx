@@ -4,9 +4,9 @@ import { SkillBadge } from '@features/feedback/components/skills/badge/SkillBadg
 import { motion } from 'motion/react'
 
 export interface SelectedSkillsProps {
+  onSkillToggle: (id: number) => void
   selectedSkills: number[]
   skills: Skill[]
-  onSkillToggle: (id: number) => void
 }
 
 export const SelectedSkills = ({
@@ -18,9 +18,9 @@ export const SelectedSkills = ({
 
   return (
     <motion.div
+      animate={{ opacity: 1, y: 0 }}
       className='selected-skills-container'
       initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <p className='text-xl'>
@@ -34,9 +34,9 @@ export const SelectedSkills = ({
           return skill ? (
             <SkillBadge
               key={skill.id}
+              showRemoveButton
               skill={skill}
               variant='compact'
-              showRemoveButton
               onRemove={() => onSkillToggle(skill.id)}
             />
           ) : null

@@ -6,8 +6,8 @@ import { supabase } from '../../../service/supabase'
 interface FeedbackDTO {
   author: string
   company?: string
-  text: string
   skills: number[]
+  text: string
 }
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
@@ -32,7 +32,7 @@ export const fetchFeedbacks = async (): Promise<Feedback[]> => {
 
 export const submitFeedback = async (
   feedbackData: FeedbackDTO
-): Promise<{ success: boolean; error?: string }> => {
+): Promise<{ error?: string; success: boolean; }> => {
   try {
     const { data: feedback, error: feedbackError } = await supabase
       .from('feedback')

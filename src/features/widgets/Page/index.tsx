@@ -21,14 +21,14 @@ export const Page = () => {
   const page = pageMap[currentPage] ?? <About />
 
   return (
-    <AnimatePresence mode='wait' initial={false}>
+    <AnimatePresence initial={false} mode='wait'>
       <motion.div
         key={currentPage}
-        variants={variants}
-        initial='initial'
         animate='final'
-        exit='exit'
         className='max-w-screen-2xl w-full'
+        exit='exit'
+        initial='initial'
+        variants={variants}
       >
         <Suspense fallback={<CgSpinner className='animate-spin' />}>
           {page}

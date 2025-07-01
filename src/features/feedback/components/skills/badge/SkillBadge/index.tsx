@@ -6,11 +6,11 @@ import { SkillBadgeRemovable } from '@features/feedback/components/skills/badge/
 import { SkillBadgeSelectable } from '@features/feedback/components/skills/badge/SkillBadge/variants/Selectable'
 
 interface SkillBadgeProps {
-  skill: Skill
   isSelected?: boolean
-  showRemoveButton?: boolean
   onClick?: () => void
   onRemove?: () => void
+  showRemoveButton?: boolean
+  skill: Skill
   variant?: 'default' | 'compact' | 'selectable'
 }
 
@@ -29,8 +29,8 @@ export const SkillBadge = ({
   if (variant === 'selectable') {
     return (
       <SkillBadgeSelectable
-        skill={skill}
         isSelected={isSelected}
+        skill={skill}
         onClick={onClick}
       />
     )

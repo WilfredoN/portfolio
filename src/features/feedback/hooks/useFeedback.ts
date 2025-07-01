@@ -78,8 +78,8 @@ export const useFeedback = (onSuccess?: () => void) => {
   }, [])
 
   const submitForm = useCallback(async (): Promise<{
-    success: boolean
     error?: string
+    success: boolean
   }> => {
     const validationErrors = validateFeedbackForm(formData)
 

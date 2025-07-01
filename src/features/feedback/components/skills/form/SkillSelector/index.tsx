@@ -9,9 +9,9 @@ import type { Skill } from './SkillsGrid'
 import { SkillsGrid } from './SkillsGrid'
 
 interface SkillSelectorProps {
-  selectedSkills: number[]
-  onSkillToggle: (skillId: number) => void
   error?: string
+  onSkillToggle: (skillId: number) => void
+  selectedSkills: number[]
 }
 
 export const SkillSelector = ({
@@ -40,9 +40,9 @@ export const SkillSelector = ({
 
   return (
     <motion.div
+      animate={{ opacity: 1, y: 0 }}
       className='w-full flex flex-col gap-4'
       initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <label className='block text-lg font-medium mb-2 text-current'>
@@ -50,8 +50,8 @@ export const SkillSelector = ({
       </label>
       <SkillTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <SkillsGrid
-        skills={currentSkills}
         selectedSkills={selectedSkills}
+        skills={currentSkills}
         onSkillToggle={onSkillToggle}
       />
       {selectedSkills.length > 0 && (
@@ -63,9 +63,9 @@ export const SkillSelector = ({
       )}
       {error && (
         <motion.p
+          animate={{ opacity: 1 }}
           className='mt-2 text-sm text-red-500 dark:text-red-400'
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
         >
           {error}

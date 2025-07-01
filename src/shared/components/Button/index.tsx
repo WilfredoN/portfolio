@@ -30,8 +30,6 @@ export const Button = ({
 
   return (
     <motion.button
-      whileHover={{ scale: disabled || isLoading ? 1 : 1.05 }}
-      whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
       className={clsx(
         baseClasses,
         variantClasses[variant],
@@ -39,8 +37,10 @@ export const Button = ({
         className
       )}
       disabled={disabled || isLoading}
-      onClick={onClick}
       type={type}
+      whileHover={{ scale: disabled || isLoading ? 1 : 1.05 }}
+      whileTap={{ scale: disabled || isLoading ? 1 : 0.98 }}
+      onClick={onClick}
     >
       {isLoading ? (
         <>

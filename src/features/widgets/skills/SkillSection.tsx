@@ -7,10 +7,10 @@ import {
 export const SkillSection = () => {
   return (
     <div className='flex flex-col justify-center sm:flex-row mt-4 mb-8 w-full'>
-      <Section title='Programming Languages' items={programmingLanguages} />
+      <Section items={programmingLanguages} title='Programming Languages' />
       <Section
-        title='Technologies and Libraries'
         items={technologiesAndLibraries}
+        title='Technologies and Libraries'
       />
     </div>
   )

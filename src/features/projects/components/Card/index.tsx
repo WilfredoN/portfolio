@@ -35,16 +35,16 @@ export const Card = ({
       )}
     >
       <motion.h1
+        animate='final'
         className='text-4xl text-center flex items-center flex-col'
         initial='initial'
-        animate='final'
       >
         {imageUrl ? (
           <ProjectImage
-            src={imageUrl}
             alt={title}
-            title={imageTitle}
             className={imageStyle}
+            src={imageUrl}
+            title={imageTitle}
           />
         ) : videoUrl ? (
           <ProjectVideo src={videoUrl} />

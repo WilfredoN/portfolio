@@ -5,8 +5,8 @@ import { Icon } from '@shared/components/Icon'
 import clsx from 'clsx'
 
 interface SkillBadgeRemovableProps {
-  skill: Skill
   onRemove: () => void
+  skill: Skill
 }
 
 export const SkillBadgeRemovable = ({
@@ -17,12 +17,12 @@ export const SkillBadgeRemovable = ({
     <Icon iconName={getSkillIconName(skill.name)} size='medium' />
     <span className='text-sm font-medium'>{skill.name}</span>
     <button
+      className='ml-1 skill-badge-remove'
       type='button'
       onClick={(e) => {
         e.stopPropagation()
         onRemove()
       }}
-      className='ml-1 skill-badge-remove'
     >
       ×
     </button>

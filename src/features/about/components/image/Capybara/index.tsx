@@ -1,7 +1,7 @@
 // TODO: move
 export interface ImageProps {
-  url?: string
   alt?: string
+  url?: string
 }
 
 export const Capybara = ({
@@ -18,10 +18,10 @@ export const Capybara = ({
 
   return (
     <img
-      src={url}
       alt={alt || 'Sorry, image not found'}
       className='scale-105 rounded-full'
       draggable='false'
+      src={url}
     />
   )
 }
