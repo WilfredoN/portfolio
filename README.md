@@ -2,4 +2,9 @@
 
 ### To run locally:
 
-`npm run dev`
+```bash
+git clone https://github.com/WilfredoN/portfolio.git
+cd portfolio
+pnpm install
+pnpm run dev
+```
