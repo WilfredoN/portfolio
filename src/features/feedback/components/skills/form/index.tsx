@@ -3,7 +3,7 @@ import { useFeedback } from '@features/feedback/hooks/useFeedback'
 import { toggleSkill } from '@features/feedback/utils/toggleSkill'
 import { Button } from '@shared/components/Button'
 import { Input, Textarea } from '@shared/components/Input'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
 interface FeedbackFormProps {

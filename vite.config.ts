@@ -22,10 +22,6 @@ export default defineConfig({
           dest: 'assets/'
         },
         {
-          src: '.well-known/*',
-          dest: '.well-known/'
-        },
-        {
           src: 'public/*',
           dest: 'assets/'
         },

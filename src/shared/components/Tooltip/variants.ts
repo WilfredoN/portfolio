@@ -1,4 +1,4 @@
-import type { Variants } from 'framer-motion'
+import type { Variants } from 'motion/react'
 
 export const tooltipVariant: Variants = {
   initial: { opacity: 0, x: -10, scale: 0.9 },
