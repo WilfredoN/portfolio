@@ -10,7 +10,8 @@ export default defineConfig({
       '@features': '/src/features',
       '@features/about': '/src/features/about',
       '@features/about/components': '/src/features/about/components',
-      '@app': '/app'
+      '@app': '/app',
+      '@service': '/src/service'
     }
   },
   plugins: [

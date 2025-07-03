@@ -1,9 +1,8 @@
+import { Spinner } from '@shared/components/Spinner'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 
 import type { ButtonProps } from './types'
-
-import { Spinner } from '../Spinner'
 
 export const Button = ({
   variant = 'primary',

@@ -1,7 +1,7 @@
 import {
   programmingLanguages,
   technologiesAndLibraries
-} from '../../about/data/languages'
+} from '@features/about/data/languages'
 
 export const getSkillIconName = (skillName: string): string => {
   const allSkills = [...programmingLanguages, ...technologiesAndLibraries]

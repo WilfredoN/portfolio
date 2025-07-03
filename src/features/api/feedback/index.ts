@@ -1,7 +1,7 @@
 import type { Feedback } from '@features/feedback/types/feedback'
 import type { Skill } from '@features/feedback/types/skill'
 
-import { supabase } from '../../../service/supabase'
+import { supabase } from '@service/supabase'
 
 interface FeedbackDTO {
   author: string
@@ -32,7 +32,7 @@ export const fetchFeedbacks = async (): Promise<Feedback[]> => {
 
 export const submitFeedback = async (
   feedbackData: FeedbackDTO
-): Promise<{ error?: string; success: boolean; }> => {
+): Promise<{ error?: string; success: boolean }> => {
   try {
     const { data: feedback, error: feedbackError } = await supabase
       .from('feedback')

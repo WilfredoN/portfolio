@@ -1,8 +1,8 @@
+import { useTheme } from '@app/hooks/useTheme'
 import { Footer } from '@features/about/components/Footer'
+import { BinaryBackground } from '@shared/components/BinaryBackground'
 import { useEffect } from 'react'
 
-import { useTheme } from '../../app/hooks/useTheme'
-import { BinaryBackground } from '../shared/components/BinaryBackground'
 import { applyTheme } from './about/utils/theme'
 import { Page } from './widgets/Page'
 

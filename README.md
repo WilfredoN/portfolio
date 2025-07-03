@@ -15,7 +15,7 @@ pnpm run dev
 - [x] feedback api
 - [x] FSD-like architecture
 - [x] pnpm migration
-- [ ] github actions
+- [x] github actions
 - [ ] git hooks (as husky alternative)
 - [ ] jest unit tests
 - [ ] next.js
