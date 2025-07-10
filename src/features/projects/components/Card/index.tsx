@@ -50,8 +50,8 @@ export const Card = ({
             alt={title}
             className={imageStyle}
             src={imageUrl}
-            onClick={link ? handleClick : undefined}
             title={imageTitle}
+            onClick={link ? handleClick : undefined}
           />
         ) : videoUrl ? (
           <ProjectVideo src={videoUrl} />

@@ -23,9 +23,9 @@ export const ProjectImage = ({
       'px-4 py-2 rounded-3xl my-2 w-full max-h-80 object-cover',
       onClick && 'cursor-pointer'
     )}
+    loading='lazy'
     src={src}
     title={title}
-    loading='lazy'
     onClick={onClick}
   />
 )
