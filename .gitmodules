@@ -1,0 +1,3 @@
+[submodule "public/projects"]
+	path = public/projects
+	url = https://github.com/WilfredoN/FrontendMentor-projects.git
