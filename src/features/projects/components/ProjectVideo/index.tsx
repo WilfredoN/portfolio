@@ -12,6 +12,7 @@ export const ProjectVideo = ({ src, className }: ProjectVideoProps) => (
     muted
     autoPlay={false}
     className={className || 'px-4 py-2 rounded-md my-2'}
+    preload='metadata'
     src={src}
   />
 )

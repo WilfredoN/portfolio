@@ -25,6 +25,7 @@ export const ProjectImage = ({
     )}
     src={src}
     title={title}
+    loading='lazy'
     onClick={onClick}
   />
 )
