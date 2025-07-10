@@ -1,4 +1,4 @@
-import type { ProjectInfo } from '@features/projects/data/projects'
+import type { ProjectProps } from '@features/projects/data/projects'
 
 import { ProjectImage } from '@features/projects/components/ProjectImage'
 import { ProjectVideo } from '@features/projects/components/ProjectVideo'
@@ -18,16 +18,22 @@ export const Card = ({
   imageStyle,
   scale = 'medium',
   additionalDescription
-}: ProjectInfo) => {
+}: ProjectProps) => {
   const isLarge = scale === 'large'
+
+  const handleClick = () => {
+    if (link) {
+      window.open(link, '_blank', 'noopener,noreferrer')
+    }
+  }
 
   return (
     <motion.div
       className={clsx(
-        'flex flex-col justify-between mb-12 w-full border-3 rounded-lg p-4',
+        'flex flex-col justify-between mb-12 w-full border-3 rounded-lg p-4 transition-transform duration-100',
         {
-          'md:h-[30.625rem] hover:scale-105 transition-transform duration-100':
-            scale === 'medium',
+          'hover:scale-105': !videoUrl,
+          'md:h-[30.625rem] ': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,
           'max-w-[31.25rem]': !isLarge
@@ -44,6 +50,7 @@ export const Card = ({
             alt={title}
             className={imageStyle}
             src={imageUrl}
+            onClick={link ? handleClick : undefined}
             title={imageTitle}
           />
         ) : videoUrl ? (

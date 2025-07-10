@@ -1,7 +1,10 @@
 import type { JSX } from 'react'
 
-export interface ProjectInfo {
+type Category = 'project' | 'live'
+
+export interface ProjectProps {
   additionalDescription?: JSX.Element
+  category?: Category
   description: string
   imageStyle?: string
   imageTitle?: string
@@ -13,9 +16,72 @@ export interface ProjectInfo {
   videoUrl?: string
 }
 
-export const projects: ProjectInfo[] = [
+export const projects: ProjectProps[] = [
+  {
+    title: 'Order Summary Component',
+    description:
+      'A responsive order summary card component built with HTML, CSS, and JavaScript. Features hover states for interactive elements and follows Frontend Mentor design specifications.',
+    technologies: ['html5', 'css3', 'javascript'],
+    scale: 'small',
+    link: '/projects/order-summary-component-main/index.html',
+    imageUrl: 'projects/order-summary-component-main/design/desktop-design.jpg',
+    category: 'live'
+  },
+  {
+    title: 'Calculator App',
+    description:
+      'A fully functional calculator application with multiple themes. Features theme switching, keyboard support, and responsive design for all device sizes.',
+    technologies: ['html5', 'css3', 'javascript'],
+    scale: 'small',
+    link: '/projects/calculator-app-main/index.html',
+    imageUrl: 'projects/calculator-app-main/design/desktop-design-theme-1.jpg',
+    category: 'live'
+  },
+  {
+    title: 'Sunnyside Agency Landing Page',
+    description:
+      'A modern, responsive landing page for a creative agency. Features smooth animations, mobile navigation toggle, and optimized images with CSS Grid and Flexbox layouts.',
+    technologies: ['html5', 'css3', 'javascript'],
+    scale: 'large',
+    link: '/projects/sunnyside-agency-landing-page-main/index.html',
+    imageUrl:
+      'projects/sunnyside-agency-landing-page-main/design/desktop-design.jpg',
+    category: 'live'
+  },
+  {
+    title: 'Blogr Landing Page',
+    description:
+      'A feature-rich landing page for a modern publishing platform. Includes custom dropdown menus, responsive design, and engaging visual hierarchy.',
+    technologies: ['html5', 'css3', 'javascript'],
+    scale: 'small',
+    link: '/projects/Blogr-landing-page/index.html',
+    imageUrl: 'projects/Blogr-landing-page/design/desktop-design.jpg',
+    category: 'live'
+  },
+  {
+    title: 'FAQ Accordion Card',
+    description:
+      'An interactive FAQ component with smooth accordion animations. Built with accessible HTML structure and vanilla JavaScript for functionality.',
+    technologies: ['html5', 'css3', 'javascript'],
+    scale: 'small',
+    link: '/projects/faq-accordion-card-main/index.html',
+    imageUrl: 'projects/faq-accordion-card-main/design/desktop-design.jpg',
+    category: 'live'
+  },
+  {
+    title: 'Interactive Pricing Component',
+    description:
+      'A dynamic pricing component with toggle functionality and responsive design. Features smooth transitions and interactive elements for better user experience.',
+    technologies: ['html5', 'css3', 'javascript'],
+    scale: 'small',
+    link: '/projects/interactive-pricing-component-main/index.html',
+    imageUrl:
+      'projects/interactive-pricing-component-main/design/desktop-design.jpg',
+    category: 'live'
+  },
   {
     title: 'Alexandria',
+    scale: 'medium',
     imageTitle: 'Github Repository',
     description:
       'A web platform for organizing a convenient learning process as well as communication between teachers and students. It was made as part of a exam project in a college.',
