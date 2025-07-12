@@ -20,7 +20,7 @@ export const About = () => {
           <div
             className={clsx(
               'relative flex select-none items-center justify-center overflow-hidden rounded-full border-2',
-              'min-h-[560px] min-w-[560px] sm:w-1/2 xl:w-full'
+              'xl:min-h-[560px] xl:w-full xl:min-w-[560px]'
             )}
           >
             <Capybara />
