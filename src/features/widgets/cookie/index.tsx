@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export const CookieConsent = () => {
-  const [accepted, setAccepted] = useState(false)
+  const [accepted, setAccepted] = useState(true)
 
   useEffect(() => {
     const consent = localStorage.getItem('cookieConsent')

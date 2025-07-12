@@ -1,7 +1,7 @@
 import { AppProviders } from '@app/providers/AppProviders'
 import { Content } from '@features/Content'
-import { CookieConsent } from '@features/widgets/cookie/CookieConsent'
-import { Header } from '@features/widgets/Header'
+import { CookieConsent } from '@features/widgets'
+import { Header } from '@features/widgets'
 
 import './App.css'
 

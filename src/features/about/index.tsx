@@ -1,8 +1,9 @@
 import { Capybara } from '@features/about/components/image/Capybara'
 import { Resume } from '@features/about/components/tooltips'
 import { lines } from '@features/about/data/introduction'
-import { SkillSection } from '@features/widgets/skills/SkillSection'
+import { SkillSection } from '@features/widgets'
 import { MultiLine, Text } from '@shared/components/Text'
+import clsx from 'clsx'
 import { motion } from 'motion/react'
 
 export const About = () => {
@@ -16,7 +17,12 @@ export const About = () => {
       <div className='flex m-0 flex-col items-center justify-center max-w-screen-2xl relative'>
         <div className='flex items-center justify-center max-w-[35rem] relative'>
           <Resume />
-          <div className='flex items-center justify-center select-none overflow-hidden border-2 xl:w-full sm:w-1/2 rounded-full relative'>
+          <div
+            className={clsx(
+              'flex items-center justify-center select-none overflow-hidden border-2 rounded-full relative',
+              'min-w-[560px] min-h-[560px] xl:w-full sm:w-1/2'
+            )}
+          >
             <Capybara />
           </div>
         </div>

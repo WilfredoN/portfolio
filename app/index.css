@@ -17,13 +17,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --color-bg: #d1e9ff;
-  --color-nav: #b3d9ff;
-  --color-text: #333333;
-  --color-border: #99ccff;
-  --color-border-opacity: hsla(210, 100%, 80%, 0.4);
-  --color-accent: #0056b3;
 }
 
 html,
