@@ -17,7 +17,7 @@ export const SkillBadgeRemovable = ({
     <Icon iconName={getSkillIconName(skill.name)} size='medium' />
     <span className='text-sm font-medium'>{skill.name}</span>
     <button
-      className='ml-1 skill-badge-remove'
+      className='skill-badge-remove ml-1'
       type='button'
       onClick={(e) => {
         e.stopPropagation()

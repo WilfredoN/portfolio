@@ -46,7 +46,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
     return (
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className='flex justify-center mb-8'
+        className='mb-8 flex justify-center'
         initial={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3 }}
       >
@@ -57,7 +57,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
           onClick={() => setShowForm(true)}
         >
           <svg
-            className='w-5 h-5'
+            className='h-5 w-5'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -80,22 +80,22 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
     <AnimatePresence mode='wait'>
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className='max-w-2xl mx-auto mb-8'
+        className='mx-auto mb-8 max-w-2xl'
         exit={{ opacity: 0, y: 20 }}
         initial={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3 }}
       >
         <motion.div
           animate={{ scale: 1 }}
-          className='bg-white dark:bg-gray-800/30 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700'
+          className='rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800/30'
           initial={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
         >
-          <div className='flex justify-between items-center mb-6'>
+          <div className='mb-6 flex items-center justify-between'>
             <div className='flex items-center space-x-3'>
-              <div className='w-10 h-10 bg-blue-900/50 rounded-full flex items-center justify-center'>
+              <div className='flex h-10 w-10 items-center justify-center rounded-full bg-blue-900/50'>
                 <svg
-                  className='w-6 h-6 text-blue-600 dark:text-blue-400'
+                  className='h-6 w-6 text-blue-600 dark:text-blue-400'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
@@ -112,7 +112,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
             </div>
             <button className='transition-colors' onClick={handleCancel}>
               <svg
-                className='w-6 h-6'
+                className='h-6 w-6'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -130,7 +130,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
           {submitError && (
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className='mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'
+              className='mb-6 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20'
               initial={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
             >
@@ -141,7 +141,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
           )}
 
           <form className='space-y-6' onSubmit={handleSubmit}>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
               <Input
                 required
                 error={errors.author}

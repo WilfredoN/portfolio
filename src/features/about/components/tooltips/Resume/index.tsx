@@ -16,7 +16,7 @@ export const Resume = ({ url = 'assets/resume.pdf' }: FileProps) => {
     <div className='absolute bottom-4 right-4 z-10'>
       <Tooltip text='Check my CV!'>
         <motion.div
-          className='relative p-3 outline cursor-pointer rounded-3xl flex items-center justify-center outline-white'
+          className='relative flex cursor-pointer items-center justify-center rounded-3xl p-3 outline outline-white'
           title='Download CV'
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           whileHover={{ scale: 1.2 }}

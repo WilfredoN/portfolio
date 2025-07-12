@@ -6,7 +6,7 @@ import {
 
 export const SkillSection = () => {
   return (
-    <div className='flex flex-col justify-center sm:flex-row mt-4 mb-8 w-full'>
+    <div className='mb-8 mt-4 flex w-full flex-col justify-center sm:flex-row'>
       <Section items={programmingLanguages} title='Programming Languages' />
       <Section
         items={technologiesAndLibraries}

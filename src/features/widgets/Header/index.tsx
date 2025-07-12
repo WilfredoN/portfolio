@@ -35,15 +35,15 @@ export const Header = () => {
   return (
     <motion.header
       className={clsx(
-        'flex flex-col h-fit mt-3 w-full md:w-fit min-h-[120px] px-12 py-6 items-center mb-8 rounded-3xl md:rounded-full',
+        'mb-8 mt-3 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl px-12 py-6 md:w-fit md:rounded-full',
         {
           'sticky top-3 z-10 transition-all duration-300':
             !isMobile && scrollPosition > 0,
-          'transition-all duration-175': isMobile || scrollPosition === 0
+          'duration-175 transition-all': isMobile || scrollPosition === 0
         }
       )}
     >
-      <nav className='w-full flex md:flex-row flex-col justify-center'>
+      <nav className='flex w-full flex-col justify-center md:flex-row'>
         <NavigationButton
           isClicked={currentPage === PageType.About}
           onClick={() => handlePageChange(PageType.About)}

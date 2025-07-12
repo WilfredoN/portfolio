@@ -28,7 +28,7 @@ export const SkillBadgeSelectable = ({
     <span className='text-sm font-medium'>{skill.name}</span>
     {isSelected && (
       <motion.svg
-        className='w-4 h-4 ml-auto'
+        className='ml-auto h-4 w-4'
         fill='currentColor'
         viewBox='0 0 20 20'
       >

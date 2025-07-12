@@ -30,10 +30,10 @@ export const SkillSelector = ({
   if (loading) {
     return (
       <div className='w-full'>
-        <label className='block text-lg font-medium mb-2 text-current'>
+        <label className='mb-2 block text-lg font-medium text-current'>
           Skills & Technologies
         </label>
-        <div className='animate-pulse bg-gray-200 dark:bg-gray-700 h-32 rounded-lg'></div>
+        <div className='h-32 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-700'></div>
       </div>
     )
   }
@@ -41,11 +41,11 @@ export const SkillSelector = ({
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className='w-full flex flex-col gap-4'
+      className='flex w-full flex-col gap-4'
       initial={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.3 }}
     >
-      <label className='block text-lg font-medium mb-2 text-current'>
+      <label className='mb-2 block text-lg font-medium text-current'>
         Skills & Technologies
       </label>
       <SkillTabs activeTab={activeTab} setActiveTab={setActiveTab} />

@@ -6,11 +6,11 @@ export const Projects = () => {
   return (
     <motion.article
       animate='final'
-      className='mt-8 p-4 max-w-screen-2xl text-left flex flex-col gap-8 flex-wrap items-center justify-center'
+      className='mt-8 flex max-w-screen-2xl flex-col flex-wrap items-center justify-center gap-8 p-4 text-left'
       initial='initial'
     >
       <ProjectList />
-      <Text className='text-4xl font-bold text-center'>
+      <Text className='text-center text-4xl font-bold'>
         More projects coming soon...
       </Text>
     </motion.article>

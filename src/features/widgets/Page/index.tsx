@@ -25,7 +25,7 @@ export const Page = () => {
       <motion.div
         key={currentPage}
         animate='final'
-        className='max-w-screen-2xl w-full'
+        className='w-full max-w-screen-2xl'
         exit='exit'
         initial='initial'
         variants={variants}

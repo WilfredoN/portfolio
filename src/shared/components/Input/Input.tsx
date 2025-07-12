@@ -22,9 +22,9 @@ export const Input = ({
       transition={{ duration: 0.3 }}
     >
       {label && (
-        <label className='block text-lg font-medium mb-2 text-current'>
+        <label className='mb-2 block text-lg font-medium text-current'>
           {label}
-          {required && <span className='text-red-500 ml-1'>*</span>}
+          {required && <span className='ml-1 text-red-500'>*</span>}
         </label>
       )}
       <input

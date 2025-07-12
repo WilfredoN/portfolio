@@ -20,17 +20,17 @@ export const FeedbackPage = () => {
   return (
     <motion.article
       animate='final'
-      className='mt-8 max-w-screen-2xl text-left flex flex-col items-center justify-center'
+      className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center text-left'
       initial='initial'
     >
-      <motion.div className='w-full max-w-6xl mx-auto px-4 py-8'>
+      <motion.div className='mx-auto w-full max-w-6xl px-4 py-8'>
         <motion.div
           animate={{ opacity: 1, y: 0 }}
-          className='text-center mb-12'
+          className='mb-12 text-center'
           initial={{ opacity: 0, y: -20 }}
         >
-          <h1 className='text-4xl md:text-5xl mb-4'>Feedback</h1>
-          <p className='text-2xl opacity-80 max-w-2xl mx-auto'>
+          <h1 className='mb-4 text-4xl md:text-5xl'>Feedback</h1>
+          <p className='mx-auto max-w-2xl text-2xl opacity-80'>
             Share your thoughts and experiences, or read what others have to say
             about working with me.
           </p>
@@ -39,7 +39,7 @@ export const FeedbackPage = () => {
         <FeedbackForm onSuccess={handleFormSuccess} />
 
         <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-          <div className='flex items-center justify-center mb-8'>
+          <div className='mb-8 flex items-center justify-center'>
             <h2 className='text-3xl font-bold'>Recent Feedback</h2>
           </div>
 

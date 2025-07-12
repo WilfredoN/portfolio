@@ -37,7 +37,7 @@ export const Icon = memo(
     return (
       <img
         alt={alt ?? iconName}
-        className={`ml-2 ${size === 'medium' ? 'w-8 h-8' : 'w-12 h-12'}`}
+        className={`ml-2 ${size === 'medium' ? 'h-8 w-8' : 'h-12 w-12'}`}
         src={imageUrl}
         title={title ?? iconName}
       />

@@ -4,8 +4,8 @@ import { SiGmail, SiMonkeytype, SiWakatime } from 'react-icons/si'
 
 export const Footer = () => {
   return (
-    <footer className='w-full h-full text-center flex flex-col justify-center pt-16'>
-      <div className='flex flex-row justify-center text-4xl space-x-4'>
+    <footer className='flex h-full w-full flex-col justify-center pt-16 text-center'>
+      <div className='flex flex-row justify-center space-x-4 text-4xl'>
         <Link
           href='https://www.linkedin.com/in/nikita-afanasyev-kh/'
           icon={<FaLinkedin />}
@@ -18,7 +18,7 @@ export const Footer = () => {
         />
         <Link href='https://wakatime.com/@CapybaraN' icon={<SiWakatime />} />
       </div>
-      <p className='opacity-30 animate-pulse'>
+      <p className='animate-pulse opacity-30'>
         My portfolio built with Vite + React + TypeScript + TailwindCSS + Some
         Love ❤️
       </p>

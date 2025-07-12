@@ -10,17 +10,17 @@ export const About = () => {
   return (
     <motion.article
       animate='final'
-      className='mt-8 max-w-screen-2xl flex items-center justify-center flex-col'
+      className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center'
       exit='exit'
       initial='initial'
     >
-      <div className='flex m-0 flex-col items-center justify-center max-w-screen-2xl relative'>
-        <div className='flex items-center justify-center max-w-[35rem] relative'>
+      <div className='relative m-0 flex max-w-screen-2xl flex-col items-center justify-center'>
+        <div className='relative flex max-w-[35rem] items-center justify-center'>
           <Resume />
           <div
             className={clsx(
-              'flex items-center justify-center select-none overflow-hidden border-2 rounded-full relative',
-              'min-w-[560px] min-h-[560px] xl:w-full sm:w-1/2'
+              'relative flex select-none items-center justify-center overflow-hidden rounded-full border-2',
+              'min-h-[560px] min-w-[560px] sm:w-1/2 xl:w-full'
             )}
           >
             <Capybara />

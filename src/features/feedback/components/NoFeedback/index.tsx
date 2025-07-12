@@ -17,7 +17,7 @@ export const NoFeedbacks = ({
 }: NoFeedbacksProps) => {
   const defaultIcon = (
     <svg
-      className='w-10 h-10 opacity-50'
+      className='h-10 w-10 opacity-50'
       fill='none'
       stroke='currentColor'
       viewBox='0 0 24 24'
@@ -34,14 +34,14 @@ export const NoFeedbacks = ({
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className={`text-center py-12 ${className}`}
+      className={`py-12 text-center ${className}`}
       initial={{ opacity: 0, y: 20 }}
     >
-      <div className='w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6'>
+      <div className='mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800'>
         {icon || defaultIcon}
       </div>
-      <h3 className='text-2xl font-medium mb-4'>{title}</h3>
-      <p className='text-lg opacity-70 mb-6 max-w-md mx-auto'>{description}</p>
+      <h3 className='mb-4 text-2xl font-medium'>{title}</h3>
+      <p className='mx-auto mb-6 max-w-md text-lg opacity-70'>{description}</p>
       {action && action}
     </motion.div>
   )

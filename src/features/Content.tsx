@@ -14,7 +14,7 @@ export const Content = () => {
   }, [isDarkTheme])
 
   return (
-    <main className='flex flex-col justify-start items-center py-2 min-h-[100vh]'>
+    <main className='flex min-h-[100vh] flex-col items-center justify-start py-2'>
       <BinaryBackground />
       <Page />
       <Footer />

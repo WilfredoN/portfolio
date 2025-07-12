@@ -16,7 +16,7 @@ export const Stack = ({
   return (
     <motion.div
       className={clsx(
-        'flex flex-row justify-center items-center gap-4',
+        'flex flex-row items-center justify-center gap-4',
         className
       )}
     >

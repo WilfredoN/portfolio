@@ -30,10 +30,10 @@ export const Card = ({
   return (
     <motion.div
       className={clsx(
-        'flex flex-col justify-between mb-12 w-full border-3 rounded-lg p-4 transition-transform duration-100',
+        'border-3 mb-12 flex w-full flex-col justify-between rounded-lg p-4 transition-transform duration-100',
         {
           'hover:scale-105': !videoUrl,
-          'md:h-[30.625rem] ': scale === 'medium',
+          'md:h-[30.625rem]': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,
           'max-w-[31.25rem]': !isLarge
@@ -42,7 +42,7 @@ export const Card = ({
     >
       <motion.h1
         animate='final'
-        className='text-4xl text-center flex items-center flex-col'
+        className='flex flex-col items-center text-center text-4xl'
         initial='initial'
       >
         {imageUrl ? (
@@ -62,7 +62,7 @@ export const Card = ({
         )}
         {isLarge && <Stack items={technologies} size={scale} />}
 
-        <div className='text-[1.7rem] mt-4'>
+        <div className='mt-4 text-[1.7rem]'>
           <Text>{description}</Text>
           {additionalDescription && (
             <div className='mt-2'>{additionalDescription}</div>
@@ -70,10 +70,10 @@ export const Card = ({
         </div>
       </motion.h1>
 
-      <div className='self-center justify-self-end '>
+      <div className='self-center justify-self-end'>
         {!isLarge && (
           <>
-            <h3 className='text-3xl text-center mb-2'>Technologies used:</h3>
+            <h3 className='mb-2 text-center text-3xl'>Technologies used:</h3>
             <Stack items={technologies} />
           </>
         )}

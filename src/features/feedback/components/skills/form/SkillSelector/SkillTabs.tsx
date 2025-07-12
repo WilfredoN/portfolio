@@ -6,10 +6,10 @@ export interface SkillTabsProps {
 }
 
 export const SkillTabs = ({ activeTab, setActiveTab }: SkillTabsProps) => (
-  <div className='flex space-x-1 rounded-lg border border-[#99ccff] p-1 mb-4'>
+  <div className='mb-4 flex space-x-1 rounded-lg border border-[#99ccff] p-1'>
     <button
       className={clsx(
-        'rounded-md py-2 px-3 text-sm font-medium transition-all duration-200',
+        'rounded-md px-3 py-2 text-sm font-medium transition-all duration-200',
         activeTab === 'programming' ? 'tab-active' : 'tab-inactive',
         'flex-1'
       )}
@@ -20,7 +20,7 @@ export const SkillTabs = ({ activeTab, setActiveTab }: SkillTabsProps) => (
     </button>
     <button
       className={clsx(
-        'rounded-md py-2 px-3 text-sm font-medium transition-all duration-200',
+        'rounded-md px-3 py-2 text-sm font-medium transition-all duration-200',
         activeTab === 'technologies' ? 'tab-active' : 'tab-inactive',
         'flex-1'
       )}
