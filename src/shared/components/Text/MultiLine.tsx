@@ -1,5 +1,6 @@
-import { Text } from '@shared/components/Text/Text'
 import clsx from 'clsx'
+
+import { Heading } from './Heading'
 
 interface MultiLineProps {
   className?: string
@@ -10,9 +11,9 @@ export const MultiLine = ({ lines, className, textStyles }: MultiLineProps) => {
   return (
     <div className={clsx('flex flex-col', className)}>
       {lines.map((line, index) => (
-        <Text key={index} className={textStyles}>
+        <Heading key={index} as='h1' className={textStyles}>
           {line}
-        </Text>
+        </Heading>
       ))}
     </div>
   )
