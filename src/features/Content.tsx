@@ -5,9 +5,12 @@ import { useEffect } from 'react'
 
 import { applyTheme } from './about/utils/theme'
 import { Page } from './widgets/Page'
+import { useIsMobile } from '@shared/hooks/isMobile'
 
 export const Content = () => {
   const { isDarkTheme } = useTheme()
+
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     applyTheme(isDarkTheme)
@@ -15,7 +18,7 @@ export const Content = () => {
 
   return (
     <main className='flex min-h-[100vh] flex-col items-center justify-start py-2'>
-      <BinaryBackground />
+      {!isMobile && <BinaryBackground />}
       <Page />
       <Footer />
     </main>
