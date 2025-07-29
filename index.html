@@ -3,6 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="assets/capybara.ico" />
+
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
+      />
+    </noscript>
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <style>
+      :root {
+        font-family: 'Pixelify Sans', sans-serif;
+        font-optical-sizing: auto;
+        line-height: 1.5;
+        font-weight: 400;
+        color-scheme: light dark;
+        color: rgba(255, 255, 255, 0.87);
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      html,
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-y: hidden;
+      }
+      main {
+        margin: 0;
+        position: relative;
+        min-width: 20rem;
+        z-index: 5;
+      }
+    </style>
+
     <link rel="stylesheet" href="/app/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nikita Afanasiev - Software Engineer Portfolio</title>
@@ -32,7 +90,7 @@
     />
     <meta
       property="og:image"
-      content="https://capybara.cx.ua/assets/capybara_binary.png"
+      content="https://capybara.cx.ua/assets/capybara_binary.webp"
     />
     <meta property="og:url" content="https://capybara.cx.ua" />
     <meta property="og:type" content="website" />
@@ -46,7 +104,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://capybara.cx.ua/assets/capybara_binary.png"
+      content="https://capybara.cx.ua/assets/capybara_binary.webp"
     />
     <link rel="canonical" href="https://capybara.cx.ua" />
     <!-- Structured Data -->
@@ -64,6 +122,11 @@
       }
     </script>
 
+    <script type="module" crossorigin src="/app/main.tsx"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -78,10 +141,5 @@
 
       gtag('config', 'G-SXBWKYB14Z')
     </script>
-
-    <script type="module" crossorigin src="/app/main.tsx"></script>
-  </head>
-  <body>
-    <div id="root"></div>
   </body>
 </html>

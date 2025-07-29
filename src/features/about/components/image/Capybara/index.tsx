@@ -5,7 +5,7 @@ export interface ImageProps {
 }
 
 export const Capybara = ({
-  url = 'assets/capybara_binary.webp',
+  url = '/assets/capybara_binary.webp',
   alt = 'Capybara image in zeros and ones style'
 }: ImageProps) => {
   if (!url) {
@@ -20,7 +20,7 @@ export const Capybara = ({
     <img
       alt={alt || 'Sorry, image not found'}
       draggable='false'
-      fetchPriority='low'
+      fetchPriority='high'
       src={url}
     />
   )
