@@ -10,7 +10,7 @@ export const programmingLanguages = [
 export const technologiesAndLibraries = [
   { text: 'React', icon: 'react' },
   { text: 'Playwright', icon: 'playwright' },
-  { text: 'Jest', icon: 'jest' },
+  { text: 'Jest', icon: 'jest', type: 'plain' },
   { text: 'Vite', icon: 'vitejs' },
   { text: 'Bun', icon: 'bun' },
   { text: 'TailwindCSS', icon: 'tailwindcss' },

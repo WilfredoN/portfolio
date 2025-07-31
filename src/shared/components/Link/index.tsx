@@ -7,6 +7,7 @@ export const Link = ({ href, icon }: MediaLinkProps) => {
   return (
     <a
       className='rounded-xl p-2 transition-colors duration-150 ease-in-out hover:bg-neutral-600 hover:text-white'
+      aria-label={`Link to ${href}`}
       href={href}
       rel='noopener noreferrer'
       target='_blank'

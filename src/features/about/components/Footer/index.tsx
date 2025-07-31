@@ -18,7 +18,7 @@ export const Footer = () => {
         />
         <Link href='https://wakatime.com/@CapybaraN' icon={<SiWakatime />} />
       </div>
-      <p className='animate-pulse opacity-30'>
+      <p>
         My portfolio built with Vite + React + TypeScript + TailwindCSS + Some
         Love ❤️
       </p>

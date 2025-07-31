@@ -1,46 +1,30 @@
 import { getIconUrl } from '@features/helpers/url/icon'
+import { IconVariant } from '@shared/components/Icon'
 
 const iconUrlCache = new Map<string, Promise<string | undefined>>()
 
 export const fetchValidIconUrl = async (
-  iconName: string
+  iconName: string,
+  type?: IconVariant
 ): Promise<string | undefined> => {
-  if (iconUrlCache.has(iconName)) {
-    return iconUrlCache.get(iconName)!
+  const cacheKey = type ? `${iconName}-${type}` : iconName
+  if (iconUrlCache.has(cacheKey)) {
+    return iconUrlCache.get(cacheKey)!
   }
 
-  const fetchIconUrl = async (
-    iconName: string
-  ): Promise<string | undefined> => {
-    const originalUrl = getIconUrl(iconName, 'original')
-    const plainUrl = getIconUrl(iconName, 'plain')
-
+  const fetchIconUrl = async (): Promise<string | undefined> => {
+    const url = getIconUrl(iconName, type || 'original')
     try {
-      // FIXME: fix error in console log even though we catch it
-      const res = await fetch(originalUrl, { method: 'HEAD' })
-
+      const res = await fetch(url, { method: 'HEAD' })
       if (res.ok) {
-        return originalUrl
+        return url
       }
-    } catch (error) {
-      console.error(`Error fetching original icon: ${error}`)
-    }
-
-    try {
-      const res = await fetch(plainUrl, { method: 'HEAD' })
-
-      if (res.ok) {
-        return plainUrl
-      }
-    } catch (error) {
-      console.error(`Error fetching plain icon: ${error}`)
-    }
-
+    } catch {}
     return undefined
   }
 
-  const fetchPromise = (async () => await fetchIconUrl(iconName))()
-  iconUrlCache.set(iconName, fetchPromise)
+  const fetchPromise = (async () => await fetchIconUrl())()
+  iconUrlCache.set(cacheKey, fetchPromise)
 
   return fetchPromise
 }

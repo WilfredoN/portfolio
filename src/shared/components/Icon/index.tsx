@@ -2,22 +2,24 @@ import { fetchValidIconUrl } from '@features/api/icon/fetchValidIconUrl'
 import { memo, useEffect, useState } from 'react'
 
 export type IconSize = 'medium' | 'large'
+export type IconVariant = 'original' | 'plain'
 
 interface IconProps {
   alt?: string
   iconName: string
+  type?: IconVariant
   size?: IconSize
   title?: string
 }
 
 export const Icon = memo(
-  ({ iconName, alt, title, size = 'medium' }: IconProps) => {
+  ({ iconName, alt, title, size = 'medium', type = 'original' }: IconProps) => {
     const [imageUrl, setImageUrl] = useState<string>()
 
     useEffect(() => {
       let isMounted = true
       const load = async () => {
-        const url = await fetchValidIconUrl(iconName)
+        const url = await fetchValidIconUrl(iconName, type)
 
         if (isMounted) {
           setImageUrl(url)
@@ -28,7 +30,7 @@ export const Icon = memo(
       return () => {
         isMounted = false
       }
-    }, [iconName])
+    }, [iconName, type])
 
     if (!imageUrl) {
       return null
