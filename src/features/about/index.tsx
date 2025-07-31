@@ -3,10 +3,13 @@ import { Resume } from '@features/about/components/tooltips'
 import { lines } from '@features/about/data/introduction'
 import { SkillSection } from '@features/widgets'
 import { MultiLine, Text } from '@shared/components/Text'
+import { useIsMobile } from '@shared/hooks/isMobile'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 
 export const About = () => {
+  const isMobile = useIsMobile()
+
   return (
     <motion.article
       animate='final'
@@ -23,7 +26,13 @@ export const About = () => {
               'xl:min-h-[560px] xl:w-full xl:min-w-[560px]'
             )}
           >
-            <Capybara />
+            <Capybara
+              url={
+                isMobile
+                  ? '/assets/capybara_binary_small.webp'
+                  : '/assets/capybara_binary.webp'
+              }
+            />
           </div>
         </div>
         <MultiLine
