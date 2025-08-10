@@ -12,10 +12,12 @@ interface FeedbackDTO {
   text: string
 }
 export interface FeedbackResponse extends FeedbackDTO {
+  id: number
   feedback_skills: {
     skill_id: number
-    skills: Skill
+    skills: Skill[]
   }[]
+  created_at: string
 }
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
@@ -32,7 +34,7 @@ export const fetchFeedbacks = async (): Promise<Feedback[]> => {
     // TODO: fetch from json call. Not adapter tho but should work
     return []
   }
-  return mapFeedback(data as unknown[])
+  return mapFeedback(data as FeedbackResponse[])
 }
 
 export const submitFeedback = async (
