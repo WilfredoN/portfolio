@@ -17,6 +17,7 @@ pnpm run dev
 - [x] pnpm migration
 - [x] github actions
 - [ ] make supabase-independent feedback fetch (from exported json)
+- [ ] realize fetch with React-Query (TanStack)
 - [ ] git hooks (as husky alternative)
 - [ ] jest unit tests
 - [ ] next.js
