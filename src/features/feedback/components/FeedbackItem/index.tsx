@@ -14,7 +14,6 @@ export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
       animate={{ opacity: 1, y: 0 }}
       className='feedback-item'
       initial={{ opacity: 0, y: 20 }}
-      whileHover={{ scale: 1.05 }}
     >
       <div className='mb-4 flex items-start justify-between'>
         <div className='flex items-center space-x-3'>
