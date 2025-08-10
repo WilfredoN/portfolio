@@ -1,21 +1,18 @@
+import clsx from 'clsx'
 import { motion } from 'motion/react'
 
 interface NoFeedbacksProps {
-  action?: React.ReactNode
   className?: string
-  description: string
-  icon?: React.ReactNode
-  title: string
+  description?: string
+  title?: string
 }
 
 export const NoFeedbacks = ({
-  title,
-  description,
-  icon,
-  action,
+  title = 'No feedback yet',
+  description = 'Be the first to share your thoughts and experiences!',
   className = ''
 }: NoFeedbacksProps) => {
-  const defaultIcon = (
+  const icon = (
     <svg
       className='h-10 w-10 opacity-50'
       fill='none'
@@ -34,15 +31,14 @@ export const NoFeedbacks = ({
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className={`py-12 text-center ${className}`}
+      className={clsx('py-12 text-center', className)}
       initial={{ opacity: 0, y: 20 }}
     >
       <div className='mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800'>
-        {icon || defaultIcon}
+        {icon}
       </div>
       <h3 className='mb-4 text-2xl font-medium'>{title}</h3>
       <p className='mx-auto mb-6 max-w-md text-lg opacity-70'>{description}</p>
-      {action && action}
     </motion.div>
   )
 }

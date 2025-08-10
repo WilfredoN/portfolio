@@ -47,8 +47,6 @@ export const FeedbackPage = () => {
 
           {!isLoading && feedbacks.length === 0 && (
             <NoFeedbacks
-              description='Be the first to share your thoughts and experiences!'
-              title='No feedback yet'
             />
           )}
 
