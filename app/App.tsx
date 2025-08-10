@@ -1,6 +1,6 @@
 import { AppProviders } from '@app/providers/AppProviders'
 import { Content } from '@features/Content'
-import { CookieConsent, Header  } from '@features/widgets'
+import { CookieConsent, Header } from '@features/widgets'
 
 import './App.css'
 

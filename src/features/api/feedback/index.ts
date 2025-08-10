@@ -1,8 +1,9 @@
 import type { Feedback } from '@features/feedback/types/feedback'
+import type { Skill } from '@features/feedback/types/skill'
 
 import { supabase } from '@service/supabase'
+
 import { mapFeedback } from './mapper'
-import { Skill } from '@features/feedback/types/skill'
 
 interface FeedbackDTO {
   author: string
@@ -90,4 +91,3 @@ export const submitFeedback = async (
     return { success: false, error: 'An unexpected error occurred' }
   }
 }
-

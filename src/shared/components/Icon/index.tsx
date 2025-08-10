@@ -7,9 +7,9 @@ export type IconVariant = 'original' | 'plain'
 interface IconProps {
   alt?: string
   iconName: string
-  type?: IconVariant
   size?: IconSize
   title?: string
+  type?: IconVariant
 }
 
 export const Icon = memo(

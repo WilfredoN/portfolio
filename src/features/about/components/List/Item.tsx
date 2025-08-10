@@ -1,4 +1,6 @@
-import { Icon, IconVariant } from '@shared/components/Icon'
+import type { IconVariant } from '@shared/components/Icon';
+
+import { Icon } from '@shared/components/Icon'
 
 interface ItemProps {
   icon: string

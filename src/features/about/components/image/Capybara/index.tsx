@@ -21,9 +21,9 @@ export const Capybara = ({
       alt={alt || 'Sorry, image not found'}
       draggable='false'
       fetchPriority='high'
-      width={556}
       height={556}
       src={url}
+      width={556}
     />
   )
 }

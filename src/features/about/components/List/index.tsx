@@ -1,5 +1,6 @@
+import type { IconVariant } from '@shared/components/Icon'
+
 import { Item } from '@features/about/components/List/Item'
-import { IconVariant } from '@shared/components/Icon'
 
 interface ListProps {
   items: { icon: string; text: string; type?: IconVariant }[]

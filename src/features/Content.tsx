@@ -1,11 +1,11 @@
 import { useTheme } from '@app/hooks/useTheme'
 import { Footer } from '@features/about/components/Footer'
 import { BinaryBackground } from '@shared/components/BinaryBackground'
+import { useIsMobile } from '@shared/hooks/isMobile'
 import { useEffect } from 'react'
 
 import { applyTheme } from './about/utils/theme'
 import { Page } from './widgets/Page'
-import { useIsMobile } from '@shared/hooks/isMobile'
 
 export const Content = () => {
   const { isDarkTheme } = useTheme()

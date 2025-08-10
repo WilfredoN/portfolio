@@ -45,10 +45,7 @@ export const FeedbackPage = () => {
 
           {isLoading && <LoadingSpinner text='Loading feedback...' />}
 
-          {!isLoading && feedbacks.length === 0 && (
-            <NoFeedbacks
-            />
-          )}
+          {!isLoading && feedbacks.length === 0 && <NoFeedbacks />}
 
           {!isLoading && feedbacks.length > 0 && (
             <div className='grid gap-6 md:gap-8'>

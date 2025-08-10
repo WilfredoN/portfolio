@@ -1,5 +1,6 @@
+import type { IconVariant } from '@shared/components/Icon'
+
 import { getIconUrl } from '@features/helpers/url/icon'
-import { IconVariant } from '@shared/components/Icon'
 
 const iconUrlCache = new Map<string, Promise<string | undefined>>()
 
