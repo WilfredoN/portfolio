@@ -1,6 +1,6 @@
 import type { Skill } from '@features/feedback/types/skill'
 
-import { fetchSkills } from '@features/api/feedback'
+import { fetchSkills } from '@features/api/skills'
 import { categorizeSkills } from '@features/feedback/utils/categorizeSkills'
 import { toggleSkill } from '@features/feedback/utils/toggleSkill'
 import { useCallback, useEffect, useState } from 'react'

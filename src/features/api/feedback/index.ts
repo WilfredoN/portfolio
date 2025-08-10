@@ -1,13 +1,20 @@
 import type { Feedback } from '@features/feedback/types/feedback'
-import type { Skill } from '@features/feedback/types/skill'
 
 import { supabase } from '@service/supabase'
+import { mapFeedback } from './mapper'
+import { Skill } from '@features/feedback/types/skill'
 
 interface FeedbackDTO {
   author: string
   company?: string
   skills: number[]
   text: string
+}
+export interface FeedbackResponse extends FeedbackDTO {
+  feedback_skills: {
+    skill_id: number
+    skills: Skill
+  }[]
 }
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
@@ -21,13 +28,10 @@ export const fetchFeedbacks = async (): Promise<Feedback[]> => {
   if (error || !data) {
     console.error('Error fetching feedbacks:', error)
 
+    // TODO: fetch from json call. Not adapter tho but should work
     return []
   }
-
-  return (data ?? []).map((feedback) => ({
-    ...feedback,
-    skills: feedback.feedback_skills.flatMap((fs) => fs.skills)
-  }))
+  return mapFeedback(data as unknown[])
 }
 
 export const submitFeedback = async (
@@ -36,6 +40,7 @@ export const submitFeedback = async (
   try {
     const { data: feedback, error: feedbackError } = await supabase
       .from('feedback')
+      // TODO: maybe just insert(feedbackData) ? TO THINK
       .insert({
         author: feedbackData.author,
         company: feedbackData.company || null,
@@ -86,17 +91,3 @@ export const submitFeedback = async (
   }
 }
 
-export const fetchSkills = async (): Promise<Skill[]> => {
-  const { data, error } = await supabase
-    .from('skills')
-    .select('id, name')
-    .order('name', { ascending: true })
-
-  if (error || !data) {
-    console.error('Error fetching skills:', error)
-
-    return []
-  }
-
-  return data
-}

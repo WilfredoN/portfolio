@@ -28,8 +28,7 @@ export const useFeedbacks = () => {
   return {
     feedbacks,
     isLoading,
-    loadFeedbacks,
-    refreshFeedbacks: loadFeedbacks
+    loadFeedbacks
   }
 }
 
