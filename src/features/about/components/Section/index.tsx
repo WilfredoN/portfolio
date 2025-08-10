@@ -7,7 +7,7 @@ interface SectionProps {
 
 export const Section = ({ title, items }: SectionProps) => {
   return (
-    <section className='mb-4 mr-0 border sm:w-full md:mb-0 md:w-1/3 xl:mr-8'>
+    <section className='mr-0 mb-4 border sm:w-full md:mb-0 md:w-1/3 xl:mr-8'>
       <h2 className='border-b py-3 text-4xl'>{title}</h2>
       <List items={items} />
     </section>

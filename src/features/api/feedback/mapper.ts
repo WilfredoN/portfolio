@@ -1,6 +1,6 @@
 import type { Feedback } from '@features/feedback/types/feedback'
-import { FeedbackResponse } from '.'
 
+import type { FeedbackResponse } from '.'
 
 export const mapFeedback = (data: FeedbackResponse[]): Feedback[] =>
   data.map((feedback) => ({

@@ -26,10 +26,10 @@ export const Tooltip = ({ children, text, className = '' }: TooltipProps) => {
           <motion.div
             animate='animate'
             className={clsx(
-              'absolute z-50 flex items-center whitespace-nowrap rounded-lg bg-black px-4 py-2 text-3xl text-white',
-              'left-full top-4 -translate-y-1/2',
+              'absolute z-50 flex items-center rounded-lg bg-black px-4 py-2 text-3xl whitespace-nowrap text-white',
+              'top-4 left-full -translate-y-1/2',
               'md:left-full md:ml-4',
-              'max-md:left-auto max-md:right-full max-md:ml-0 max-md:mr-2',
+              'max-md:right-full max-md:left-auto max-md:mr-2 max-md:ml-0',
               className
             )}
             exit='exit'

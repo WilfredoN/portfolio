@@ -22,13 +22,11 @@ export const About = () => {
           <Resume />
           <div
             className={clsx(
-              'relative flex select-none items-center justify-center overflow-hidden rounded-full border-2',
+              'relative flex items-center justify-center overflow-hidden rounded-full border-2 select-none',
               'xl:min-h-[560px] xl:w-full xl:min-w-[560px]'
             )}
           >
-            <Capybara
-              url="assets/capybara_binary_compressed.avif"
-            />
+            <Capybara url='assets/capybara_binary_compressed.avif' />
           </div>
         </div>
         <MultiLine

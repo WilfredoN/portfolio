@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 :root {
   font-family: 'Pixelify Sans', sans-serif;
   font-optical-sizing: auto;
@@ -40,6 +45,7 @@ main {
   min-width: 20rem;
   z-index: 5;
 }
+
 main,
 footer,
 article {
@@ -67,16 +73,20 @@ nav a:hover {
 .border {
   border: 0.125rem solid var(--color-border);
 }
+
 .border-b {
   border-bottom: 0.25rem solid var(--color-border);
 }
+
 .border-2 {
   border-color: var(--color-accent);
 }
+
 .border-3 {
   border-width: 3px;
   border-color: var(--color-border-opacity);
 }
+
 .border-4 {
   border-color: var(--color-border-opacity);
 }
@@ -84,26 +94,32 @@ nav a:hover {
 .hover\:outline-none:hover {
   outline: none;
 }
+
 .hover\:outline:hover {
   outline: 0.25rem solid var(--color-accent);
 }
+
 .outline {
   outline: 0.25rem solid var(--color-accent);
 }
+
 @media screen and (max-width: 40rem) {
   .sticky {
     position: relative;
   }
 }
+
 ::-webkit-scrollbar {
   width: 0.375rem;
   height: 0.625rem;
   background: var(--color-bg);
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 1rem;
   background: var(--color-text);
 }
+
 hr {
   border: 0;
   height: 0.125rem;
@@ -135,17 +151,20 @@ textarea {
   outline: none;
   box-sizing: border-box;
 }
+
 input:focus,
 textarea:focus {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 2px var(--color-accent);
   background-color: var(--color-bg);
 }
+
 input::placeholder,
 textarea::placeholder {
   color: #a0aec0;
   opacity: 1;
 }
+
 input[aria-invalid='true'],
 textarea[aria-invalid='true'],
 input.error,
@@ -167,30 +186,36 @@ textarea.error {
   cursor: default;
   transition: all 0.2s;
 }
+
 .skill-badge-default {
   background: var(--color-bg);
   color: var(--color-text);
 }
+
 .skill-badge-compact {
   padding: 0.25rem 0.5rem;
   font-size: 0.85em;
 }
+
 .skill-badge-selectable {
   cursor: pointer;
   background: var(--color-nav);
   color: var(--color-accent);
   border: 1.5px solid var(--color-border);
 }
+
 .skill-badge-selectable:hover,
 .skill-badge-selectable:focus-visible {
   background: var(--color-accent);
   color: #fff;
 }
+
 .skill-badge-selectable-selected {
   background: var(--color-accent);
   color: #fff;
   border: 2px solid var(--color-accent);
 }
+
 .skill-badge-remove {
   background: none;
   border: none;
@@ -201,6 +226,7 @@ textarea.error {
   border-radius: 0.25em;
   transition: background 0.15s;
 }
+
 .skill-badge-remove:hover,
 .skill-badge-remove:focus {
   background: #ffeaea;
@@ -226,38 +252,46 @@ textarea.error {
   background: var(--color-bg);
   color: var(--color-text);
 }
+
 .btn-base:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 .btn-primary {
   background: var(--color-accent);
   color: #fff;
   box-shadow: 0 2px 8px 0 rgba(0, 86, 179, 0.08);
 }
+
 .btn-primary:hover:not(:disabled),
 .btn-primary:focus-visible:not(:disabled) {
   background: #003d80;
 }
+
 .btn-secondary {
   background: #6b7280;
   color: #fff;
   box-shadow: 0 2px 8px 0 rgba(107, 114, 128, 0.08);
 }
+
 .btn-secondary:hover:not(:disabled),
 .btn-secondary:focus-visible:not(:disabled) {
   background: #374151;
 }
+
 .btn-outline {
   background: transparent;
   border: 2px solid var(--color-border);
   color: var(--color-text);
 }
+
 .btn-outline:hover:not(:disabled),
 .btn-outline:focus-visible:not(:disabled) {
   background: var(--color-nav);
   color: var(--color-accent);
 }
+
 .feedback-item {
   background: var(--color-bg);
   color: var(--color-text);
@@ -270,29 +304,35 @@ textarea.error {
     box-shadow 0.2s,
     background 0.2s;
 }
+
 .feedback-item:hover {
   box-shadow: 0 4px 16px 0 var(--color-border-opacity);
   background: var(--color-nav);
 }
+
 [data-theme='dark'] .feedback-item {
   background: #232b36;
   color: #f0f0f0;
   border-color: #474747;
 }
+
 [data-theme='dark'] .feedback-item:hover {
   background: #1a202c;
 }
+
 .tab-active {
   background: #fff;
   color: var(--color-accent);
   box-shadow: 0 1px 4px 0 rgba(0, 86, 179, 0.06);
   border: 1px solid var(--color-border);
 }
+
 .tab-inactive {
   color: var(--color-text);
   background: transparent;
   border: none;
 }
+
 .tab-inactive:hover,
 .tab-inactive:focus-visible {
   color: var(--color-accent);

@@ -1,7 +1,9 @@
+import type {PluginOption} from 'vite';
+
+// import { viteStaticCopy } from 'vite-plugin-static-copy'
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import { defineConfig, type PluginOption } from 'vite'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
-import { visualizer } from 'rollup-plugin-visualizer'
+import { defineConfig  } from 'vite'
 
 export default defineConfig({
   build: {
@@ -20,23 +22,23 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    visualizer({ open: true }) as PluginOption,
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'assets/*',
-          dest: 'assets/'
-        },
-        {
-          src: 'public/*',
-          dest: 'assets/'
-        },
-        {
-          src: 'public/_headers',
-          dest: './'
-        }
-      ]
-    })
+    tailwindcss() as PluginOption
+    // viteStaticCopy({
+    //   targets: [
+    //     {
+    //       src: 'assets/*',
+    //       dest: 'assets/'
+    //     },
+    //     {
+    //       src: 'public/*',
+    //       dest: 'assets/'
+    //     },
+    //     {
+    //       src: 'public/_headers',
+    //       dest: './'
+    //     }
+    //   ]
+    // })
   ],
   server: {
     headers: {

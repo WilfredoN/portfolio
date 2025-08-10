@@ -1,10 +1,11 @@
 import { FeedbackItem } from '@features/feedback/components/FeedbackItem'
 import { NoFeedbacks } from '@features/feedback/components/NoFeedback'
-import { FeedbackForm } from '@features/feedback/components/skills/form'
+
 import { useFeedbacks } from '@features/feedback/hooks/useFeedback'
 import { LoadingSpinner } from '@shared/components/Spinner'
 import { motion } from 'motion/react'
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
+const Form = lazy(() => import('@features/feedback/components/skills/form').then((module) => ({ default: module.FeedbackForm })))
 
 export const FeedbackPage = () => {
   const { feedbacks, isLoading, loadFeedbacks } = useFeedbacks()
@@ -36,7 +37,7 @@ export const FeedbackPage = () => {
           </p>
         </motion.div>
 
-        <FeedbackForm onSuccess={handleFormSuccess} />
+        <Form onSuccess={handleFormSuccess} />
 
         <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
           <div className='mb-8 flex items-center justify-center'>

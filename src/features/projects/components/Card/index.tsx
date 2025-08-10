@@ -1,11 +1,12 @@
 import type { ProjectProps } from '@features/projects/data/projects'
 
 import { ProjectImage } from '@features/projects/components/ProjectImage'
-import { ProjectVideo } from '@features/projects/components/ProjectVideo'
 import { Stack } from '@shared/components/Stack'
 import { Text } from '@shared/components/Text'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
+import { lazy } from 'react'
+const Video = lazy(() => import('@features/projects/components/ProjectVideo').then((module) => ({ default: module.ProjectVideo })))
 
 export const Card = ({
   title,
@@ -30,7 +31,7 @@ export const Card = ({
   return (
     <motion.div
       className={clsx(
-        'border-3 mb-12 flex w-full flex-col justify-between rounded-lg p-4 transition-transform duration-100',
+        'mb-12 flex w-full flex-col justify-between rounded-lg border-3 p-4 transition-transform duration-100',
         {
           'hover:scale-105': !videoUrl,
           'md:h-[30.625rem]': scale === 'medium',
@@ -54,7 +55,7 @@ export const Card = ({
             onClick={link ? handleClick : undefined}
           />
         ) : videoUrl ? (
-          <ProjectVideo src={videoUrl} />
+          <Video src={videoUrl} />
         ) : (
           <span className="my-6 font-['Courgette'] text-[4rem] text-[#5287AD]">
             <a href={link}>{title}</a>

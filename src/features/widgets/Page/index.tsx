@@ -1,13 +1,20 @@
 import { usePage } from '@app/hooks/usePage'
 import { About } from '@features/about'
-import { FeedbackPage } from '@features/feedback'
-import { Projects } from '@features/projects'
 import { PageType } from '@features/types'
 import { AnimatePresence, motion } from 'motion/react'
-import { Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { CgSpinner } from 'react-icons/cg'
 
 import { variants } from './variants'
+
+const Feedback = lazy(() =>
+  import('@features/feedback').then((module) => ({
+    default: module.FeedbackPage
+  }))
+)
+const Projects = lazy(() =>
+  import('@features/projects').then((module) => ({ default: module.Projects }))
+)
 
 export const Page = () => {
   const { currentPage } = usePage()
@@ -15,7 +22,7 @@ export const Page = () => {
   const pageMap = {
     [PageType.About]: <About />,
     [PageType.Projects]: <Projects />,
-    [PageType.Feedback]: <FeedbackPage />
+    [PageType.Feedback]: <Feedback />
   }
 
   const page = pageMap[currentPage] ?? <About />

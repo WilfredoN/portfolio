@@ -12,12 +12,12 @@ interface FeedbackDTO {
   text: string
 }
 export interface FeedbackResponse extends FeedbackDTO {
-  id: number
+  created_at: string
   feedback_skills: {
     skill_id: number
     skills: Skill[]
   }[]
-  created_at: string
+  id: number
 }
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {

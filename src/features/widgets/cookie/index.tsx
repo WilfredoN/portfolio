@@ -21,7 +21,7 @@ export const CookieConsent = () => {
   }
 
   return (
-    <div className='cookie fixed bottom-0 left-0 right-0 z-50 border-t border-gray-300 bg-opacity-90 p-4 text-center'>
+    <div className='cookie bg-opacity-90 fixed right-0 bottom-0 left-0 z-50 border-t border-gray-300 p-4 text-center'>
       <p className='text-lg'>
         We are using cookies to enhance your experience. By continuing to visit
         this site you agree to our use of cookies.

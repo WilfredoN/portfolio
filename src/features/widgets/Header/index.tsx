@@ -35,13 +35,14 @@ export const Header = () => {
   return (
     <motion.header
       className={clsx(
-        'mb-8 mt-3 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl px-12 py-6 md:w-fit md:rounded-full',
+        'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl md:w-fit md:rounded-full',
         {
           'sticky top-3 z-10 transition-all duration-300':
             !isMobile && scrollPosition > 0,
-          'duration-175 transition-all': isMobile || scrollPosition === 0
+          'transition-all duration-175': isMobile || scrollPosition === 0
         }
       )}
+      style={{ padding: '24px 48px' }}
     >
       <nav className='flex w-full flex-col justify-center md:flex-row'>
         <NavigationButton
