@@ -16,6 +16,7 @@ pnpm run dev
 - [x] FSD-like architecture
 - [x] pnpm migration
 - [x] github actions
+- [ ] make supabase-independent feedback fetch (from exported json)
 - [ ] git hooks (as husky alternative)
 - [ ] jest unit tests
 - [ ] next.js
