@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
   build: {
@@ -19,6 +20,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    visualizer({ open: true }) as PluginOption,
     viteStaticCopy({
       targets: [
         {
