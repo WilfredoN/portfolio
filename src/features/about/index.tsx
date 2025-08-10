@@ -26,7 +26,7 @@ export const About = () => {
               'xl:min-h-[560px] xl:w-full xl:min-w-[560px]'
             )}
           >
-            <Capybara url='assets/capybara_binary_compressed.avif' />
+            <Capybara url='capybara_binary_compressed.avif' />
           </div>
         </div>
         <MultiLine

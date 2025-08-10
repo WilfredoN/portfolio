@@ -1,116 +1,84 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/ico" href="assets/capybara.ico" />
 
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/ico" href="capybara.ico" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
-      />
-    </noscript>
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <style>
-      :root {
-        font-family: 'Pixelify Sans', sans-serif;
-        font-optical-sizing: auto;
-        line-height: 1.5;
-        font-weight: 400;
-        color-scheme: light dark;
-        color: rgba(255, 255, 255, 0.87);
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
-      html,
-      body {
-        background-color: var(--color-bg);
-        color: var(--color-text);
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow-y: hidden;
-      }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" />
+  </noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <style>
+    :root {
+      font-family: 'Pixelify Sans', sans-serif;
+      font-optical-sizing: auto;
+      line-height: 1.5;
+      font-weight: 400;
+      color-scheme: light dark;
+      color: rgba(255, 255, 255, 0.87);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-      main {
-        margin: 0;
-        position: relative;
-        min-width: 20rem;
-        z-index: 5;
-      }
-    </style>
+    html,
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-y: hidden;
+    }
 
-    <link rel="stylesheet" href="/app/index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nikita Afanasiev - Software Engineer Portfolio</title>
-    <!-- You are here? Check this out! -->
-    <!-- https://dub.sh/9DZ4NyH -->
-    <meta
-      name="description"
-      content="Nikita Afanasiev's portfolio showcasing projects and skills as a Software Engineer. Explore my work in web development, backend, frontend, and fullstack engineering."
-    />
-    <meta
-      name="keywords"
-      content="Software Engineer, Portfolio, Web Developer,
+    main {
+      margin: 0;
+      position: relative;
+      min-width: 20rem;
+      z-index: 5;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/app/index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikita Afanasiev - Software Engineer Portfolio</title>
+  <!-- You are here? Check this out! -->
+  <!-- https://dub.sh/9DZ4NyH -->
+  <meta name="description"
+    content="Nikita Afanasiev's portfolio showcasing projects and skills as a Software Engineer. Explore my work in web development, backend, frontend, and fullstack engineering." />
+  <meta name="keywords" content="Software Engineer, Portfolio, Web Developer,
 			 Frontend Developer, Backend Developer, capybara, cx, dev, ua, developer, engineer,
-			 fullstack, fullstack developer, fullstack engineer, fullstack web developer"
-    />
-    <meta name="author" content="Nikita Afanasiev" />
+			 fullstack, fullstack developer, fullstack engineer, fullstack web developer" />
+  <meta name="author" content="Nikita Afanasiev" />
 
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ibb.co https://raw.githubusercontent.com https://capybara.cx.ua https://www.google.com https://www.google.com.ua; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://raw.githubusercontent.com https://uadogliwalvodyyiuosi.supabase.co; object-src 'none'; base-uri 'self'"
-    />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ibb.co https://raw.githubusercontent.com https://capybara.cx.ua https://www.google.com https://www.google.com.ua; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://raw.githubusercontent.com https://uadogliwalvodyyiuosi.supabase.co; object-src 'none'; base-uri 'self'" />
 
-    <meta property="og:title" content="Software Engineer" />
-    <meta
-      property="og:description"
-      content="Hi! This is my Web Portfolio. Check it out!"
-    />
-    <meta
-      property="og:image"
-      content="https://capybara.cx.ua/assets/capybara_binary_compressed.avif"
-    />
-    <meta property="og:url" content="https://capybara.cx.ua" />
-    <meta property="og:type" content="website" />
+  <meta property="og:title" content="Software Engineer" />
+  <meta property="og:description" content="Hi! This is my Web Portfolio. Check it out!" />
+  <meta property="og:image" content="https://capybara.cx.ua/capybara_binary_compressed.avif" />
+  <meta property="og:url" content="https://capybara.cx.ua" />
+  <meta property="og:type" content="website" />
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Software Engineer" />
-    <meta
-      name="twitter:description"
-      content="Hi! This is my Web Portfolio. Check it out!"
-    />
-    <meta
-      name="twitter:image"
-      content="https://capybara.cx.ua/assets/capybara_binary_compressed.avif"
-    />
-    <link rel="canonical" href="https://capybara.cx.ua" />
-    <!-- Structured Data -->
-    <script type="application/ld+json">
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Software Engineer" />
+  <meta name="twitter:description" content="Hi! This is my Web Portfolio. Check it out!" />
+  <meta name="twitter:image" content="https://capybara.cx.ua/capybara_binary_compressed.avif" />
+  <link rel="canonical" href="https://capybara.cx.ua" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -124,25 +92,23 @@
       }
     </script>
 
-    <script type="module" crossorigin src="/app/main.tsx"></script>
-  </head>
+  <script type="module" crossorigin src="/app/main.tsx"></script>
+</head>
 
-  <body>
-    <div id="root"></div>
+<body>
+  <div id="root"></div>
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-SXBWKYB14Z"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXBWKYB14Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
 
-      gtag('config', 'G-SXBWKYB14Z')
-    </script>
-  </body>
+    gtag('config', 'G-SXBWKYB14Z')
+  </script>
+</body>
+
 </html>

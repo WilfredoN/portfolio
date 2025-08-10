@@ -7,7 +7,7 @@ interface FileProps {
   url?: string
 }
 
-export const Resume = ({ url = 'assets/resume.pdf' }: FileProps) => {
+export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
   const handleClick = () => {
     window.open(url, '_blank')
   }
