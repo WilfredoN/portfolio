@@ -1,6 +1,6 @@
-export { LinkedInIcon } from './LinkedInIcon'
 export { GithubIcon } from './GithubIcon'
 export { GmailIcon } from './GmailIcon'
+export { LinkedInIcon } from './LinkedInIcon'
 export { MonkeytypeIcon } from './MonkeytypeIcon'
-export { WakatimeIcon } from './WakatimeIcon'
 export type { IconProps } from './types'
+export { WakatimeIcon } from './WakatimeIcon'

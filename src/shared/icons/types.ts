@@ -1,6 +1,6 @@
-export type IconProps = {
-  size?: number
-  className?: string
-  title?: string
+export interface IconProps {
   ariaHidden?: boolean
+  className?: string
+  size?: number
+  title?: string
 }

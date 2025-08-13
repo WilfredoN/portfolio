@@ -1,11 +1,14 @@
 import { FeedbackItem } from '@features/feedback/components/FeedbackItem'
 import { NoFeedbacks } from '@features/feedback/components/NoFeedback'
-
 import { useFeedbacks } from '@features/feedback/hooks/useFeedback'
 import { LoadingSpinner } from '@shared/components/Spinner'
 import { motion } from 'motion/react'
 import { lazy, useEffect } from 'react'
-const Form = lazy(() => import('@features/feedback/components/skills/form').then((module) => ({ default: module.FeedbackForm })))
+const Form = lazy(() =>
+  import('@features/feedback/components/skills/form').then((module) => ({
+    default: module.FeedbackForm
+  }))
+)
 
 export const FeedbackPage = () => {
   const { feedbacks, isLoading, loadFeedbacks } = useFeedbacks()

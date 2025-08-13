@@ -1,4 +1,5 @@
 import type { IconProps } from './types'
+
 import { toSize } from './utils'
 
 export const GmailIcon = ({
@@ -8,12 +9,12 @@ export const GmailIcon = ({
   ariaHidden = true
 }: IconProps) => (
   <svg
-    viewBox='0 0 32 32'
-    width={toSize(size)}
-    height={toSize(size)}
-    fill='currentColor'
     aria-hidden={ariaHidden}
     className={className}
+    fill='currentColor'
+    height={toSize(size)}
+    viewBox='0 0 32 32'
+    width={toSize(size)}
     xmlns='http://www.w3.org/2000/svg'
   >
     {title ? <title>{title}</title> : null}

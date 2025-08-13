@@ -1,9 +1,9 @@
 import { usePage } from '@app/hooks/usePage'
 import { About } from '@features/about'
 import { PageType } from '@features/types'
+import { Spinner } from '@shared/components/Spinner'
 import { AnimatePresence, motion } from 'motion/react'
 import { lazy, Suspense } from 'react'
-import { Spinner } from '@shared/components/Spinner'
 
 import { variants } from './variants'
 

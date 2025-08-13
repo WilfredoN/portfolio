@@ -1,4 +1,5 @@
 import type { IconProps } from './types'
+
 import { toSize } from './utils'
 
 export const WakatimeIcon = ({
@@ -8,14 +9,14 @@ export const WakatimeIcon = ({
   ariaHidden = true
 }: IconProps) => (
   <svg
-    viewBox='0 0 256 256'
-    width={toSize(size)}
-    height={toSize(size)}
-    fill='currentColor'
     aria-hidden={ariaHidden}
     className={className}
-    xmlns='http://www.w3.org/2000/svg'
+    fill='currentColor'
+    height={toSize(size)}
     preserveAspectRatio='xMidYMid'
+    viewBox='0 0 256 256'
+    width={toSize(size)}
+    xmlns='http://www.w3.org/2000/svg'
   >
     {title ? <title>{title}</title> : null}
     <g>

@@ -1,5 +1,9 @@
 import { useTheme } from '@app/hooks/useTheme'
-import { lazy, Suspense } from 'react'
+import { useIsMobile } from '@shared/hooks/isMobile'
+import { lazy, Suspense, useEffect  } from 'react'
+
+import { applyTheme } from './about/utils/theme'
+import { Page } from './widgets/Page'
 const Footer = lazy(() =>
   import('@features/about/components/Footer').then((m) => ({
     default: m.Footer
@@ -10,11 +14,6 @@ const BinaryBackground = lazy(() =>
     default: m.BinaryBackground
   }))
 )
-import { useIsMobile } from '@shared/hooks/isMobile'
-import { useEffect } from 'react'
-
-import { applyTheme } from './about/utils/theme'
-import { Page } from './widgets/Page'
 
 export const Content = () => {
   const { isDarkTheme } = useTheme()

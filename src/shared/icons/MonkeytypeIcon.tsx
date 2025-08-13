@@ -1,4 +1,5 @@
 import type { IconProps } from './types'
+
 import { toSize } from './utils'
 
 export const MonkeytypeIcon = ({
@@ -8,14 +9,14 @@ export const MonkeytypeIcon = ({
   ariaHidden = true
 }: IconProps) => (
   <svg
-    viewBox='-680 -1030 300 180'
-    width={toSize(size)}
-    height={toSize(size)}
-    fill='currentColor'
     aria-hidden={ariaHidden}
     className={className}
-    xmlns='http://www.w3.org/2000/svg'
+    fill='currentColor'
+    height={toSize(size)}
     style={{ isolation: 'isolate' }}
+    viewBox='-680 -1030 300 180'
+    width={toSize(size)}
+    xmlns='http://www.w3.org/2000/svg'
   >
     {title ? <title>{title}</title> : null}
     <g>

@@ -6,7 +6,11 @@ import { Text } from '@shared/components/Text'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 import { lazy } from 'react'
-const Video = lazy(() => import('@features/projects/components/ProjectVideo').then((module) => ({ default: module.ProjectVideo })))
+const Video = lazy(() =>
+  import('@features/projects/components/ProjectVideo').then((module) => ({
+    default: module.ProjectVideo
+  }))
+)
 
 export const Card = ({
   title,
