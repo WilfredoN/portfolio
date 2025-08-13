@@ -3,7 +3,7 @@ import { About } from '@features/about'
 import { PageType } from '@features/types'
 import { AnimatePresence, motion } from 'motion/react'
 import { lazy, Suspense } from 'react'
-import { CgSpinner } from 'react-icons/cg'
+import { Spinner } from '@shared/components/Spinner'
 
 import { variants } from './variants'
 
@@ -37,9 +37,7 @@ export const Page = () => {
         initial='initial'
         variants={variants}
       >
-        <Suspense fallback={<CgSpinner className='animate-spin' />}>
-          {page}
-        </Suspense>
+        <Suspense fallback={<Spinner />}>{page}</Suspense>
       </motion.div>
     </AnimatePresence>
   )

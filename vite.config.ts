@@ -1,13 +1,27 @@
-import type {PluginOption} from 'vite';
+import type { PluginOption } from 'vite'
 
 // import { viteStaticCopy } from 'vite-plugin-static-copy'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import { defineConfig  } from 'vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   build: {
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    rollupOptions: {
+      treeshake: {
+        moduleSideEffects: false,
+        preset: 'recommended'
+      },
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          motion: ['motion'],
+          supabase: ['@supabase/supabase-js'],
+          ui_misc: ['react-switch']
+        }
+      }
+    }
   },
   resolve: {
     alias: {

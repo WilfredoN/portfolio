@@ -1,6 +1,11 @@
 import { Link } from '@shared/components/Link'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { SiGmail, SiMonkeytype, SiWakatime } from 'react-icons/si'
+import {
+  GithubIcon,
+  GmailIcon,
+  LinkedInIcon,
+  MonkeytypeIcon,
+  WakatimeIcon
+} from '@shared/icons'
 
 export const Footer = () => {
   return (
@@ -8,15 +13,15 @@ export const Footer = () => {
       <div className='flex flex-row justify-center space-x-4 text-4xl'>
         <Link
           href='https://www.linkedin.com/in/nikita-afanasyev-kh/'
-          icon={<FaLinkedin />}
+          icon={<LinkedInIcon />}
         />
-        <Link href='https://github.com/WilfredoN' icon={<FaGithub />} />
-        <Link href='mailto:nikita.afanasyevnn@gmail.com' icon={<SiGmail />} />
+        <Link href='https://github.com/WilfredoN' icon={<GithubIcon />} />
+        <Link href='mailto:nikita.afanasyevnn@gmail.com' icon={<GmailIcon />} />
         <Link
           href='https://monkeytype.com/profile/WilfredoN'
-          icon={<SiMonkeytype />}
+          icon={<MonkeytypeIcon />}
         />
-        <Link href='https://wakatime.com/@CapybaraN' icon={<SiWakatime />} />
+        <Link href='https://wakatime.com/@CapybaraN' icon={<WakatimeIcon />} />
       </div>
       <p>
         My portfolio built with Vite + React + TypeScript + TailwindCSS + Some

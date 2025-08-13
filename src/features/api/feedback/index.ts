@@ -1,7 +1,7 @@
 import type { Feedback } from '@features/feedback/types/feedback'
 import type { Skill } from '@features/feedback/types/skill'
 
-import { supabase } from '@service/supabase'
+import { getSupabase } from '@service/supabase'
 
 import { mapFeedback } from './mapper'
 
@@ -21,6 +21,7 @@ export interface FeedbackResponse extends FeedbackDTO {
 }
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
+  const supabase = await getSupabase()
   const { data, error } = await supabase
     .from('feedback')
     .select(
@@ -41,6 +42,7 @@ export const submitFeedback = async (
   feedbackData: FeedbackDTO
 ): Promise<{ error?: string; success: boolean }> => {
   try {
+    const supabase = await getSupabase()
     const { data: feedback, error: feedbackError } = await supabase
       .from('feedback')
       // TODO: maybe just insert(feedbackData) ? TO THINK

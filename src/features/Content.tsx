@@ -1,6 +1,15 @@
 import { useTheme } from '@app/hooks/useTheme'
-import { Footer } from '@features/about/components/Footer'
-import { BinaryBackground } from '@shared/components/BinaryBackground'
+import { lazy, Suspense } from 'react'
+const Footer = lazy(() =>
+  import('@features/about/components/Footer').then((m) => ({
+    default: m.Footer
+  }))
+)
+const BinaryBackground = lazy(() =>
+  import('@shared/components/BinaryBackground').then((m) => ({
+    default: m.BinaryBackground
+  }))
+)
 import { useIsMobile } from '@shared/hooks/isMobile'
 import { useEffect } from 'react'
 
@@ -18,9 +27,11 @@ export const Content = () => {
 
   return (
     <main className='flex min-h-[100vh] flex-col items-center justify-start py-2'>
-      {!isMobile && <BinaryBackground />}
+      <Suspense fallback={null}>{!isMobile && <BinaryBackground />}</Suspense>
       <Page />
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </main>
   )
 }
