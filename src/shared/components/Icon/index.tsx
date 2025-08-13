@@ -1,5 +1,5 @@
-import { fetchValidIconUrl } from '@features/api/icon/fetchValidIconUrl'
-import { memo, useEffect, useState } from 'react'
+import { getIconUrl } from '@features/helpers/url/icon'
+import { memo, useEffect, useMemo, useState } from 'react'
 
 export type IconSize = 'medium' | 'large'
 export type IconVariant = 'original' | 'plain'
@@ -14,33 +14,35 @@ interface IconProps {
 
 export const Icon = memo(
   ({ iconName, alt, title, size = 'medium', type = 'original' }: IconProps) => {
-    const [imageUrl, setImageUrl] = useState<string>()
+    const initialSrc = useMemo(
+      () => getIconUrl(iconName, type),
+      [iconName, type]
+    )
+    const [src, setSrc] = useState<string>(initialSrc)
+    const [attemptedFallback, setAttemptedFallback] = useState(false)
 
     useEffect(() => {
-      let isMounted = true
-      const load = async () => {
-        const url = await fetchValidIconUrl(iconName, type)
-
-        if (isMounted) {
-          setImageUrl(url)
-        }
-      }
-      load()
-
-      return () => {
-        isMounted = false
-      }
+      setAttemptedFallback(false)
+      setSrc(getIconUrl(iconName, type))
     }, [iconName, type])
 
-    if (!imageUrl) {
-      return null
+    if (!src) return null
+
+    const handleError = () => {
+      if (!attemptedFallback && type !== 'plain') {
+        setAttemptedFallback(true)
+        setSrc(getIconUrl(iconName, 'plain'))
+      } else {
+        setSrc('')
+      }
     }
 
     return (
       <img
         alt={alt ?? iconName}
         className={`ml-2 ${size === 'medium' ? 'h-8 w-8' : 'h-12 w-12'}`}
-        src={imageUrl}
+        src={src}
+        onError={handleError}
         title={title ?? iconName}
       />
     )

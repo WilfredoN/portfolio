@@ -61,8 +61,8 @@ export default defineConfig({
         "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; " +
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
         "font-src 'self' https://fonts.gstatic.com; " +
-        "img-src 'self' data: https://i.ibb.co https://raw.githubusercontent.com https://capybara.cx.ua https://www.google.com https://www.google.com.ua; " +
-        "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://raw.githubusercontent.com https://uadogliwalvodyyiuosi.supabase.co; " +
+        "img-src 'self' data: https://i.ibb.co https://cdn.jsdelivr.net https://capybara.cx.ua https://www.google.com https://www.google.com.ua; " +
+        "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://uadogliwalvodyyiuosi.supabase.co; " +
         "object-src 'none'; " +
         "base-uri 'self'",
       'X-Frame-Options': 'SAMEORIGIN',
