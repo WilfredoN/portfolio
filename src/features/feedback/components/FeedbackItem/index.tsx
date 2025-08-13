@@ -2,7 +2,6 @@ import type { Feedback } from '@features/feedback/types/feedback'
 
 import { SkillBadge } from '@features/feedback/components/skills/badge/SkillBadge'
 import { formatDate } from '@features/feedback/utils/format/formatDate'
-import { motion } from 'motion/react'
 
 interface FeedbackItemProps {
   feedback: Feedback
@@ -10,11 +9,7 @@ interface FeedbackItemProps {
 
 export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
   return (
-    <motion.div
-      animate={{ opacity: 1, y: 0 }}
-      className='feedback-item'
-      initial={{ opacity: 0, y: 20 }}
-    >
+    <div className='feedback-item'>
       <div className='mb-4 flex items-start justify-between'>
         <div className='flex items-center space-x-3'>
           <div
@@ -63,6 +58,6 @@ export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
           </div>
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }

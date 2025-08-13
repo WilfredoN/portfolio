@@ -2,7 +2,6 @@ import { FeedbackItem } from '@features/feedback/components/FeedbackItem'
 import { NoFeedbacks } from '@features/feedback/components/NoFeedback'
 import { useFeedbacks } from '@features/feedback/hooks/useFeedback'
 import { LoadingSpinner } from '@shared/components/Spinner'
-import { motion } from 'motion/react'
 import { lazy, useEffect } from 'react'
 const Form = lazy(() =>
   import('@features/feedback/components/skills/form').then((module) => ({
@@ -22,27 +21,19 @@ export const FeedbackPage = () => {
   }
 
   return (
-    <motion.article
-      animate='final'
-      className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center text-left'
-      initial='initial'
-    >
-      <motion.div className='mx-auto w-full max-w-6xl px-4 py-8'>
-        <motion.div
-          animate={{ opacity: 1, y: 0 }}
-          className='mb-12 text-center'
-          initial={{ opacity: 0, y: -20 }}
-        >
+    <article className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center text-left'>
+      <div className='mx-auto w-full max-w-6xl px-4 py-8'>
+        <div className='mb-12 text-center'>
           <h1 className='mb-4 text-4xl md:text-5xl'>Feedback</h1>
           <p className='mx-auto max-w-2xl text-2xl opacity-80'>
             Share your thoughts and experiences, or read what others have to say
             about working with me.
           </p>
-        </motion.div>
+        </div>
 
         <Form onSuccess={handleFormSuccess} />
 
-        <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+        <div>
           <div className='mb-8 flex items-center justify-center'>
             <h2 className='text-3xl font-bold'>Recent Feedback</h2>
           </div>
@@ -58,8 +49,8 @@ export const FeedbackPage = () => {
               ))}
             </div>
           )}
-        </motion.div>
-      </motion.div>
-    </motion.article>
+        </div>
+      </div>
+    </article>
   )
 }

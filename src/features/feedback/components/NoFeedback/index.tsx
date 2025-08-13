@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { motion } from 'motion/react'
 
 interface NoFeedbacksProps {
   className?: string
@@ -29,16 +28,12 @@ export const NoFeedbacks = ({
   )
 
   return (
-    <motion.div
-      animate={{ opacity: 1, y: 0 }}
-      className={clsx('py-12 text-center', className)}
-      initial={{ opacity: 0, y: 20 }}
-    >
+    <div className={clsx('py-12 text-center', className)}>
       <div className='mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800'>
         {icon}
       </div>
       <h3 className='mb-4 text-2xl font-medium'>{title}</h3>
       <p className='mx-auto mb-6 max-w-md text-lg opacity-70'>{description}</p>
-    </motion.div>
+    </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useTheme } from '@app/hooks/useTheme'
 import { useIsMobile } from '@shared/hooks/isMobile'
-import { lazy, Suspense, useEffect  } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 
 import { applyTheme } from './about/utils/theme'
 import { Page } from './widgets/Page'

@@ -21,7 +21,7 @@ export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
           whileHover={{ scale: 1.2 }}
           onClick={handleClick}
         >
-          <motion.svg
+          <svg
             fill='currentColor'
             height='48'
             viewBox='0 0 24 24'
@@ -30,7 +30,7 @@ export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
           >
             <path d='M12 3a1 1 0 011 1v8.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L11 12.586V4a1 1 0 011-1z' />
             <path d='M5 20a2 2 0 012-2h10a2 2 0 012 2 1 1 0 11-2 0H7a1 1 0 10-2 0 1 1 0 11-2 0 4 4 0 014-4h10a4 4 0 014 4 3 3 0 01-3 3H6a3 3 0 01-3-3 1 1 0 112 0z' />
-          </motion.svg>
+          </svg>
         </motion.div>
       </Tooltip>
     </div>

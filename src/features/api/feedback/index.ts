@@ -66,13 +66,13 @@ export const submitFeedback = async (
         .select('id')
         .in('id', feedbackData.skills)
 
-      if (skillsError) {
+      if (skillsError || !skillsData) {
         console.error('Error fetching skills:', skillsError)
 
         return { success: false, error: 'Failed to link skills' }
       }
 
-      const skillRelations = skillsData.map((skill) => ({
+      const skillRelations = skillsData.map((skill: { id: number }) => ({
         feedback_id: feedback.id,
         skill_id: skill.id
       }))

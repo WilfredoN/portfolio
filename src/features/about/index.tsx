@@ -5,18 +5,12 @@ import { SkillSection } from '@features/widgets'
 import { MultiLine, Text } from '@shared/components/Text'
 // import { useIsMobile } from '@shared/hooks/isMobile'
 import clsx from 'clsx'
-import { motion } from 'motion/react'
 
 export const About = () => {
   // const isMobile = useIsMobile()
 
   return (
-    <motion.article
-      animate='final'
-      className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center'
-      exit='exit'
-      initial='initial'
-    >
+    <article className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center'>
       <div className='relative m-0 flex max-w-screen-2xl flex-col items-center justify-center'>
         <div className='relative flex max-w-[35rem] items-center justify-center'>
           <Resume />
@@ -36,6 +30,6 @@ export const About = () => {
       </div>
       <Text className='text-4xl'>My skills</Text>
       <SkillSection />
-    </motion.article>
+    </article>
   )
 }
