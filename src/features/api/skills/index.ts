@@ -1,9 +1,7 @@
 import type { Skill } from '@features/feedback/types/skill'
-
-import { getSupabase } from '@service/supabase'
+import { supabase } from '@service/supabase'
 
 export const fetchSkills = async (): Promise<Skill[]> => {
-  const supabase = await getSupabase()
   const { data, error } = await supabase
     .from('skills')
     .select('id, name')

@@ -1,8 +1,19 @@
+const toSet = (skills: ReadonlyArray<number>): Set<number> => new Set(skills)
+const toArray = (skillsSet: Set<number>): number[] => Array.from(skillsSet)
+
 export const toggleSkill = (
   skillId: number,
-  selectedSkills: number[]
+  selectedSkills: ReadonlyArray<number>
 ): number[] => {
-  return selectedSkills.includes(skillId)
-    ? selectedSkills.filter((id) => id !== skillId)
-    : [...selectedSkills, skillId]
+  const set = toSet(selectedSkills)
+
+  if (set.has(skillId)) {
+    set.delete(skillId)
+  } else {
+    set.add(skillId)
+  }
+
+  return toArray(set)
 }
+
+export { toSet as skillsToSet, toArray as skillsToArray }

@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { motion } from 'motion/react'
 
 interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -17,12 +16,7 @@ export const Textarea = ({
   ...props
 }: TextareaProps) => {
   return (
-    <motion.div
-      animate={{ opacity: 1, y: 0 }}
-      className='w-full'
-      initial={{ opacity: 0, y: 10 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div className='w-full'>
       {label && (
         <label className='mb-2 block text-lg font-medium text-current'>
           {label}
@@ -40,15 +34,8 @@ export const Textarea = ({
         {...props}
       />
       {error && (
-        <motion.p
-          animate={{ opacity: 1 }}
-          className='mt-2 text-sm text-red-500 dark:text-red-400'
-          initial={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          {error}
-        </motion.p>
+        <p className='mt-2 text-sm text-red-500 dark:text-red-400'>{error}</p>
       )}
-    </motion.div>
+    </div>
   )
 }
