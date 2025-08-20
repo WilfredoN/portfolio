@@ -32,7 +32,7 @@ export const Page = () => {
       <motion.div
         key={currentPage}
         animate='final'
-        className='w-full max-w-screen-2xl'
+        className='flex min-h-12 w-full max-w-screen-2xl items-center justify-center'
         exit='exit'
         initial='initial'
         variants={variants}

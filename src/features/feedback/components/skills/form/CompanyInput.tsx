@@ -1,9 +1,9 @@
-import React from 'react'
 import { Input } from '@shared/components/Input'
+import React from 'react'
 
 interface CompanyInputProps {
-  value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  value: string
 }
 
 export const CompanyInput = React.memo(

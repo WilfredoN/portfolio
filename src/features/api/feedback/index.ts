@@ -1,8 +1,9 @@
 import type { Feedback } from '@features/feedback/types/feedback'
 import type { Skill } from '@features/feedback/types/skill'
 
-import { mapFeedback } from './mapper'
 import { supabase } from '@service/supabase'
+
+import { mapFeedback } from './mapper'
 
 interface FeedbackDTO {
   author: string

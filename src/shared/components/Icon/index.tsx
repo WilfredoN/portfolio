@@ -26,7 +26,9 @@ export const Icon = memo(
       setSrc(getIconUrl(iconName, type))
     }, [iconName, type])
 
-    if (!src) return null
+    if (!src) {
+      return null
+    }
 
     const handleError = () => {
       if (!attemptedFallback && type !== 'plain') {
@@ -42,8 +44,8 @@ export const Icon = memo(
         alt={alt ?? iconName}
         className={`ml-2 ${size === 'medium' ? 'h-8 w-8' : 'h-12 w-12'}`}
         src={src}
-        onError={handleError}
         title={title ?? iconName}
+        onError={handleError}
       />
     )
   }

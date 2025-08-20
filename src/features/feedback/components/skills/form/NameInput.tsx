@@ -1,10 +1,10 @@
-import React from 'react'
 import { Input } from '@shared/components/Input'
+import React from 'react'
 
 interface NameInputProps {
-  value: string
   error?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  value: string
 }
 
 export const NameInput = React.memo(

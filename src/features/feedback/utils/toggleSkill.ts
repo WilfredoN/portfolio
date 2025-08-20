@@ -16,4 +16,4 @@ export const toggleSkill = (
   return toArray(set)
 }
 
-export { toSet as skillsToSet, toArray as skillsToArray }
+export { toArray as skillsToArray, toSet as skillsToSet }

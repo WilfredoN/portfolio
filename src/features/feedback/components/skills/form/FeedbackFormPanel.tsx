@@ -1,35 +1,37 @@
-import React, { ReactElement } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
-import { Button } from '@shared/components/Button'
-import { SkillSelector } from '@features/feedback/components/skills/form/SkillSelector'
 import type {
   FeedbackFormData,
   FeedbackFormErrors
 } from '@features/feedback/types/feedback'
-import { FeedbackFields } from '@features/feedback/components/skills/form/FeedbackFields'
+import type { ReactElement } from 'react'
 
-type PanelState = {
+import { FeedbackFields } from '@features/feedback/components/skills/form/FeedbackFields'
+import { SkillSelector } from '@features/feedback/components/skills/form/SkillSelector'
+import { Button } from '@shared/components/Button'
+import { AnimatePresence, motion } from 'motion/react'
+import React from 'react'
+
+interface PanelState {
   data: FeedbackFormData
   errors: FeedbackFormErrors
   isSubmitting: boolean
   submitError?: string
 }
 
-type PanelActions = {
+interface PanelActions {
+  cancel: () => void
+  submit: (e: React.FormEvent) => Promise<void>
+  toggleSkill: (id: number) => void
   updateField: <K extends keyof FeedbackFormData>(
     field: K,
     value: FeedbackFormData[K]
   ) => void
-  toggleSkill: (id: number) => void
-  submit: (e: React.FormEvent) => Promise<void>
-  cancel: () => void
 }
 
 interface Props {
-  show: boolean
-  setShow: (v: boolean) => void
-  state: PanelState
   actions: PanelActions
+  setShow: (v: boolean) => void
+  show: boolean
+  state: PanelState
 }
 
 const FeedbackFormPanel = ({

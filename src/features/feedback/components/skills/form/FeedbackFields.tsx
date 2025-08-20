@@ -1,15 +1,18 @@
-import React, { ReactElement } from 'react'
-import { NameInput } from './NameInput'
-import { CompanyInput } from './CompanyInput'
-import { FeedbackTextarea } from './FeedbackTextarea'
 import type {
   FeedbackFormData,
   FeedbackFormErrors
 } from '@features/feedback/types/feedback'
+import type { ReactElement } from 'react'
 
-type Props = {
-  formData: FeedbackFormData
+import React from 'react'
+
+import { CompanyInput } from './CompanyInput'
+import { FeedbackTextarea } from './FeedbackTextarea'
+import { NameInput } from './NameInput'
+
+interface Props {
   errors: FeedbackFormErrors
+  formData: FeedbackFormData
   updateField: <K extends keyof FeedbackFormData>(
     field: K,
     value: FeedbackFormData[K]
@@ -25,8 +28,8 @@ const FeedbackFieldsComponent = ({
     <>
       <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
         <NameInput
-          value={formData.author}
           error={errors.author}
+          value={formData.author}
           onChange={(e) => updateField('author', e.target.value)}
         />
         <CompanyInput
@@ -35,8 +38,8 @@ const FeedbackFieldsComponent = ({
         />
       </div>
       <FeedbackTextarea
-        value={formData.text}
         error={errors.text}
+        value={formData.text}
         onChange={(e) => updateField('text', e.target.value)}
       />
     </>

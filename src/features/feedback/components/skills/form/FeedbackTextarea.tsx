@@ -1,10 +1,10 @@
-import React from 'react'
 import { Textarea } from '@shared/components/Input'
+import React from 'react'
 
 interface FeedbackTextareaProps {
-  value: string
   error?: string
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  value: string
 }
 
 export const FeedbackTextarea = React.memo(
