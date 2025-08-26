@@ -14,11 +14,34 @@ export default defineConfig({
         preset: 'recommended'
       },
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          motion: ['motion'],
-          supabase: ['@supabase/supabase-js'],
-          ui_misc: ['react-switch']
+        manualChunks: (id) => {
+          // Vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react'
+            }
+            if (id.includes('motion')) {
+              return 'motion'
+            }
+            if (id.includes('@supabase')) {
+              return 'supabase'
+            }
+            if (id.includes('react-switch')) {
+              return 'ui_misc'
+            }
+            return 'vendor'
+          }
+          
+          // Feature chunks - only split if they're large enough
+          if (id.includes('src/features/about')) {
+            return 'about'
+          }
+          if (id.includes('src/features/feedback')) {
+            return 'feedback'
+          }
+          if (id.includes('src/features/projects')) {
+            return 'projects'
+          }
         }
       }
     }

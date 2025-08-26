@@ -1,5 +1,3 @@
-import { motion } from 'motion/react'
-
 interface LoadingSpinnerProps {
   className?: string
   size?: 'sm' | 'md' | 'lg'
@@ -24,11 +22,8 @@ export const LoadingSpinner = ({
   }
 
   return (
-    <motion.div
-      animate={{ opacity: 1 }}
-      className={`flex items-center justify-center py-12 ${className}`}
-      initial={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+    <div
+      className={`flex items-center justify-center py-12 opacity-100 transition-opacity duration-300 ${className}`}
     >
       <div className='flex items-center space-x-2 opacity-70'>
         <svg
@@ -53,6 +48,6 @@ export const LoadingSpinner = ({
         </svg>
         <span className={textSizeClasses[size]}>{text}</span>
       </div>
-    </motion.div>
+    </div>
   )
 }

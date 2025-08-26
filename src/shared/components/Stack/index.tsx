@@ -1,6 +1,5 @@
 import { Icon } from '@shared/components/Icon'
 import clsx from 'clsx'
-import { motion } from 'motion/react'
 
 export interface StackProps {
   className?: string
@@ -14,7 +13,7 @@ export const Stack = ({
   className = ''
 }: StackProps) => {
   return (
-    <motion.div
+    <div
       className={clsx(
         'flex flex-row items-center justify-center gap-4',
         className
@@ -23,6 +22,6 @@ export const Stack = ({
       {items.map((item) => (
         <Icon key={item} alt={item} iconName={item} size={size} />
       ))}
-    </motion.div>
+    </div>
   )
 }
