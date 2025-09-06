@@ -75,7 +75,7 @@ const FeedbackFormPanel = ({
       >
         <motion.div
           animate={{ scale: 1 }}
-          className='rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800/30'
+          className='rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-200/30'
           initial={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
         >
