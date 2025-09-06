@@ -2,7 +2,7 @@ import { FeedbackItem } from '@features/feedback/components/FeedbackItem'
 import { NoFeedbacks } from '@features/feedback/components/NoFeedback'
 import { useFeedbacks } from '@features/feedback/hooks/useFeedback'
 import { LoadingSpinner } from '@shared/components/Spinner'
-import { lazy, useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 const Form = lazy(() =>
   import('@features/feedback/components/skills/form').then((module) => ({
     default: module.FeedbackForm
@@ -31,7 +31,9 @@ export const FeedbackPage = () => {
           </p>
         </div>
 
-        <Form onSuccess={handleFormSuccess} />
+        <Suspense fallback={<LoadingSpinner text='Loading form...' />}>
+          <Form onSuccess={handleFormSuccess} />
+        </Suspense>
 
         <div>
           <div className='mb-8 flex items-center justify-center'>
