@@ -17,8 +17,10 @@ export const SkillBadgeSelectable = ({
 }: SkillBadgeSelectableProps) => (
   <button
     className={clsx(
-      'skill-badge min-w-max',
-      isSelected ? 'skill-badge-selectable-selected' : 'skill-badge-selectable'
+      'inline-flex min-w-max items-center gap-2 rounded-lg border px-3 py-1.5 font-medium transition-all',
+      isSelected
+        ? 'border-2 border-[var(--color-accent)] bg-[var(--color-accent)] text-white'
+        : 'border-[1.5px] border-[var(--color-border)] bg-[var(--color-nav)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white focus-visible:bg-[var(--color-accent)] focus-visible:text-white'
     )}
     type='button'
     onClick={onClick}

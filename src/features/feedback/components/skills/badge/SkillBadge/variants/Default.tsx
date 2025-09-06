@@ -9,7 +9,11 @@ interface SkillBadgeDefaultProps {
 }
 
 export const SkillBadgeDefault = ({ skill }: SkillBadgeDefaultProps) => (
-  <div className={clsx('skill-badge skill-badge-default')}>
+  <div
+    className={clsx(
+      'inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-1.5 font-medium text-[var(--color-text)] transition-all'
+    )}
+  >
     <Icon iconName={getSkillIconName(skill.name)} size='medium' />
     <span className='text-sm font-medium'>{skill.name}</span>
   </div>
