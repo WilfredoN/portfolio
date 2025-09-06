@@ -1,6 +1,5 @@
 import type { PluginOption } from 'vite'
 
-// import { viteStaticCopy } from 'vite-plugin-static-copy'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
@@ -8,6 +7,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   build: {
     cssCodeSplit: true,
+    minify: true,
     rollupOptions: {
       treeshake: {
         moduleSideEffects: false,
@@ -34,26 +34,7 @@ export default defineConfig({
       '@service': '/src/service'
     }
   },
-  plugins: [
-    react(),
-    tailwindcss() as PluginOption
-    // viteStaticCopy({
-    //   targets: [
-    //     {
-    //       src: 'assets/*',
-    //       dest: 'assets/'
-    //     },
-    //     {
-    //       src: 'public/*',
-    //       dest: 'assets/'
-    //     },
-    //     {
-    //       src: 'public/_headers',
-    //       dest: './'
-    //     }
-    //   ]
-    // })
-  ],
+  plugins: [react(), tailwindcss() as PluginOption],
   server: {
     headers: {
       'Content-Security-Policy':

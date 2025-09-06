@@ -1,6 +1,6 @@
 export const Spinner = () => (
   <svg
-    className='mr-2 -ml-1 h-12 w-12 animate-spin'
+    className='mr-2 -ml-1 h-12 w-12 animate-spin will-change-transform'
     fill='none'
     viewBox='0 0 24 24'
     xmlns='http://www.w3.org/2000/svg'
