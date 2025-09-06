@@ -35,7 +35,7 @@ export const Header = () => {
   return (
     <motion.header
       className={clsx(
-        'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl md:w-fit md:rounded-full',
+        'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl bg-[var(--color-nav)]/90 md:w-fit md:rounded-full',
         {
           'sticky top-3 z-10 transition-all duration-300':
             !isMobile && scrollPosition > 0,

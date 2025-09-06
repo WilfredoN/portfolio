@@ -10,7 +10,7 @@ export const About = () => {
   // const isMobile = useIsMobile()
 
   return (
-    <article className='mt-8 flex max-w-screen-2xl flex-col items-center justify-center'>
+    <article className='z-[5] mt-8 flex max-w-screen-2xl flex-col items-center justify-center bg-[var(--color-bg)] text-[var(--color-text)]'>
       <div className='relative m-0 flex max-w-screen-2xl flex-col items-center justify-center'>
         <div className='relative flex max-w-[35rem] items-center justify-center'>
           <Resume />

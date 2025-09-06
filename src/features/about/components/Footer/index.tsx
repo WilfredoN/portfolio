@@ -9,7 +9,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className='flex h-full w-full flex-col justify-center pt-16 text-center'>
+    <footer className='flex h-full w-full flex-col justify-center bg-[var(--color-bg)] pt-16 text-center'>
       <div className='flex flex-row justify-center space-x-4 text-4xl'>
         <Link
           href='https://www.linkedin.com/in/nikita-afanasyev-kh/'
