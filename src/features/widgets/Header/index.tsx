@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 
 import { NavigationButton } from './NavigationButton'
 import { ThemeToggle } from './ThemeToggle'
+import { sendGAEvent } from '@features/shared/analytics/ga'
 
 export const Header = () => {
   const { currentPage, setCurrentPage } = usePage()
@@ -30,6 +31,25 @@ export const Header = () => {
       setScrollPosition(0)
     }
     setCurrentPage(page)
+    let label = ''
+    switch (page) {
+      case PageType.About:
+        label = 'About'
+        break
+      case PageType.Projects:
+        label = 'Projects'
+        break
+      case PageType.Feedback:
+        label = 'Feedback'
+        break
+      default:
+        label = 'Unknown'
+    }
+    sendGAEvent({
+      action: 'navigation_click',
+      category: 'Header',
+      label
+    })
   }
 
   return (

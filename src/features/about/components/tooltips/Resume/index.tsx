@@ -1,3 +1,4 @@
+import { sendGAEvent } from '@features/shared/analytics/ga'
 import { Tooltip } from '@shared/components/Tooltip'
 import { motion } from 'motion/react'
 
@@ -8,6 +9,11 @@ interface FileProps {
 
 export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
   const handleClick = () => {
+    sendGAEvent({
+      action: 'resume_view',
+      category: 'Resume',
+      label: url
+    })
     window.open(url, '_blank')
   }
 
