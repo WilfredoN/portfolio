@@ -2,7 +2,6 @@ import { usePage } from '@app/hooks/usePage'
 import { useTheme } from '@app/hooks/useTheme'
 import { PageType } from '@features/types'
 import clsx from 'clsx'
-import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 import { NavigationButton } from './NavigationButton'
@@ -53,7 +52,7 @@ export const Header = () => {
   }
 
   return (
-    <motion.header
+    <header
       className={clsx(
         'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl bg-[var(--color-nav)]/90 md:w-fit md:rounded-full',
         {
@@ -85,6 +84,6 @@ export const Header = () => {
         </NavigationButton>
         <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
       </nav>
-    </motion.header>
+    </header>
   )
 }
