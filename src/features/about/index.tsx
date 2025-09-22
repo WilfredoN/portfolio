@@ -28,8 +28,10 @@ export const About = () => {
           textStyles='text-3xl min-w-[55%] m-0 p-2 text-center leading-10'
         />
       </div>
-      <Text className='text-4xl'>My skills</Text>
-      <SkillSection />
+      <div>
+        <Text className='text-4xl'>My skills</Text>
+        <SkillSection />
+      </div>
     </article>
   )
 }
