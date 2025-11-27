@@ -1,4 +1,4 @@
-type GAEventParams = {
+interface GAEventParams {
   action: string
   category: string
   label?: string

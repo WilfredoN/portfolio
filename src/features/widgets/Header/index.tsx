@@ -1,5 +1,6 @@
 import { usePage } from '@app/hooks/usePage'
 import { useTheme } from '@app/hooks/useTheme'
+import { sendGAEvent } from '@features/shared/analytics/ga'
 import { PageType } from '@features/types'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
@@ -7,7 +8,6 @@ import { useEffect, useState } from 'react'
 
 import { NavigationButton } from './NavigationButton'
 import { ThemeToggle } from './ThemeToggle'
-import { sendGAEvent } from '@features/shared/analytics/ga'
 
 export const Header = () => {
   const { currentPage, setCurrentPage } = usePage()
