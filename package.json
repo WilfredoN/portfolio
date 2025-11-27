@@ -1,11 +1,10 @@
 {
   "name": "portfolio",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "format:all": "prettier --log-level warn --write .",
     "format": "prettier --log-level warn --write \"**/*.{ts,tsx}\"",
