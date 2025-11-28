@@ -1,49 +1,54 @@
 import type { Feedback } from '@features/feedback/types/feedback'
-import type { Skill } from '@features/feedback/types/skill'
 
 import { supabase } from '@service/supabase'
 
+import type { FeedbackDTO, FeedbackResponse } from './types'
+
+import { fetchFeedbacksFromJson } from './fetchJson'
 import { mapFeedback } from './mapper'
 
-interface FeedbackDTO {
-  author: string
-  company?: string
-  skills: number[]
-  text: string
-}
-export interface FeedbackResponse extends FeedbackDTO {
-  created_at: string
-  feedback_skills: {
-    skill_id: number
-    skills: Skill[]
-  }[]
-  id: number
-}
-
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
-  const { data, error } = await supabase
-    .from('feedback')
-    .select(
-      'id, author, company, text, created_at, feedback_skills(skill_id, skills(name, id))'
-    )
-    .order('created_at', { ascending: false })
-
-  if (error || !data) {
-    console.error('Error fetching feedbacks:', error)
-
-    // TODO: fetch from json call. Not adapter tho but should work
-    return []
+  if (!supabase) {
+    console.warn('Supabase not configured, using static JSON')
+    const jsonData = await fetchFeedbacksFromJson()
+    return mapFeedback(jsonData)
   }
-  return mapFeedback(data as FeedbackResponse[])
+
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .select(
+        'id, author, company, text, created_at, feedback_skills(skill_id, skills(name, id))'
+      )
+      .order('created_at', { ascending: false })
+
+    if (error || !data) {
+      console.warn('Supabase fetch failed, falling back to static JSON:', error)
+      const jsonData = await fetchFeedbacksFromJson()
+      return mapFeedback(jsonData)
+    }
+
+    return mapFeedback(data as FeedbackResponse[])
+  } catch (error) {
+    console.warn('Error fetching from Supabase, using static fallback:', error)
+    const jsonData = await fetchFeedbacksFromJson()
+    return mapFeedback(jsonData)
+  }
 }
 
 export const submitFeedback = async (
   feedbackData: FeedbackDTO
 ): Promise<{ error?: string; success: boolean }> => {
+  if (!supabase) {
+    return {
+      success: false,
+      error: 'Feedback submission is currently unavailable'
+    }
+  }
+
   try {
     const { data: feedback, error: feedbackError } = await supabase
       .from('feedback')
-      // TODO: maybe just insert(feedbackData) ? TO THINK
       .insert({
         author: feedbackData.author,
         company: feedbackData.company || null,
