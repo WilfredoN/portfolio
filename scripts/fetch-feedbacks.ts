@@ -15,7 +15,7 @@ if (!process.env.VITE_SUPABASE_API_KEY) {
 }
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
-const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_API_KEY
+const VITE_SUPABASE_API_KEY = process.env.VITE_SUPABASE_API_KEY
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/export-feedbacks`
 
 async function fetchFeedbacks() {
@@ -23,8 +23,8 @@ async function fetchFeedbacks() {
     const response = await fetch(EDGE_FUNCTION_URL, {
       headers: {
         'Content-Type': 'application/json',
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+        apikey: VITE_SUPABASE_API_KEY,
+        Authorization: `Bearer ${VITE_SUPABASE_API_KEY}`
       }
     })
 
