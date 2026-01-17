@@ -1,5 +1,5 @@
 import { getIconUrl } from '@features/helpers/url/icon'
-import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 
 export type IconSize = 'medium' | 'large'
 export type IconVariant = 'original' | 'plain'
@@ -14,10 +14,6 @@ interface IconProps {
 
 export const Icon = memo(
   ({ iconName, alt, title, size = 'medium', type = 'original' }: IconProps) => {
-    const initialSrc = useMemo(
-      () => getIconUrl(iconName, type),
-      [iconName, type]
-    )
     const [src, setSrc] = useState<string | null>(null)
     const [attemptedFallback, setAttemptedFallback] = useState(false)
     const imgRef = useRef<HTMLImageElement | null>(null)
