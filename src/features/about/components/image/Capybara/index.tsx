@@ -25,9 +25,11 @@ const CapybaraImage = ({
   return (
     <UniversalImage
       alt={alt}
+      avifSrc={url}
       className={className}
       height={height}
       loaded={loaded}
+      pngSrc={highQualityUrl}
       src={src}
       width={width}
     />

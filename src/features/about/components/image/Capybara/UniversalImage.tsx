@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react'
 
 export interface UniversalImageProps {
   alt: string
+  avifSrc?: string
   className?: string
   height?: number
   loaded: boolean
+  pngSrc?: string
   src: string
   width?: number
 }
@@ -14,7 +16,9 @@ export const UniversalImage = ({
   height = 556,
   loaded,
   src,
-  width = 556
+  width = 556,
+  avifSrc,
+  pngSrc
 }: UniversalImageProps) => {
   const imgRef = useRef<HTMLImageElement | null>(null)
 
@@ -27,26 +31,32 @@ export const UniversalImage = ({
   }, [loaded])
 
   return (
-    <img
-      ref={imgRef}
-      alt={alt}
-      aria-busy={!loaded}
-      aria-label={alt}
-      className={className}
-      decoding='async'
-      draggable={false}
-      fetchPriority='high'
-      height={height}
-      loading='lazy'
-      src={src}
-      style={{
-        background: '#18181b',
-        borderRadius: '16px',
-        filter: loaded ? 'none' : 'blur(12px)',
-        objectFit: 'cover',
-        transition: 'filter 0.3s cubic-bezier(.4,0,.2,1)'
-      }}
-      width={width}
-    />
+    <picture>
+      {avifSrc && <source srcSet={avifSrc} type='image/avif' />}
+      {pngSrc && <source srcSet={pngSrc} type='image/png' />}
+      <img
+        ref={imgRef}
+        alt={alt}
+        aria-busy={!loaded}
+        aria-label={alt}
+        className={className}
+        decoding='async'
+        draggable={false}
+        fetchPriority='high'
+        height={height}
+        src={src}
+        style={{
+          background: '#18181b',
+          borderRadius: '16px',
+          filter: loaded ? 'none' : 'blur(0px)',
+          objectFit: 'cover',
+          transition: 'none',
+          width,
+          height,
+          display: 'block'
+        }}
+        width={width}
+      />
+    </picture>
   )
 }
