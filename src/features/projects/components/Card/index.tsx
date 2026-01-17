@@ -25,23 +25,21 @@ export const Card = ({
   additionalDescription
 }: ProjectProps) => {
   const isLarge = scale === 'large'
-
   const handleClick = () => {
     if (link) {
       window.open(link, '_blank', 'noopener,noreferrer')
     }
   }
-
   return (
     <motion.div
       className={clsx(
         'mb-12 flex w-full flex-col justify-between rounded-lg border-3 p-4 transition-transform duration-100',
         {
           'hover:scale-105': !videoUrl,
-          'md:h-[30.625rem]': scale === 'medium',
+          'md:h-122.5': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,
-          'max-w-[31.25rem]': !isLarge
+          'max-w-125': !isLarge
         }
       )}
     >
@@ -61,12 +59,11 @@ export const Card = ({
         ) : videoUrl ? (
           <Video src={videoUrl} />
         ) : (
-          <span className="my-6 font-['Courgette'] text-[4rem] text-[#5287AD]">
+          <span className='font-courgette my-6 text-[4rem] text-[#5287AD]'>
             <a href={link}>{title}</a>
           </span>
         )}
         {isLarge && <Stack items={technologies} size={scale} />}
-
         <div className='mt-4 text-[1.7rem]'>
           <Text>{description}</Text>
           {additionalDescription && (
@@ -74,7 +71,6 @@ export const Card = ({
           )}
         </div>
       </motion.h1>
-
       <div className='self-center justify-self-end'>
         {!isLarge && (
           <>

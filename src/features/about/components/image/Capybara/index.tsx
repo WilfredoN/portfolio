@@ -22,16 +22,7 @@ const CapybaraImage = ({
   className = ''
 }: ImageProps) => {
   if (typeof window !== 'undefined') {
-    import('react-dom').then(({ preload }) => {
-      preload(
-        'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap',
-        { as: 'style' }
-      )
-      preload(
-        'https://fonts.googleapis.com/css2?family=Courgette&display=swap',
-        { as: 'style' }
-      )
-    })
+    // No need to preload Pixelify Sans or Courgette, both are now self-hosted
   }
   const { src, loaded } = useProgressiveImage(url, highQualityUrl)
   return (
