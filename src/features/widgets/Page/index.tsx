@@ -14,8 +14,14 @@ const Projects = lazy(() =>
   import('@features/projects').then((module) => ({ default: module.Projects }))
 )
 
+const KNOWN_PATHS = ['/about', '/projects', '/feedback']
+
 export const Page = () => {
   const location = useLocation()
+
+  if (location.pathname === '/' || !KNOWN_PATHS.includes(location.pathname)) {
+    return <Navigate replace to='/about' />
+  }
 
   return (
     <AnimatePresence initial={false} mode='wait'>
@@ -28,7 +34,6 @@ export const Page = () => {
         variants={variants}
       >
         <Routes location={location}>
-          <Route element={<Navigate replace to='/about' />} path='/' />
           <Route element={<About />} path='/about' />
           <Route
             element={
@@ -46,7 +51,6 @@ export const Page = () => {
             }
             path='/feedback'
           />
-          <Route element={<Navigate replace to='/about' />} path='*' />
         </Routes>
       </motion.div>
     </AnimatePresence>
