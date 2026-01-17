@@ -4,12 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="capybara.ico" />
 
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link
       rel="preconnect"
@@ -22,31 +17,27 @@
       crossorigin
     />
     <link rel="preconnect" href="https://stats.g.doubleclick.net" crossorigin />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
-      />
-    </noscript>
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
     <style>
+      html {
+        background-color: #1a1a2e;
+        color: rgba(255, 255, 255, 0.87);
+      }
+      @media (prefers-color-scheme: light) {
+        html {
+          background-color: #f0f0f0;
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+      html[data-theme='light'] {
+        background-color: #f0f0f0;
+        color: rgba(0, 0, 0, 0.87);
+      }
+      html[data-theme='dark'] {
+        background-color: #1a1a2e;
+        color: rgba(255, 255, 255, 0.87);
+      }
       :root {
-        font-family: 'Pixelify Sans', sans-serif;
+        font-family: 'Pixelify Sans', ui-sans-serif, system-ui, sans-serif;
         font-optical-sizing: auto;
         line-height: 1.5;
         font-weight: 400;

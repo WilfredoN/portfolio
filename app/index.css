@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+html {
+  background-color: var(--color-bg, #1a1a2e);
+  color: var(--color-text, rgba(255, 255, 255, 0.87));
+}
+
 html,
 body {
   font-family:
