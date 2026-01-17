@@ -1,85 +1,60 @@
-import { usePage } from '@app/hooks/usePage'
 import { useTheme } from '@app/hooks/useTheme'
 import { sendGAEvent } from '@features/shared/analytics/ga'
-import { PageType } from '@features/types'
-import clsx from 'clsx'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { NavigationButton } from './NavigationButton'
 import { ThemeToggle } from './ThemeToggle'
 
 export const Header = () => {
-  const { currentPage, setCurrentPage } = usePage()
   const { isDarkTheme, toggleTheme } = useTheme()
-
   const [scrollPosition, setScrollPosition] = useState(0)
   const checkScrollTop = () => {
     setScrollPosition(window.scrollY)
   }
-
   useEffect(() => {
     window.addEventListener('scroll', checkScrollTop)
-
     return () => window.removeEventListener('scroll', checkScrollTop)
   }, [])
-
   const isMobile = window.innerWidth <= 1024
-
-  const handlePageChange = (page: PageType) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const handlePageChange = (path: string, label: string) => {
     if (!isMobile) {
       setScrollPosition(0)
     }
-    setCurrentPage(page)
-    let label = ''
-    switch (page) {
-      case PageType.About:
-        label = 'About'
-        break
-      case PageType.Projects:
-        label = 'Projects'
-        break
-      case PageType.Feedback:
-        label = 'Feedback'
-        break
-      default:
-        label = 'Unknown'
-    }
+    navigate(path)
     sendGAEvent({
       action: 'navigation_click',
       category: 'Header',
       label
     })
   }
-
+  const headerClass = [
+    'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl bg-(--color-nav)/90 md:w-fit md:rounded-full',
+    !isMobile && scrollPosition > 0
+      ? 'sticky top-3 z-10 transition-all duration-300'
+      : 'transition-all duration-175'
+  ].join(' ')
   return (
-    <motion.header
-      className={clsx(
-        'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl bg-[var(--color-nav)]/90 md:w-fit md:rounded-full',
-        {
-          'sticky top-3 z-10 transition-all duration-300':
-            !isMobile && scrollPosition > 0,
-          'transition-all duration-175': isMobile || scrollPosition === 0
-        }
-      )}
-      style={{ padding: '24px 48px' }}
-    >
+    <motion.header className={headerClass} style={{ padding: '24px 48px' }}>
       <nav className='flex w-full flex-col justify-center md:flex-row'>
         <NavigationButton
-          isClicked={currentPage === PageType.About}
-          onClick={() => handlePageChange(PageType.About)}
+          isClicked={location.pathname === '/about'}
+          onClick={() => handlePageChange('/about', 'About')}
         >
           About Me
         </NavigationButton>
         <NavigationButton
-          isClicked={currentPage === PageType.Projects}
-          onClick={() => handlePageChange(PageType.Projects)}
+          isClicked={location.pathname === '/projects'}
+          onClick={() => handlePageChange('/projects', 'Projects')}
         >
           Projects
         </NavigationButton>
         <NavigationButton
-          isClicked={currentPage === PageType.Feedback}
-          onClick={() => handlePageChange(PageType.Feedback)}
+          isClicked={location.pathname === '/feedback'}
+          onClick={() => handlePageChange('/feedback', 'Feedback')}
         >
           Feedback
         </NavigationButton>

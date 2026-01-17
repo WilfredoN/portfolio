@@ -17,7 +17,6 @@ const BinaryBackground = lazy(() =>
 
 export const Content = () => {
   const { isDarkTheme } = useTheme()
-
   const isMobile = useIsMobile()
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export const Content = () => {
   }, [isDarkTheme])
 
   return (
-    <main className='flex min-h-[100vh] flex-col items-center justify-start bg-[var(--color-bg)] py-2'>
+    <main className='flex min-h-screen flex-col items-center justify-start bg-(--color-bg) py-2'>
       <Suspense fallback={null}>
         {!isMobile && isDarkTheme && <BinaryBackground />}
       </Suspense>
