@@ -21,18 +21,32 @@ const CapybaraImage = ({
   height = 556,
   className = ''
 }: ImageProps) => {
+  if (typeof window !== 'undefined') {
+    import('react-dom').then(({ preload }) => {
+      preload(
+        'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap',
+        { as: 'style' }
+      )
+      preload(
+        'https://fonts.googleapis.com/css2?family=Courgette&display=swap',
+        { as: 'style' }
+      )
+    })
+  }
   const { src, loaded } = useProgressiveImage(url, highQualityUrl)
   return (
-    <UniversalImage
-      alt={alt}
-      avifSrc={url}
-      className={className}
-      height={height}
-      loaded={loaded}
-      pngSrc={highQualityUrl}
-      src={src}
-      width={width}
-    />
+    <div style={{ aspectRatio: `${width} / ${height}`, width, height }}>
+      <UniversalImage
+        alt={alt}
+        avifSrc={url}
+        className={className}
+        height={height}
+        loaded={loaded}
+        pngSrc={highQualityUrl}
+        src={src}
+        width={width}
+      />
+    </div>
   )
 }
 

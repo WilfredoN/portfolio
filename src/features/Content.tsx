@@ -29,17 +29,27 @@ export const Content = () => {
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-start bg-(--color-bg) py-2'>
-      {showBinary && (
-        <Suspense fallback={null}>
-          {!isMobile && isDarkTheme && <BinaryBackground />}
-        </Suspense>
-      )}
+      <div style={{ width: '100%', minHeight: 120, position: 'relative' }}>
+        {showBinary ? (
+          <Suspense
+            fallback={<div style={{ width: '100%', minHeight: 120 }} />}
+          >
+            {!isMobile && isDarkTheme && <BinaryBackground />}
+          </Suspense>
+        ) : (
+          <div style={{ width: '100%', minHeight: 120 }} />
+        )}
+      </div>
       <Page />
-      {showFooter && (
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
-      )}
+      <div style={{ width: '100%', minHeight: 64, position: 'relative' }}>
+        {showFooter ? (
+          <Suspense fallback={<div style={{ width: '100%', minHeight: 64 }} />}>
+            <Footer />
+          </Suspense>
+        ) : (
+          <div style={{ width: '100%', minHeight: 64 }} />
+        )}
+      </div>
     </main>
   )
 }
