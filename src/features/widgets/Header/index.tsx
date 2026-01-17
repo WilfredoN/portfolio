@@ -40,7 +40,10 @@ export const Header = () => {
   return (
     <motion.header
       className={headerClass}
-      style={{ padding: '24px 48px', minHeight: 120, aspectRatio: '6 / 1' }}
+      style={{
+        padding: '24px 48px',
+        minHeight: 120
+      }}
     >
       <nav className='flex w-full flex-col justify-center md:flex-row'>
         <NavigationButton

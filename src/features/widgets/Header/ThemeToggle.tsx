@@ -7,7 +7,7 @@ interface ThemeToggleProps {
 
 export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
   return (
-    <div className='theme-switch-wrapper flex items-center justify-center'>
+    <div className='theme-switch-wrapper flex min-w-32 items-center justify-center'>
       <label className='theme-switch' htmlFor='checkbox'>
         <ReactSwitch
           activeBoxShadow='none'

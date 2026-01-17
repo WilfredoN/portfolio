@@ -16,9 +16,8 @@ export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
     })
     window.open(url, '_blank')
   }
-
   return (
-    <div className='absolute right-4 bottom-4 z-10'>
+    <div className='absolute right-20 bottom-4 z-10 md:right-4'>
       <Tooltip text='Check my CV!'>
         <motion.div
           className='relative flex cursor-pointer items-center justify-center rounded-3xl p-3 outline outline-white'
