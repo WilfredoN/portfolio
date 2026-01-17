@@ -1,13 +1,10 @@
-import { Spinner } from '@shared/components/Spinner'
+import { About } from '@features/about'
 import { AnimatePresence, motion } from 'motion/react'
 import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { variants } from './variants'
 
-const About = lazy(() =>
-  import('@features/about').then((module) => ({ default: module.About }))
-)
 const Feedback = lazy(() =>
   import('@features/feedback').then((module) => ({
     default: module.FeedbackPage
@@ -30,15 +27,27 @@ export const Page = () => {
         initial='initial'
         variants={variants}
       >
-        <Suspense fallback={<Spinner />}>
-          <Routes location={location}>
-            <Route element={<Navigate replace to='/about' />} path='/' />
-            <Route element={<About />} path='/about' />
-            <Route element={<Projects />} path='/projects' />
-            <Route element={<Feedback />} path='/feedback' />
-            <Route element={<Navigate replace to='/about' />} path='*' />
-          </Routes>
-        </Suspense>
+        <Routes location={location}>
+          <Route element={<Navigate replace to='/about' />} path='/' />
+          <Route element={<About />} path='/about' />
+          <Route
+            element={
+              <Suspense fallback={null}>
+                <Projects />
+              </Suspense>
+            }
+            path='/projects'
+          />
+          <Route
+            element={
+              <Suspense fallback={null}>
+                <Feedback />
+              </Suspense>
+            }
+            path='/feedback'
+          />
+          <Route element={<Navigate replace to='/about' />} path='*' />
+        </Routes>
       </motion.div>
     </AnimatePresence>
   )
