@@ -11,7 +11,8 @@ const app = express()
 app.use(express.json())
 app.use(requestLogger())
 
-const allowedOrigin = 'https://capybara.cx.ua'
+app.set('trust proxy', 1)
+const allowedOrigin = process.env.CORS_ORIGIN || 'https://capybara.cx.ua'
 app.use(cors({ origin: allowedOrigin }))
 const limiter = rateLimit({ windowMs: 60000, max: 30 })
 app.use(limiter)
