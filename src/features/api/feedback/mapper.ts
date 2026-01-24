@@ -9,5 +9,13 @@ export const mapFeedback = (data: FeedbackResponse[]): Feedback[] =>
     company: feedback.company,
     created_at: feedback.created_at,
     text: feedback.text,
-    skills: feedback.feedback_skills.flatMap((fs) => fs.skills)
+    skills: feedback.feedback_skills.flatMap((fs: any) => {
+      if (Array.isArray(fs.skills)) {
+        return fs.skills
+      }
+      if (typeof fs.skill_id === 'number') {
+        return [{ id: fs.skill_id, name: fs.skill_name || '' }]
+      }
+      return []
+    })
   }))

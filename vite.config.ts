@@ -17,7 +17,6 @@ export default defineConfig({
         manualChunks: {
           react: ['react', 'react-dom'],
           motion: ['motion'],
-          supabase: ['@supabase/supabase-js'],
           ui_misc: ['react-switch']
         }
       }
