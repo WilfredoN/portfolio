@@ -12,8 +12,23 @@ app.use(express.json())
 app.use(requestLogger())
 
 app.set('trust proxy', 1)
-const allowedOrigin = process.env.CORS_ORIGIN || 'https://capybara.cx.ua'
-app.use(cors({ origin: allowedOrigin }))
+const allowedOriginEnv = process.env.CORS_ORIGIN || ''
+const allowedOrigins = allowedOriginEnv
+    ? allowedOriginEnv.split(',').map(s => s.trim()).filter(Boolean)
+    : ['https://capybara.cx.ua']
+if (process.env.NODE_ENV !== 'production') {
+    allowedOrigins.push('http://localhost:5173')
+    allowedOrigins.push('http://127.0.0.1:5173')
+}
+app.use(cors({
+    origin(origin, callback) {
+        if (!origin) {
+            return callback(null, true)
+        }
+        const isAllowed = allowedOrigins.includes(origin)
+        callback(null, isAllowed)
+    }
+}))
 const limiter = rateLimit({ windowMs: 60000, max: 30 })
 app.use(limiter)
 

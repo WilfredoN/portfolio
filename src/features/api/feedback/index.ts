@@ -4,21 +4,11 @@ import { api } from '@service/api'
 
 import type { FeedbackDTO, FeedbackResponse } from './types'
 
-import { fetchFeedbacksFromJson } from './fetchJson'
 import { mapFeedback } from './mapper'
 
 export const fetchFeedbacks = async (): Promise<Feedback[]> => {
-  try {
-    const data = await api.get<FeedbackResponse[] | any[]>('/feedbacks')
-    return mapFeedback(data as FeedbackResponse[])
-  } catch (error) {
-    const jsonData = await fetchFeedbacksFromJson()
-    console.error(
-      'Error fetching feedbacks from API, falling back to JSON data:',
-      error
-    )
-    return mapFeedback(jsonData)
-  }
+  const data = await api.get<FeedbackResponse[] | any[]>('/feedbacks')
+  return mapFeedback(data as FeedbackResponse[])
 }
 
 export const submitFeedback = async (

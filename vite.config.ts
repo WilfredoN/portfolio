@@ -42,7 +42,7 @@ export default defineConfig({
         "style-src 'self' 'unsafe-inline'; " +
         "font-src 'self'; " +
         "img-src 'self' data: https://i.ibb.co https://cdn.jsdelivr.net https://capybara.cx.ua https://www.google.com https://www.google.com.ua https://googleads.g.doubleclick.net https://www.gstatic.com https://ssl.gstatic.com; " +
-        "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://uadogliwalvodyyiuosi.supabase.co; " +
+        "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://uadogliwalvodyyiuosi.supabase.co https://api.capybara.cx.ua http://localhost:3001; " +
         "object-src 'none'; " +
         "base-uri 'self'",
       'X-Frame-Options': 'SAMEORIGIN',

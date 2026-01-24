@@ -6,6 +6,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     headers: { 'Content-Type': 'application/json' },
     ...init
   })
+  console.log('API Response:', res)
   if (!res.ok) {
     const errBody = await res.text().catch(() => '')
     throw new Error(`API ${res.status}: ${errBody}`)
