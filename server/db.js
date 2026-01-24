@@ -1,15 +1,19 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { open } from 'sqlite'
 import sqlite3 from 'sqlite3'
 
 let dbInstance
 
 export async function getDb() {
-    if (!dbInstance) {
-        dbInstance = await open({
-            filename: './server/feedbacks.sqlite',
-            driver: sqlite3.Database
-        })
-        await dbInstance.exec(`
+  if (!dbInstance) {
+    const __dirname = path.dirname(fileURLToPath(import.meta.url))
+    const dbPath = path.join(__dirname, 'feedbacks.sqlite')
+    dbInstance = await open({
+      filename: dbPath,
+      driver: sqlite3.Database
+    })
+    await dbInstance.exec(`
       CREATE TABLE IF NOT EXISTS feedbacks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         author TEXT,
@@ -25,6 +29,6 @@ export async function getDb() {
         FOREIGN KEY(feedback_id) REFERENCES feedbacks(id)
       );
     `)
-    }
-    return dbInstance
+  }
+  return dbInstance
 }

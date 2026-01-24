@@ -1,10 +1,14 @@
-import { createWriteStream } from 'node:fs'
+import { createWriteStream, existsSync, mkdirSync } from 'node:fs'
 
 import { getClientIp } from './ip.js'
 
 const streams = new Map()
 
 export default function requestLogger(logFile = './server/access.log') {
+    const logDir = logFile.includes('/') ? logFile.substring(0, logFile.lastIndexOf('/')) : '.'
+    if (!existsSync(logDir)) {
+        mkdirSync(logDir, { recursive: true })
+    }
     let stream = streams.get(logFile)
     if (!stream) {
         stream = createWriteStream(logFile, { flags: 'a' })
