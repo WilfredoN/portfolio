@@ -1,4 +1,5 @@
 import type { Feedback } from '@features/feedback/types/feedback'
+import type { Skill } from '@features/feedback/types/skill'
 
 import { api } from '@service/api'
 
@@ -11,15 +12,20 @@ export const fetchFeedbacks = async (): Promise<Feedback[]> => {
   return mapFeedback(data as FeedbackResponse[])
 }
 
-export const submitFeedback = async (
-  feedbackData: FeedbackDTO
+export const submitFeedbackWithNames = async (
+  feedbackData: FeedbackDTO,
+  allSkills: Skill[]
 ): Promise<{ error?: string; success: boolean }> => {
   try {
+    const feedback_skills = feedbackData.skills.map((id) => {
+      const skill = allSkills.find((s) => s.id === id)
+      return { skill_id: id, skill_name: skill ? skill.name : '' }
+    })
     await api.post('/feedbacks', {
       author: feedbackData.author,
       company: feedbackData.company || null,
       text: feedbackData.text,
-      feedback_skills: feedbackData.skills.map((id) => ({ skill_id: id }))
+      feedback_skills
     })
     return { success: true }
   } catch (error) {

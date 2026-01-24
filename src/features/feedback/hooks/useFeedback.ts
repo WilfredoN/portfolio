@@ -4,10 +4,12 @@ import type {
   FeedbackFormErrors
 } from '@features/feedback/types/feedback'
 
-import { fetchFeedbacks, submitFeedback } from '@features/api/feedback'
+import { fetchFeedbacks, submitFeedbackWithNames } from '@features/api/feedback'
 import { mapFeedbackData } from '@features/feedback/utils/format/mapFeedbackData'
 import { validateFeedbackForm } from '@features/feedback/utils/format/validateFeedback'
 import { useCallback, useState } from 'react'
+
+import { useSkills } from './useSkills'
 
 export const useFeedbacks = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
@@ -33,6 +35,7 @@ export const useFeedbacks = () => {
 }
 
 export const useFeedback = (onSuccess?: () => void) => {
+  const { skills: allSkills } = useSkills()
   const [formData, setFormData] = useState<FeedbackFormData>({
     author: '',
     company: '',
@@ -85,7 +88,6 @@ export const useFeedback = (onSuccess?: () => void) => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
       setSubmitError('')
-
       return { success: false, error: 'Please fix the validation errors' }
     }
 
@@ -93,28 +95,28 @@ export const useFeedback = (onSuccess?: () => void) => {
     setSubmitError('')
 
     try {
-      const result = await submitFeedback(mapFeedbackData(formData))
+      const result = await submitFeedbackWithNames(
+        mapFeedbackData(formData),
+        allSkills
+      )
 
       if (result.success) {
         resetForm()
         onSuccess?.()
-
         return { success: true }
       } else {
         setSubmitError(result.error || 'Failed to submit feedback')
-
         return { success: false, error: result.error }
       }
     } catch (error) {
       console.error('Error submitting feedback:', error)
       const errorMessage = 'An unexpected error occurred'
       setSubmitError(errorMessage)
-
       return { success: false, error: errorMessage }
     } finally {
       setIsSubmitting(false)
     }
-  }, [formData, onSuccess, resetForm])
+  }, [formData, onSuccess, resetForm, allSkills])
 
   return {
     formData,

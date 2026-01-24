@@ -67,6 +67,17 @@ app.post('/feedbacks', async (req, res, next) => {
             res.status(400).json({ error: 'author and text are required and must be strings' })
             return
         }
+        if (Array.isArray(feedback_skills)) {
+            for (const s of feedback_skills) {
+                if (
+                    typeof s.skill_id !== 'number' ||
+                    typeof s.skill_name !== 'string' ||
+                    !s.skill_name.trim()
+                ) {
+                    return res.status(400).json({ error: 'Each feedback skill must have a non-empty skill_name.' })
+                }
+            }
+        }
         const exists = await db.get(
             'SELECT id FROM feedbacks WHERE author = ? AND text = ?',
             [author, text]
