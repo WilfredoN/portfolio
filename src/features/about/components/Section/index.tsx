@@ -1,8 +1,10 @@
+import type { JSX } from 'react'
+
 import { List } from '@features/about/components/List'
 
 interface SectionProps {
   items: { icon: string; text: string }[]
-  title: string
+  title: string | JSX.Element
 }
 
 export const Section = ({ title, items }: SectionProps) => {
