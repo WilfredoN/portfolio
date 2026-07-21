@@ -1,4 +1,8 @@
 import { About } from '@features/about'
+import {
+  CONSTRUCTION_PATHS,
+  DEFAULT_PATH
+} from '@features/widgets/Header/navConfig'
 import { AnimatePresence, motion } from 'motion/react'
 import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
@@ -19,8 +23,12 @@ const KNOWN_PATHS = ['/about', '/projects', '/feedback']
 export const Page = () => {
   const location = useLocation()
 
-  if (location.pathname === '/' || !KNOWN_PATHS.includes(location.pathname)) {
-    return <Navigate replace to='/about' />
+  if (
+    location.pathname === '/' ||
+    !KNOWN_PATHS.includes(location.pathname) ||
+    CONSTRUCTION_PATHS.has(location.pathname)
+  ) {
+    return <Navigate replace to={DEFAULT_PATH} />
   }
 
   return (

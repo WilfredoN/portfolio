@@ -14,3 +14,10 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Projects', path: '/projects', status: NavStatus.READY },
   { label: 'Feedback', path: '/feedback', status: NavStatus.IN_CONSTRUCTION }
 ]
+
+export const CONSTRUCTION_PATHS = new Set(
+  NAV_ITEMS.filter((i) => i.status === NavStatus.IN_CONSTRUCTION).map((i) => i.path)
+)
+
+export const DEFAULT_PATH =
+  NAV_ITEMS.find((i) => i.status === NavStatus.READY)?.path ?? '/about'
