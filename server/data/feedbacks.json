@@ -1,0 +1,218 @@
+[
+  {
+    "id": 12,
+    "author": "Illia",
+    "company": null,
+    "text": "I had the pleasure of working with Nikita on multiple projects, including 'Alexandria' and 'End Game.' In Alexandria, Nikita took on the role of Team Lead and did an excellent job. He’s one of those rare people who grow right before your eyes—constantly evolving and truly passionate about what he does. We were also part of the same team in End Game, where we developed a game in C. I learned a lot from him, and it was always a pleasure to be on the same team. Nikita is not only skilled but also a great teammate who brings real value to any project",
+    "created_at": "2025-07-01T09:43:48.758737+00:00",
+    "feedback_skills": [
+      {
+        "skills": {
+          "id": 3,
+          "name": "TypeScript"
+        },
+        "skill_id": 3
+      },
+      {
+        "skills": {
+          "id": 5,
+          "name": "C"
+        },
+        "skill_id": 5
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "author": "Slava Melanko",
+    "company": "Massive",
+    "text": "It was a pleasure working with Nikita. Even with over 10 years of experience myself, I learned a lot from him. He reminded me about the Controller-Service-Repository pattern, helped set up Husky pre-commit hooks, CI/CD pipelines, Playwright tests, and much more. Nikita has great discipline and is always learning. Any team will be lucky to have him in the future 💪",
+    "created_at": "2025-07-01T08:36:46.598199+00:00",
+    "feedback_skills": [
+      {
+        "skills": {
+          "id": 2,
+          "name": "JavaScript"
+        },
+        "skill_id": 2
+      },
+      {
+        "skills": {
+          "id": 3,
+          "name": "TypeScript"
+        },
+        "skill_id": 3
+      },
+      {
+        "skills": {
+          "id": 7,
+          "name": "React"
+        },
+        "skill_id": 7
+      },
+      {
+        "skills": {
+          "id": 8,
+          "name": "Playwright"
+        },
+        "skill_id": 8
+      },
+      {
+        "skills": {
+          "id": 9,
+          "name": "Jest"
+        },
+        "skill_id": 9
+      },
+      {
+        "skills": {
+          "id": 10,
+          "name": "Vite"
+        },
+        "skill_id": 10
+      },
+      {
+        "skills": {
+          "id": 11,
+          "name": "Bun"
+        },
+        "skill_id": 11
+      },
+      {
+        "skills": {
+          "id": 15,
+          "name": "PostgreSQL"
+        },
+        "skill_id": 15
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "author": "Your Name",
+    "company": "Your company (optional)",
+    "text": "Here is how your feedback looks like. Feel free to share any experience working with me. Below are technologies you can to \"endorse\" (like in linkedIn), if there aren't some library - you can mention it here. Thank you.",
+    "created_at": "2025-06-30T14:46:43.655209+00:00",
+    "feedback_skills": [
+      {
+        "skills": {
+          "id": 1,
+          "name": "Java"
+        },
+        "skill_id": 1
+      },
+      {
+        "skills": {
+          "id": 2,
+          "name": "JavaScript"
+        },
+        "skill_id": 2
+      },
+      {
+        "skills": {
+          "id": 3,
+          "name": "TypeScript"
+        },
+        "skill_id": 3
+      },
+      {
+        "skills": {
+          "id": 4,
+          "name": "Python"
+        },
+        "skill_id": 4
+      },
+      {
+        "skills": {
+          "id": 5,
+          "name": "C"
+        },
+        "skill_id": 5
+      },
+      {
+        "skills": {
+          "id": 6,
+          "name": "C++"
+        },
+        "skill_id": 6
+      },
+      {
+        "skills": {
+          "id": 7,
+          "name": "React"
+        },
+        "skill_id": 7
+      },
+      {
+        "skills": {
+          "id": 8,
+          "name": "Playwright"
+        },
+        "skill_id": 8
+      },
+      {
+        "skills": {
+          "id": 9,
+          "name": "Jest"
+        },
+        "skill_id": 9
+      },
+      {
+        "skills": {
+          "id": 10,
+          "name": "Vite"
+        },
+        "skill_id": 10
+      },
+      {
+        "skills": {
+          "id": 11,
+          "name": "Bun"
+        },
+        "skill_id": 11
+      },
+      {
+        "skills": {
+          "id": 12,
+          "name": "TailwindCSS"
+        },
+        "skill_id": 12
+      },
+      {
+        "skills": {
+          "id": 13,
+          "name": "ChakraUI"
+        },
+        "skill_id": 13
+      },
+      {
+        "skills": {
+          "id": 14,
+          "name": "Spring"
+        },
+        "skill_id": 14
+      },
+      {
+        "skills": {
+          "id": 15,
+          "name": "PostgreSQL"
+        },
+        "skill_id": 15
+      },
+      {
+        "skills": {
+          "id": 16,
+          "name": "Redis"
+        },
+        "skill_id": 16
+      },
+      {
+        "skills": {
+          "id": 17,
+          "name": "Docker"
+        },
+        "skill_id": 17
+      }
+    ]
+  }
+]

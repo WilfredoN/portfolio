@@ -4,7 +4,7 @@ import { getDb } from './db.js'
 
 async function seed() {
     const db = await getDb()
-    const url = new URL('../public/data/feedbacks.json', import.meta.url)
+    const url = new URL('./data/feedbacks.json', import.meta.url)
     const raw = await readFile(url, 'utf8')
     const feedbacks = JSON.parse(raw)
     await db.exec('BEGIN TRANSACTION')
