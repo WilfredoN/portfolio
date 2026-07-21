@@ -1,16 +1,20 @@
 import type { ProjectProps } from '@features/projects/data/projects'
 
 import { ProjectImage } from '@features/projects/components/ProjectImage'
-import { Stack } from '@shared/components/Stack'
 import { Text } from '@shared/components/Text'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 import { lazy } from 'react'
+
 const Video = lazy(() =>
   import('@features/projects/components/ProjectVideo').then((module) => ({
     default: module.ProjectVideo
   }))
 )
+
+interface CardProps extends ProjectProps {
+  selectedTags?: string[]
+}
 
 export const Card = ({
   title,
@@ -22,14 +26,16 @@ export const Card = ({
   imageTitle,
   imageStyle,
   scale = 'medium',
-  additionalDescription
-}: ProjectProps) => {
+  additionalDescription,
+  selectedTags = []
+}: CardProps) => {
   const isLarge = scale === 'large'
   const handleClick = () => {
     if (link) {
       window.open(link, '_blank', 'noopener,noreferrer')
     }
   }
+
   return (
     <motion.div
       className={clsx(
@@ -39,15 +45,11 @@ export const Card = ({
           'md:h-122.5': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,
-          'max-w-125': !isLarge
+          'max-w-125 md:max-w-full': !isLarge
         }
       )}
     >
-      <motion.h1
-        animate='final'
-        className='flex flex-col items-center text-center text-4xl'
-        initial='initial'
-      >
+      <motion.h1 className='flex flex-col items-center text-center text-4xl'>
         {imageUrl ? (
           <ProjectImage
             alt={title}
@@ -60,10 +62,11 @@ export const Card = ({
           <Video src={videoUrl} />
         ) : (
           <span className='font-courgette my-6 text-[4rem] text-[#5287AD]'>
-            <a href={link}>{title}</a>
+            <a href={link} rel='noopener noreferrer' target='_blank'>
+              {title}
+            </a>
           </span>
         )}
-        {isLarge && <Stack items={technologies} size={scale} />}
         <div className='mt-4 text-[1.7rem]'>
           <Text>{description}</Text>
           {additionalDescription && (
@@ -71,13 +74,24 @@ export const Card = ({
           )}
         </div>
       </motion.h1>
-      <div className='self-center justify-self-end'>
-        {!isLarge && (
-          <>
-            <h3 className='mb-2 text-center text-3xl'>Technologies used:</h3>
-            <Stack items={technologies} />
-          </>
-        )}
+
+      <div className='mt-6 flex flex-wrap justify-center gap-2'>
+        {technologies.map((tech) => {
+          const isActive = selectedTags.includes(tech)
+          return (
+            <span
+              key={tech}
+              className={clsx(
+                'rounded-full border px-3 py-1.5 text-[1.3rem] transition-all duration-200 select-none',
+                isActive
+                  ? 'border-blue-500/60 bg-blue-500/25 text-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.2)]'
+                  : 'border-zinc-700/40 bg-zinc-800/40 text-zinc-400'
+              )}
+            >
+              #{tech}
+            </span>
+          )
+        })}
       </div>
     </motion.div>
   )

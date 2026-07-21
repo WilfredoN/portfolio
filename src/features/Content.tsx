@@ -28,7 +28,7 @@ export const Content = () => {
   }, [isDarkTheme])
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-start bg-(--color-bg) py-2'>
+    <main className='flex min-h-screen w-full max-w-5xl flex-col items-center justify-start bg-(--color-bg) py-2'>
       {showBinary && !isMobile && isDarkTheme && (
         <Suspense fallback={null}>
           <BinaryBackground />

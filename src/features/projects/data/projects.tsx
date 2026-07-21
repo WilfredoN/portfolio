@@ -1,10 +1,23 @@
 import type { JSX } from 'react'
 
-type Category = 'project' | 'live'
+export type Category = 'web-app' | 'game' | 'landing'
+
+export interface CategoryConfig {
+  color: 'blue' | 'purple' | 'emerald'
+  emoji: string
+  id: Category
+  label: string
+}
+
+export const CATEGORIES: CategoryConfig[] = [
+  { id: 'web-app', label: 'Web Apps', emoji: '🚀', color: 'blue' },
+  { id: 'game', label: 'Games', emoji: '🎮', color: 'purple' },
+  { id: 'landing', label: 'Landings', emoji: '🧪', color: 'emerald' }
+]
 
 export interface ProjectProps {
   additionalDescription?: JSX.Element
-  category?: Category
+  category: Category
   description: string
   imageStyle?: string
   imageTitle?: string
@@ -25,7 +38,7 @@ export const projects: ProjectProps[] = [
     scale: 'small',
     link: '/projects/order-summary-component-main/index.html',
     imageUrl: 'projects/order-summary-component-main/design/desktop-design.jpg',
-    category: 'live'
+    category: 'landing'
   },
   {
     title: 'Calculator App',
@@ -35,7 +48,7 @@ export const projects: ProjectProps[] = [
     scale: 'small',
     link: '/projects/calculator-app-main/index.html',
     imageUrl: 'projects/calculator-app-main/design/desktop-design-theme-1.jpg',
-    category: 'live'
+    category: 'landing'
   },
   {
     title: 'Sunnyside Agency Landing Page',
@@ -46,7 +59,7 @@ export const projects: ProjectProps[] = [
     link: '/projects/sunnyside-agency-landing-page-main/index.html',
     imageUrl:
       'projects/sunnyside-agency-landing-page-main/design/desktop-design.jpg',
-    category: 'live'
+    category: 'landing'
   },
   {
     title: 'Blogr Landing Page',
@@ -56,7 +69,7 @@ export const projects: ProjectProps[] = [
     scale: 'small',
     link: '/projects/Blogr-landing-page/index.html',
     imageUrl: 'projects/Blogr-landing-page/design/desktop-design.jpg',
-    category: 'live'
+    category: 'landing'
   },
   {
     title: 'FAQ Accordion Card',
@@ -66,7 +79,7 @@ export const projects: ProjectProps[] = [
     scale: 'small',
     link: '/projects/faq-accordion-card-main/index.html',
     imageUrl: 'projects/faq-accordion-card-main/design/desktop-design.jpg',
-    category: 'live'
+    category: 'landing'
   },
   {
     title: 'Interactive Pricing Component',
@@ -77,7 +90,7 @@ export const projects: ProjectProps[] = [
     link: '/projects/interactive-pricing-component-main/index.html',
     imageUrl:
       'projects/interactive-pricing-component-main/design/desktop-design.jpg',
-    category: 'live'
+    category: 'landing'
   },
   {
     title: 'Alexandria',
@@ -86,7 +99,8 @@ export const projects: ProjectProps[] = [
     description:
       'A web platform for organizing a convenient learning process as well as communication between teachers and students. It was made as part of a exam project in a college.',
     technologies: ['angular', 'typescript', 'nodejs', 'spring', 'postgresql'],
-    link: 'https://github.com/WilfredoN/alexandria-app'
+    link: 'https://github.com/WilfredoN/alexandria-app',
+    category: 'web-app'
   },
   {
     title: 'WinWin.Travel',
@@ -106,7 +120,8 @@ export const projects: ProjectProps[] = [
     technologies: ['react', 'typescript', 'chakraui', 'nodejs'],
     link: 'https://www.winwin.travel/',
     imageUrl: 'winwin.png',
-    imageStyle: 'bg-white px-4 py-2 rounded-md'
+    imageStyle: 'bg-white px-4 py-2 rounded-md',
+    category: 'web-app'
   },
   {
     title: 'Deadlines Rule The World',
@@ -114,6 +129,7 @@ export const projects: ProjectProps[] = [
       'Deadlines Rule The World is a 2D game developed in C using the SDL2 library. The game features a bee character that the player controls, tasked with avoiding enemies, while collecting coins. The game incorporates collision detection, object management, and a start screen UI. Enemies and sprints move around the screen, and the player can shoot missiles. The goal of the game is to survive until all tasks and sprints are eliminated.',
     technologies: ['c', 'sdl'],
     scale: 'large',
-    videoUrl: 'endgame_gif.webm'
+    videoUrl: 'endgame_gif.webm',
+    category: 'game'
   }
 ]
