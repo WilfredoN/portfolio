@@ -1,59 +1,62 @@
 import { LoadingSpinner } from '@shared/components/Spinner/LoadingSpinner'
-import { Activity, lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 
-import { UniversalImage } from './UniversalImage'
-import { useProgressiveImage } from './useProgressiveImage'
+import type { ImageProps } from './CapybaraImage'
 
-export interface ImageProps {
-  alt?: string
-  className?: string
-  height?: number
-  highQualityUrl?: string
-  url?: string
-  width?: number
-}
-
-const CapybaraImage = ({
-  url = '/capybara_binary_compressed_v2.avif',
-  highQualityUrl = '/capybara_binary.png',
-  alt = 'Capybara image in zeros and ones style',
-  width = 556,
-  height = 556,
-  className = ''
-}: ImageProps) => {
-  if (typeof window !== 'undefined') {
-    // No need to preload Pixelify Sans or Courgette, both are now self-hosted
-  }
-  const { src, loaded } = useProgressiveImage(url, highQualityUrl)
-  return (
-    <div style={{ aspectRatio: `${width} / ${height}`, width, height }}>
-      <UniversalImage
-        alt={alt}
-        avifSrc={url}
-        className={className}
-        height={height}
-        loaded={loaded}
-        pngSrc={highQualityUrl}
-        src={src}
-        width={width}
-      />
-    </div>
-  )
-}
-
-const CapybaraImageLazy = lazy(() =>
-  Promise.resolve({ default: CapybaraImage })
-)
+const CapybaraImageLazy = lazy(() => import('./CapybaraImage'))
 
 export const Capybara = (props: ImageProps) => {
-  const [visible] = useState(true)
+  const [visible, setVisible] = useState(false)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return
+    }
+
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true)
+            observer.disconnect()
+          }
+        })
+      },
+      { rootMargin: '200px' }
+    )
+
+    observer.observe(containerRef.current)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
-    <Activity mode={visible ? 'visible' : 'hidden'}>
-      <Suspense
-        fallback={<LoadingSpinner size='lg' text='Loading capybara...' />}
-      >
-        <CapybaraImageLazy {...props} />
-      </Suspense>
-    </Activity>
+    <div
+      ref={containerRef}
+      style={{
+        minWidth: props.width ?? 556,
+        minHeight: props.height ?? 556,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      {visible ? (
+        <Suspense
+          fallback={<LoadingSpinner size='lg' text='Loading capybara...' />}
+        >
+          <CapybaraImageLazy {...props} />
+        </Suspense>
+      ) : (
+        <div
+          style={{ width: props.width ?? 556, height: props.height ?? 556 }}
+        />
+      )}
+    </div>
   )
 }
