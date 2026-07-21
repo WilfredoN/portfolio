@@ -34,7 +34,8 @@ export const Projects = () => {
     )
   }
 
-  const handleClearFilters = () => {
+  const handleResetFilters = () => {
+    setActiveCategories(['web-app', 'game'])
     setSelectedTags([])
   }
 
@@ -59,7 +60,7 @@ export const Projects = () => {
   return (
     <motion.article
       animate='final'
-      className='mt-8 flex w-full max-w-screen-2xl flex-col items-center justify-center gap-8 p-4 text-left'
+      className='mt-8 flex w-full max-w-[1024px] flex-col items-center justify-start gap-8 p-4 text-left'
       initial='initial'
     >
       <FilterPanel
@@ -68,13 +69,15 @@ export const Projects = () => {
         projectCount={filteredProjects.length}
         selectedTags={selectedTags}
         onCategoryChange={handleCategoryChange}
-        onClearFilters={handleClearFilters}
+        onResetFilters={handleResetFilters}
         onToggleTag={handleToggleTag}
       />
       <ProjectList projects={filteredProjects} selectedTags={selectedTags} />
-      <Text className='mt-8 text-center text-4xl font-bold'>
-        More projects coming soon...
-      </Text>
+      {filteredProjects.length > 0 && (
+        <Text className='mt-8 text-center text-4xl font-bold'>
+          More projects coming soon...
+        </Text>
+      )}
     </motion.article>
   )
 }

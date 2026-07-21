@@ -2,16 +2,13 @@ import { Capybara } from '@features/about/components/image/Capybara'
 import { Resume } from '@features/about/components/tooltips'
 import { lines } from '@features/about/data/introduction'
 import { SkillSection } from '@features/widgets'
-import { MultiLine, Text } from '@shared/components/Text'
-// import { useIsMobile } from '@shared/hooks/isMobile'
+import { Text } from '@shared/components/Text'
 import clsx from 'clsx'
 
 export const About = () => {
-  // const isMobile = useIsMobile()
-
   return (
-    <article className='z-5 mt-8 flex max-w-screen-2xl flex-col items-center justify-center bg-(--color-bg) text-(--color-text)'>
-      <div className='relative m-0 flex max-w-screen-2xl flex-col items-center justify-center'>
+    <article className='z-5 mt-8 flex max-w-5xl flex-col items-center justify-start bg-(--color-bg) text-(--color-text)'>
+      <div className='relative m-0 flex max-w-5xl flex-col items-center justify-center'>
         <div className='relative flex max-w-140 items-center justify-center'>
           <Resume />
           <div
@@ -25,10 +22,9 @@ export const About = () => {
             <Capybara url='capybara_binary_compressed_v2.avif' />
           </div>
         </div>
-        <MultiLine
-          lines={lines}
-          textStyles='text-3xl min-w-[55%] m-0 p-2 text-center leading-10'
-        />
+        <Text className='mx-auto mt-6 max-w-4xl text-center text-2xl leading-relaxed opacity-85'>
+          {lines.join(' ')}
+        </Text>
       </div>
       <div>
         <Text className='text-4xl'>My skills</Text>

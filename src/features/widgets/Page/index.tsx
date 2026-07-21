@@ -28,7 +28,7 @@ export const Page = () => {
       <motion.div
         key={location.pathname}
         animate='final'
-        className='flex min-h-screen w-full max-w-screen-2xl items-center justify-center'
+        className='flex min-h-screen w-full max-w-5xl items-start justify-center'
         exit='exit'
         initial='initial'
         variants={variants}

@@ -1,9 +1,6 @@
 export const lines = [
-  "Hi, I'm a Software Engineer.",
-  'I love to build web and desktop applications from start to finish.',
-  'I have experience in Java, Spring on the backend, React on the frontend.',
-  'Also I have experience in C, C++ and Python.',
-  'I am passionate about learning new technologies and improving my skills.',
-  'I am always looking for new challenges and opportunities to grow as a developer.',
-  "Let's connect and create something amazing together!"
+  "Hi, I'm a Software Engineer focused on building full-cycle web and desktop applications.",
+  'Experienced in Java/Spring on the backend and React on the frontend, with solid exposure to C, C++, and Python.',
+  'Driven by continuous learning and solving complex developer challenges.',
+  "Let's connect and build something amazing together!"
 ]

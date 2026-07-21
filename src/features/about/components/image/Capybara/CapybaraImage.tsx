@@ -32,8 +32,8 @@ export const CapybaraImage = ({
 
   const springConfig = { damping: 30, stiffness: 120, mass: 0.8 }
 
-  const rotateX = useSpring(useTransform(y, [0, 1], [15, -15]), springConfig)
-  const rotateY = useSpring(useTransform(x, [0, 1], [-15, 15]), springConfig)
+  const rotateX = useSpring(useTransform(y, [0, 1], [6, -6]), springConfig)
+  const rotateY = useSpring(useTransform(x, [0, 1], [-6, 6]), springConfig)
   const scale = useSpring(1, springConfig)
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
