@@ -128,11 +128,12 @@ export const FilterPanel = ({
       <AnimatePresence initial={false}>
         {showFilterPanel && (
           <motion.div
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ clipPath: 'inset(0 0 0% 0)', opacity: 1 }}
             className='w-full overflow-hidden'
-            exit={{ height: 0, opacity: 0 }}
-            initial={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}
+            initial={{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }}
+            style={{ willChange: 'clip-path, opacity' }}
+            transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className='flex w-full justify-center'>
               <div className='flex w-full max-w-5xl flex-col items-center gap-4 border-t border-zinc-800/40 px-4 pt-4'>
@@ -142,7 +143,6 @@ export const FilterPanel = ({
                     return (
                       <motion.button
                         key={tag}
-                        layout
                         className={getTagItemStyles(isActive, isDarkTheme)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
