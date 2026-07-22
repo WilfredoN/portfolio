@@ -8,7 +8,7 @@ interface ListProps {
 
 export const List = ({ items }: ListProps) => {
   return (
-    <ul className='flex flex-row flex-wrap items-center justify-evenly gap-4 p-4 text-3xl'>
+    <ul className='flex flex-wrap gap-3 p-4 text-xl font-medium sm:text-2xl'>
       {items.map((item, index) => (
         <Item key={index} icon={item.icon} text={item.text} type={item.type} />
       ))}

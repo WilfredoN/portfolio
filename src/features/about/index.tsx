@@ -26,8 +26,8 @@ export const About = () => {
           {lines.join(' ')}
         </Text>
       </div>
-      <div>
-        <Text className='text-4xl'>My skills</Text>
+      <div className='mt-8 w-full text-center'>
+        <Text className='text-4xl font-bold'>My skills</Text>
         <SkillSection />
       </div>
     </article>
