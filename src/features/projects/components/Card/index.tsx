@@ -41,7 +41,7 @@ export const Card = ({
       className={clsx(
         'mb-12 flex w-full flex-col justify-between rounded-lg border-3 p-4 transition-transform duration-100',
         {
-          'hover:scale-105': !videoUrl,
+          'hover:scale-105': !videoUrl && !isLarge,
           'md:h-122.5': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,

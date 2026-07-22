@@ -93,6 +93,15 @@ export const projects: ProjectProps[] = [
     category: 'landing'
   },
   {
+    title: 'UChat',
+    description:
+      'A cross-platform real-time chat application built with ASP.NET Core, SignalR, and Avalonia UI as a native desktop client. Features direct and group messaging with AES-256 message encryption, file attachments, user search and blocking, and paginated message history. Developed in 10 days within a 5-person team, where I served as team lead, front-end developer, and mentor.',
+    technologies: ['csharp', 'dotnet', 'signalr', 'sqlite', 'avalonia'],
+    imageUrl: 'uchat.png',
+    scale: 'large',
+    category: 'web-app'
+  },
+  {
     title: 'Alexandria',
     scale: 'medium',
     imageTitle: 'Github Repository',
