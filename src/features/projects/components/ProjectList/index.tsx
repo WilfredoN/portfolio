@@ -17,19 +17,19 @@ export const ProjectList = ({ projects, selectedTags }: ProjectListProps) => {
           <motion.div
             key='empty-state'
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className='flex flex-col items-center justify-center gap-4 text-center p-8'
+            className='flex flex-col items-center justify-center gap-4 p-8 text-center'
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.25 }}
           >
-            <span className='text-6xl select-none filter drop-shadow-md animate-bounce'>
+            <span className='animate-bounce text-6xl drop-shadow-md filter select-none'>
               🔍
             </span>
             <div className='flex flex-col gap-2'>
               <h3 className='text-2xl font-bold text-zinc-300'>
                 No projects found
               </h3>
-              <p className='text-zinc-500 text-lg max-w-md font-medium'>
+              <p className='max-w-md text-lg font-medium text-zinc-500'>
                 {selectedTags.length > 0
                   ? 'Try clearing the tag filters or selecting different categories.'
                   : 'Select one or more categories above to display the projects.'}
@@ -44,7 +44,8 @@ export const ProjectList = ({ projects, selectedTags }: ProjectListProps) => {
               animate={{ opacity: 1, scale: 1 }}
               className={clsx('flex w-full', {
                 'max-w-full': project.scale === 'large',
-                'md:max-w-[calc(50%-1rem)]': project.scale !== 'large'
+                'justify-center md:max-w-[calc(50%-1rem)]':
+                  project.scale !== 'large'
               })}
               exit={{ opacity: 0, scale: 0.9 }}
               initial={{ opacity: 0, scale: 0.9 }}

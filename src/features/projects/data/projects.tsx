@@ -133,6 +133,15 @@ export const projects: ProjectProps[] = [
     category: 'web-app'
   },
   {
+    title: 'Marvel Bit',
+    description:
+      'A real-time 1v1 browser card battler with an 8-bit pixel art aesthetic, built with Node.js, Express, Socket.IO, and MySQL. Features a server-authoritative game engine with a mana system, 20 Marvel hero cards across 4 tiers, 11 passive and 13 active abilities, drag-and-drop card play with SVG Bézier attack arrows, and seamless reconnection recovery.',
+    technologies: ['nodejs', 'express', 'socketio', 'mysql', 'javascript'],
+    scale: 'large',
+    videoUrl: 'marvel_bit.mp4',
+    category: 'game'
+  },
+  {
     title: 'Deadlines Rule The World',
     description:
       'Deadlines Rule The World is a 2D game developed in C using the SDL2 library. The game features a bee character that the player controls, tasked with avoiding enemies, while collecting coins. The game incorporates collision detection, object management, and a start screen UI. Enemies and sprints move around the screen, and the player can shoot missiles. The goal of the game is to survive until all tasks and sprints are eliminated.',
