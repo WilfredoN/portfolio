@@ -2,6 +2,7 @@ import type { ProjectProps } from '@features/projects/data/projects'
 
 import { ProjectImage } from '@features/projects/components/ProjectImage'
 import { Text } from '@shared/components/Text'
+import { SKILL_DEFINITIONS } from '@shared/constants/skills'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 import { lazy } from 'react'
@@ -78,6 +79,7 @@ export const Card = ({
       <div className='mt-6 flex flex-wrap justify-center gap-2'>
         {technologies.map((tech) => {
           const isActive = selectedTags.includes(tech)
+          const name = SKILL_DEFINITIONS[tech]?.name ?? tech
           return (
             <span
               key={tech}
@@ -88,7 +90,7 @@ export const Card = ({
                   : 'border-zinc-700/40 bg-zinc-800/40 text-zinc-400'
               )}
             >
-              #{tech}
+              #{name}
             </span>
           )
         })}

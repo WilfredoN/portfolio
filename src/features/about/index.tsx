@@ -1,3 +1,4 @@
+import { CareerTimeline } from '@features/about/components/CareerTimeline'
 import { Capybara } from '@features/about/components/image/Capybara'
 import { Resume } from '@features/about/components/tooltips'
 import { lines } from '@features/about/data/introduction'
@@ -26,6 +27,9 @@ export const About = () => {
           {lines.join(' ')}
         </Text>
       </div>
+
+      <CareerTimeline />
+
       <div className='mt-8 w-full text-center'>
         <Text className='text-4xl font-bold'>My skills</Text>
         <SkillSection />

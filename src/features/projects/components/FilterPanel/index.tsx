@@ -2,6 +2,7 @@ import type { Category } from '@features/projects/data/projects'
 
 import { useTheme } from '@app/hooks/useTheme'
 import { CATEGORIES } from '@features/projects/data/projects'
+import { SKILL_DEFINITIONS } from '@shared/constants/skills'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
@@ -136,23 +137,22 @@ export const FilterPanel = ({
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className='flex w-full justify-center'>
-              <div className='flex w-full max-w-5xl flex-col items-center gap-4 border-t border-zinc-800/40 px-4 pt-4'>
-                <div className='flex w-full flex-wrap justify-center gap-3'>
-                  {allTags.map((tag) => {
-                    const isActive = selectedTags.includes(tag)
-                    return (
-                      <motion.button
-                        key={tag}
-                        className={getTagItemStyles(isActive, isDarkTheme)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => onToggleTag(tag)}
-                      >
-                        #{tag}
-                      </motion.button>
-                    )
-                  })}
-                </div>
+              <div className='flex w-full max-w-5xl flex-wrap justify-center gap-3 border-t border-zinc-800/40 px-4 pt-4'>
+                {allTags.map((tag) => {
+                  const isActive = selectedTags.includes(tag)
+                  const tagName = SKILL_DEFINITIONS[tag]?.name ?? tag
+                  return (
+                    <motion.button
+                      key={tag}
+                      className={getTagItemStyles(isActive, isDarkTheme)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => onToggleTag(tag)}
+                    >
+                      #{tagName}
+                    </motion.button>
+                  )
+                })}
               </div>
             </div>
           </motion.div>
