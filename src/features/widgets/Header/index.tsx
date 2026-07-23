@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { ConstructionButton } from './ConstructionButton'
+import { useAllNavStatuses } from './hooks/useNavTabStatus'
 import { NAV_ITEMS, NavStatus } from './navConfig'
 import { NavigationButton } from './NavigationButton'
 import { ThemeToggle } from './ThemeToggle'
@@ -16,6 +17,8 @@ export const Header = () => {
   const navigate = useNavigate()
   const isMobile = window.innerWidth <= 1024
 
+  const navStatuses = useAllNavStatuses(NAV_ITEMS.map((item) => item.path))
+
   useEffect(() => {
     const handleScroll = () => setScrollPosition(window.scrollY)
     window.addEventListener('scroll', handleScroll)
@@ -23,7 +26,9 @@ export const Header = () => {
   }, [])
 
   const handlePageChange = (path: string, label: string) => {
-    if (!isMobile) {setScrollPosition(0)}
+    if (!isMobile) {
+      setScrollPosition(0)
+    }
     navigate(path)
     sendGAEvent({ action: 'navigation_click', category: 'Header', label })
   }
@@ -42,7 +47,9 @@ export const Header = () => {
     >
       <nav className='flex w-full flex-col justify-center md:flex-row'>
         {NAV_ITEMS.map((item) => {
-          if (item.status === NavStatus.IN_CONSTRUCTION) {
+          const status = navStatuses[item.path] ?? NavStatus.READY
+
+          if (status === NavStatus.IN_CONSTRUCTION) {
             return (
               <ConstructionButton key={item.path}>
                 {item.label}
@@ -65,4 +72,3 @@ export const Header = () => {
     </motion.header>
   )
 }
-

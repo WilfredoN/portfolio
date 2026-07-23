@@ -31,4 +31,3 @@ export const ConstructionToastList = ({
     document.body
   )
 }
-

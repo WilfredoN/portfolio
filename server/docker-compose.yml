@@ -8,10 +8,10 @@ services:
     container_name: portfolio-server
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3001:3001"
+      - '127.0.0.1:3001:3001'
     environment:
       - PORT=3001
       - NODE_ENV=production
-      - CORS_ORIGIN=https://capybara.cx.ua
+      - CORS_ORIGIN=https://capybara.cx.ua,http://localhost:5173,http://127.0.0.1:5173
     volumes:
       - ./feedbacks.sqlite:/app/feedbacks.sqlite

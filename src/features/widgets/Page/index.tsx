@@ -1,8 +1,6 @@
 import { About } from '@features/about'
-import {
-  CONSTRUCTION_PATHS,
-  DEFAULT_PATH
-} from '@features/widgets/Header/navConfig'
+import { useNavTabStatus } from '@features/widgets/Header/hooks/useNavTabStatus'
+import { DEFAULT_PATH, NavStatus } from '@features/widgets/Header/navConfig'
 import { AnimatePresence, motion } from 'motion/react'
 import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
@@ -22,11 +20,12 @@ const KNOWN_PATHS = ['/about', '/projects', '/feedback']
 
 export const Page = () => {
   const location = useLocation()
+  const currentNavStatus = useNavTabStatus(location.pathname)
 
   if (
     location.pathname === '/' ||
     !KNOWN_PATHS.includes(location.pathname) ||
-    CONSTRUCTION_PATHS.has(location.pathname)
+    currentNavStatus === NavStatus.IN_CONSTRUCTION
   ) {
     return <Navigate replace to={DEFAULT_PATH} />
   }

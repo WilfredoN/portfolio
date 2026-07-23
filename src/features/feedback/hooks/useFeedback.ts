@@ -1,40 +1,36 @@
 import type {
-  Feedback,
   FeedbackFormData,
   FeedbackFormErrors
 } from '@features/feedback/types/feedback'
 
-import { fetchFeedbacks, submitFeedbackWithNames } from '@features/api/feedback'
+import { submitFeedbackWithNames } from '@features/api/feedback'
+import {
+  FEEDBACKS_QUERY_KEY,
+  useFeedbacksQuery
+} from '@features/api/feedback/useFeedbacksQuery'
 import { mapFeedbackData } from '@features/feedback/utils/format/mapFeedbackData'
 import { validateFeedbackForm } from '@features/feedback/utils/format/validateFeedback'
+import { useQueryClient } from '@tanstack/react-query'
 import { useCallback, useState } from 'react'
 
 import { useSkills } from './useSkills'
 
 export const useFeedbacks = () => {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const query = useFeedbacksQuery()
 
   const loadFeedbacks = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const data = await fetchFeedbacks()
-      setFeedbacks(data)
-    } catch (error) {
-      console.error('Error loading feedbacks:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+    await query.refetch()
+  }, [query])
 
   return {
-    feedbacks,
-    isLoading,
+    feedbacks: query.data ?? [],
+    isLoading: query.isLoading,
     loadFeedbacks
   }
 }
 
 export const useFeedback = (onSuccess?: () => void) => {
+  const queryClient = useQueryClient()
   const { skills: allSkills } = useSkills()
   const [formData, setFormData] = useState<FeedbackFormData>({
     author: '',
@@ -102,6 +98,7 @@ export const useFeedback = (onSuccess?: () => void) => {
 
       if (result.success) {
         resetForm()
+        queryClient.invalidateQueries({ queryKey: FEEDBACKS_QUERY_KEY })
         onSuccess?.()
         return { success: true }
       } else {
@@ -116,7 +113,7 @@ export const useFeedback = (onSuccess?: () => void) => {
     } finally {
       setIsSubmitting(false)
     }
-  }, [formData, onSuccess, resetForm, allSkills])
+  }, [formData, onSuccess, resetForm, allSkills, queryClient])
 
   return {
     formData,
