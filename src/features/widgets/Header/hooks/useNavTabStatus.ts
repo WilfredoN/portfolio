@@ -22,8 +22,10 @@ export const useAllNavStatuses = (
   const statuses: Record<string, NavStatus> = {}
 
   for (const path of paths) {
-    if (path === '/feedback' && feedbackQuery.isError) {
-      statuses[path] = NavStatus.IN_CONSTRUCTION
+    if (path === '/feedback') {
+      statuses[path] = feedbackQuery.isSuccess
+        ? NavStatus.READY
+        : NavStatus.IN_CONSTRUCTION
     } else {
       statuses[path] = NavStatus.READY
     }
