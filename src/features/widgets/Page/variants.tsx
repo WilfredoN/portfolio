@@ -1,33 +1,39 @@
 import type { Variants } from 'motion'
 
+export const PAGE_TRANSITION_SPEED = {
+  ENTER_DURATION: 0.35,
+  EXIT_DURATION: 0.25,
+  INITIAL_DURATION: 0.2
+} as const
+
 export const variants: Variants = {
   initial: {
-    opacity: 0,
-    scale: 0.96,
     filter: 'blur(8px) grayscale(60%)',
+    opacity: 0,
     rotate: Math.random() * 10 - 8,
+    scale: 0.96,
     transition: {
-      duration: 0.2,
+      duration: PAGE_TRANSITION_SPEED.INITIAL_DURATION,
       ease: 'easeInOut'
     }
   },
   final: {
-    opacity: 1,
-    scale: 1,
     filter: 'blur(0px) grayscale(0%)',
+    opacity: 1,
     rotate: 0,
+    scale: 1,
     transition: {
-      duration: 0.4,
+      duration: PAGE_TRANSITION_SPEED.ENTER_DURATION,
       ease: 'easeInOut'
     }
   },
   exit: {
-    opacity: 0,
-    scale: 1.04,
     filter: 'blur(12px) grayscale(80%)',
+    opacity: 0,
     rotate: Math.random() * 10 - 8,
+    scale: 1.04,
     transition: {
-      duration: 0.4,
+      duration: PAGE_TRANSITION_SPEED.EXIT_DURATION,
       ease: 'easeInOut'
     }
   }

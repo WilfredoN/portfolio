@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { motion } from 'motion/react'
 
 interface NavigationLinkProps {
   children: React.ReactNode
@@ -14,18 +15,26 @@ export const NavigationButton = ({
   isProcessing = false
 }: NavigationLinkProps) => (
   <button
+    aria-current={isClicked ? 'page' : undefined}
     className={clsx(
-      'mb-4 rounded-full p-4 text-5xl duration-75 md:mr-8 md:mb-0',
+      'relative flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 select-none sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base focus:outline-none',
       isProcessing
-        ? 'pointer-events-none cursor-default'
-        : 'cursor-pointer hover:outline-4',
-      isClicked &&
-        'unclickable pointer-events-none rounded-3xl outline duration-100'
+        ? 'pointer-events-none cursor-default opacity-50'
+        : 'cursor-pointer',
+      isClicked
+        ? 'text-white'
+        : 'text-zinc-400 hover:text-zinc-100 hover:bg-white/10'
     )}
     disabled={isProcessing}
-    style={{ fontSize: '2.5rem' }}
     onClick={isProcessing ? undefined : onClick}
   >
-    {children}
+    {isClicked && (
+      <motion.div
+        className='absolute inset-0 rounded-full bg-white/20 shadow-inner'
+        layoutId='island-active-pill'
+        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+      />
+    )}
+    <span className='relative z-10 tracking-wide'>{children}</span>
   </button>
 )

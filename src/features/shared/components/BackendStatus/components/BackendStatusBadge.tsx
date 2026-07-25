@@ -89,7 +89,7 @@ export const BackendStatusBadge = () => {
         {showStats && (
           <motion.div
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className='absolute bottom-full left-1/2 z-50 mb-3 w-64 -translate-x-1/2 rounded-2xl border border-(--color-border) bg-(--color-bg-card) p-4 text-left text-(--color-text) shadow-2xl backdrop-blur-xl'
+            className='absolute bottom-full left-1/2 z-50 mb-3 w-64 -translate-x-1/2 rounded-2xl border border-(--color-border) bg-(--color-bg-card) p-4 text-left text-(--color-text) shadow-md backdrop-blur-md'
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15 }}

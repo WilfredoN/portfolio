@@ -29,8 +29,7 @@ export const CommandModal = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className='fixed inset-0 z-50 flex items-start justify-center pt-20 px-4'>
-          {/* Backdrop */}
+        <div className='fixed inset-0 z-50 flex items-start justify-center px-4 pt-20'>
           <motion.div
             animate={{ opacity: 1 }}
             className='fixed inset-0 bg-black/60 backdrop-blur-sm'
@@ -39,10 +38,9 @@ export const CommandModal = ({
             onClick={onClose}
           />
 
-          {/* Modal Container */}
           <motion.div
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className='relative w-full max-w-xl overflow-hidden rounded-2xl border border-(--color-border) bg-(--color-bg-card) text-(--color-text) shadow-2xl backdrop-blur-xl'
+            className='relative w-full max-w-xl overflow-hidden rounded-2xl border border-(--color-border) bg-(--color-bg-card) text-(--color-text) shadow-md backdrop-blur-xl'
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: 'spring', stiffness: 450, damping: 30 }}
@@ -60,14 +58,23 @@ export const CommandModal = ({
             />
             <div className='flex items-center justify-between border-t border-(--color-border) px-4 py-2 text-xs text-(--color-text-muted)'>
               <span>
-                Use <kbd className='rounded bg-current/10 px-1 py-0.5 font-mono'>↑</kbd> <kbd className='rounded bg-current/10 px-1 py-0.5 font-mono'>↓</kbd> to navigate
+                Use{' '}
+                <kbd className='rounded bg-current/10 px-1 py-0.5 font-mono'>
+                  ↑
+                </kbd>{' '}
+                <kbd className='rounded bg-current/10 px-1 py-0.5 font-mono'>
+                  ↓
+                </kbd>{' '}
+                to navigate
               </span>
               <span>
-                <kbd className='rounded bg-current/10 px-1 py-0.5 font-mono'>↵</kbd> to select
+                <kbd className='rounded bg-current/10 px-1 py-0.5 font-mono'>
+                  ↵
+                </kbd>{' '}
+                to select
               </span>
             </div>
           </motion.div>
-
         </div>
       )}
     </AnimatePresence>

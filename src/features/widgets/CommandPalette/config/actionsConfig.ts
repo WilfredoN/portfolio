@@ -3,15 +3,13 @@ import type { CommandAction } from '../types/command'
 interface CreateCommandsParams {
   isDarkTheme: boolean
   navigate: (path: string) => void
-  showToast: (msg: string, type?: 'success' | 'info') => void
   toggleTheme: () => void
 }
 
 export const createCommands = ({
   navigate,
   toggleTheme,
-  isDarkTheme,
-  showToast
+  isDarkTheme
 }: CreateCommandsParams): CommandAction[] => [
   {
     id: 'nav-about',
@@ -22,7 +20,6 @@ export const createCommands = ({
     shortcut: 'G A',
     perform: () => {
       navigate('/about')
-      showToast('Navigated to About page', 'info')
     }
   },
   {
@@ -34,7 +31,6 @@ export const createCommands = ({
     shortcut: 'G P',
     perform: () => {
       navigate('/projects')
-      showToast('Navigated to Projects page', 'info')
     }
   },
   {
@@ -46,7 +42,6 @@ export const createCommands = ({
     shortcut: 'G F',
     perform: () => {
       navigate('/feedback')
-      showToast('Navigated to Feedback page', 'info')
     }
   },
   {
@@ -58,7 +53,6 @@ export const createCommands = ({
     shortcut: 'T',
     perform: () => {
       toggleTheme()
-      showToast(`Switched to ${isDarkTheme ? 'Light' : 'Dark'} mode`, 'success')
     }
   },
   {
@@ -69,7 +63,6 @@ export const createCommands = ({
     category: 'actions',
     perform: () => {
       window.open('https://github.com/WilfredoN', '_blank', 'noopener,noreferrer')
-      showToast('Opened GitHub profile', 'info')
     }
   },
   {
@@ -81,7 +74,6 @@ export const createCommands = ({
     shortcut: 'C E',
     perform: () => {
       navigator.clipboard.writeText('wilfredon@example.com')
-      showToast('Email copied to clipboard!', 'success')
     }
   }
 ]

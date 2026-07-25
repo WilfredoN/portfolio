@@ -34,18 +34,14 @@ export const ConstructionButton = ({ children }: ConstructionButtonProps) => {
   return (
     <>
       <div
-        className='relative mb-4 cursor-pointer md:mr-8 md:mb-0'
+        className='relative flex cursor-pointer items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-zinc-500 opacity-60 transition-opacity hover:opacity-100'
         role='button'
         tabIndex={0}
         onClick={interact}
         onKeyDown={(e) => e.key === 'Enter' && interact()}
       >
-        <span
-          aria-disabled='true'
-          className='pointer-events-none block rounded-full p-4 opacity-50 select-none'
-          style={{ fontSize: '2.5rem' }}
-        >
-          {children}
+        <span aria-disabled='true' className='pointer-events-none select-none'>
+          {children} 🚧
         </span>
 
         <svg

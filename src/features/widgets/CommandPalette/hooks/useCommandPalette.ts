@@ -1,5 +1,4 @@
 import { useTheme } from '@app/hooks/useTheme'
-import { useToast } from '@shared/ui/Toast'
 import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,15 +13,16 @@ export const useCommandPalette = () => {
 
   const navigate = useNavigate()
   const { isDarkTheme, toggleTheme } = useTheme()
-  const { showToast } = useToast()
 
   const commands = useMemo(
-    () => createCommands({ navigate, toggleTheme, isDarkTheme, showToast }),
-    [navigate, toggleTheme, isDarkTheme, showToast]
+    () => createCommands({ navigate, toggleTheme, isDarkTheme }),
+    [navigate, toggleTheme, isDarkTheme]
   )
 
   const filteredCommands = useMemo(() => {
-    if (!search.trim()) {return commands}
+    if (!search.trim()) {
+      return commands
+    }
     const query = search.toLowerCase().trim()
     const queryNoSpaces = query.replace(/\s+/g, '')
 
@@ -33,12 +33,14 @@ export const useCommandPalette = () => {
       const shortcutMatch =
         cmd.shortcut &&
         (cmd.shortcut.toLowerCase().includes(query) ||
-          cmd.shortcut.toLowerCase().replace(/\s+/g, '').includes(queryNoSpaces))
+          cmd.shortcut
+            .toLowerCase()
+            .replace(/\s+/g, '')
+            .includes(queryNoSpaces))
 
       return titleMatch || subtitleMatch || categoryMatch || shortcutMatch
     })
   }, [commands, search])
-
 
   const groupedCommands = useMemo(() => {
     const groups: CommandGroup[] = []
@@ -109,4 +111,3 @@ export const useCommandPalette = () => {
     executeCommand
   }
 }
-

@@ -1,4 +1,3 @@
-import { BackendStatusBadge } from '@features/shared/components/BackendStatus'
 import { Link } from '@shared/components/Link'
 import { lazy, Suspense } from 'react'
 
@@ -26,8 +25,7 @@ const WakatimeIcon = lazy(() =>
 
 export const Footer = () => {
   return (
-    <footer className='flex h-full w-full flex-col items-center justify-center bg-transparent pt-16 text-center gap-4'>
-
+    <footer className='flex h-full w-full flex-col items-center justify-center gap-4 bg-transparent pt-16 text-center'>
       <Suspense
         fallback={
           <div className='flex flex-row justify-center space-x-4 text-4xl'>
@@ -55,7 +53,6 @@ export const Footer = () => {
           />
         </div>
       </Suspense>
-      <BackendStatusBadge />
       <p className='text-xs text-(--color-text-muted,rgba(255,255,255,0.6))'>
         My portfolio built with Vite + React + TypeScript + TailwindCSS + Some
         Love ❤️
@@ -63,4 +60,3 @@ export const Footer = () => {
     </footer>
   )
 }
-

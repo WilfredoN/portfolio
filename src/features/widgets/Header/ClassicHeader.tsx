@@ -1,0 +1,87 @@
+import { useTheme } from '@app/hooks/useTheme'
+import { sendGAEvent } from '@features/shared/analytics/ga'
+import { motion } from 'motion/react'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+import { CommandPaletteTrigger } from './CommandPaletteTrigger'
+import { ConstructionButton } from './ConstructionButton'
+import { useAllNavStatuses } from './hooks/useNavTabStatus'
+import { NAV_ITEMS, NavStatus } from './navConfig'
+import { NavigationButton } from './NavigationButton'
+import { ThemeToggle } from './ThemeToggle'
+
+export const ClassicHeader = () => {
+  const { isDarkTheme, toggleTheme } = useTheme()
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isMobile = window.innerWidth <= 1024
+
+  const navStatuses = useAllNavStatuses(NAV_ITEMS.map((item) => item.path))
+
+  useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.scrollY)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handlePageChange = (path: string, label: string) => {
+    if (!isMobile) {
+      setScrollPosition(0)
+    }
+    navigate(path)
+    sendGAEvent({ action: 'navigation_click', category: 'Header', label })
+  }
+
+  const handleOpenCommandPalette = () => {
+    window.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'k', metaKey: true })
+    )
+  }
+
+  const headerClass = [
+    'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl bg-(--color-nav)/90 md:w-fit md:rounded-full',
+    !isMobile && scrollPosition > 0
+      ? 'sticky top-3 z-10 transition-all duration-300'
+      : 'transition-all duration-175'
+  ].join(' ')
+
+  return (
+    <motion.header
+      className={headerClass}
+      style={{ padding: '24px 48px', minHeight: 120 }}
+    >
+      <nav className='flex w-full flex-col items-center justify-center gap-2 md:flex-row'>
+        {NAV_ITEMS.map((item) => {
+          const status = navStatuses[item.path] ?? NavStatus.READY
+
+          if (status === NavStatus.IN_CONSTRUCTION) {
+            return (
+              <ConstructionButton key={item.path}>
+                {item.label}
+              </ConstructionButton>
+            )
+          }
+
+          const isProcessing = status === NavStatus.PROCESSING
+
+          return (
+            <NavigationButton
+              key={item.path}
+              isClicked={location.pathname === item.path}
+              isProcessing={isProcessing}
+              onClick={() => handlePageChange(item.path, item.label)}
+            >
+              {item.label}
+            </NavigationButton>
+          )
+        })}
+        <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
+        <div className='mt-2 flex items-center gap-2 md:mt-0'>
+          <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
+        </div>
+      </nav>
+    </motion.header>
+  )
+}

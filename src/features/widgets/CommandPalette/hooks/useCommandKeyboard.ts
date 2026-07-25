@@ -23,14 +23,15 @@ export const useCommandKeyboard = ({
 }: UseCommandKeyboardProps) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Toggle Command Palette on Cmd+K or Ctrl+K
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         togglePalette()
         return
       }
 
-      if (!isOpen) {return}
+      if (!isOpen) {
+        return
+      }
 
       if (e.key === 'Escape') {
         e.preventDefault()
@@ -41,8 +42,11 @@ export const useCommandKeyboard = ({
       if (e.key === 'ArrowDown') {
         e.preventDefault()
         setSelectedIndex((prev) => {
-          if (filteredCommands.length === 0) {return 0}
-          const validPrev = prev >= filteredCommands.length || prev < 0 ? 0 : prev
+          if (filteredCommands.length === 0) {
+            return 0
+          }
+          const validPrev =
+            prev >= filteredCommands.length || prev < 0 ? 0 : prev
           return validPrev === filteredCommands.length - 1 ? 0 : validPrev + 1
         })
         return
@@ -51,13 +55,15 @@ export const useCommandKeyboard = ({
       if (e.key === 'ArrowUp') {
         e.preventDefault()
         setSelectedIndex((prev) => {
-          if (filteredCommands.length === 0) {return 0}
-          const validPrev = prev >= filteredCommands.length || prev < 0 ? 0 : prev
+          if (filteredCommands.length === 0) {
+            return 0
+          }
+          const validPrev =
+            prev >= filteredCommands.length || prev < 0 ? 0 : prev
           return validPrev === 0 ? filteredCommands.length - 1 : validPrev - 1
         })
         return
       }
-
 
       if (e.key === 'Enter') {
         e.preventDefault()

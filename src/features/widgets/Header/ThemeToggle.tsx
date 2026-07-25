@@ -1,4 +1,4 @@
-import ReactSwitch from 'react-switch'
+import { motion } from 'motion/react'
 
 interface ThemeToggleProps {
   isDarkTheme: boolean
@@ -7,53 +7,15 @@ interface ThemeToggleProps {
 
 export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
   return (
-    <div className='theme-switch-wrapper flex min-w-32 items-center justify-center'>
-      <label className='theme-switch' htmlFor='checkbox'>
-        <ReactSwitch
-          activeBoxShadow='none'
-          boxShadow='none'
-          checked={isDarkTheme}
-          checkedHandleIcon={
-            <div
-              style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '2em',
-                top: '-10px'
-              }}
-            >
-              🌙
-            </div>
-          }
-          checkedIcon={false}
-          handleDiameter={26}
-          height={64}
-          id='checkbox'
-          offColor='#99ccff'
-          offHandleColor='#00_'
-          uncheckedHandleIcon={
-            <div
-              style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: '2em',
-                top: '-10px'
-              }}
-            >
-              ☀️
-            </div>
-          }
-          uncheckedIcon={false}
-          width={128}
-          onChange={toggleTheme}
-          onColor='#2196f3'
-          onHandleColor='#00_'
-        />
-      </label>
-    </div>
+    <motion.button
+      aria-label='Toggle Theme'
+      className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-sm text-white transition-colors hover:bg-white/20'
+      title={`Switch to ${isDarkTheme ? 'Light' : 'Dark'} Theme`}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      onClick={toggleTheme}
+    >
+      <span>{isDarkTheme ? '🌙' : '☀️'}</span>
+    </motion.button>
   )
 }
