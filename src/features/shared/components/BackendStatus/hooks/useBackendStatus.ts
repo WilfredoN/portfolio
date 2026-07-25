@@ -1,7 +1,7 @@
 import { api } from '@service/api'
 import { useQuery } from '@tanstack/react-query'
 
-import type { BackendHealthResponse, BackendStatusState } from '../types/status'
+import type { BackendStatusState, ServerStatsResponse } from '../types/status'
 
 import { STATUS_REFRESH_INTERVAL_MS } from '../config/statusConfig'
 
@@ -13,26 +13,30 @@ export const useBackendStatus = () => {
     queryFn: async () => {
       const startTime = performance.now()
       try {
-        const data = await api.get<BackendHealthResponse>('/health')
+        const stats = await api.get<ServerStatsResponse>('/stats')
         const endTime = performance.now()
         const latencyMs = Math.round(endTime - startTime)
 
         return {
+          environment: stats.environment,
           isOnline: true,
           latencyMs,
+          memoryHeapMb: stats.memoryHeapMb,
+          nodeVersion: stats.nodeVersion,
           serverName: 'Hetzner Node',
-          uptime: data.uptime
+          totalFeedbacks: stats.totalFeedbacks,
+          totalSkillsEndorsed: stats.totalSkillsEndorsed,
+          uptime: stats.uptimeSeconds
         }
       } catch {
-        // Try fallback to /feedbacks
         try {
-          await api.get('/feedbacks')
+          const data = await api.get<{ uptime: number }>('/health')
           const endTime = performance.now()
           return {
             isOnline: true,
             latencyMs: Math.round(endTime - startTime),
             serverName: 'Hetzner Node',
-            uptime: null
+            uptime: data.uptime
           }
         } catch {
           return {
@@ -43,10 +47,9 @@ export const useBackendStatus = () => {
           }
         }
       }
-
     },
     refetchInterval: STATUS_REFRESH_INTERVAL_MS,
-    staleTime: STATUS_REFRESH_INTERVAL_MS / 2,
-    retry: 1
+    retry: 1,
+    staleTime: STATUS_REFRESH_INTERVAL_MS / 2
   })
 }

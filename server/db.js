@@ -14,6 +14,8 @@ export async function getDb() {
       driver: sqlite3.Database
     })
     await dbInstance.exec(`
+      PRAGMA journal_mode = WAL;
+      PRAGMA synchronous = NORMAL;
       CREATE TABLE IF NOT EXISTS feedbacks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         author TEXT,
@@ -29,6 +31,7 @@ export async function getDb() {
         FOREIGN KEY(feedback_id) REFERENCES feedbacks(id)
       );
     `)
+
   }
   return dbInstance
 }

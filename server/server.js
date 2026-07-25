@@ -14,9 +14,9 @@ app.set('trust proxy', 1)
 const allowedOriginEnv = process.env.CORS_ORIGIN || ''
 const allowedOrigins = allowedOriginEnv
   ? allowedOriginEnv
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean)
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
   : ['https://capybara.cx.ua']
 
 if (process.env.NODE_ENV !== 'production') {
@@ -43,8 +43,20 @@ app.use(
   })
 )
 
-const limiter = rateLimit({ windowMs: 60000, max: 30 })
-app.use(limiter)
+const readLimiter = rateLimit({
+  windowMs: 60000,
+  max: 120,
+  message: 'Reading data too fast.',
+  skip: (req) => req.path === '/health'
+})
+
+const submitLimiter = rateLimit({
+  windowMs: 600000,
+  max: 5,
+  message: 'Feedback submission limit reached.'
+})
+
+app.use(readLimiter)
 
 app.get('/health', (req, res) => {
   res.json({
@@ -55,7 +67,57 @@ app.get('/health', (req, res) => {
   })
 })
 
+app.get('/stats', async (req, res, next) => {
+  try {
+    const db = await getDb()
+    const feedbackCountRow = await db.get(
+      'SELECT COUNT(*) as count FROM feedbacks'
+    )
+    const skillCountRow = await db.get(
+      'SELECT COUNT(*) as count FROM feedback_skills'
+    )
+
+    const memUsage = process.memoryUsage()
+    const memoryMb = Math.round((memUsage.heapUsed / 1024 / 1024) * 100) / 100
+
+    res.setHeader('Cache-Control', 'public, max-age=15')
+    res.json({
+      status: 'ok',
+      server: 'hetzner-node-express',
+      environment: process.env.NODE_ENV || 'production',
+      nodeVersion: process.version,
+      uptimeSeconds: Math.floor(process.uptime()),
+      memoryHeapMb: memoryMb,
+      totalFeedbacks: feedbackCountRow?.count || 0,
+      totalSkillsEndorsed: skillCountRow?.count || 0,
+      timestamp: new Date().toISOString()
+    })
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.get('/feedbacks/top-skills', async (req, res, next) => {
+  try {
+    const db = await getDb()
+    const topSkills = await db.all(`
+      SELECT skill_name, COUNT(*) as count 
+      FROM feedback_skills 
+      WHERE skill_name IS NOT NULL AND skill_name != '' 
+      GROUP BY skill_name 
+      ORDER BY count DESC 
+      LIMIT 10
+    `)
+    res.setHeader('Cache-Control', 'public, max-age=30')
+    res.json(topSkills)
+  } catch (e) {
+    next(e)
+  }
+})
+
+
 app.get('/feedbacks', async (req, res, next) => {
+
 
   try {
     const db = await getDb()
@@ -88,7 +150,8 @@ app.get('/feedbacks', async (req, res, next) => {
   }
 })
 
-app.post('/feedbacks', async (req, res, next) => {
+app.post('/feedbacks', submitLimiter, async (req, res, next) => {
+
   let db = null
   let isTransactionActive = false
 
@@ -198,11 +261,13 @@ app.listen(port, () => {
 
 function shutdown() {
   try {
-    limiter.stop()
-  } catch {}
+    readLimiter.stop()
+    submitLimiter.stop()
+  } catch { }
+
   try {
     closeRequestLoggerStream()
-  } catch {}
+  } catch { }
   process.exit(0)
 }
 process.on('SIGINT', shutdown)

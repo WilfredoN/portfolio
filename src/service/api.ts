@@ -7,8 +7,19 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     ...init
   })
   if (!res.ok) {
-    const errBody = await res.text().catch(() => '')
-    throw new Error(`API ${res.status}: ${errBody}`)
+    let errorMessage = `API ${res.status}`
+    try {
+      const errJson = (await res.json()) as { error?: string }
+      if (errJson && errJson.error) {
+        errorMessage = errJson.error
+      }
+    } catch {
+      const rawText = await res.text().catch(() => '')
+      if (rawText) {
+        errorMessage = rawText
+      }
+    }
+    throw new Error(errorMessage)
   }
   return res.json() as Promise<T>
 }

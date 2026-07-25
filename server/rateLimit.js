@@ -1,7 +1,13 @@
 import { getClientIp } from './ip.js'
 
 export default function rateLimit(options) {
-  const { windowMs = 60000, max = 30 } = options || {}
+  const {
+    windowMs = 60000,
+    max = 30,
+    message = 'Too many requests. Please try again shortly.',
+    skip = () => false
+  } = options || {}
+
   const ipMap = new Map()
   const intervalId = setInterval(
     () => {
@@ -17,7 +23,12 @@ export default function rateLimit(options) {
     },
     Math.max(1000, Math.floor(windowMs / 4))
   )
+
   const middleware = (req, res, next) => {
+    if (skip(req)) {
+      return next()
+    }
+
     const now = Date.now()
     const ip = getClientIp(req)
     if (!ipMap.has(ip)) {
@@ -31,7 +42,10 @@ export default function rateLimit(options) {
       res.setHeader('X-RateLimit-Limit', String(max))
       res.setHeader('X-RateLimit-Remaining', '0')
       res.setHeader('Retry-After', String(retryAfter))
-      res.status(429).json({ error: 'Too many requests' })
+      res.status(429).json({
+        error: `${message} Please wait ${retryAfter} second${retryAfter === 1 ? '' : 's'}.`,
+        retryAfterSeconds: retryAfter
+      })
       return
     }
     timestamps.push(now)
@@ -41,8 +55,11 @@ export default function rateLimit(options) {
     res.setHeader('X-RateLimit-Remaining', String(remaining))
     next()
   }
+
   middleware.stop = () => {
     clearInterval(intervalId)
   }
+
   return middleware
 }
+
