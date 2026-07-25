@@ -22,7 +22,7 @@ export const Item = ({ text, icon, type }: ItemProps) => {
           : 'border-blue-200/80 bg-white/70 text-zinc-800 hover:-translate-y-0.5 hover:border-blue-500 hover:bg-white hover:text-blue-900 hover:shadow-[0_4px_12px_rgba(0,86,179,0.12)]'
       )}
     >
-      <span className='whitespace-nowrap font-medium'>{text}</span>
+      <span className='font-medium whitespace-nowrap'>{text}</span>
       <Icon alt={`${text} icon`} iconName={icon} type={type} />
     </li>
   )

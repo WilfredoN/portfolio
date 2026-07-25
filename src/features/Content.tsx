@@ -23,8 +23,8 @@ export const Content = () => {
 
   useEffect(() => {
     applyTheme(isDarkTheme)
-    setTimeout(() => setShowFooter(true), 400)
-    setTimeout(() => setShowBinary(true), 600)
+    setTimeout(setShowFooter, 400, true)
+    setTimeout(setShowBinary, 600, true)
   }, [isDarkTheme])
 
   return (

@@ -10,14 +10,22 @@ export default defineConfig({
     minify: true,
     rollupOptions: {
       treeshake: {
-        moduleSideEffects: false,
-        preset: 'recommended'
+        moduleSideEffects: false
       },
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          motion: ['motion'],
-          ui_misc: ['react-switch']
+        manualChunks(id) {
+          if (
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules/react-dom/')
+          ) {
+            return 'react'
+          }
+          if (id.includes('node_modules/motion/')) {
+            return 'motion'
+          }
+          if (id.includes('node_modules/react-switch/')) {
+            return 'ui_misc'
+          }
         }
       }
     }

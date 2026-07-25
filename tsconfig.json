@@ -1,21 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2022",
     "jsx": "react-jsx",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
-    "baseUrl": ".",
     "module": "ESNext",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
     "paths": {
-      "@shared/*": ["src/shared/*"],
-      "@features/*": ["src/features/*"],
-      "@features/about/*": ["src/features/about/*"],
-      "@features/about/components/*": ["src/features/about/components/*"],
-      "@app/*": ["app/*"],
-      "@service/*": ["src/service/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@features/*": ["./src/features/*"],
+      "@features/about/*": ["./src/features/about/*"],
+      "@features/about/components/*": ["./src/features/about/components/*"],
+      "@app/*": ["./app/*"],
+      "@service/*": ["./src/service/*"]
     },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
@@ -27,6 +26,7 @@
     "noUnusedParameters": true,
     "noEmit": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],

@@ -5,7 +5,7 @@ import { LoadingSpinner } from '@shared/components/Spinner'
 import { lazy, Suspense, useEffect } from 'react'
 const Form = lazy(() =>
   import('@features/feedback/components/skills/form').then((module) => ({
-    default: module.FeedbackForm
+    default: module.FeedbackFormContainer
   }))
 )
 
@@ -21,8 +21,8 @@ export const FeedbackPage = () => {
   }
 
   return (
-    <article className='z-[5] mt-8 flex max-w-[1024px] flex-col items-center justify-start bg-[var(--color-bg)] text-left text-[var(--color-text)]'>
-      <div className='mx-auto w-full max-w-[1024px] px-4 py-8'>
+    <article className='z-5 mt-8 flex max-w-5xl flex-col items-center justify-start bg-(--color-bg) text-left text-(--color-text)'>
+      <div className='mx-auto w-full max-w-5xl px-4 py-8'>
         <div className='mb-12 text-center'>
           <h1 className='mb-4 text-4xl md:text-5xl'>Feedback</h1>
           <p className='mx-auto max-w-2xl text-2xl opacity-80'>
