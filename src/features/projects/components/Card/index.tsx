@@ -14,31 +14,25 @@ const Video = lazy(() =>
 )
 
 interface CardProps extends ProjectProps {
-  onOpenDetails?: (project: ProjectProps) => void
   selectedTags?: string[]
 }
 
-export const Card = (props: CardProps) => {
-  const {
-    title,
-    description,
-    technologies,
-    link,
-    imageUrl,
-    videoUrl,
-    imageTitle,
-    imageStyle,
-    scale = 'medium',
-    additionalDescription,
-    selectedTags = [],
-    onOpenDetails
-  } = props
-
+export const Card = ({
+  title,
+  description,
+  technologies,
+  link,
+  imageUrl,
+  videoUrl,
+  imageTitle,
+  imageStyle,
+  scale = 'medium',
+  additionalDescription,
+  selectedTags = []
+}: CardProps) => {
   const isLarge = scale === 'large'
-  const handleCardClick = () => {
-    if (onOpenDetails) {
-      onOpenDetails(props)
-    } else if (link) {
+  const handleClick = () => {
+    if (link) {
       window.open(link, '_blank', 'noopener,noreferrer')
     }
   }
@@ -46,40 +40,41 @@ export const Card = (props: CardProps) => {
   return (
     <motion.div
       className={clsx(
-        'group relative mb-12 flex w-full cursor-pointer flex-col justify-between rounded-2xl border border-(--color-border,rgba(255,255,255,0.15)) bg-(--color-bg-alt,rgba(255,255,255,0.02)) p-6 shadow-md transition-all duration-200 hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10',
+        'mb-12 flex w-full flex-col justify-between rounded-lg border-3 p-4 transition-transform duration-100',
         {
+          'hover:scale-105': !videoUrl && !isLarge,
           'md:h-122.5': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,
           'max-w-125 md:max-w-full': !isLarge
         }
       )}
-      whileHover={{ y: -4, scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
-      onClick={handleCardClick}
     >
-      <motion.div className='flex flex-col items-center text-center'>
+      <motion.h1 className='flex flex-col items-center text-center text-4xl'>
         {imageUrl ? (
           <ProjectImage
             alt={title}
             className={imageStyle}
             src={imageUrl}
             title={imageTitle}
+            onClick={link ? handleClick : undefined}
           />
         ) : videoUrl ? (
           <Video src={videoUrl} />
         ) : (
           <span className='font-courgette my-6 text-[4rem] text-[#5287AD]'>
-            {title}
+            <a href={link} rel='noopener noreferrer' target='_blank'>
+              {title}
+            </a>
           </span>
         )}
-        <div className='mt-4 text-[1.7rem] text-(--color-text)'>
+        <div className='mt-4 text-[1.7rem]'>
           <Text>{description}</Text>
           {additionalDescription && (
-            <div className='mt-2 text-sky-400'>{additionalDescription}</div>
+            <div className='mt-2'>{additionalDescription}</div>
           )}
         </div>
-      </motion.div>
+      </motion.h1>
 
       <div className='mt-6 flex flex-wrap justify-center gap-2'>
         {technologies.map((tech) => {
@@ -92,7 +87,7 @@ export const Card = (props: CardProps) => {
                 'rounded-full border px-3 py-1.5 text-[1.3rem] transition-all duration-200 select-none',
                 isActive
                   ? 'border-blue-500/80 bg-blue-600 text-white shadow-[0_0_8px_rgba(59,130,246,0.3)]'
-                  : 'border-current/20 bg-current/5 text-(--color-text-muted,rgba(255,255,255,0.8))'
+                  : 'border-zinc-700 bg-zinc-800 text-white'
               )}
             >
               #{name}
@@ -100,11 +95,6 @@ export const Card = (props: CardProps) => {
           )
         })}
       </div>
-
-      <div className='mt-4 flex items-center justify-end text-xs font-semibold text-sky-400 opacity-0 transition-opacity group-hover:opacity-100'>
-        <span>View Details & Links →</span>
-      </div>
     </motion.div>
   )
 }
-

@@ -35,7 +35,9 @@ export const Header = () => {
   }
 
   const handleOpenCommandPalette = () => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
+    window.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'k', metaKey: true })
+    )
   }
 
   const headerClass = [
@@ -75,12 +77,11 @@ export const Header = () => {
             </NavigationButton>
           )
         })}
-        <div className='flex items-center gap-2 mt-2 md:mt-0 md:ml-2'>
-          <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
+        <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
+        <div className='mt-2 flex items-center gap-2 md:mt-0'>
           <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
         </div>
       </nav>
     </motion.header>
   )
 }
-

@@ -115,7 +115,7 @@ export const SKILL_DEFINITIONS: Record<string, SkillDefinition> = {
   [SKILL_KEYS.DOTNET]: {
     id: SKILL_KEYS.DOTNET,
     name: 'ASP.NET Core',
-    icon: 'dot-net'
+    icon: 'dotnetcore'
   },
   [SKILL_KEYS.SPRING]: {
     id: SKILL_KEYS.SPRING,
