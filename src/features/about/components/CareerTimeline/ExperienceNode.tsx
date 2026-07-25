@@ -19,9 +19,9 @@ export const ExperienceNode = ({
         className={clsx(
           'z-10 flex h-9 w-9 items-center justify-center rounded-full border-2 transition-all duration-300 sm:h-11 sm:w-11',
           isPresent
-            ? 'border-emerald-500 bg-emerald-950/80 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]'
+            ? 'border-emerald-500 bg-emerald-950 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]'
             : isHovered
-              ? 'border-blue-400 bg-blue-950/80 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.3)]'
+              ? 'border-blue-400 bg-blue-950 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.3)]'
               : 'border-zinc-700 bg-zinc-900 text-zinc-400'
         )}
       >

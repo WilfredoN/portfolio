@@ -1,6 +1,6 @@
 export const TimelineLine = () => {
   return (
-    <div className='pointer-events-none absolute top-4 bottom-4 left-8 w-1 sm:left-12'>
+    <div className='pointer-events-none absolute top-4 bottom-4 left-8 w-1 sm:left-9'>
       <svg className='h-full w-full overflow-visible'>
         <line
           className='text-zinc-700/60'

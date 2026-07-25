@@ -17,8 +17,8 @@ export const SkillTag = ({ skillKey, isHovered }: SkillTagProps) => {
       className={clsx(
         'rounded-full border px-3 py-1 text-xs font-medium transition-all duration-200',
         isHovered
-          ? 'border-blue-500/50 bg-blue-500/20 text-blue-300'
-          : 'border-zinc-800 bg-zinc-800/30 text-zinc-400'
+          ? 'border-blue-500/80 bg-blue-600 text-white'
+          : 'border-zinc-700 bg-zinc-800 text-white'
       )}
     >
       #{label}

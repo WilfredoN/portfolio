@@ -10,7 +10,7 @@ export const CareerTimeline = () => {
         <h2 className='text-4xl font-bold text-(--color-text)'>
           Career Journey
         </h2>
-        <p className='mt-2 text-lg text-zinc-400'>
+        <p className='mt-2 text-lg text-(--color-text)/80'>
           Interactive timeline of professional roles and software engineering
           experience
         </p>

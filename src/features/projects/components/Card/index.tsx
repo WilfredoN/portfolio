@@ -86,8 +86,8 @@ export const Card = ({
               className={clsx(
                 'rounded-full border px-3 py-1.5 text-[1.3rem] transition-all duration-200 select-none',
                 isActive
-                  ? 'border-blue-500/60 bg-blue-500/25 text-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.2)]'
-                  : 'border-zinc-700/40 bg-zinc-800/40 text-zinc-400'
+                  ? 'border-blue-500/80 bg-blue-600 text-white shadow-[0_0_8px_rgba(59,130,246,0.3)]'
+                  : 'border-zinc-700 bg-zinc-800 text-white'
               )}
             >
               #{name}

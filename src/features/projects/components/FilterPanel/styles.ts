@@ -57,11 +57,11 @@ export const getTagToggleStyles = (
     !isFilterDisabled && (isOpen || hasFilters)
       ? isDarkTheme
         ? 'border-blue-500/80 bg-blue-500/10 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.15)]'
-        : 'border-blue-600 bg-blue-50/80 text-blue-700 shadow-[0_0_10px_rgba(37,99,235,0.1)]'
+        : 'border-blue-600 bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.15)]'
       : !isFilterDisabled &&
           (isDarkTheme
             ? 'border-zinc-700/50 bg-zinc-800/30 text-zinc-400 hover:bg-zinc-700/30 hover:text-zinc-300'
-            : 'border-zinc-300 bg-white/70 text-zinc-600 hover:bg-white hover:text-zinc-800')
+            : 'border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700 hover:text-white')
   )
 }
 
@@ -84,9 +84,9 @@ export const getTagItemStyles = (isActive: boolean, isDarkTheme: boolean) => {
     isActive
       ? isDarkTheme
         ? 'border-blue-500/80 bg-blue-500/20 text-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.3)]'
-        : 'border-blue-600 bg-blue-50/80 text-blue-700 shadow-[0_0_12px_rgba(37,99,235,0.15)]'
+        : 'border-blue-600 bg-blue-600 text-white shadow-[0_0_12px_rgba(37,99,235,0.15)]'
       : isDarkTheme
         ? 'border-zinc-700/50 bg-zinc-800/30 text-zinc-400 hover:bg-zinc-700/30 hover:text-zinc-300'
-        : 'border-zinc-300 bg-white/70 text-zinc-600 hover:bg-white hover:text-zinc-800'
+        : 'border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700 hover:text-white'
   )
 }
