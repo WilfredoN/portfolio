@@ -2,7 +2,6 @@ import { sendGAEvent } from '@features/shared/analytics/ga'
 import { Tooltip } from '@shared/components/Tooltip'
 import { motion } from 'motion/react'
 
-// TODO: move
 interface FileProps {
   url?: string
 }
@@ -17,13 +16,15 @@ export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
     window.open(url, '_blank')
   }
   return (
-    <div className='absolute right-20 bottom-4 z-10 md:right-4'>
+    <div className='absolute right-2 bottom-2 z-10 sm:right-4 sm:bottom-4 md:right-4 md:bottom-4'>
       <Tooltip text='Check my CV!'>
-        <motion.div
-          className='relative flex cursor-pointer items-center justify-center rounded-3xl p-3 outline outline-white'
+        <motion.button
+          aria-label='Download CV'
+          className='relative flex cursor-pointer items-center justify-center rounded-3xl border border-white/40 bg-black/40 p-3 text-white shadow-xl backdrop-blur-md select-none transition-colors hover:bg-black/60'
           title='Download CV'
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.9 }}
           onClick={handleClick}
         >
           <svg
@@ -36,7 +37,7 @@ export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
             <path d='M12 3a1 1 0 011 1v8.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L11 12.586V4a1 1 0 011-1z' />
             <path d='M5 20a2 2 0 012-2h10a2 2 0 012 2 1 1 0 11-2 0H7a1 1 0 10-2 0 1 1 0 11-2 0 4 4 0 014-4h10a4 4 0 014 4 3 3 0 01-3 3H6a3 3 0 01-3-3 1 1 0 112 0z' />
           </svg>
-        </motion.div>
+        </motion.button>
       </Tooltip>
     </div>
   )

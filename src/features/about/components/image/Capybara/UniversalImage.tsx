@@ -10,6 +10,7 @@ export interface UniversalImageProps {
   src: string
   width?: number
 }
+
 export const UniversalImage = ({
   alt,
   className = '',
@@ -31,7 +32,7 @@ export const UniversalImage = ({
   }, [loaded])
 
   return (
-    <picture>
+    <picture className='block h-full w-full max-w-full'>
       {avifSrc && <source srcSet={avifSrc} type='image/avif' />}
       {pngSrc && <source srcSet={pngSrc} type='image/png' />}
       <img
@@ -39,20 +40,20 @@ export const UniversalImage = ({
         alt={alt}
         aria-busy={!loaded}
         aria-label={alt}
-        className={className}
+        className={`h-full w-full max-w-full rounded-full object-cover ${className}`}
         decoding='async'
         draggable={false}
         fetchPriority='high'
         height={height}
+        loading='eager'
         src={src}
         style={{
           background: '#18181b',
-          borderRadius: '16px',
           filter: loaded ? 'none' : 'blur(0px)',
           objectFit: 'cover',
           transition: 'none',
-          width,
-          height,
+          width: '100%',
+          height: '100%',
           display: 'block'
         }}
         width={width}

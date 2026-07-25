@@ -20,7 +20,7 @@ export const ExperienceItemRow = ({
 
   return (
     <motion.div
-      className='relative flex w-full gap-6 sm:gap-8'
+      className='relative flex w-full min-w-0 gap-4 sm:gap-8'
       initial={{ opacity: 0, y: 20 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
       viewport={{ once: true }}

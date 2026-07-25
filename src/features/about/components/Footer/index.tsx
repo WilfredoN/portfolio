@@ -25,15 +25,15 @@ const WakatimeIcon = lazy(() =>
 
 export const Footer = () => {
   return (
-    <footer className='flex h-full w-full flex-col items-center justify-center gap-4 bg-transparent pt-16 text-center'>
+    <footer className='flex h-full w-full max-w-full flex-col items-center justify-center gap-4 overflow-hidden bg-transparent px-4 pt-12 pb-8 text-center sm:pt-16'>
       <Suspense
         fallback={
-          <div className='flex flex-row justify-center space-x-4 text-4xl'>
+          <div className='flex flex-row flex-wrap justify-center gap-3 text-4xl sm:gap-4'>
             Loading icons...
           </div>
         }
       >
-        <div className='flex flex-row justify-center space-x-4 text-4xl'>
+        <div className='flex flex-row flex-wrap justify-center gap-3 text-3xl sm:gap-4 sm:text-4xl'>
           <Link
             href='https://www.linkedin.com/in/nikita-afanasyev-kh/'
             icon={<LinkedInIcon />}
@@ -53,7 +53,7 @@ export const Footer = () => {
           />
         </div>
       </Suspense>
-      <p className='text-xs text-(--color-text-muted,rgba(255,255,255,0.6))'>
+      <p className='max-w-md px-4 text-xs text-(--color-text-muted,rgba(255,255,255,0.6))'>
         My portfolio built with Vite + React + TypeScript + TailwindCSS + Some
         Love ❤️
       </p>

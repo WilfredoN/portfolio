@@ -67,21 +67,19 @@ export const CapybaraImage = ({
 
   return (
     <div
+      className='h-full w-full max-w-full'
       style={{
         aspectRatio: `${width} / ${height}`,
-        width,
-        height,
         perspective: isMobile ? undefined : `${perspective}px`
       }}
     >
       <motion.div
+        className='h-full w-full max-w-full'
         style={{
           rotateX: isMobile ? 0 : rotateX,
           rotateY: isMobile ? 0 : rotateY,
           scale: isMobile ? 1 : scale,
-          transformStyle: isMobile ? undefined : 'preserve-3d',
-          width: '100%',
-          height: '100%'
+          transformStyle: isMobile ? undefined : 'preserve-3d'
         }}
         onMouseEnter={isMobile ? undefined : handleMouseEnter}
         onMouseLeave={isMobile ? undefined : handleMouseLeave}

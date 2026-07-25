@@ -24,7 +24,7 @@ export const ExperienceCard = ({
   return (
     <div
       className={clsx(
-        'flex-1 rounded-xl border p-5 transition-all duration-300 sm:p-6',
+        'flex-1 min-w-0 max-w-full overflow-hidden rounded-xl border p-4 transition-all duration-300 sm:p-6',
         isDarkTheme
           ? isHovered
             ? 'translate-x-1 border-blue-500/80 bg-zinc-900 shadow-[0_6px_24px_rgba(0,0,0,0.4)]'
@@ -37,11 +37,11 @@ export const ExperienceCard = ({
       onMouseLeave={onMouseLeave}
     >
       <div className='flex flex-wrap items-start justify-between gap-3 text-left'>
-        <div className='flex items-center gap-3.5 text-left'>
+        <div className='flex flex-wrap items-center gap-3 text-left sm:flex-nowrap sm:gap-3.5'>
           {experience.companyLogoUrl && (
             <div
               className={clsx(
-                'flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border p-1 shadow-sm',
+                'flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border p-1 shadow-sm sm:h-16 sm:w-16',
                 isDarkTheme
                   ? 'border-zinc-700 bg-zinc-800'
                   : 'border-blue-200 bg-white'
@@ -60,10 +60,10 @@ export const ExperienceCard = ({
             </div>
           )}
           <div className='flex flex-col items-start gap-1 text-left'>
-            <div className='flex items-center gap-3'>
+            <div className='flex flex-wrap items-center gap-2 sm:gap-3'>
               <h3
                 className={clsx(
-                  'text-2xl font-bold',
+                  'text-xl font-bold sm:text-2xl',
                   isDarkTheme ? 'text-white' : 'text-zinc-900'
                 )}
               >
@@ -72,7 +72,7 @@ export const ExperienceCard = ({
               {isPresent && (
                 <span
                   className={clsx(
-                    'rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wider uppercase',
+                    'rounded-full border px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase sm:px-2.5 sm:text-xs',
                     isDarkTheme
                       ? 'border-emerald-500/60 bg-emerald-500/20 text-emerald-300'
                       : 'border-emerald-600 bg-emerald-50 text-emerald-700'
@@ -84,7 +84,7 @@ export const ExperienceCard = ({
             </div>
             <p
               className={clsx(
-                'text-lg font-semibold',
+                'text-base font-semibold sm:text-lg',
                 isDarkTheme ? 'text-blue-400' : 'text-blue-600'
               )}
             >
@@ -92,7 +92,7 @@ export const ExperienceCard = ({
             </p>
             <p
               className={clsx(
-                'text-sm font-medium transition-colors duration-200',
+                'text-xs font-medium transition-colors duration-200 sm:text-sm',
                 isDarkTheme
                   ? isHovered
                     ? 'text-zinc-200'
@@ -105,10 +105,10 @@ export const ExperienceCard = ({
           </div>
         </div>
 
-        <div className='flex flex-wrap items-center gap-2 text-sm'>
+        <div className='flex flex-wrap items-center gap-1.5 text-xs sm:gap-2 sm:text-sm'>
           <span
             className={clsx(
-              'rounded-md border px-2.5 py-1 font-medium',
+              'rounded-md border px-2 py-0.5 font-medium sm:px-2.5 sm:py-1',
               isDarkTheme
                 ? 'border-zinc-700 bg-zinc-800 text-white'
                 : 'border-blue-200 bg-blue-50/80 text-blue-900'
@@ -118,7 +118,7 @@ export const ExperienceCard = ({
           </span>
           <span
             className={clsx(
-              'rounded-md border px-2.5 py-1 font-medium',
+              'rounded-md border px-2 py-0.5 font-medium sm:px-2.5 sm:py-1',
               isDarkTheme
                 ? 'border-zinc-700 bg-zinc-800 text-white'
                 : 'border-blue-200 bg-blue-50/80 text-blue-900'
@@ -131,7 +131,7 @@ export const ExperienceCard = ({
 
       <ul
         className={clsx(
-          'mt-4 flex flex-col gap-2.5 border-t pt-4 text-left text-base leading-relaxed transition-colors duration-200',
+          'mt-4 flex flex-col gap-2 border-t pt-4 text-left text-sm leading-relaxed transition-colors duration-200 sm:gap-2.5 sm:text-base',
           isDarkTheme
             ? isHovered
               ? 'border-zinc-800 text-white'
@@ -142,7 +142,7 @@ export const ExperienceCard = ({
         {experience.bullets.map((bullet, idx) => (
           <li
             key={idx}
-            className='flex items-start justify-start gap-2.5 text-left'
+            className='flex items-start justify-start gap-2 text-left sm:gap-2.5'
           >
             <span
               className={clsx(
@@ -155,7 +155,7 @@ export const ExperienceCard = ({
         ))}
       </ul>
 
-      <div className='mt-4 flex flex-wrap gap-2 pt-2'>
+      <div className='mt-4 flex flex-wrap gap-1.5 pt-2 sm:gap-2'>
         {experience.skillsUsed.map((skillKey) => (
           <SkillTag key={skillKey} isHovered={isHovered} skillKey={skillKey} />
         ))}
