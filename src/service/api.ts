@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  (import.meta.env.VITE_API_URL as string) || 'http://localhost:3001'
+  (import.meta?.env?.VITE_API_URL as string) || 'https://api.capybara.cx.ua'
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`, {

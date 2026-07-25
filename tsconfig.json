@@ -5,9 +5,8 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
     "module": "ESNext",
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
+
     "paths": {
       "@shared/*": ["./src/shared/*"],
       "@features/*": ["./src/features/*"],
@@ -17,6 +16,9 @@
       "@service/*": ["./src/service/*"]
     },
     "resolveJsonModule": true,
+
+    /* Bundler mode */
+    "types": ["node"],
     "allowImportingTsExtensions": true,
 
     /* Linting */
