@@ -1,5 +1,6 @@
 import { useTheme } from '@app/hooks/useTheme'
 import { sendGAEvent } from '@features/shared/analytics/ga'
+import clsx from 'clsx'
 import { motion } from 'motion/react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -43,7 +44,12 @@ export const DynamicIslandHeader = () => {
       <div className='flex max-w-full flex-wrap items-center justify-center gap-2.5 sm:gap-3 md:gap-4.5'>
         <motion.div
           layout
-          className='flex max-w-full flex-wrap items-center justify-center gap-2 rounded-[28px] border border-white/15 bg-black/90 px-3.5 py-2 shadow-md backdrop-blur-xl sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 md:gap-4 md:px-8 md:py-3.5'
+          className={clsx(
+            'flex max-w-full flex-wrap items-center justify-center gap-2 rounded-[28px] border px-3.5 py-2 shadow-2xl backdrop-blur-2xl sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 md:gap-4 md:px-8 md:py-3.5',
+            isDarkTheme
+              ? 'border-white/15 bg-black/90 text-white'
+              : 'border-black/10 bg-white/80 text-zinc-900 shadow-lg'
+          )}
           transition={{ type: 'spring', stiffness: 400, damping: 30 }}
         >
           <ServerStatusLens />
@@ -75,7 +81,12 @@ export const DynamicIslandHeader = () => {
             })}
           </nav>
 
-          <div className='hidden h-4 w-px bg-white/15 sm:block sm:h-5 md:h-6' />
+          <div
+            className={clsx(
+              'hidden h-4 w-px sm:block sm:h-5 md:h-6',
+              isDarkTheme ? 'bg-white/15' : 'bg-black/15'
+            )}
+          />
 
           <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
         </motion.div>
