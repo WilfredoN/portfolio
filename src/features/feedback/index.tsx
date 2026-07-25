@@ -21,7 +21,7 @@ export const FeedbackPage = () => {
   }
 
   return (
-    <article className='z-5 mt-8 flex max-w-5xl flex-col items-center justify-start bg-(--color-bg) text-left text-(--color-text)'>
+    <article className='z-5 mt-8 flex max-w-5xl flex-col items-center justify-start text-left text-(--color-text)'>
       <div className='mx-auto w-full max-w-5xl px-4 py-8'>
         <div className='mb-12 text-center'>
           <h1 className='mb-4 text-4xl md:text-5xl'>Feedback</h1>

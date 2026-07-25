@@ -40,7 +40,7 @@ export const Card = ({
   return (
     <motion.div
       className={clsx(
-        'mb-12 flex w-full flex-col justify-between rounded-lg border-3 p-4 transition-transform duration-100',
+        'mb-12 flex w-full flex-col justify-between rounded-lg border-3 bg-(--color-bg) p-4 transition-transform duration-100',
         {
           'hover:scale-105': !videoUrl && !isLarge,
           'md:h-122.5': scale === 'medium',

@@ -8,7 +8,8 @@ import clsx from 'clsx'
 
 export const About = () => {
   return (
-    <article className='z-5 mt-8 flex max-w-5xl flex-col items-center justify-start bg-(--color-bg) text-(--color-text)'>
+    <article className='z-5 mt-8 flex max-w-5xl flex-col items-center justify-start bg-transparent text-(--color-text)'>
+
       <div className='relative m-0 flex max-w-5xl flex-col items-center justify-center'>
         <div className='relative flex max-w-140 items-center justify-center'>
           <Resume />

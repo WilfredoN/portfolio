@@ -2,104 +2,185 @@ import { useEffect, useRef } from 'react'
 
 import '../styles/bg.css'
 
-interface Symbols {
+const MATRIX_CONFIG = {
+  BASE_SPEED: 0.75,
+  FLICKER_PROBABILITY: 0.05,
+  FONT_SIZE: 18,
+  HEAD_COLOR: '#e0f2fe',
+  HEAD_GLOW_BLUR: 6,
+  HEAD_GLOW_COLOR: '#38bdf8',
+  MAX_ADDITIONAL_LENGTH: 12,
+  MIN_ALPHA: 0.1,
+  MIN_COLUMN_LENGTH: 8,
+  RESIZE_THROTTLE_MS: 150,
+  SPEED_VARIATION: 1.0,
+  TRAIL_RGB: '16, 185, 129'
+} as const
+
+interface MatrixColumn {
+  chars: string[]
+  direction: 'down' | 'up'
+  length: number
   speed: number
-  value: string
   x: number
   y: number
 }
 
 export const BinaryBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const symbols = useRef<Symbols[]>([])
-  const resizeTimeout = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     const canvas = canvasRef.current
-
     if (!canvas) {
-      console.error('Canvas element not found')
-
       return
     }
 
     const ctx = canvas.getContext('2d')
-
     if (!ctx) {
       return
     }
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
+    let animationFrameId: number
+    let resizeTimeoutId: ReturnType<typeof setTimeout>
+    let columns: MatrixColumn[] = []
 
-    resizeCanvas()
-    const handleResize = () => {
-      if (resizeTimeout.current) {
-        clearTimeout(resizeTimeout.current)
-      }
-      resizeTimeout.current = window.setTimeout(resizeCanvas, 100)
-    }
-    window.addEventListener('resize', handleResize)
+    const initColumns = (width: number, height: number) => {
+      const colCount = Math.ceil(width / MATRIX_CONFIG.FONT_SIZE)
+      columns = []
 
-    const createSymbols = () => {
-      const columns = Math.floor(canvas.width / 20)
-      for (let i = 0; i < columns; i++) {
-        symbols.current.push({
-          x: i * 20,
-          y: Math.random() * canvas.height,
-          value: Math.random() < 0.5 ? '0' : '1',
-          speed: 0.5 - Math.random() * 0.5
+      for (let i = 0; i < colCount; i++) {
+        const length =
+          Math.floor(Math.random() * MATRIX_CONFIG.MAX_ADDITIONAL_LENGTH) +
+          MATRIX_CONFIG.MIN_COLUMN_LENGTH
+        const chars: string[] = []
+        for (let j = 0; j < length; j++) {
+          chars.push(Math.random() < 0.5 ? '0' : '1')
+        }
+
+        const direction = Math.random() < 0.5 ? 'down' : 'up'
+        const y =
+          direction === 'down'
+            ? Math.floor(Math.random() * -height)
+            : height + Math.floor(Math.random() * height)
+
+        columns.push({
+          x: i * MATRIX_CONFIG.FONT_SIZE,
+          y,
+          speed:
+            Math.random() * MATRIX_CONFIG.SPEED_VARIATION +
+            MATRIX_CONFIG.BASE_SPEED,
+          length,
+          chars,
+          direction
         })
       }
     }
 
-    createSymbols()
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1
+      const width = window.innerWidth
+      const height = window.innerHeight
 
-    const changeSymbolValue = (symbol: Symbols) => {
-      setTimeout(
-        () => {
-          symbol.value = symbol.value === '0' ? '1' : '0'
-          changeSymbolValue(symbol)
-        },
-        Math.random() * 1000 + 500
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+
+      // Reset transform before applying dpr scale to prevent cumulative scaling
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      initColumns(width, height)
+    }
+
+    resizeCanvas()
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeoutId)
+      resizeTimeoutId = setTimeout(
+        resizeCanvas,
+        MATRIX_CONFIG.RESIZE_THROTTLE_MS
       )
     }
 
-    const drawSymbols = () => {
-      if (!ctx) {
-        return
-      }
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = '#00FF00'
-      ctx.font = '28px monospace'
+    window.addEventListener('resize', handleResize)
 
-      symbols.current.forEach((symbol) => {
-        ctx.fillText(symbol.value, symbol.x, symbol.y)
-        symbol.y += symbol.speed
+    const draw = () => {
+      const width = window.innerWidth
+      const height = window.innerHeight
 
-        if (symbol.y > canvas.height) {
-          symbol.y = 0
-          symbol.value = Math.random() < 0.5 ? '0' : '1'
+      ctx.clearRect(0, 0, width, height)
+
+      ctx.font = `${MATRIX_CONFIG.FONT_SIZE}px monospace`
+      ctx.textBaseline = 'top'
+
+      for (let i = 0; i < columns.length; i++) {
+        const col = columns[i]
+
+        for (let j = 0; j < col.length; j++) {
+          const charY =
+            col.direction === 'down'
+              ? col.y - j * MATRIX_CONFIG.FONT_SIZE
+              : col.y + j * MATRIX_CONFIG.FONT_SIZE
+
+          if (
+            charY < -MATRIX_CONFIG.FONT_SIZE ||
+            charY > height + MATRIX_CONFIG.FONT_SIZE
+          ) {
+            continue
+          }
+
+          if (Math.random() < MATRIX_CONFIG.FLICKER_PROBABILITY) {
+            col.chars[j] = Math.random() < 0.5 ? '0' : '1'
+          }
+
+          const char = col.chars[j]
+
+          if (j === 0) {
+            ctx.fillStyle = MATRIX_CONFIG.HEAD_COLOR
+            ctx.shadowColor = MATRIX_CONFIG.HEAD_GLOW_COLOR
+            ctx.shadowBlur = MATRIX_CONFIG.HEAD_GLOW_BLUR
+          } else {
+            const alpha = Math.max(MATRIX_CONFIG.MIN_ALPHA, 1 - j / col.length)
+            ctx.fillStyle = `rgba(${MATRIX_CONFIG.TRAIL_RGB}, ${alpha})`
+            ctx.shadowBlur = 0
+          }
+
+          ctx.fillText(char, col.x, charY)
         }
-      })
+
+        if (col.direction === 'down') {
+          col.y += col.speed
+          if (col.y - col.length * MATRIX_CONFIG.FONT_SIZE > height) {
+            col.y = Math.floor(Math.random() * -100)
+            col.speed =
+              Math.random() * MATRIX_CONFIG.SPEED_VARIATION +
+              MATRIX_CONFIG.BASE_SPEED
+            for (let j = 0; j < col.length; j++) {
+              col.chars[j] = Math.random() < 0.5 ? '0' : '1'
+            }
+          }
+        } else {
+          col.y -= col.speed
+          if (col.y + col.length * MATRIX_CONFIG.FONT_SIZE < 0) {
+            col.y = height + Math.floor(Math.random() * 100)
+            col.speed =
+              Math.random() * MATRIX_CONFIG.SPEED_VARIATION +
+              MATRIX_CONFIG.BASE_SPEED
+            for (let j = 0; j < col.length; j++) {
+              col.chars[j] = Math.random() < 0.5 ? '0' : '1'
+            }
+          }
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(draw)
     }
 
-    symbols.current.forEach((symbol) => changeSymbolValue(symbol))
-
-    const animate = () => {
-      drawSymbols()
-      requestAnimationFrame(animate)
-    }
-
-    animate()
+    draw()
 
     return () => {
+      clearTimeout(resizeTimeoutId)
       window.removeEventListener('resize', handleResize)
+      cancelAnimationFrame(animationFrameId)
     }
   }, [])
 
-  return <canvas ref={canvasRef} className='binary-background'></canvas>
+  return <canvas ref={canvasRef} className='binary-background' />
 }
