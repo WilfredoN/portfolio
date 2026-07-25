@@ -1,5 +1,6 @@
 export enum NavStatus {
   READY = 'READY',
+  PROCESSING = 'PROCESSING',
   IN_CONSTRUCTION = 'IN_CONSTRUCTION'
 }
 

@@ -57,10 +57,13 @@ export const Header = () => {
             )
           }
 
+          const isProcessing = status === NavStatus.PROCESSING
+
           return (
             <NavigationButton
               key={item.path}
               isClicked={location.pathname === item.path}
+              isProcessing={isProcessing}
               onClick={() => handlePageChange(item.path, item.label)}
             >
               {item.label}
