@@ -6,17 +6,25 @@ import clsx from 'clsx'
 interface ExperienceNodeProps {
   experience: ExperienceItem
   isHovered: boolean
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
 export const ExperienceNode = ({
   experience,
-  isHovered
+  isHovered,
+  onMouseEnter,
+  onMouseLeave
 }: ExperienceNodeProps) => {
   const { isDarkTheme } = useTheme()
   const isPresent = experience.endDate === 'Present'
 
   return (
-    <div className='relative flex flex-col items-center pt-2'>
+    <div
+      className='relative flex flex-col items-center pt-2'
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div
         className={clsx(
           'z-10 flex h-9 w-9 items-center justify-center rounded-full border-2 transition-all duration-300 sm:h-11 sm:w-11',

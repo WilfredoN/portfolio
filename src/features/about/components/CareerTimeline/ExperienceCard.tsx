@@ -8,11 +8,15 @@ import { SkillTag } from './SkillTag'
 interface ExperienceCardProps {
   experience: ExperienceItem
   isHovered: boolean
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
 export const ExperienceCard = ({
   experience,
-  isHovered
+  isHovered,
+  onMouseEnter,
+  onMouseLeave
 }: ExperienceCardProps) => {
   const { isDarkTheme } = useTheme()
   const isPresent = experience.endDate === 'Present'
@@ -29,6 +33,8 @@ export const ExperienceCard = ({
             ? 'translate-x-1 border-blue-500 bg-white/95 shadow-[0_8px_25px_rgba(0,86,179,0.15)]'
             : 'border-blue-200/80 bg-white/80 shadow-sm hover:border-blue-300'
       )}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className='flex flex-wrap items-start justify-between gap-3 text-left'>
         <div className='flex items-center gap-3.5 text-left'>

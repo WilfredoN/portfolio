@@ -15,7 +15,8 @@ export const ExperienceItemRow = ({
   experience,
   index
 }: ExperienceItemRowProps) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isCardHovered, setIsCardHovered] = useState(false)
+  const [isNodeHovered, setIsNodeHovered] = useState(false)
 
   return (
     <motion.div
@@ -24,11 +25,19 @@ export const ExperienceItemRow = ({
       transition={{ delay: index * 0.1, duration: 0.4 }}
       viewport={{ once: true }}
       whileInView={{ opacity: 1, y: 0 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      <ExperienceNode experience={experience} isHovered={isHovered} />
-      <ExperienceCard experience={experience} isHovered={isHovered} />
+      <ExperienceNode
+        experience={experience}
+        isHovered={isCardHovered || isNodeHovered}
+        onMouseEnter={() => setIsNodeHovered(true)}
+        onMouseLeave={() => setIsNodeHovered(false)}
+      />
+      <ExperienceCard
+        experience={experience}
+        isHovered={isCardHovered}
+        onMouseEnter={() => setIsCardHovered(true)}
+        onMouseLeave={() => setIsCardHovered(false)}
+      />
     </motion.div>
   )
 }

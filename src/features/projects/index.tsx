@@ -40,12 +40,21 @@ export const Projects = () => {
   }
 
   const handleCategoryChange = (category: Category) => {
-    setActiveCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category]
+    const nextCategories = activeCategories.includes(category)
+      ? activeCategories.filter((c) => c !== category)
+      : [...activeCategories, category]
+
+    setActiveCategories(nextCategories)
+
+    const nextFilteredProjects = projects.filter((project) =>
+      nextCategories.includes(project.category)
     )
-    setSelectedTags([])
+    const validTags = new Set<string>()
+    nextFilteredProjects.forEach((p) => {
+      p.technologies.forEach((tech) => validTags.add(tech))
+    })
+
+    setSelectedTags((prev) => prev.filter((tag) => validTags.has(tag)))
   }
 
   const filteredProjects = useMemo(() => {
@@ -60,7 +69,7 @@ export const Projects = () => {
   return (
     <motion.article
       animate='final'
-      className='mt-8 flex w-full max-w-[1024px] flex-col items-center justify-start gap-8 p-4 text-left'
+      className='mt-8 flex w-full max-w-5xl flex-col items-center justify-start gap-8 p-4 text-left'
       initial='initial'
     >
       <FilterPanel
