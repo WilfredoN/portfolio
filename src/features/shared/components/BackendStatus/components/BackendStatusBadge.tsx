@@ -1,5 +1,6 @@
+import { useOnClickOutside } from '@shared/hooks/useOnClickOutside'
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import {
   LATENCY_GOOD_THRESHOLD_MS,
@@ -10,6 +11,13 @@ import { useBackendStatus } from '../hooks/useBackendStatus'
 export const BackendStatusBadge = () => {
   const { data, isLoading } = useBackendStatus()
   const [showStats, setShowStats] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useOnClickOutside(containerRef, () => {
+    if (showStats) {
+      setShowStats(false)
+    }
+  })
 
   if (isLoading) {
     return (
@@ -53,7 +61,7 @@ export const BackendStatusBadge = () => {
   }
 
   return (
-    <div className='relative inline-block'>
+    <div ref={containerRef} className='relative inline-block'>
       <motion.div
         animate={{ opacity: 1, scale: 1 }}
         className='flex cursor-pointer items-center gap-2.5 rounded-full border border-(--color-border) bg-(--color-bg-elevated) px-3 py-1 text-xs text-(--color-text) shadow-sm backdrop-blur-sm transition-colors select-none hover:bg-current/10'
