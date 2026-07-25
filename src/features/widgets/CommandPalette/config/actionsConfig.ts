@@ -13,7 +13,7 @@ export const createCommands = ({
 }: CreateCommandsParams): CommandAction[] => [
   {
     id: 'nav-about',
-    title: 'Go to About Me',
+    title: 'Go to About',
     subtitle: 'Career timeline, background & skill stack',
     icon: '👤',
     category: 'navigation',
@@ -62,7 +62,11 @@ export const createCommands = ({
     icon: '🐙',
     category: 'actions',
     perform: () => {
-      window.open('https://github.com/WilfredoN', '_blank', 'noopener,noreferrer')
+      window.open(
+        'https://github.com/WilfredoN',
+        '_blank',
+        'noopener,noreferrer'
+      )
     }
   },
   {

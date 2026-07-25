@@ -10,7 +10,7 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'About Me', path: '/about' },
+  { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
   { label: 'Feedback', path: '/feedback' }
 ]
