@@ -1,0 +1,3 @@
+export const STATUS_REFRESH_INTERVAL_MS = 60000 // Refresh every 1 min
+export const LATENCY_GOOD_THRESHOLD_MS = 150
+export const LATENCY_MODERATE_THRESHOLD_MS = 400

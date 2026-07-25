@@ -1,8 +1,10 @@
 import type { ProjectProps } from '@features/projects/data/projects'
 
 import { Card } from '@features/projects/components/Card'
+import { ProjectModal } from '@features/projects/components/ProjectModal'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
+import { useState } from 'react'
 
 interface ProjectListProps {
   projects: ProjectProps[]
@@ -10,6 +12,8 @@ interface ProjectListProps {
 }
 
 export const ProjectList = ({ projects, selectedTags }: ProjectListProps) => {
+  const [selectedProject, setSelectedProject] = useState<ProjectProps | null>(null)
+
   return (
     <motion.section className='flex min-h-[400px] w-full flex-row flex-wrap items-center justify-center gap-8 p-4'>
       <AnimatePresence mode='popLayout'>
@@ -51,11 +55,21 @@ export const ProjectList = ({ projects, selectedTags }: ProjectListProps) => {
               initial={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.25 }}
             >
-              <Card {...project} selectedTags={selectedTags} />
+              <Card
+                {...project}
+                selectedTags={selectedTags}
+                onOpenDetails={setSelectedProject}
+              />
             </motion.div>
           ))
         )}
       </AnimatePresence>
+
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </motion.section>
   )
 }
+

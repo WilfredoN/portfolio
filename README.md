@@ -16,8 +16,16 @@ pnpm run dev
 - [x] FSD-like architecture
 - [x] pnpm migration
 - [x] github actions
-- [ ] make supabase-independent feedback fetch (from exported json)
-- [ ] realize fetch with React-Query (TanStack)
-- [ ] git hooks (as husky alternative)
-- [ ] jest unit tests
-- [ ] next.js
+- [x] make supabase-independent feedback fetch (from exported json)
+- [x] realize fetch with React-Query (TanStack)
+- [ ] command palette (Cmd+K) & page navigation
+- [ ] Hetzner backend health & latency indicator
+- [ ] Motion 12 micro-interactions & project detail drawer
+- [ ] Motion toast notification system
+
+### Backlog & Future Tasks
+- [ ] emoji reactions for feedback cards (Hetzner Node backend + frontend)
+- [ ] interactive skill-to-project cross-filtering
+- [ ] jest unit tests (deferred)
+- [ ] next.js migration (deferred - SPA achieves ~100/100 Lighthouse score)
+

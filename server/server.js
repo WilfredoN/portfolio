@@ -46,7 +46,17 @@ app.use(
 const limiter = rateLimit({ windowMs: 60000, max: 30 })
 app.use(limiter)
 
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    server: 'hetzner-node-express',
+    uptime: Math.floor(process.uptime()),
+    timestamp: new Date().toISOString()
+  })
+})
+
 app.get('/feedbacks', async (req, res, next) => {
+
   try {
     const db = await getDb()
     const feedbacks = await db.all(

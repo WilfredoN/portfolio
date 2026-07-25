@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { CommandPaletteTrigger } from './CommandPaletteTrigger'
 import { ConstructionButton } from './ConstructionButton'
 import { useAllNavStatuses } from './hooks/useNavTabStatus'
 import { NAV_ITEMS, NavStatus } from './navConfig'
@@ -33,6 +34,10 @@ export const Header = () => {
     sendGAEvent({ action: 'navigation_click', category: 'Header', label })
   }
 
+  const handleOpenCommandPalette = () => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
+  }
+
   const headerClass = [
     'mt-3 mb-8 flex h-fit min-h-[120px] w-full flex-col items-center rounded-3xl bg-(--color-nav)/90 md:w-fit md:rounded-full',
     !isMobile && scrollPosition > 0
@@ -45,7 +50,7 @@ export const Header = () => {
       className={headerClass}
       style={{ padding: '24px 48px', minHeight: 120 }}
     >
-      <nav className='flex w-full flex-col justify-center md:flex-row'>
+      <nav className='flex w-full flex-col items-center justify-center gap-2 md:flex-row'>
         {NAV_ITEMS.map((item) => {
           const status = navStatuses[item.path] ?? NavStatus.READY
 
@@ -70,8 +75,12 @@ export const Header = () => {
             </NavigationButton>
           )
         })}
-        <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
+        <div className='flex items-center gap-2 mt-2 md:mt-0 md:ml-2'>
+          <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
+          <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
+        </div>
       </nav>
     </motion.header>
   )
 }
+
