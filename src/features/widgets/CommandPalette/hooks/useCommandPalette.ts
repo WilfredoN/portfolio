@@ -1,4 +1,5 @@
 import { useTheme } from '@app/hooks/useTheme'
+import { sendGAEvent } from '@features/shared/analytics/ga'
 import { useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -68,6 +69,10 @@ export const useCommandPalette = () => {
   }, [filteredCommands])
 
   const openPalette = useCallback(() => {
+    sendGAEvent({
+      action: 'command_palette_open',
+      category: 'Navigation'
+    })
     setIsOpen(true)
     setSearch('')
     setSelectedIndex(0)
@@ -80,13 +85,30 @@ export const useCommandPalette = () => {
   }, [])
 
   const togglePalette = useCallback(() => {
-    setIsOpen((prev) => !prev)
+    setIsOpen((prev) => {
+      if (!prev) {
+        sendGAEvent({
+          action: 'command_palette_open',
+          category: 'Navigation'
+        })
+      }
+      return !prev
+    })
     setSearch('')
     setSelectedIndex(0)
   }, [])
 
   const executeCommand = useCallback(
     (cmd: CommandAction) => {
+      sendGAEvent({
+        action: 'command_action_execute',
+        category: 'Intent',
+        label: cmd.id,
+        params: {
+          command_title: cmd.title,
+          command_category: cmd.category
+        }
+      })
       closePalette()
       cmd.perform()
     },

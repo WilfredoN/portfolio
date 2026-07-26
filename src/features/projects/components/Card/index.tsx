@@ -1,6 +1,7 @@
 import type { ProjectProps } from '@features/projects/data/projects'
 
 import { ProjectImage } from '@features/projects/components/ProjectImage'
+import { sendGAEvent } from '@features/shared/analytics/ga'
 import { Text } from '@shared/components/Text'
 import { SKILL_DEFINITIONS } from '@shared/constants/skills'
 import clsx from 'clsx'
@@ -33,6 +34,12 @@ export const Card = ({
   const isLarge = scale === 'large'
   const handleClick = () => {
     if (link) {
+      sendGAEvent({
+        action: 'project_click',
+        category: 'Engagement',
+        label: title,
+        params: { link_url: link }
+      })
       window.open(link, '_blank', 'noopener,noreferrer')
     }
   }
@@ -63,7 +70,12 @@ export const Card = ({
           <Video src={videoUrl} />
         ) : (
           <span className='font-courgette my-6 text-[4rem] text-[#5287AD]'>
-            <a href={link} rel='noopener noreferrer' target='_blank'>
+            <a
+              href={link}
+              rel='noopener noreferrer'
+              target='_blank'
+              onClick={handleClick}
+            >
               {title}
             </a>
           </span>

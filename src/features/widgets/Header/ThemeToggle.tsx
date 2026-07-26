@@ -1,3 +1,4 @@
+import { sendGAEvent } from '@features/shared/analytics/ga'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 
@@ -6,10 +7,17 @@ interface ThemeToggleProps {
   toggleTheme: () => void
 }
 
-export const ThemeToggle = ({
-  toggleTheme,
-  isDarkTheme
-}: ThemeToggleProps) => {
+export const ThemeToggle = ({ toggleTheme, isDarkTheme }: ThemeToggleProps) => {
+  const handleToggle = () => {
+    const nextTheme = isDarkTheme ? 'light' : 'dark'
+    sendGAEvent({
+      action: 'theme_toggle',
+      category: 'Preferences',
+      label: nextTheme
+    })
+    toggleTheme()
+  }
+
   return (
     <motion.button
       aria-label='Toggle Theme'
@@ -22,7 +30,7 @@ export const ThemeToggle = ({
       title={`Switch to ${isDarkTheme ? 'Light' : 'Dark'} Theme`}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      onClick={toggleTheme}
+      onClick={handleToggle}
     >
       <span>{isDarkTheme ? '🌙' : '☀️'}</span>
     </motion.button>

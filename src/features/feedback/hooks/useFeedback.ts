@@ -10,6 +10,7 @@ import {
 } from '@features/api/feedback/useFeedbacksQuery'
 import { mapFeedbackData } from '@features/feedback/utils/format/mapFeedbackData'
 import { validateFeedbackForm } from '@features/feedback/utils/format/validateFeedback'
+import { sendGAEvent } from '@features/shared/analytics/ga'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCallback, useState } from 'react'
 
@@ -97,6 +98,15 @@ export const useFeedback = (onSuccess?: () => void) => {
       )
 
       if (result.success) {
+        sendGAEvent({
+          action: 'feedback_submit',
+          category: 'Conversion',
+          label: formData.author,
+          params: {
+            company: formData.company,
+            skills_count: formData.skills.length
+          }
+        })
         resetForm()
         queryClient.invalidateQueries({ queryKey: FEEDBACKS_QUERY_KEY })
         onSuccess?.()
