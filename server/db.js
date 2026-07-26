@@ -30,8 +30,16 @@ export async function getDb() {
         skill_name TEXT,
         FOREIGN KEY(feedback_id) REFERENCES feedbacks(id)
       );
+      CREATE TABLE IF NOT EXISTS telemetry_events (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        event_name TEXT NOT NULL,
+        category TEXT,
+        label TEXT,
+        metadata TEXT,
+        hashed_ip TEXT,
+        created_at TEXT NOT NULL
+      );
     `)
-
   }
   return dbInstance
 }

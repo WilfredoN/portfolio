@@ -15,8 +15,13 @@ const Feedback = lazy(() =>
 const Projects = lazy(() =>
   import('@features/projects').then((module) => ({ default: module.Projects }))
 )
+const SecretAnalytics = lazy(() =>
+  import('@features/admin/pages/SecretAnalyticsPage').then((module) => ({
+    default: module.SecretAnalyticsPage
+  }))
+)
 
-const KNOWN_PATHS = ['/about', '/projects', '/feedback']
+const KNOWN_PATHS = ['/about', '/projects', '/feedback', '/42']
 
 export const Page = () => {
   const location = useLocation()
@@ -24,8 +29,8 @@ export const Page = () => {
 
   if (
     location.pathname === '/' ||
-    !KNOWN_PATHS.includes(location.pathname) ||
-    currentNavStatus === NavStatus.IN_CONSTRUCTION
+    (!KNOWN_PATHS.includes(location.pathname) && location.pathname !== '/42') ||
+    (currentNavStatus === NavStatus.IN_CONSTRUCTION && location.pathname !== '/42')
   ) {
     return <Navigate replace to={DEFAULT_PATH} />
   }
@@ -57,6 +62,7 @@ export const Page = () => {
             <Route element={<About />} path='/about' />
             <Route element={<Projects />} path='/projects' />
             <Route element={<Feedback />} path='/feedback' />
+            <Route element={<SecretAnalytics />} path='/42' />
           </Routes>
         </Suspense>
       </motion.div>

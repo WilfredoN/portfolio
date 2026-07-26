@@ -13,5 +13,6 @@ services:
       - PORT=3001
       - NODE_ENV=production
       - CORS_ORIGIN=https://capybara.cx.ua,http://localhost:5173,http://127.0.0.1:5173
+      - ADMIN_SECRET_KEY=${ADMIN_SECRET_KEY}
     volumes:
       - ./feedbacks.sqlite:/app/feedbacks.sqlite

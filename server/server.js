@@ -1,7 +1,9 @@
 import cors from 'cors'
 import express from 'express'
+import crypto from 'node:crypto'
 
 import { getDb } from './db.js'
+import { getClientIp } from './ip.js'
 import rateLimit from './rateLimit.js'
 import requestLogger, { closeRequestLoggerStream } from './requestLogger.js'
 
@@ -58,6 +60,17 @@ const submitLimiter = rateLimit({
 
 app.use(readLimiter)
 
+const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY
+
+const verifyAdminToken = (req, res, next) => {
+  const authHeader = req.headers['x-admin-token'] || req.query.key
+  if (!authHeader || authHeader !== ADMIN_SECRET) {
+    res.status(404).json({ error: 'Not Found' })
+    return
+  }
+  next()
+}
+
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
@@ -76,6 +89,9 @@ app.get('/stats', async (req, res, next) => {
     const skillCountRow = await db.get(
       'SELECT COUNT(*) as count FROM feedback_skills'
     )
+    const telemetryCountRow = await db.get(
+      'SELECT COUNT(*) as count FROM telemetry_events'
+    )
 
     const memUsage = process.memoryUsage()
     const memoryMb = Math.round((memUsage.heapUsed / 1024 / 1024) * 100) / 100
@@ -90,8 +106,101 @@ app.get('/stats', async (req, res, next) => {
       memoryHeapMb: memoryMb,
       totalFeedbacks: feedbackCountRow?.count || 0,
       totalSkillsEndorsed: skillCountRow?.count || 0,
+      totalTelemetryEvents: telemetryCountRow?.count || 0,
       timestamp: new Date().toISOString()
     })
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.post('/api/telemetry', async (req, res, next) => {
+  try {
+    const { event_name, category, label, metadata } = req.body
+    if (!event_name || typeof event_name !== 'string') {
+      res.status(400).json({ error: 'event_name is required' })
+      return
+    }
+
+    const ip = getClientIp(req)
+    const hashedIp = crypto
+      .createHash('sha256')
+      .update(ip + (process.env.IP_SALT || 'salt42'))
+      .digest('hex')
+      .substring(0, 16)
+
+    const db = await getDb()
+    await db.run(
+      'INSERT INTO telemetry_events (event_name, category, label, metadata, hashed_ip, created_at) VALUES (?, ?, ?, ?, ?, ?)',
+      [
+        event_name,
+        category || 'general',
+        label || '',
+        metadata ? JSON.stringify(metadata) : '{}',
+        hashedIp,
+        new Date().toISOString()
+      ]
+    )
+
+    res.status(201).json({ status: 'ok' })
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.get('/api/admin/telemetry/summary', verifyAdminToken, async (req, res, next) => {
+  try {
+    const db = await getDb()
+    const totalEventsRow = await db.get(
+      'SELECT COUNT(*) as count FROM telemetry_events'
+    )
+    const uniqueVisitorsRow = await db.get(
+      'SELECT COUNT(DISTINCT hashed_ip) as count FROM telemetry_events'
+    )
+    const pageviewsRow = await db.get(
+      "SELECT COUNT(*) as count FROM telemetry_events WHERE event_name = 'page_view'"
+    )
+    const recruiterRow = await db.get(
+      "SELECT COUNT(*) as count FROM telemetry_events WHERE event_name IN ('resume_view', 'outbound_click', 'feedback_submit')"
+    )
+
+    const topEvents = await db.all(`
+      SELECT event_name, COUNT(*) as count 
+      FROM telemetry_events 
+      GROUP BY event_name 
+      ORDER BY count DESC 
+      LIMIT 8
+    `)
+
+    const topPages = await db.all(`
+      SELECT label as page_path, COUNT(*) as count 
+      FROM telemetry_events 
+      WHERE event_name = 'page_view' 
+      GROUP BY label 
+      ORDER BY count DESC 
+      LIMIT 5
+    `)
+
+    res.json({
+      totalEvents: totalEventsRow?.count || 0,
+      uniqueVisitors: uniqueVisitorsRow?.count || 0,
+      totalPageviews: pageviewsRow?.count || 0,
+      recruiterConversions: recruiterRow?.count || 0,
+      topEvents,
+      topPages
+    })
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.get('/api/admin/telemetry/events', verifyAdminToken, async (req, res, next) => {
+  try {
+    const db = await getDb()
+    const events = await db.all(
+      'SELECT * FROM telemetry_events ORDER BY created_at DESC LIMIT 50'
+    )
+    res.json(events)
   } catch (e) {
     next(e)
   }
@@ -115,10 +224,7 @@ app.get('/feedbacks/top-skills', async (req, res, next) => {
   }
 })
 
-
 app.get('/feedbacks', async (req, res, next) => {
-
-
   try {
     const db = await getDb()
     const feedbacks = await db.all(
@@ -151,7 +257,6 @@ app.get('/feedbacks', async (req, res, next) => {
 })
 
 app.post('/feedbacks', submitLimiter, async (req, res, next) => {
-
   let db = null
   let isTransactionActive = false
 

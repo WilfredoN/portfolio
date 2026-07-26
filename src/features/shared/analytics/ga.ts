@@ -1,3 +1,5 @@
+import { sendBackendTelemetry } from '@features/api/telemetry'
+
 interface GAEventParams {
   action: string
   category: string
@@ -27,6 +29,7 @@ export const sendGAEvent = ({
       ...params
     })
   }
+  sendBackendTelemetry(action, category, label || '', params)
 }
 
 export const sendGAPageView = (path: string, title?: string): void => {
@@ -37,6 +40,9 @@ export const sendGAPageView = (path: string, title?: string): void => {
       page_location: window.location.href
     })
   }
+  sendBackendTelemetry('page_view', 'Navigation', path, {
+    title: title || document.title
+  })
 }
 
 export const sendOutboundClick = (destination: string, url: string): void => {
