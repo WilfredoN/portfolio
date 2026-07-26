@@ -24,14 +24,14 @@ export const ExperienceCard = ({
   return (
     <div
       className={clsx(
-        'flex-1 min-w-0 max-w-full overflow-hidden rounded-xl border p-4 transition-all duration-300 sm:p-6',
+        'max-w-full min-w-0 flex-1 transform-gpu overflow-hidden rounded-xl border p-4 backdrop-blur-sm transition-all duration-300 sm:p-6 sm:backdrop-blur-md',
         isDarkTheme
           ? isHovered
-            ? 'translate-x-1 border-blue-500/80 bg-zinc-900 shadow-[0_6px_24px_rgba(0,0,0,0.4)]'
-            : 'border-zinc-800 bg-zinc-900/90 hover:border-zinc-700'
+            ? 'translate-x-1 border-blue-500/80 bg-zinc-900/95 shadow-[0_6px_24px_rgba(0,0,0,0.4)]'
+            : 'border-zinc-800/80 bg-zinc-900/85 hover:border-zinc-700'
           : isHovered
             ? 'translate-x-1 border-blue-500 bg-white/95 shadow-[0_8px_25px_rgba(0,86,179,0.15)]'
-            : 'border-blue-200/80 bg-white/80 shadow-sm hover:border-blue-300'
+            : 'border-black/10 bg-white/80 shadow-sm hover:border-blue-300'
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

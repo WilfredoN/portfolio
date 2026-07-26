@@ -20,7 +20,7 @@ export const Resume = ({ url = 'resume.pdf' }: FileProps) => {
       <Tooltip text='Check my CV!'>
         <motion.button
           aria-label='Download CV'
-          className='relative flex cursor-pointer items-center justify-center rounded-3xl border border-white/40 bg-black/40 p-3 text-white shadow-xl backdrop-blur-md select-none transition-colors hover:bg-black/60'
+          className='relative flex cursor-pointer items-center justify-center rounded-3xl border border-white/40 bg-black/40 p-3 text-white shadow-2xl backdrop-blur-sm transition-colors select-none hover:bg-black/60 sm:backdrop-blur-xl'
           title='Download CV'
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           whileHover={{ scale: 1.15 }}

@@ -17,13 +17,12 @@ export const CommandPaletteTrigger = ({
 
   return (
     <motion.button
-      layout
       aria-label='Open Command Palette'
       className={clsx(
-        'relative flex cursor-pointer items-center justify-center gap-2 rounded-full border px-3.5 py-2 text-xs shadow-xl backdrop-blur-2xl transition-colors sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-sm md:px-5 md:py-3 md:text-base',
+        'relative hidden cursor-pointer items-center justify-center gap-2 rounded-full border px-3.5 py-2 text-xs shadow-xl backdrop-blur-xl transition-all duration-200 transform-gpu sm:flex sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-sm md:px-5 md:py-3 md:text-base sm:backdrop-blur-2xl',
         isDarkTheme
-          ? 'border-white/15 bg-black/90 text-white hover:border-white/30 hover:bg-black'
-          : 'border-black/10 bg-white/80 text-zinc-900 shadow-lg hover:border-black/20 hover:bg-white'
+          ? 'border-white/20 bg-black/45 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] hover:border-white/35 hover:bg-black/60'
+          : 'border-white/60 bg-white/45 text-zinc-900 shadow-[0_8px_32px_0_rgba(31,38,135,0.12)] hover:border-white/80 hover:bg-white/65'
       )}
       title={`Command Palette (${osKey.name})`}
       transition={{ type: 'spring', stiffness: 400, damping: 28 }}

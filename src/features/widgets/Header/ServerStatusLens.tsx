@@ -51,10 +51,10 @@ export const ServerStatusLens = () => {
       <motion.button
         aria-label='Server Status & Diagnostics'
         className={clsx(
-          'group flex h-6 w-6 cursor-pointer items-center justify-center rounded-full transition-transform select-none',
+          'group flex h-6 w-6 cursor-pointer items-center justify-center rounded-full backdrop-blur-xl transition-transform select-none',
           isDarkTheme
-            ? 'bg-zinc-950 ring-1 ring-white/30'
-            : 'bg-zinc-200 ring-1 ring-black/20'
+            ? 'border border-white/20 bg-black/45 shadow-sm ring-1 ring-white/20'
+            : 'border border-white/60 bg-white/45 shadow-sm ring-1 ring-black/10'
         )}
         title='Click to view Hetzner Server Diagnostics'
         whileHover={{ scale: 1.2 }}
@@ -71,10 +71,10 @@ export const ServerStatusLens = () => {
           <motion.div
             animate={{ opacity: 1, y: 0, scale: 1 }}
             className={clsx(
-              'absolute top-full left-1/2 z-50 mt-3.5 w-64 -translate-x-1/2 rounded-2xl border p-4 text-left font-mono text-xs shadow-2xl backdrop-blur-2xl md:left-0 md:translate-x-0',
+              'absolute top-full left-1/2 z-50 mt-3.5 w-64 -translate-x-1/2 rounded-2xl border p-4 text-left font-mono text-xs shadow-2xl backdrop-blur-2xl transform-gpu md:left-0 md:translate-x-0',
               isDarkTheme
-                ? 'border-white/15 bg-black/95 text-white'
-                : 'border-black/15 bg-white/95 text-zinc-900 shadow-xl'
+                ? 'border-white/20 bg-black/65 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]'
+                : 'border-white/60 bg-white/65 text-zinc-900 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]'
             )}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             initial={{ opacity: 0, y: -10, scale: 0.95 }}

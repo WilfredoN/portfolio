@@ -22,7 +22,12 @@ export const DynamicIslandHeader = () => {
 
   const handlePageChange = (path: string, label: string) => {
     if (!isMobile) {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      const rootEl = document.getElementById('root')
+      if (rootEl) {
+        rootEl.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }
     navigate(path)
     sendGAEvent({ action: 'navigation_click', category: 'Header', label })
@@ -43,14 +48,12 @@ export const DynamicIslandHeader = () => {
     >
       <div className='flex max-w-full flex-wrap items-center justify-center gap-2.5 sm:gap-3 md:gap-4.5'>
         <motion.div
-          layout
           className={clsx(
-            'flex max-w-full flex-wrap items-center justify-center gap-2 rounded-[28px] border px-3.5 py-2 shadow-2xl backdrop-blur-2xl sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 md:gap-4 md:px-8 md:py-3.5',
+            'flex max-w-full flex-wrap items-center justify-center gap-2 rounded-[28px] border px-3.5 py-2 shadow-2xl backdrop-blur-xl transition-all duration-300 transform-gpu sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 sm:backdrop-blur-2xl md:gap-4 md:px-8 md:py-3.5',
             isDarkTheme
-              ? 'border-white/15 bg-black/90 text-white'
-              : 'border-black/10 bg-white/80 text-zinc-900 shadow-lg'
+              ? 'border-white/20 bg-black/45 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]'
+              : 'border-white/60 bg-white/45 text-zinc-900 shadow-[0_8px_32px_0_rgba(31,38,135,0.12)]'
           )}
-          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
         >
           <ServerStatusLens />
 
@@ -84,7 +87,7 @@ export const DynamicIslandHeader = () => {
           <div
             className={clsx(
               'hidden h-4 w-px sm:block sm:h-5 md:h-6',
-              isDarkTheme ? 'bg-white/15' : 'bg-black/15'
+              isDarkTheme ? 'bg-white/20' : 'bg-black/15'
             )}
           />
 
