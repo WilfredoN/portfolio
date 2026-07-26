@@ -15,12 +15,16 @@ interface IconProps {
 export const Icon = memo(
   ({ iconName, alt, title, size = 'medium', type = 'original' }: IconProps) => {
     const [src, setSrc] = useState<string | null>(null)
+    const [hasError, setHasError] = useState(false)
     const [attemptedFallback, setAttemptedFallback] = useState(false)
     const imgRef = useRef<HTMLImageElement | null>(null)
     const observerRef = useRef<IntersectionObserver | null>(null)
+
     useEffect(() => {
       setAttemptedFallback(false)
+      setHasError(false)
       setSrc(null)
+
       if (imgRef.current) {
         if (observerRef.current) {
           observerRef.current.disconnect()
@@ -48,8 +52,13 @@ export const Icon = memo(
         setAttemptedFallback(true)
         setSrc(getIconUrl(iconName, 'plain'))
       } else {
-        setSrc('')
+        setSrc(null)
+        setHasError(true)
       }
+    }
+
+    if (hasError || !iconName) {
+      return null
     }
 
     return (

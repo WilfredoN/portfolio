@@ -47,7 +47,8 @@ export const useCommandPalette = () => {
     const categoryLabels: Record<string, string> = {
       navigation: 'Navigation',
       theme: 'Theme Settings',
-      actions: 'Quick Actions'
+      actions: 'Quick Actions',
+      social: 'Social Profiles & Links'
     }
 
     filteredCommands.forEach((cmd) => {

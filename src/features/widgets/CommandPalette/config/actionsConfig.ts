@@ -56,11 +56,27 @@ export const createCommands = ({
     }
   },
   {
-    id: 'action-github',
+    id: 'social-linkedin',
+    title: 'Open LinkedIn Profile',
+    subtitle: 'linkedin.com/in/capynq',
+    icon: '💼',
+    category: 'social',
+    shortcut: 'S L',
+    perform: () => {
+      window.open(
+        'https://www.linkedin.com/in/capynq',
+        '_blank',
+        'noopener,noreferrer'
+      )
+    }
+  },
+  {
+    id: 'social-github',
     title: 'Open GitHub Profile',
     subtitle: 'github.com/WilfredoN',
     icon: '🐙',
-    category: 'actions',
+    category: 'social',
+    shortcut: 'S G',
     perform: () => {
       window.open(
         'https://github.com/WilfredoN',
@@ -70,14 +86,44 @@ export const createCommands = ({
     }
   },
   {
-    id: 'action-copy-email',
-    title: 'Copy Contact Email',
-    subtitle: 'Copy email address to clipboard',
+    id: 'social-email',
+    title: 'Send Contact Email',
+    subtitle: 'nikita.afanasyevnn@gmail.com',
     icon: '✉️',
-    category: 'actions',
-    shortcut: 'C E',
+    category: 'social',
+    shortcut: 'S E',
     perform: () => {
-      navigator.clipboard.writeText('wilfredon@example.com')
+      window.open('mailto:nikita.afanasyevnn@gmail.com', '_self')
+    }
+  },
+  {
+    id: 'social-monkeytype',
+    title: 'Open Monkeytype Profile',
+    subtitle: 'monkeytype.com/profile/WilfredoN',
+    icon: '⌨️',
+    category: 'social',
+    shortcut: 'S M',
+    perform: () => {
+      window.open(
+        'https://monkeytype.com/profile/WilfredoN',
+        '_blank',
+        'noopener,noreferrer'
+      )
+    }
+  },
+  {
+    id: 'social-wakatime',
+    title: 'Open WakaTime Profile',
+    subtitle: 'wakatime.com/@CapybaraN',
+    icon: '📊',
+    category: 'social',
+    shortcut: 'S W',
+    perform: () => {
+      window.open(
+        'https://wakatime.com/@CapybaraN',
+        '_blank',
+        'noopener,noreferrer'
+      )
     }
   }
 ]

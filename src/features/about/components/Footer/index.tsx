@@ -35,7 +35,7 @@ export const Footer = () => {
       >
         <div className='flex flex-row flex-wrap justify-center gap-3 text-3xl sm:gap-4 sm:text-4xl'>
           <Link
-            href='https://www.linkedin.com/in/nikita-afanasyev-kh/'
+            href='https://www.linkedin.com/in/capynq'
             icon={<LinkedInIcon />}
           />
           <Link href='https://github.com/WilfredoN' icon={<GithubIcon />} />
