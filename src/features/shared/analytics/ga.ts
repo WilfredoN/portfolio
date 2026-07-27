@@ -32,16 +32,22 @@ export const sendGAEvent = ({
   sendBackendTelemetry(action, category, label || '', params)
 }
 
-export const sendGAPageView = (path: string, title?: string): void => {
+export const sendGAPageView = (
+  path: string,
+  title?: string,
+  params?: Record<string, unknown>
+): void => {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', 'page_view', {
       page_path: path,
       page_title: title || document.title,
-      page_location: window.location.href
+      page_location: window.location.href,
+      ...params
     })
   }
   sendBackendTelemetry('page_view', 'Navigation', path, {
-    title: title || document.title
+    title: title || document.title,
+    ...params
   })
 }
 

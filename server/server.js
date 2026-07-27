@@ -1,5 +1,6 @@
 import cors from 'cors'
 import express from 'express'
+import geoip from 'geoip-lite'
 import crypto from 'node:crypto'
 
 import { getDb } from './db.js'
@@ -123,11 +124,21 @@ app.post('/api/telemetry', async (req, res, next) => {
     }
 
     const ip = getClientIp(req)
+    const geo = geoip.lookup(ip)
+    const country = geo?.country || 'Unknown'
+    const city = geo?.city || 'Unknown'
+
     const hashedIp = crypto
       .createHash('sha256')
       .update(ip + (process.env.IP_SALT || 'salt42'))
       .digest('hex')
       .substring(0, 16)
+
+    const enrichedMetadata = {
+      ...(metadata || {}),
+      country,
+      city
+    }
 
     const db = await getDb()
     await db.run(
@@ -136,7 +147,7 @@ app.post('/api/telemetry', async (req, res, next) => {
         event_name,
         category || 'general',
         label || '',
-        metadata ? JSON.stringify(metadata) : '{}',
+        JSON.stringify(enrichedMetadata),
         hashedIp,
         new Date().toISOString()
       ]

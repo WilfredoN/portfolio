@@ -30,9 +30,10 @@ export const Page = () => {
   if (
     location.pathname === '/' ||
     (!KNOWN_PATHS.includes(location.pathname) && location.pathname !== '/42') ||
-    (currentNavStatus === NavStatus.IN_CONSTRUCTION && location.pathname !== '/42')
+    (currentNavStatus === NavStatus.IN_CONSTRUCTION &&
+      location.pathname !== '/42')
   ) {
-    return <Navigate replace to={DEFAULT_PATH} />
+    return <Navigate replace to={`${DEFAULT_PATH}${location.search}`} />
   }
 
   return (

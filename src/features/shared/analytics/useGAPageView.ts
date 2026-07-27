@@ -15,6 +15,18 @@ export const useGAPageView = () => {
     }
 
     const title = titleMap[location.pathname] || document.title
-    sendGAPageView(location.pathname, title)
-  }, [location.pathname])
+    const searchParams = new URLSearchParams(location.search)
+
+    const utmSource = searchParams.get('utm_source') || undefined
+    const utmMedium = searchParams.get('utm_medium') || undefined
+    const utmCampaign = searchParams.get('utm_campaign') || undefined
+    const referrer = document.referrer || undefined
+
+    sendGAPageView(location.pathname, title, {
+      utm_source: utmSource,
+      utm_medium: utmMedium,
+      utm_campaign: utmCampaign,
+      referrer
+    })
+  }, [location.pathname, location.search])
 }
