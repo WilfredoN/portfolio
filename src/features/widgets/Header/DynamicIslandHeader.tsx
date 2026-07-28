@@ -6,9 +6,11 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import type { HeaderStage } from './hooks/useHeaderScroll'
+
 import { CommandPaletteTrigger } from './CommandPaletteTrigger'
 import { ConstructionButton } from './ConstructionButton'
-import { type HeaderStage, useHeaderScroll } from './hooks/useHeaderScroll'
+import { useHeaderScroll } from './hooks/useHeaderScroll'
 import { useAllNavStatuses } from './hooks/useNavTabStatus'
 import { NAV_ITEMS, NavStatus } from './navConfig'
 import { NavigationButton } from './NavigationButton'
@@ -46,14 +48,9 @@ export const DynamicIslandHeader = () => {
   const navStatuses = useAllNavStatuses(navItemPaths)
 
   const effectiveStage: HeaderStage =
-    isHovered || isFocused || isMobileExpanded
-      ? isMobile
-        ? 'compact'
-        : 'expanded'
-      : stage
+    isHovered || isFocused || isMobileExpanded ? 'expanded' : stage
 
   const isHidden = effectiveStage === 'hidden'
-
   const isMicro = effectiveStage === 'micro' || effectiveStage === 'hidden'
   const isCompact = effectiveStage === 'compact'
   const isExpanded = effectiveStage === 'expanded'
@@ -81,6 +78,12 @@ export const DynamicIslandHeader = () => {
     )
   }, [])
 
+  const handleIslandClick = useCallback(() => {
+    if ((isCompact || isMicro) && isMobile) {
+      setIsMobileExpanded(true)
+    }
+  }, [isCompact, isMicro, isMobile])
+
   return (
     <motion.header
       animate={{
@@ -102,7 +105,7 @@ export const DynamicIslandHeader = () => {
             isMicro
               ? 'cursor-pointer gap-0 rounded-full px-2.5 py-1.5 shadow-lg'
               : isCompact
-                ? 'gap-2 rounded-full px-3 py-1.5 sm:gap-2.5 sm:px-4 sm:py-2 md:gap-3'
+                ? 'cursor-pointer gap-2 rounded-full px-3 py-1.5 sm:gap-2.5 sm:px-4 sm:py-2 md:gap-3'
                 : 'gap-2 rounded-[28px] px-3.5 py-2 sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 md:gap-4 md:px-8 md:py-3.5',
             isDarkTheme
               ? 'border-white/20 bg-black/45 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]'
@@ -111,6 +114,7 @@ export const DynamicIslandHeader = () => {
           transition={FAST_SPRING}
           whileTap={{ scale: 0.96 }}
           onBlurCapture={() => setIsFocused(false)}
+          onClick={handleIslandClick}
           onFocusCapture={() => setIsFocused(true)}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -118,14 +122,7 @@ export const DynamicIslandHeader = () => {
           <ServerStatusLens />
 
           {!isMicro && (
-            <nav
-              className='flex items-center gap-1 sm:gap-1.5 md:gap-2'
-              onClick={() => {
-                if (isCompact && isMobile) {
-                  setIsMobileExpanded(true)
-                }
-              }}
-            >
+            <nav className='flex items-center gap-1 sm:gap-1.5 md:gap-2'>
               {NAV_ITEMS.map((item) => {
                 const isClicked = location.pathname === item.path
 
@@ -193,6 +190,7 @@ export const DynamicIslandHeader = () => {
             <motion.div
               layout
               animate={{ opacity: 1, scale: 1, x: 0, width: 'auto' }}
+              className='-m-1.5 transform-gpu overflow-hidden p-1.5 will-change-[opacity,transform,width]'
               exit={{
                 opacity: 0,
                 scale: 0.8,
@@ -201,7 +199,6 @@ export const DynamicIslandHeader = () => {
                 transition: { duration: 0.1 }
               }}
               initial={{ opacity: 0, scale: 0.8, x: -10, width: 0 }}
-              className='-m-1.5 transform-gpu overflow-hidden p-1.5 will-change-[opacity,transform,width]'
               transition={FAST_SPRING}
             >
               <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
