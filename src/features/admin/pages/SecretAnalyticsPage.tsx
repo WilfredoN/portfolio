@@ -104,7 +104,7 @@ export const SecretAnalyticsPage = () => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className='mx-auto w-full max-w-5xl px-4 py-6 font-sans text-left'
+      className='mx-auto w-full max-w-5xl px-4 py-6 text-left font-sans'
       initial={{ opacity: 0, y: 15 }}
     >
       <div className='mb-6 flex flex-wrap items-center justify-between gap-4 border-b pb-4 dark:border-zinc-800'>
@@ -112,7 +112,7 @@ export const SecretAnalyticsPage = () => {
           <h1 className='text-2xl font-bold tracking-tight sm:text-3xl'>
             🛡️ Owner Telemetry Dashboard (/42)
           </h1>
-          <p className='mt-1 text-xs opacity-70 font-mono'>
+          <p className='mt-1 font-mono text-xs opacity-70'>
             100% Ad-Block Resilient Server Metrics & Recruiter Conversions
           </p>
         </div>
@@ -137,15 +137,13 @@ export const SecretAnalyticsPage = () => {
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
           )}
         >
-          <span className='text-xs font-semibold opacity-70 uppercase tracking-wider'>
+          <span className='text-xs font-semibold tracking-wider uppercase opacity-70'>
             Unique Visitors
           </span>
           <div className='mt-2 text-3xl font-extrabold text-blue-500'>
             {summary?.uniqueVisitors ?? 0}
           </div>
-          <p className='mt-1 text-[11px] opacity-60'>
-            Anonymized IP telemetry
-          </p>
+          <p className='mt-1 text-[11px] opacity-60'>Anonymized IP telemetry</p>
         </div>
 
         <div
@@ -156,7 +154,7 @@ export const SecretAnalyticsPage = () => {
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
           )}
         >
-          <span className='text-xs font-semibold opacity-70 uppercase tracking-wider'>
+          <span className='text-xs font-semibold tracking-wider uppercase opacity-70'>
             Recruiter Conversions
           </span>
           <div className='mt-2 text-3xl font-extrabold text-emerald-500'>
@@ -175,15 +173,13 @@ export const SecretAnalyticsPage = () => {
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
           )}
         >
-          <span className='text-xs font-semibold opacity-70 uppercase tracking-wider'>
+          <span className='text-xs font-semibold tracking-wider uppercase opacity-70'>
             SPA Pageviews
           </span>
           <div className='mt-2 text-3xl font-extrabold text-purple-500'>
             {summary?.totalPageviews ?? 0}
           </div>
-          <p className='mt-1 text-[11px] opacity-60'>
-            Route change events
-          </p>
+          <p className='mt-1 text-[11px] opacity-60'>Route change events</p>
         </div>
 
         <div
@@ -194,15 +190,13 @@ export const SecretAnalyticsPage = () => {
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
           )}
         >
-          <span className='text-xs font-semibold opacity-70 uppercase tracking-wider'>
+          <span className='text-xs font-semibold tracking-wider uppercase opacity-70'>
             Total Events Ingested
           </span>
           <div className='mt-2 text-3xl font-extrabold text-amber-500'>
             {summary?.totalEvents ?? 0}
           </div>
-          <p className='mt-1 text-[11px] opacity-60'>
-            Server-side event log
-          </p>
+          <p className='mt-1 text-[11px] opacity-60'>Server-side event log</p>
         </div>
       </div>
 
@@ -215,17 +209,17 @@ export const SecretAnalyticsPage = () => {
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
           )}
         >
-          <h3 className='text-base font-bold mb-4 flex items-center gap-2'>
+          <h3 className='mb-4 flex items-center gap-2 text-base font-bold'>
             <span>📊</span> Top Landing Routes
           </h3>
           <div className='flex flex-col gap-2 font-mono text-xs'>
             {summary?.topPages.map((page) => (
               <div
                 key={page.page_path}
-                className='flex items-center justify-between border-b pb-2 border-zinc-500/20'
+                className='flex items-center justify-between border-b border-zinc-500/20 pb-2'
               >
                 <span className='font-semibold'>{page.page_path}</span>
-                <span className='rounded-full bg-blue-500/20 px-2 py-0.5 text-blue-400 font-bold'>
+                <span className='rounded-full bg-blue-500/20 px-2 py-0.5 font-bold text-blue-400'>
                   {page.count} views
                 </span>
               </div>
@@ -241,17 +235,17 @@ export const SecretAnalyticsPage = () => {
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
           )}
         >
-          <h3 className='text-base font-bold mb-4 flex items-center gap-2'>
+          <h3 className='mb-4 flex items-center gap-2 text-base font-bold'>
             <span>🔥</span> Top Telemetry Events
           </h3>
           <div className='flex flex-col gap-2 font-mono text-xs'>
             {summary?.topEvents.map((evt) => (
               <div
                 key={evt.event_name}
-                className='flex items-center justify-between border-b pb-2 border-zinc-500/20'
+                className='flex items-center justify-between border-b border-zinc-500/20 pb-2'
               >
                 <span className='font-semibold'>{evt.event_name}</span>
-                <span className='rounded-full bg-emerald-500/20 px-2 py-0.5 text-emerald-400 font-bold'>
+                <span className='rounded-full bg-emerald-500/20 px-2 py-0.5 font-bold text-emerald-400'>
                   {evt.count} events
                 </span>
               </div>
@@ -262,13 +256,13 @@ export const SecretAnalyticsPage = () => {
 
       <div
         className={clsx(
-          'mt-8 rounded-2xl border p-5 shadow-xl backdrop-blur-md overflow-x-auto',
+          'mt-8 overflow-x-auto rounded-2xl border p-5 shadow-xl backdrop-blur-md',
           isDarkTheme
             ? 'border-white/15 bg-black/45 text-white'
             : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
         )}
       >
-        <h3 className='text-base font-bold mb-4 flex items-center gap-2'>
+        <h3 className='mb-4 flex items-center gap-2 text-base font-bold'>
           <span>⚡</span> Live Telemetry Stream (Recent 50 Events)
         </h3>
         <table className='w-full text-left font-mono text-xs'>
@@ -294,7 +288,7 @@ export const SecretAnalyticsPage = () => {
                   {evt.event_name}
                 </td>
                 <td className='py-2 opacity-80'>{evt.category}</td>
-                <td className='py-2 opacity-80 max-w-xs truncate'>
+                <td className='max-w-xs truncate py-2 opacity-80'>
                   {evt.label || '-'}
                 </td>
                 <td className='py-2 opacity-50'>{evt.hashed_ip}</td>

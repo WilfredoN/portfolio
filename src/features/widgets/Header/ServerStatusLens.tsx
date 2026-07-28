@@ -71,7 +71,7 @@ export const ServerStatusLens = () => {
           <motion.div
             animate={{ opacity: 1, y: 0, scale: 1 }}
             className={clsx(
-              'absolute top-full left-1/2 z-50 mt-3.5 w-64 -translate-x-1/2 rounded-2xl border p-4 text-left font-mono text-xs shadow-2xl backdrop-blur-2xl transform-gpu md:left-0 md:translate-x-0',
+              'absolute top-full left-1/2 z-50 mt-3.5 w-64 -translate-x-1/2 transform-gpu rounded-2xl border p-4 text-left font-mono text-xs shadow-2xl backdrop-blur-2xl md:left-0 md:translate-x-0',
               isDarkTheme
                 ? 'border-white/20 bg-black/65 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]'
                 : 'border-white/60 bg-white/65 text-zinc-900 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]'
@@ -107,9 +107,7 @@ export const ServerStatusLens = () => {
             <div className='flex flex-col gap-1.5 opacity-90'>
               <div className='flex justify-between'>
                 <span
-                  className={
-                    isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'
-                  }
+                  className={isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'}
                 >
                   Status:
                 </span>
@@ -125,9 +123,7 @@ export const ServerStatusLens = () => {
               </div>
               <div className='flex justify-between'>
                 <span
-                  className={
-                    isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'
-                  }
+                  className={isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'}
                 >
                   Ping Latency:
                 </span>
@@ -138,9 +134,7 @@ export const ServerStatusLens = () => {
               {data?.uptime !== undefined && (
                 <div className='flex justify-between'>
                   <span
-                    className={
-                      isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'
-                    }
+                    className={isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'}
                   >
                     Server Uptime:
                   </span>
@@ -150,9 +144,7 @@ export const ServerStatusLens = () => {
               {data?.memoryHeapMb !== undefined && (
                 <div className='flex justify-between'>
                   <span
-                    className={
-                      isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'
-                    }
+                    className={isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'}
                   >
                     Heap Memory:
                   </span>
@@ -162,9 +154,7 @@ export const ServerStatusLens = () => {
               {data?.totalFeedbacks !== undefined && (
                 <div className='flex justify-between'>
                   <span
-                    className={
-                      isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'
-                    }
+                    className={isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'}
                   >
                     Feedbacks in DB:
                   </span>
@@ -174,9 +164,7 @@ export const ServerStatusLens = () => {
               {data?.nodeVersion && (
                 <div className='flex justify-between'>
                   <span
-                    className={
-                      isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'
-                    }
+                    className={isDarkTheme ? 'text-zinc-400' : 'text-zinc-600'}
                   >
                     Runtime:
                   </span>

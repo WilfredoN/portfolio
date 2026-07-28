@@ -16,7 +16,6 @@ export const CommandPaletteWidget = () => {
     executeCommand
   } = useCommandPalette()
 
-
   useCommandKeyboard({
     isOpen,
     togglePalette,

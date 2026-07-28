@@ -69,7 +69,10 @@ export const applyTheme = (isDark: boolean) => {
 
   root.style.setProperty('--color-status-success', theme.statusSuccess)
   root.style.setProperty('--color-status-success-bg', theme.statusSuccessBg)
-  root.style.setProperty('--color-status-success-border', theme.statusSuccessBorder)
+  root.style.setProperty(
+    '--color-status-success-border',
+    theme.statusSuccessBorder
+  )
 
   root.style.setProperty('--color-status-error', theme.statusError)
   root.style.setProperty('--color-status-error-bg', theme.statusErrorBg)
@@ -77,7 +80,10 @@ export const applyTheme = (isDark: boolean) => {
 
   root.style.setProperty('--color-status-warning', theme.statusWarning)
   root.style.setProperty('--color-status-warning-bg', theme.statusWarningBg)
-  root.style.setProperty('--color-status-warning-border', theme.statusWarningBorder)
+  root.style.setProperty(
+    '--color-status-warning-border',
+    theme.statusWarningBorder
+  )
 
   root.style.setProperty('--color-status-info', theme.statusInfo)
   root.style.setProperty('--color-status-info-bg', theme.statusInfoBg)
@@ -85,7 +91,6 @@ export const applyTheme = (isDark: boolean) => {
 
   document.documentElement.dataset.theme = isDark ? 'dark' : 'light'
 }
-
 
 export const getInitialTheme = (): boolean => {
   const savedTheme = localStorage.getItem('theme')

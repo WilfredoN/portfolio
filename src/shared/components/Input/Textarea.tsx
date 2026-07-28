@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 
-interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string
   label?: string
   required?: boolean

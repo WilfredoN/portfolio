@@ -8,7 +8,7 @@ interface FeedbackItemProps {
 }
 
 export const FeedbackItem = ({ feedback }: FeedbackItemProps) => (
-  <div className='mb-6 rounded-xl border border-black/10 bg-white/80 p-6 text-[var(--color-text)] shadow-lg backdrop-blur-sm transition-all duration-200 transform-gpu dark:border-zinc-800/80 dark:bg-zinc-900/85 sm:backdrop-blur-md hover:border-blue-500/50 [content-visibility:auto]'>
+  <div className='mb-6 transform-gpu rounded-xl border border-black/10 bg-white/80 p-6 text-(--color-text) shadow-lg backdrop-blur-sm transition-all duration-200 [content-visibility:auto] hover:border-blue-500/50 sm:backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/85'>
     <div className='mb-4 flex items-start justify-between'>
       <div className='flex items-center space-x-3'>
         <div

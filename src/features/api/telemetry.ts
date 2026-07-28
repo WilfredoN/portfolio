@@ -19,8 +19,7 @@ export const sendBackendTelemetry = async (
         metadata
       })
     })
-  } catch {
-  }
+  } catch {}
 }
 
 export interface AdminSummaryData {
@@ -45,11 +44,14 @@ export interface AdminEventItem {
 export const fetchAdminSummary = async (
   secretKey: string
 ): Promise<AdminSummaryData> => {
-  const res = await fetch(`${API_URL}/api/admin/telemetry/summary?key=${encodeURIComponent(secretKey)}`, {
-    headers: {
-      'X-Admin-Token': secretKey
+  const res = await fetch(
+    `${API_URL}/api/admin/telemetry/summary?key=${encodeURIComponent(secretKey)}`,
+    {
+      headers: {
+        'X-Admin-Token': secretKey
+      }
     }
-  })
+  )
   if (!res.ok) {
     throw new Error('Unauthorized or invalid secret key')
   }
@@ -59,11 +61,14 @@ export const fetchAdminSummary = async (
 export const fetchAdminEvents = async (
   secretKey: string
 ): Promise<AdminEventItem[]> => {
-  const res = await fetch(`${API_URL}/api/admin/telemetry/events?key=${encodeURIComponent(secretKey)}`, {
-    headers: {
-      'X-Admin-Token': secretKey
+  const res = await fetch(
+    `${API_URL}/api/admin/telemetry/events?key=${encodeURIComponent(secretKey)}`,
+    {
+      headers: {
+        'X-Admin-Token': secretKey
+      }
     }
-  })
+  )
   if (!res.ok) {
     throw new Error('Unauthorized or invalid secret key')
   }

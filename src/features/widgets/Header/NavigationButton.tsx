@@ -21,17 +21,17 @@ export const NavigationButton = ({
     <button
       aria-current={isClicked ? 'page' : undefined}
       className={clsx(
-        'relative flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 select-none sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base focus:outline-none',
+        'relative flex shrink-0 items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold whitespace-nowrap transition-all duration-200 select-none focus:outline-none sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base',
         isProcessing
           ? 'pointer-events-none cursor-default opacity-50'
           : 'cursor-pointer',
         isClicked
           ? isDarkTheme
             ? 'text-white'
-            : 'text-zinc-950 font-extrabold'
+            : 'font-extrabold text-zinc-950'
           : isDarkTheme
-            ? 'text-zinc-400 hover:text-zinc-100 hover:bg-white/10'
-            : 'text-zinc-600 hover:text-zinc-900 hover:bg-black/5'
+            ? 'text-zinc-400 hover:bg-white/10 hover:text-zinc-100'
+            : 'text-zinc-600 hover:bg-black/5 hover:text-zinc-900'
       )}
       disabled={isProcessing}
       onClick={isProcessing ? undefined : onClick}
@@ -46,7 +46,9 @@ export const NavigationButton = ({
           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
         />
       )}
-      <span className='relative z-10 tracking-wide'>{children}</span>
+      <span className='relative z-10 shrink-0 tracking-wide whitespace-nowrap'>
+        {children}
+      </span>
     </button>
   )
 }

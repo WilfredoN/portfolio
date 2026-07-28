@@ -61,7 +61,9 @@ export const fetchSkills = async (): Promise<Skill[]> => {
       for (const s of fb.feedback_skills || []) {
         if (typeof s.skill_id === 'number') {
           const name = typeof s.skill_name === 'string' ? s.skill_name : ''
-          if (!name) {continue}
+          if (!name) {
+            continue
+          }
 
           const existingById = mapById.get(s.skill_id)
           const existingByName = mapByName.get(name)
@@ -87,7 +89,10 @@ export const fetchSkills = async (): Promise<Skill[]> => {
       }
     }
   } catch (error) {
-    console.warn('Failed to fetch/reconcile feedback skills from server:', error)
+    console.warn(
+      'Failed to fetch/reconcile feedback skills from server:',
+      error
+    )
   }
 
   return Array.from(mapByName.values()).sort((a, b) =>

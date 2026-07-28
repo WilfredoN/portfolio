@@ -61,7 +61,6 @@ export const CommandList = ({
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   onClick={() => onSelectCommand(command)}
                 >
-
                   <div className='flex min-w-0 items-center gap-3'>
                     <span className='text-xl'>{command.icon}</span>
                     <div className='flex flex-col truncate'>

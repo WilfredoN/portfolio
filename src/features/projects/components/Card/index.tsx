@@ -47,7 +47,7 @@ export const Card = ({
   return (
     <motion.div
       className={clsx(
-        'mb-12 flex w-full flex-col justify-between rounded-xl border border-black/10 bg-white/80 p-4 shadow-xl backdrop-blur-sm transition-all duration-200 transform-gpu dark:border-zinc-800/80 dark:bg-zinc-900/85 sm:backdrop-blur-md [content-visibility:auto]',
+        'mb-12 flex w-full transform-gpu flex-col justify-between rounded-xl border border-black/10 bg-white/80 p-4 shadow-xl backdrop-blur-sm transition-all duration-200 [content-visibility:auto] sm:backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/85',
         {
           'hover:scale-105': !videoUrl && !isLarge,
           'md:h-122.5': scale === 'medium',

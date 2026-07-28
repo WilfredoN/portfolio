@@ -1,8 +1,4 @@
-export type CommandCategory =
-  | 'navigation'
-  | 'actions'
-  | 'theme'
-  | 'social'
+export type CommandCategory = 'navigation' | 'actions' | 'theme' | 'social'
 
 export interface CommandAction {
   category: CommandCategory

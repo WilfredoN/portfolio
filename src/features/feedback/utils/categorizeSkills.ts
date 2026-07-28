@@ -9,9 +9,7 @@ export const categorizeSkills = (skills: Skill[]) => {
   const programmingNames = new Set(
     programmingLanguages.map((lang) => lang.text)
   )
-  const techNames = new Set(
-    technologiesAndLibraries.map((tech) => tech.text)
-  )
+  const techNames = new Set(technologiesAndLibraries.map((tech) => tech.text))
 
   const programmingSkills = skills.filter((skill) =>
     programmingNames.has(skill.name)
