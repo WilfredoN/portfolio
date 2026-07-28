@@ -48,7 +48,9 @@ export const DynamicIslandHeader = () => {
   const navStatuses = useAllNavStatuses(navItemPaths)
 
   const effectiveStage: HeaderStage =
-    isHovered || isFocused || isMobileExpanded ? 'expanded' : stage
+    (!isMobile && isHovered) || isFocused || isMobileExpanded
+      ? 'expanded'
+      : stage
 
   const isHidden = effectiveStage === 'hidden'
   const isMicro = effectiveStage === 'micro' || effectiveStage === 'hidden'
@@ -116,8 +118,16 @@ export const DynamicIslandHeader = () => {
           onBlurCapture={() => setIsFocused(false)}
           onClick={handleIslandClick}
           onFocusCapture={() => setIsFocused(true)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => {
+            if (!isMobile) {
+              setIsHovered(true)
+            }
+          }}
+          onMouseLeave={() => {
+            if (!isMobile) {
+              setIsHovered(false)
+            }
+          }}
         >
           <ServerStatusLens />
 

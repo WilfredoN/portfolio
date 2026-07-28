@@ -17,20 +17,11 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const DEFAULT_PATH = NAV_ITEMS[0]?.path ?? '/about'
 
-/**
- * Easy-to-manage percentage configuration for header minimization stages.
- * Values represent percent of total scrollable page height (0 to 100%).
- */
 export interface HeaderStageConfig {
-  /** Percent of page scroll when Stage 2 (Compact Pill) activates */
   compactStartPercent: number
-  /** Percent of page scroll when Stage 3 (Micro Status Dot) activates */
-  microStartPercent: number
-  /** Percent of page scroll when Stage 4 (Header Auto-Hide) activates */
   hideStartPercent: number
-  /** Minimum pixel offset for Stage 2 on short pages */
+  microStartPercent: number
   minCompactPx?: number
-  /** Minimum pixel offset for Stage 3 on short pages */
   minMicroPx?: number
 }
 

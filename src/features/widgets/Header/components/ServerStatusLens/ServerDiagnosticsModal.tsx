@@ -35,7 +35,7 @@ export const ServerDiagnosticsModal = memo(
       <motion.div
         animate={{ opacity: 1, y: 0, scale: 1 }}
         className={clsx(
-          'absolute top-full left-1/2 z-9010 mt-3.5 w-64 -translate-x-1/2 transform-gpu rounded-2xl border p-4 text-left font-mono text-xs shadow-2xl backdrop-blur-2xl md:left-0 md:translate-x-0',
+          'fixed top-20 left-1/2 z-9010 mt-2 w-[calc(100vw-2rem)] max-w-xs -translate-x-1/2 transform-gpu rounded-2xl border p-4 text-left font-mono text-xs shadow-2xl backdrop-blur-2xl sm:absolute sm:top-full sm:mt-3.5 sm:w-64 md:left-0 md:translate-x-0',
           isDarkTheme
             ? 'border-white/20 bg-black/65 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.45)]'
             : 'border-white/60 bg-white/65 text-zinc-900 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]'
