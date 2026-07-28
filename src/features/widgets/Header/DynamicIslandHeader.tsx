@@ -60,18 +60,18 @@ export const DynamicIslandHeader = () => {
   const handlePageChange = useCallback(
     (path: string, label: string) => {
       setIsMobileExpanded(false)
-      if (!isMobile) {
-        const rootEl = document.getElementById('root')
-        if (rootEl) {
-          rootEl.scrollTo({ top: 0, behavior: 'smooth' })
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }
+      const rootEl = document.getElementById('root')
+      if (rootEl) {
+        rootEl.scrollTo({ top: 0, behavior: 'smooth' })
       }
-      navigate(path)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+
+      if (location.pathname !== path) {
+        navigate(path)
+      }
       sendGAEvent({ action: 'navigation_click', category: 'Header', label })
     },
-    [isMobile, navigate]
+    [location.pathname, navigate]
   )
 
   const handleOpenCommandPalette = useCallback(() => {

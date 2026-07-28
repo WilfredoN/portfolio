@@ -1,17 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
-import { HEADER_STAGE_CONFIG, type HeaderStageConfig } from '../navConfig'
+import type { HeaderStageConfig } from '../navConfig'
+
+import { HEADER_STAGE_CONFIG } from '../navConfig'
 
 export type HeaderStage = 'expanded' | 'compact' | 'micro' | 'hidden'
 
 export const useHeaderScroll = (
   config: HeaderStageConfig = HEADER_STAGE_CONFIG
 ) => {
+  const location = useLocation()
   const [stage, setStage] = useState<HeaderStage>('expanded')
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
 
+  const lastScrollYRef = useRef(0)
+  const scrollDirectionRef = useRef<'up' | 'down'>('up')
+
   useEffect(() => {
-    let lastScrollY = 0
+    lastScrollYRef.current = 0
+    scrollDirectionRef.current = 'up'
+    setStage('expanded')
+    setScrollDirection('up')
+  }, [location.pathname])
+
+  useEffect(() => {
     let ticking = false
 
     const updateScroll = () => {
@@ -33,15 +46,17 @@ export const useHeaderScroll = (
       )
       const hidePx = (maxScroll * config.hideStartPercent) / 100
 
-      const isScrollingDown = currentY > lastScrollY + 2
-      const isScrollingUp = currentY < lastScrollY - 2
+      const isScrollingDown = currentY > lastScrollYRef.current + 2
+      const isScrollingUp = currentY < lastScrollYRef.current - 2
 
-      let currentDir = scrollDirection
+      let currentDir = scrollDirectionRef.current
       if (isScrollingDown) {
         currentDir = 'down'
+        scrollDirectionRef.current = 'down'
         setScrollDirection((prev) => (prev === 'down' ? prev : 'down'))
       } else if (isScrollingUp) {
         currentDir = 'up'
+        scrollDirectionRef.current = 'up'
         setScrollDirection((prev) => (prev === 'up' ? prev : 'up'))
       }
 
@@ -64,7 +79,7 @@ export const useHeaderScroll = (
       }
 
       setStage((prev) => (prev === nextStage ? prev : nextStage))
-      lastScrollY = currentY
+      lastScrollYRef.current = currentY
       ticking = false
     }
 
@@ -85,7 +100,7 @@ export const useHeaderScroll = (
       rootEl?.removeEventListener('scroll', onScroll)
       window.removeEventListener('scroll', onScroll)
     }
-  }, [config, scrollDirection])
+  }, [config])
 
   return { stage, scrollDirection }
 }
