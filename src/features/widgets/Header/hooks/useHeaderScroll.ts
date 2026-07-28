@@ -21,12 +21,12 @@ export const useHeaderScroll = ({
       const currentY = rootEl ? rootEl.scrollTop : window.scrollY
 
       if (currentY > lastScrollY && currentY > thresholdDown) {
-        setScrollDirection('down')
-        setIsScrolled(true)
+        setScrollDirection((prev) => (prev === 'down' ? prev : 'down'))
+        setIsScrolled((prev) => (prev ? prev : true))
       } else if (currentY < lastScrollY) {
-        setScrollDirection('up')
+        setScrollDirection((prev) => (prev === 'up' ? prev : 'up'))
         if (currentY < thresholdUp) {
-          setIsScrolled(false)
+          setIsScrolled((prev) => (!prev ? prev : false))
         }
       }
 
@@ -45,7 +45,6 @@ export const useHeaderScroll = ({
     rootEl?.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('scroll', onScroll, { passive: true })
 
-    // Check initial scroll position
     updateScroll()
 
     return () => {

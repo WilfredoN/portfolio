@@ -3,9 +3,9 @@ import { useBackendStatus } from '@features/shared/components/BackendStatus/hook
 import { useOnClickOutside } from '@shared/hooks/useOnClickOutside'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
-import { useRef, useState } from 'react'
+import { memo, useCallback, useMemo, useRef, useState } from 'react'
 
-export const ServerStatusLens = () => {
+export const ServerStatusLens = memo(() => {
   const { isDarkTheme } = useTheme()
   const { data, isLoading } = useBackendStatus()
   const [showDiagnostics, setShowDiagnostics] = useState(false)
@@ -20,7 +20,7 @@ export const ServerStatusLens = () => {
   const isOnline = data?.isOnline ?? false
   const latency = data?.latencyMs ?? 0
 
-  const getStatusColor = () => {
+  const statusColor = useMemo(() => {
     if (isLoading) {
       return 'bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.9)]'
     }
@@ -28,9 +28,9 @@ export const ServerStatusLens = () => {
       return 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.9)]'
     }
     return 'bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.95)]'
-  }
+  }, [isLoading, isOnline])
 
-  const formatUptime = (seconds?: number | null) => {
+  const formatUptime = useCallback((seconds?: number | null) => {
     if (!seconds) {
       return 'N/A'
     }
@@ -44,7 +44,7 @@ export const ServerStatusLens = () => {
       return `${mins}m ${secs}s`
     }
     return `${secs}s`
-  }
+  }, [])
 
   return (
     <div ref={lensRef} className='relative flex items-center justify-center'>
@@ -62,7 +62,7 @@ export const ServerStatusLens = () => {
         onClick={() => setShowDiagnostics((prev) => !prev)}
       >
         <span
-          className={`h-3 w-3 rounded-full transition-all duration-300 ${getStatusColor()}`}
+          className={`h-3 w-3 rounded-full transition-all duration-300 ${statusColor}`}
         />
       </motion.button>
 
@@ -177,4 +177,6 @@ export const ServerStatusLens = () => {
       </AnimatePresence>
     </div>
   )
-}
+})
+
+ServerStatusLens.displayName = 'ServerStatusLens'

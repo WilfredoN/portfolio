@@ -2,8 +2,8 @@ import { useTheme } from '@app/hooks/useTheme'
 import { sendGAEvent } from '@features/shared/analytics/ga'
 import { useOnClickOutside } from '@shared/hooks/useOnClickOutside'
 import clsx from 'clsx'
-import { motion } from 'motion/react'
-import { useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { CommandPaletteTrigger } from './CommandPaletteTrigger'
@@ -35,37 +35,40 @@ export const DynamicIslandHeader = () => {
 
   const islandRef = useRef<HTMLDivElement>(null)
 
-  // Collapse mobile expanded state when user taps outside the header
-  useOnClickOutside(islandRef, () => {
-    if (isMobileExpanded) {
-      setIsMobileExpanded(false)
-    }
-  })
+  const handleCloseMobile = useCallback(() => {
+    setIsMobileExpanded(false)
+  }, [])
 
-  const navStatuses = useAllNavStatuses(NAV_ITEMS.map((item) => item.path))
+  useOnClickOutside(islandRef, handleCloseMobile)
+
+  const navItemPaths = useMemo(() => NAV_ITEMS.map((item) => item.path), [])
+  const navStatuses = useAllNavStatuses(navItemPaths)
 
   const isMinimized =
     isScrolled && !isHovered && !isFocused && !isMobileExpanded
 
-  const handlePageChange = (path: string, label: string) => {
-    setIsMobileExpanded(false)
-    if (!isMobile) {
-      const rootEl = document.getElementById('root')
-      if (rootEl) {
-        rootEl.scrollTo({ top: 0, behavior: 'smooth' })
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+  const handlePageChange = useCallback(
+    (path: string, label: string) => {
+      setIsMobileExpanded(false)
+      if (!isMobile) {
+        const rootEl = document.getElementById('root')
+        if (rootEl) {
+          rootEl.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
       }
-    }
-    navigate(path)
-    sendGAEvent({ action: 'navigation_click', category: 'Header', label })
-  }
+      navigate(path)
+      sendGAEvent({ action: 'navigation_click', category: 'Header', label })
+    },
+    [isMobile, navigate]
+  )
 
-  const handleOpenCommandPalette = () => {
+  const handleOpenCommandPalette = useCallback(() => {
     window.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'k', metaKey: true })
     )
-  }
+  }, [])
 
   return (
     <motion.header
@@ -109,7 +112,6 @@ export const DynamicIslandHeader = () => {
             {NAV_ITEMS.map((item) => {
               const isClicked = location.pathname === item.path
 
-              // When minimized, instantly hide non-active buttons (0ms delay, no ghost text)
               if (isMinimized && !isClicked) {
                 return null
               }
@@ -166,22 +168,26 @@ export const DynamicIslandHeader = () => {
           <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
         </motion.div>
 
-        {/* Persistent GPU layer for external search trigger to eliminate backdrop-blur delay */}
-        <motion.div
-          animate={{
-            opacity: isMinimized ? 0 : 1,
-            scale: isMinimized ? 0.8 : 1,
-            x: isMinimized ? -10 : 0
-          }}
-          className={clsx(
-            'transform-gpu [will-change:opacity,transform]',
-            isMinimized ? 'pointer-events-none' : 'pointer-events-auto'
+        <AnimatePresence>
+          {!isMinimized && (
+            <motion.div
+              layout
+              animate={{ opacity: 1, scale: 1, x: 0, width: 'auto' }}
+              exit={{
+                opacity: 0,
+                scale: 0.8,
+                x: -10,
+                width: 0,
+                transition: { duration: 0.1 }
+              }}
+              initial={{ opacity: 0, scale: 0.8, x: -10, width: 0 }}
+              className='transform-gpu overflow-hidden will-change-[opacity,transform,width]'
+              transition={FAST_SPRING}
+            >
+              <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
+            </motion.div>
           )}
-          initial={false}
-          transition={FAST_SPRING}
-        >
-          <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
-        </motion.div>
+        </AnimatePresence>
       </div>
     </motion.header>
   )
