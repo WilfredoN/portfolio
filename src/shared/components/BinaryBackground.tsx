@@ -84,7 +84,6 @@ export const BinaryBackground = () => {
       canvas.width = width * dpr
       canvas.height = height * dpr
 
-      // Reset transform before applying dpr scale to prevent cumulative scaling
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       initColumns(width, height)
     }

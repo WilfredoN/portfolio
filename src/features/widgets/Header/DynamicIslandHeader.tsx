@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { CommandPaletteTrigger } from './CommandPaletteTrigger'
 import { ConstructionButton } from './ConstructionButton'
-import { useHeaderScroll } from './hooks/useHeaderScroll'
+import { type HeaderStage, useHeaderScroll } from './hooks/useHeaderScroll'
 import { useAllNavStatuses } from './hooks/useNavTabStatus'
 import { NAV_ITEMS, NavStatus } from './navConfig'
 import { NavigationButton } from './NavigationButton'
@@ -28,7 +28,8 @@ export const DynamicIslandHeader = () => {
   const navigate = useNavigate()
   const isMobile = window.innerWidth <= 1024
 
-  const { isScrolled } = useHeaderScroll({ thresholdDown: 60, thresholdUp: 20 })
+  const { stage } = useHeaderScroll()
+
   const [isHovered, setIsHovered] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isMobileExpanded, setIsMobileExpanded] = useState(false)
@@ -44,8 +45,18 @@ export const DynamicIslandHeader = () => {
   const navItemPaths = useMemo(() => NAV_ITEMS.map((item) => item.path), [])
   const navStatuses = useAllNavStatuses(navItemPaths)
 
-  const isMinimized =
-    isScrolled && !isHovered && !isFocused && !isMobileExpanded
+  const effectiveStage: HeaderStage =
+    isHovered || isFocused || isMobileExpanded
+      ? isMobile
+        ? 'compact'
+        : 'expanded'
+      : stage
+
+  const isHidden = effectiveStage === 'hidden'
+
+  const isMicro = effectiveStage === 'micro' || effectiveStage === 'hidden'
+  const isCompact = effectiveStage === 'compact'
+  const isExpanded = effectiveStage === 'expanded'
 
   const handlePageChange = useCallback(
     (path: string, label: string) => {
@@ -72,8 +83,11 @@ export const DynamicIslandHeader = () => {
 
   return (
     <motion.header
-      animate={{ opacity: 1, y: 0 }}
-      className='sticky top-2 z-50 my-1 flex h-14 w-full flex-col items-center justify-center px-2 select-none sm:top-3 sm:my-2 sm:h-16 sm:px-4'
+      animate={{
+        opacity: isHidden ? 0 : 1,
+        y: isHidden ? -80 : 0
+      }}
+      className='sticky top-2 z-9000 my-1 flex h-14 w-full flex-col items-center justify-center px-2 select-none sm:top-3 sm:my-2 sm:h-16 sm:px-4'
       initial={{ opacity: 0, y: -20 }}
       transition={FAST_SPRING}
     >
@@ -85,15 +99,17 @@ export const DynamicIslandHeader = () => {
           layout
           className={clsx(
             'flex max-w-full transform-gpu flex-wrap items-center justify-center border shadow-2xl backdrop-blur-xl sm:backdrop-blur-2xl',
-            isMinimized
-              ? 'gap-2 rounded-full px-3 py-1.5 sm:gap-2.5 sm:px-4 sm:py-2 md:gap-3'
-              : 'gap-2 rounded-[28px] px-3.5 py-2 sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 md:gap-4 md:px-8 md:py-3.5',
+            isMicro
+              ? 'cursor-pointer gap-0 rounded-full px-2.5 py-1.5 shadow-lg'
+              : isCompact
+                ? 'gap-2 rounded-full px-3 py-1.5 sm:gap-2.5 sm:px-4 sm:py-2 md:gap-3'
+                : 'gap-2 rounded-[28px] px-3.5 py-2 sm:gap-3 sm:rounded-full sm:px-5 sm:py-2.5 md:gap-4 md:px-8 md:py-3.5',
             isDarkTheme
               ? 'border-white/20 bg-black/45 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]'
               : 'border-white/60 bg-white/45 text-zinc-900 shadow-[0_8px_32px_0_rgba(31,38,135,0.12)]'
           )}
           transition={FAST_SPRING}
-          whileTap={isMinimized ? { scale: 0.98 } : undefined}
+          whileTap={{ scale: 0.96 }}
           onBlurCapture={() => setIsFocused(false)}
           onFocusCapture={() => setIsFocused(true)}
           onMouseEnter={() => setIsHovered(true)}
@@ -101,47 +117,49 @@ export const DynamicIslandHeader = () => {
         >
           <ServerStatusLens />
 
-          <nav
-            className='flex items-center gap-1 sm:gap-1.5 md:gap-2'
-            onClick={() => {
-              if (isMinimized && isMobile) {
-                setIsMobileExpanded(true)
-              }
-            }}
-          >
-            {NAV_ITEMS.map((item) => {
-              const isClicked = location.pathname === item.path
+          {!isMicro && (
+            <nav
+              className='flex items-center gap-1 sm:gap-1.5 md:gap-2'
+              onClick={() => {
+                if (isCompact && isMobile) {
+                  setIsMobileExpanded(true)
+                }
+              }}
+            >
+              {NAV_ITEMS.map((item) => {
+                const isClicked = location.pathname === item.path
 
-              if (isMinimized && !isClicked) {
-                return null
-              }
+                if (isCompact && !isClicked) {
+                  return null
+                }
 
-              const status = navStatuses[item.path] ?? NavStatus.READY
+                const status = navStatuses[item.path] ?? NavStatus.READY
 
-              if (status === NavStatus.IN_CONSTRUCTION) {
+                if (status === NavStatus.IN_CONSTRUCTION) {
+                  return (
+                    <ConstructionButton key={item.path}>
+                      {item.label}
+                    </ConstructionButton>
+                  )
+                }
+
+                const isProcessing = status === NavStatus.PROCESSING
+
                 return (
-                  <ConstructionButton key={item.path}>
+                  <NavigationButton
+                    key={item.path}
+                    isClicked={isClicked}
+                    isProcessing={isProcessing}
+                    onClick={() => handlePageChange(item.path, item.label)}
+                  >
                     {item.label}
-                  </ConstructionButton>
+                  </NavigationButton>
                 )
-              }
+              })}
+            </nav>
+          )}
 
-              const isProcessing = status === NavStatus.PROCESSING
-
-              return (
-                <NavigationButton
-                  key={item.path}
-                  isClicked={isClicked}
-                  isProcessing={isProcessing}
-                  onClick={() => handlePageChange(item.path, item.label)}
-                >
-                  {item.label}
-                </NavigationButton>
-              )
-            })}
-          </nav>
-
-          {isMinimized && (
+          {isCompact && (
             <>
               <div
                 className={clsx(
@@ -156,7 +174,7 @@ export const DynamicIslandHeader = () => {
             </>
           )}
 
-          {!isMinimized && (
+          {isExpanded && (
             <div
               className={clsx(
                 'hidden h-4 w-px shrink-0 sm:block sm:h-5 md:h-6',
@@ -165,11 +183,13 @@ export const DynamicIslandHeader = () => {
             />
           )}
 
-          <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
+          {!isMicro && (
+            <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
+          )}
         </motion.div>
 
         <AnimatePresence>
-          {!isMinimized && (
+          {isExpanded && (
             <motion.div
               layout
               animate={{ opacity: 1, scale: 1, x: 0, width: 'auto' }}
@@ -181,7 +201,7 @@ export const DynamicIslandHeader = () => {
                 transition: { duration: 0.1 }
               }}
               initial={{ opacity: 0, scale: 0.8, x: -10, width: 0 }}
-              className='transform-gpu overflow-hidden will-change-[opacity,transform,width]'
+              className='-m-1.5 transform-gpu overflow-hidden p-1.5 will-change-[opacity,transform,width]'
               transition={FAST_SPRING}
             >
               <CommandPaletteTrigger onClick={handleOpenCommandPalette} />
