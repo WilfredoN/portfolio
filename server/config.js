@@ -3,7 +3,6 @@ import { getDb } from './db.js'
 const DEFAULT_CONFIG = {
   isRecruiterModeEnabled: true,
   enableLivePreview: true,
-  enableSkillEndorsements: true,
   availabilityStatus: 'Available for Software Engineer & Full-Stack Developer roles',
   availabilityStatusColor: 'green',
   bannerAnnouncement: ''

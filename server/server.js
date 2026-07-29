@@ -242,24 +242,6 @@ app.put('/api/admin/config', verifyAdminToken, async (req, res, next) => {
   }
 })
 
-app.post('/api/skills/endorse', async (req, res, next) => {
-  try {
-    const { skill_name, skill_id } = req.body
-    if (!skill_name || typeof skill_name !== 'string') {
-      res.status(400).json({ error: 'skill_name is required' })
-      return
-    }
-    const db = await getDb()
-    await db.run(
-      'INSERT INTO feedback_skills (feedback_id, skill_id, skill_name) VALUES (?, ?, ?)',
-      [0, skill_id || 0, skill_name]
-    )
-    res.status(201).json({ status: 'ok', skill_name })
-  } catch (e) {
-    next(e)
-  }
-})
-
 app.get('/feedbacks/top-skills', async (req, res, next) => {
   try {
     const db = await getDb()

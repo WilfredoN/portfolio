@@ -50,13 +50,15 @@ export const Card = ({
     }
   }
 
+  const isPreviewable = Boolean(link && link.startsWith('/projects/'))
+
   return (
     <motion.div
       className={clsx(
         'mb-12 flex w-full transform-gpu flex-col justify-between rounded-xl border border-black/10 bg-white/80 p-4 shadow-xl backdrop-blur-sm transition-all duration-200 [content-visibility:auto] sm:backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/85',
         {
           'hover:scale-105': !videoUrl && !isLarge,
-          'md:h-122.5': scale === 'medium',
+          'h-auto min-h-122.5': scale === 'medium',
           'h-max': scale !== 'medium',
           'max-w-full': isLarge,
           'max-w-125 md:max-w-full': !isLarge
@@ -93,7 +95,7 @@ export const Card = ({
           )}
         </div>
 
-        {link && config.enableLivePreview && (
+        {isPreviewable && config.enableLivePreview && (
           <div className='mt-4 flex justify-center gap-3'>
             <button
               className='flex cursor-pointer items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-400 transition-colors hover:bg-emerald-500 hover:text-zinc-950'
@@ -103,7 +105,7 @@ export const Card = ({
                   category: 'Engagement',
                   label: title
                 })
-                if (onSelectPreview) {
+                if (onSelectPreview && link) {
                   onSelectPreview(title, link)
                 } else {
                   setShowPreview(true)

@@ -5,14 +5,12 @@ export interface AppConfig {
   availabilityStatusColor: 'green' | 'orange' | 'red'
   bannerAnnouncement: string
   enableLivePreview: boolean
-  enableSkillEndorsements: boolean
   isRecruiterModeEnabled: boolean
 }
 
 const DEFAULT_CONFIG: AppConfig = {
   isRecruiterModeEnabled: true,
   enableLivePreview: true,
-  enableSkillEndorsements: true,
   availabilityStatus:
     'Available for Software Engineer & Full-Stack Developer roles',
   availabilityStatusColor: 'green',

@@ -16,7 +16,7 @@ export const ProjectList = ({
   onSelectPreview
 }: ProjectListProps) => {
   return (
-    <motion.section className='flex min-h-100 w-full flex-row flex-wrap items-center justify-center gap-8 p-4'>
+    <motion.section className='flex min-h-100 w-full flex-row flex-wrap items-stretch justify-center gap-8 p-4'>
       <AnimatePresence mode='popLayout'>
         {projects.length === 0 ? (
           <motion.div

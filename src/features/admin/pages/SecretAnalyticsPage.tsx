@@ -221,7 +221,7 @@ export const SecretAnalyticsPage = () => {
         <h2 className='mb-4 text-lg font-bold'>
           ⚙️ Abstract Configuration Management (Live Feature Flags)
         </h2>
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
           <div className='flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/50 p-4'>
             <div>
               <div className='text-sm font-bold'>💼 Recruiter Mode</div>
@@ -264,29 +264,6 @@ export const SecretAnalyticsPage = () => {
               }
             >
               {config.enableLivePreview ? 'ON' : 'OFF'}
-            </button>
-          </div>
-
-          <div className='flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/50 p-4'>
-            <div>
-              <div className='text-sm font-bold'>👍 Skill Endorsements</div>
-              <div className='text-xs opacity-60'>1-click skill badges</div>
-            </div>
-            <button
-              className={clsx(
-                'rounded-full px-3 py-1 text-xs font-bold transition-colors',
-                config.enableSkillEndorsements
-                  ? 'bg-emerald-500 text-zinc-950'
-                  : 'bg-zinc-800 text-zinc-400'
-              )}
-              onClick={() =>
-                updateConfigKey(
-                  'enableSkillEndorsements',
-                  !config.enableSkillEndorsements
-                )
-              }
-            >
-              {config.enableSkillEndorsements ? 'ON' : 'OFF'}
             </button>
           </div>
         </div>
