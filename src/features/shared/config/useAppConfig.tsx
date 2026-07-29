@@ -19,6 +19,8 @@ const DEFAULT_CONFIG: AppConfig = {
   bannerAnnouncement: ''
 }
 
+const API_URL = import.meta.env?.VITE_API_URL
+
 interface AppConfigContextValue {
   config: AppConfig
   refreshConfig: () => Promise<void>
@@ -40,7 +42,7 @@ export const AppConfigProvider = ({
 
   const refreshConfig = async () => {
     try {
-      const res = await fetch('/api/config')
+      const res = await fetch(`${API_URL}/api/config`)
       if (res.ok) {
         const data = await res.json()
         setConfig((prev) => ({ ...prev, ...data }))
@@ -51,7 +53,7 @@ export const AppConfigProvider = ({
   const updateConfigKey = async (key: keyof AppConfig, value: unknown) => {
     const adminToken = localStorage.getItem('admin_token') || ''
     try {
-      const res = await fetch('/api/admin/config', {
+      const res = await fetch(`${API_URL}/api/admin/config`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

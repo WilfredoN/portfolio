@@ -13,6 +13,8 @@ interface ItemProps {
   type?: IconVariant
 }
 
+const API_URL = import.meta.env?.VITE_API_URL
+
 export const Item = ({ text, icon, type }: ItemProps) => {
   const { isDarkTheme } = useTheme()
   const { config } = useAppConfig()
@@ -29,7 +31,7 @@ export const Item = ({ text, icon, type }: ItemProps) => {
       category: 'Engagement',
       label: text
     })
-    fetch('/api/skills/endorse', {
+    fetch(`${API_URL}/api/skills/endorse`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ skill_name: text })
