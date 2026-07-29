@@ -23,7 +23,7 @@ export const NavigationButton = memo(
       <button
         aria-current={isClicked ? 'page' : undefined}
         className={clsx(
-          'relative flex shrink-0 items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold whitespace-nowrap transition-all duration-200 select-none focus:outline-none sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base',
+          'relative flex shrink-0 items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold whitespace-nowrap transition-all duration-200 select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:outline-none sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base',
           isProcessing
             ? 'pointer-events-none cursor-default opacity-50'
             : 'cursor-pointer',

@@ -123,6 +123,12 @@ export const DynamicIslandHeader = () => {
       <div
         ref={islandRef}
         className='flex max-w-full flex-wrap items-center justify-center gap-2.5 sm:gap-3 md:gap-4.5'
+        onBlurCapture={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+            setIsFocused(false)
+          }
+        }}
+        onFocusCapture={() => setIsFocused(true)}
       >
         <motion.div
           layout
@@ -139,9 +145,7 @@ export const DynamicIslandHeader = () => {
           )}
           transition={FAST_SPRING}
           whileTap={{ scale: 0.96 }}
-          onBlurCapture={() => setIsFocused(false)}
           onClick={handleIslandClick}
-          onFocusCapture={() => setIsFocused(true)}
           onMouseEnter={() => {
             if (!isMobile) {
               setIsHovered(true)

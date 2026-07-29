@@ -28,7 +28,11 @@ export const Content = () => {
   }, [isDarkTheme])
 
   return (
-    <main className='flex min-h-screen w-full max-w-5xl flex-col items-center justify-start bg-transparent'>
+    <main
+      className='flex min-h-screen w-full max-w-5xl flex-col items-center justify-start bg-transparent'
+      id='main-content'
+      tabIndex={-1}
+    >
       {showBinary && !isMobile && isDarkTheme && (
         <Suspense fallback={null}>
           <BinaryBackground />
