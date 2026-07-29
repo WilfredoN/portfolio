@@ -25,7 +25,7 @@ const WakatimeIcon = lazy(() =>
 
 export const Footer = () => {
   return (
-    <footer className='flex h-full w-full max-w-full flex-col items-center justify-center gap-4 overflow-hidden bg-transparent px-4 pt-12 pb-8 text-center sm:pt-16'>
+    <footer className='flex h-full w-full max-w-full flex-col items-center justify-center gap-4 overflow-hidden bg-transparent px-4 pt-12 pb-4 text-center sm:pt-16'>
       <Suspense
         fallback={
           <div className='flex flex-row flex-wrap justify-center gap-3 text-4xl sm:gap-4'>
