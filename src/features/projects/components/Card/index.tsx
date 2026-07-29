@@ -1,12 +1,14 @@
 import type { ProjectProps } from '@features/projects/data/projects'
 
 import { ProjectImage } from '@features/projects/components/ProjectImage'
+import { ProjectPreviewModal } from '@features/projects/components/ProjectPreviewModal'
 import { sendGAEvent } from '@features/shared/analytics/ga'
+import { useAppConfig } from '@features/shared/config/useAppConfig'
 import { Text } from '@shared/components/Text'
 import { SKILL_DEFINITIONS } from '@shared/constants/skills'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
-import { lazy } from 'react'
+import { lazy, useState } from 'react'
 
 const Video = lazy(() =>
   import('@features/projects/components/ProjectVideo').then((module) => ({
@@ -15,6 +17,7 @@ const Video = lazy(() =>
 )
 
 interface CardProps extends ProjectProps {
+  onSelectPreview?: (title: string, link: string) => void
   selectedTags?: string[]
 }
 
@@ -29,8 +32,11 @@ export const Card = ({
   imageStyle,
   scale = 'medium',
   additionalDescription,
-  selectedTags = []
+  selectedTags = [],
+  onSelectPreview
 }: CardProps) => {
+  const { config } = useAppConfig()
+  const [showPreview, setShowPreview] = useState(false)
   const isLarge = scale === 'large'
   const handleClick = () => {
     if (link) {
@@ -86,6 +92,28 @@ export const Card = ({
             <div className='mt-2'>{additionalDescription}</div>
           )}
         </div>
+
+        {link && config.enableLivePreview && (
+          <div className='mt-4 flex justify-center gap-3'>
+            <button
+              className='flex cursor-pointer items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-400 transition-colors hover:bg-emerald-500 hover:text-zinc-950'
+              onClick={() => {
+                sendGAEvent({
+                  action: 'live_preview_click',
+                  category: 'Engagement',
+                  label: title
+                })
+                if (onSelectPreview) {
+                  onSelectPreview(title, link)
+                } else {
+                  setShowPreview(true)
+                }
+              }}
+            >
+              <span>👁️</span> Live Preview
+            </button>
+          </div>
+        )}
       </motion.h1>
 
       <div className='mt-6 flex flex-wrap justify-center gap-2'>
@@ -107,6 +135,14 @@ export const Card = ({
           )
         })}
       </div>
+
+      {showPreview && link && (
+        <ProjectPreviewModal
+          link={link}
+          title={title}
+          onClose={() => setShowPreview(false)}
+        />
+      )}
     </motion.div>
   )
 }

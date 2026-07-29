@@ -2,6 +2,7 @@ import type { AdminEventItem, AdminSummaryData } from '@features/api/telemetry'
 
 import { useTheme } from '@app/hooks/useTheme'
 import { fetchAdminEvents, fetchAdminSummary } from '@features/api/telemetry'
+import { useAppConfig } from '@features/shared/config/useAppConfig'
 import clsx from 'clsx'
 import { motion } from 'motion/react'
 import { useCallback, useEffect, useState } from 'react'
@@ -9,6 +10,7 @@ import { useSearchParams } from 'react-router-dom'
 
 export const SecretAnalyticsPage = () => {
   const { isDarkTheme } = useTheme()
+  const { config, updateConfigKey } = useAppConfig()
   const [searchParams] = useSearchParams()
   const [key, setKey] = useState<string | null>(() => {
     return (
@@ -22,6 +24,7 @@ export const SecretAnalyticsPage = () => {
   const [summary, setSummary] = useState<AdminSummaryData | null>(null)
   const [events, setEvents] = useState<AdminEventItem[]>([])
   const [loading, setLoading] = useState(false)
+  const [availabilityInput, setAvailabilityInput] = useState('')
 
   const loadDashboard = useCallback(async (token: string) => {
     setLoading(true)
@@ -34,6 +37,7 @@ export const SecretAnalyticsPage = () => {
       setEvents(eventData)
       setIsAuthorized(true)
       localStorage.setItem('admin_secret_key', token)
+      localStorage.setItem('admin_token', token)
     } catch {
       setIsAuthorized(false)
     } finally {
@@ -48,6 +52,12 @@ export const SecretAnalyticsPage = () => {
       setIsAuthorized(false)
     }
   }, [key, loadDashboard])
+
+  useEffect(() => {
+    if (config.availabilityStatus) {
+      setAvailabilityInput(config.availabilityStatus)
+    }
+  }, [config.availabilityStatus])
 
   const handleAuthenticate = (e: React.FormEvent) => {
     e.preventDefault()
@@ -197,6 +207,156 @@ export const SecretAnalyticsPage = () => {
             {summary?.totalEvents ?? 0}
           </div>
           <p className='mt-1 text-[11px] opacity-60'>Server-side event log</p>
+        </div>
+      </div>
+
+      <div
+        className={clsx(
+          'mt-8 rounded-2xl border p-6 shadow-xl backdrop-blur-md',
+          isDarkTheme
+            ? 'border-white/15 bg-black/45 text-white'
+            : 'border-white/60 bg-white/45 text-zinc-900 shadow-sm'
+        )}
+      >
+        <h2 className='mb-4 text-lg font-bold'>
+          ⚙️ Abstract Configuration Management (Live Feature Flags)
+        </h2>
+        <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
+          <div className='flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/50 p-4'>
+            <div>
+              <div className='text-sm font-bold'>💼 Recruiter Mode</div>
+              <div className='text-xs opacity-60'>Header executive summary</div>
+            </div>
+            <button
+              className={clsx(
+                'rounded-full px-3 py-1 text-xs font-bold transition-colors',
+                config.isRecruiterModeEnabled
+                  ? 'bg-emerald-500 text-zinc-950'
+                  : 'bg-zinc-800 text-zinc-400'
+              )}
+              onClick={() =>
+                updateConfigKey(
+                  'isRecruiterModeEnabled',
+                  !config.isRecruiterModeEnabled
+                )
+              }
+            >
+              {config.isRecruiterModeEnabled ? 'ON' : 'OFF'}
+            </button>
+          </div>
+
+          <div className='flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/50 p-4'>
+            <div>
+              <div className='text-sm font-bold'>👁️ Live In-App Preview</div>
+              <div className='text-xs opacity-60'>
+                Project demo iframe modal
+              </div>
+            </div>
+            <button
+              className={clsx(
+                'rounded-full px-3 py-1 text-xs font-bold transition-colors',
+                config.enableLivePreview
+                  ? 'bg-emerald-500 text-zinc-950'
+                  : 'bg-zinc-800 text-zinc-400'
+              )}
+              onClick={() =>
+                updateConfigKey('enableLivePreview', !config.enableLivePreview)
+              }
+            >
+              {config.enableLivePreview ? 'ON' : 'OFF'}
+            </button>
+          </div>
+
+          <div className='flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/50 p-4'>
+            <div>
+              <div className='text-sm font-bold'>👍 Skill Endorsements</div>
+              <div className='text-xs opacity-60'>1-click skill badges</div>
+            </div>
+            <button
+              className={clsx(
+                'rounded-full px-3 py-1 text-xs font-bold transition-colors',
+                config.enableSkillEndorsements
+                  ? 'bg-emerald-500 text-zinc-950'
+                  : 'bg-zinc-800 text-zinc-400'
+              )}
+              onClick={() =>
+                updateConfigKey(
+                  'enableSkillEndorsements',
+                  !config.enableSkillEndorsements
+                )
+              }
+            >
+              {config.enableSkillEndorsements ? 'ON' : 'OFF'}
+            </button>
+          </div>
+        </div>
+
+        <div className='mt-4 flex flex-col gap-3 sm:flex-row sm:items-end'>
+          <div className='flex flex-1 flex-col gap-2'>
+            <label className='text-xs font-bold tracking-wider text-zinc-400 uppercase'>
+              Dynamic Availability Status Text
+            </label>
+            <input
+              className='rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs text-white outline-none'
+              value={availabilityInput}
+              onChange={(e) => setAvailabilityInput(e.target.value)}
+            />
+          </div>
+          <div className='flex flex-col gap-2'>
+            <label className='text-xs font-bold tracking-wider text-zinc-400 uppercase'>
+              Status Color Indicator
+            </label>
+            <div className='flex gap-1.5'>
+              <button
+                className={clsx(
+                  'rounded-lg px-3 py-1.5 text-xs font-bold transition-all',
+                  config.availabilityStatusColor === 'green' ||
+                    !config.availabilityStatusColor
+                    ? 'bg-emerald-500 text-zinc-950 shadow-md ring-2 ring-emerald-400'
+                    : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+                )}
+                onClick={() =>
+                  updateConfigKey('availabilityStatusColor', 'green')
+                }
+              >
+                🟢 Green
+              </button>
+              <button
+                className={clsx(
+                  'rounded-lg px-3 py-1.5 text-xs font-bold transition-all',
+                  config.availabilityStatusColor === 'orange'
+                    ? 'bg-amber-500 text-zinc-950 shadow-md ring-2 ring-amber-400'
+                    : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+                )}
+                onClick={() =>
+                  updateConfigKey('availabilityStatusColor', 'orange')
+                }
+              >
+                🟠 Orange
+              </button>
+              <button
+                className={clsx(
+                  'rounded-lg px-3 py-1.5 text-xs font-bold transition-all',
+                  config.availabilityStatusColor === 'red'
+                    ? 'bg-rose-500 text-zinc-950 shadow-md ring-2 ring-rose-400'
+                    : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+                )}
+                onClick={() =>
+                  updateConfigKey('availabilityStatusColor', 'red')
+                }
+              >
+                🔴 Red
+              </button>
+            </div>
+          </div>
+          <button
+            className='rounded-xl bg-emerald-500 px-4 py-2 text-xs font-bold text-zinc-950 transition-colors hover:bg-emerald-400'
+            onClick={() =>
+              updateConfigKey('availabilityStatus', availabilityInput)
+            }
+          >
+            Save Status Text
+          </button>
         </div>
       </div>
 

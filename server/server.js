@@ -3,6 +3,7 @@ import express from 'express'
 import geoip from 'geoip-lite'
 import crypto from 'node:crypto'
 
+import { getAppConfig, setAppConfig } from './config.js'
 import { getDb } from './db.js'
 import { getClientIp } from './ip.js'
 import rateLimit from './rateLimit.js'
@@ -212,6 +213,48 @@ app.get('/api/admin/telemetry/events', verifyAdminToken, async (req, res, next) 
       'SELECT * FROM telemetry_events ORDER BY created_at DESC LIMIT 50'
     )
     res.json(events)
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.get('/api/config', async (req, res, next) => {
+  try {
+    const config = await getAppConfig()
+    res.setHeader('Cache-Control', 'public, max-age=15')
+    res.json(config)
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.put('/api/admin/config', verifyAdminToken, async (req, res, next) => {
+  try {
+    const { key, value } = req.body
+    if (!key || typeof key !== 'string') {
+      res.status(400).json({ error: 'key is required' })
+      return
+    }
+    const updated = await setAppConfig(key, value)
+    res.json(updated)
+  } catch (e) {
+    next(e)
+  }
+})
+
+app.post('/api/skills/endorse', async (req, res, next) => {
+  try {
+    const { skill_name, skill_id } = req.body
+    if (!skill_name || typeof skill_name !== 'string') {
+      res.status(400).json({ error: 'skill_name is required' })
+      return
+    }
+    const db = await getDb()
+    await db.run(
+      'INSERT INTO feedback_skills (feedback_id, skill_id, skill_name) VALUES (?, ?, ?)',
+      [0, skill_id || 0, skill_name]
+    )
+    res.status(201).json({ status: 'ok', skill_name })
   } catch (e) {
     next(e)
   }

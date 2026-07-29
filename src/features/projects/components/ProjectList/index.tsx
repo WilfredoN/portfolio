@@ -5,13 +5,18 @@ import clsx from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
 
 interface ProjectListProps {
+  onSelectPreview?: (title: string, link: string) => void
   projects: ProjectProps[]
   selectedTags: string[]
 }
 
-export const ProjectList = ({ projects, selectedTags }: ProjectListProps) => {
+export const ProjectList = ({
+  projects,
+  selectedTags,
+  onSelectPreview
+}: ProjectListProps) => {
   return (
-    <motion.section className='flex min-h-[400px] w-full flex-row flex-wrap items-center justify-center gap-8 p-4'>
+    <motion.section className='flex min-h-100 w-full flex-row flex-wrap items-center justify-center gap-8 p-4'>
       <AnimatePresence mode='popLayout'>
         {projects.length === 0 ? (
           <motion.div
@@ -51,7 +56,11 @@ export const ProjectList = ({ projects, selectedTags }: ProjectListProps) => {
               initial={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.25 }}
             >
-              <Card {...project} selectedTags={selectedTags} />
+              <Card
+                {...project}
+                selectedTags={selectedTags}
+                onSelectPreview={onSelectPreview}
+              />
             </motion.div>
           ))
         )}

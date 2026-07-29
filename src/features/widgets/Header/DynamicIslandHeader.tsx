@@ -1,5 +1,7 @@
 import { useTheme } from '@app/hooks/useTheme'
 import { sendGAEvent } from '@features/shared/analytics/ga'
+import { useAppConfig } from '@features/shared/config/useAppConfig'
+import { RecruiterModal } from '@features/widgets/RecruiterModal'
 import { useOnClickOutside } from '@shared/hooks/useOnClickOutside'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
@@ -25,6 +27,7 @@ const FAST_SPRING = {
 }
 
 export const DynamicIslandHeader = () => {
+  const { config } = useAppConfig()
   const { isDarkTheme, toggleTheme } = useTheme()
   const location = useLocation()
   const navigate = useNavigate()
@@ -35,6 +38,7 @@ export const DynamicIslandHeader = () => {
   const [isHovered, setIsHovered] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isMobileExpanded, setIsMobileExpanded] = useState(false)
+  const [showRecruiterModal, setShowRecruiterModal] = useState(false)
 
   const islandRef = useRef<HTMLDivElement>(null)
 
@@ -221,6 +225,28 @@ export const DynamicIslandHeader = () => {
           {!isMicro && (
             <ThemeToggle isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
           )}
+
+          {isExpanded && config.isRecruiterModeEnabled && (
+            <button
+              className={clsx(
+                'flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold transition-all select-none hover:scale-105',
+                isDarkTheme
+                  ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-zinc-950'
+                  : 'border-emerald-600/40 bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white'
+              )}
+              title='Recruiter & Hiring Overview'
+              onClick={() => {
+                sendGAEvent({
+                  action: 'recruiter_mode_toggle',
+                  category: 'RecruiterMode',
+                  label: 'Header Click'
+                })
+                setShowRecruiterModal(true)
+              }}
+            >
+              <span>💼</span> Wanna hire?
+            </button>
+          )}
         </motion.div>
 
         <AnimatePresence>
@@ -244,6 +270,10 @@ export const DynamicIslandHeader = () => {
           )}
         </AnimatePresence>
       </div>
+
+      {showRecruiterModal && (
+        <RecruiterModal onClose={() => setShowRecruiterModal(false)} />
+      )}
     </motion.header>
   )
 }

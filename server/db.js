@@ -39,6 +39,11 @@ export async function getDb() {
         hashed_ip TEXT,
         created_at TEXT NOT NULL
       );
+      CREATE TABLE IF NOT EXISTS app_config (
+        config_key TEXT PRIMARY KEY,
+        config_value TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      );
     `)
   }
   return dbInstance

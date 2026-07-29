@@ -1,11 +1,12 @@
 import type { Category } from '@features/projects/data/projects'
 
+import { CinemaPreview } from '@features/projects/components/CinemaPreview'
 import { FilterPanel } from '@features/projects/components/FilterPanel'
 import { ProjectList } from '@features/projects/components/ProjectList'
 import { projects } from '@features/projects/data/projects'
 import { Text } from '@shared/components/Text'
 import { motion } from 'motion/react'
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 export const Projects = () => {
   const [activeCategories, setActiveCategories] = useState<Category[]>([
@@ -13,6 +14,18 @@ export const Projects = () => {
     'game'
   ])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [activePreview, setActivePreview] = useState<{
+    link: string
+    title: string
+  } | null>(null)
+  const previewRef = useRef<HTMLDivElement>(null)
+
+  const handleSelectPreview = (title: string, link: string) => {
+    setActivePreview({ title, link })
+    setTimeout(() => {
+      previewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 50)
+  }
 
   const filteredByCategory = useMemo(() => {
     return projects.filter((project) =>
@@ -81,7 +94,22 @@ export const Projects = () => {
         onResetFilters={handleResetFilters}
         onToggleTag={handleToggleTag}
       />
-      <ProjectList projects={filteredProjects} selectedTags={selectedTags} />
+
+      {activePreview && (
+        <div ref={previewRef} className='w-full scroll-mt-24'>
+          <CinemaPreview
+            link={activePreview.link}
+            title={activePreview.title}
+            onClose={() => setActivePreview(null)}
+          />
+        </div>
+      )}
+
+      <ProjectList
+        projects={filteredProjects}
+        selectedTags={selectedTags}
+        onSelectPreview={handleSelectPreview}
+      />
       {filteredProjects.length > 0 && (
         <Text className='mt-8 text-center text-4xl font-bold'>
           More projects coming soon...
