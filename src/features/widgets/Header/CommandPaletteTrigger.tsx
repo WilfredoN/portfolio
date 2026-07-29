@@ -5,8 +5,8 @@ import { motion } from 'motion/react'
 import { memo, useMemo } from 'react'
 
 interface CommandPaletteTriggerProps {
-  onClick: () => void
   isCompact?: boolean
+  onClick: () => void
 }
 
 const FAST_SPRING = {

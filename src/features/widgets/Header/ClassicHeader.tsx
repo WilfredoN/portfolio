@@ -21,15 +21,26 @@ export const ClassicHeader = () => {
   const navStatuses = useAllNavStatuses(NAV_ITEMS.map((item) => item.path))
 
   useEffect(() => {
-    const handleScroll = () => setScrollPosition(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const handleScroll = () => {
+      const rootEl = document.getElementById('root')
+      setScrollPosition(rootEl ? rootEl.scrollTop : window.scrollY)
+    }
+    const rootEl = document.getElementById('root')
+    rootEl?.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      rootEl?.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const handlePageChange = (path: string, label: string) => {
-    if (!isMobile) {
-      setScrollPosition(0)
+    setScrollPosition(0)
+    const rootEl = document.getElementById('root')
+    if (rootEl) {
+      rootEl.scrollTop = 0
     }
+    window.scrollTo(0, 0)
     navigate(path)
     sendGAEvent({ action: 'navigation_click', category: 'Header', label })
   }

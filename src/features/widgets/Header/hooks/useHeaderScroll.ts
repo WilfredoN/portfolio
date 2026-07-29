@@ -18,6 +18,11 @@ export const useHeaderScroll = (
   const scrollDirectionRef = useRef<'up' | 'down'>('up')
 
   useEffect(() => {
+    const rootEl = document.getElementById('root')
+    if (rootEl) {
+      rootEl.scrollTop = 0
+    }
+    window.scrollTo(0, 0)
     lastScrollYRef.current = 0
     scrollDirectionRef.current = 'up'
     setStage('expanded')
@@ -40,11 +45,15 @@ export const useHeaderScroll = (
         config.minCompactPx ?? 60,
         (maxScroll * config.compactStartPercent) / 100
       )
+      const minMicro = Math.max(config.minMicroPx ?? 250, compactPx + 100)
       const microPx = Math.max(
-        config.minMicroPx ?? 250,
+        minMicro,
         (maxScroll * config.microStartPercent) / 100
       )
-      const hidePx = (maxScroll * config.hideStartPercent) / 100
+      const hidePx = Math.max(
+        microPx + 100,
+        (maxScroll * config.hideStartPercent) / 100
+      )
 
       const isScrollingDown = currentY > lastScrollYRef.current + 2
       const isScrollingUp = currentY < lastScrollYRef.current - 2

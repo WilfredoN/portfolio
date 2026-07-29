@@ -3,7 +3,7 @@ import { sendGAEvent } from '@features/shared/analytics/ga'
 import { useOnClickOutside } from '@shared/hooks/useOnClickOutside'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'motion/react'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import type { HeaderStage } from './hooks/useHeaderScroll'
@@ -60,11 +60,15 @@ export const DynamicIslandHeader = () => {
   const handlePageChange = useCallback(
     (path: string, label: string) => {
       setIsMobileExpanded(false)
+      setIsFocused(false)
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
       const rootEl = document.getElementById('root')
       if (rootEl) {
-        rootEl.scrollTo({ top: 0, behavior: 'smooth' })
+        rootEl.scrollTo({ top: 0, behavior: 'instant' })
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: 'instant' })
 
       if (location.pathname !== path) {
         navigate(path)
@@ -73,6 +77,26 @@ export const DynamicIslandHeader = () => {
     },
     [location.pathname, navigate]
   )
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        isFocused &&
+        document.activeElement instanceof HTMLElement &&
+        islandRef.current?.contains(document.activeElement)
+      ) {
+        document.activeElement.blur()
+        setIsFocused(false)
+      }
+    }
+    const rootEl = document.getElementById('root')
+    rootEl?.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      rootEl?.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [isFocused])
 
   const handleOpenCommandPalette = useCallback(() => {
     window.dispatchEvent(
